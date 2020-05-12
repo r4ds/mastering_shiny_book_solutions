@@ -159,11 +159,6 @@ Extend the previous app so that you can also choose to select no continent, and 
 
 :::note
 Initially setting the choices to `c("", as.character(continents))` allows the user to see all the Country options prior to a continent being selected. That said, once a continent is selected this `""` option is no longer available.
-
-<br>
-
-<a href="https://github.com/tanho63">@tanho63</a> suggests:
-"You can use <tt>"All"</tt> instead of <tt>""</tt> - not sure why it's recalculating continent when evaluated, reactivelog wasn't very helpful on it."
 :::
 
 ```{r, eval=FALSE}
