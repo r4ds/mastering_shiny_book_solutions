@@ -1,1 +1,22 @@
 # Graphics
+
+## 7.5.1 TODO {-}
+
+Make a plot with click handle that shows all the data returned in the input.
+
+## 7.5.2 TODO {-}
+
+Make a plot with click, dblclick, hover, and brush output handlers and nicely display the current selection in the sidebar. Plot the plot in the main panel.
+
+## 7.5.3 TODO {-}
+
+Compute the limits of the distance scale using the size of the plot.
+
+```{r, eval=FALSE}
+output_size <- function(id) {
+  reactive(c(
+    session$clientData[[paste0("output_", id, "_width")]],
+    session$clientData[[paste0("output_", id, "_height")]]
+  ))
+}
+```
