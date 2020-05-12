@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+p, div {
+  font-family: 'Raleway';
+}
+
 p.caption {
   color: #777;
   margin-top: 10px;
 }
+
 p code {
   white-space: inherit;
 }
