@@ -87,7 +87,7 @@ shinyApp(ui, server)
 Extend the app from the previous exercise to allow the user to set the value of the multiplier, `y`, so that the app yields the value of `x * y`.
 :::
 
-We can add another `slideInput` with ID `y`. Thenwe can use both  using both `input$x` and `input$y` to calculate `output$product`.
+We can add another `slideInput` with ID `y`. Then can use both  using both `input$x` and `input$y` to calculate `output$product`.
 
 ```{r eval=FALSE}
 library(shiny)
