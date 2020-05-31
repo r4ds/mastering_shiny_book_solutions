@@ -2,7 +2,7 @@
 
 ## 2.8.1 {-}
   
-Create an app that greets the user by name. You don’t know all the functions you need to do this yet, so I’ve included some lines of code below. Figure out which lines you’ll use and then copy and paste them into the right place in a Shiny app.
+Create an app that greets the user by name. You don't know all the functions you need to do this yet, so I've included some lines of code below. Figure out which lines you’ll use and then copy and paste them into the right place in a Shiny app.
 
 ```{r, eval=FALSE}
 library(shiny)
