@@ -2,7 +2,25 @@
 
 ## 2.8.1 {-}
   
+:::question
 Create an app that greets the user by name. You don't know all the functions you need to do this yet, so I've included some lines of code below. Figure out which lines you’ll use and then copy and paste them into the right place in a Shiny app.
+:::
+
+We are given the following list of supplied code:
+```{r, eval=FALSE}
+textInput("name", "What's your name?")
+renderText({
+  paste0("Hello ", input$name)
+})
+numericInput("age", "How old are you?")
+textOutput("greeting")
+tableOutput("mortgage")
+renderPlot("histogram", {
+  hist(rnorm(1000))
+}, res = 96)
+```
+
+For the UI function we will need the `textInput` for the user to dynamically input their text and `textOutput` to generate the text we want the user to see given their input. The corresponding server function to `textOutput` is `renderText` which we can use to compose the element we've named "greeting".
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -23,9 +41,10 @@ shinyApp(ui, server)
 
 ## 2.8.2 {-}
 
+:::question
 Suppose your friend wants to design an app that allows the user to set a number (x) between 1 and 50, and displays the result of multiplying this number by 5. This is their first attempt:
   
-  ```{r eval=FALSE}
+```{r eval=FALSE}
 ui <- fluidPage(
   sliderInput("x", label = "If x is", min = 1, max = 50, value = 30),
   "then x times 5 is",
@@ -40,6 +59,9 @@ server <- function(input, output, session) {
 ```
 
 But unfortunately it has an error. Can you help them find and correct the error?
+:::
+
+The error here is that we need to specify `input$x`. Shiny accesses the ID's of elements within a list called `input`. By writing `x`, we are looking for element `x` which doesn't exist in the Shiny environment, as it only exists within the `input` list.
   
 ```{r eval=FALSE}
 library(shiny)
@@ -61,7 +83,11 @@ shinyApp(ui, server)
 
 ## 2.8.3 {-}
 
+:::question
 Extend the app from the previous exercise to allow the user to set the value of the multiplier, `y`, so that the app yields the value of `x * y`.
+:::
+
+We can add another `slideInput` with ID `y`. Thenwe can use both  using both `input$x` and `input$y` to calculate `output$product`.
 
 ```{r eval=FALSE}
 library(shiny)
@@ -84,6 +110,7 @@ shinyApp(ui, server)
 
 ## 2.8.4 {-}
 
+:::question
 Replace the UI and server components of your app from the previous exercise with the UI and server components below, run the app, and describe the app’s functionality. Then reduce the duplication in the app by using a reactive expression.
 
 ```{r eval=FALSE}
@@ -110,6 +137,8 @@ server <- function(input, output, session) {
   })
 }
 ```
+:::
+
 
 The application above has two numeric inputs `input$x` and `input$y`. The product output is `input$x * input$y`, the `product_plus5` and the `product_plus10` outputs only differ in the addition to `product`. We can reduce duplication by setting `product` to a reactive value and using that within all three outputs:
   
@@ -137,11 +166,15 @@ shinyApp(ui, server)
 
 ## 2.8.5 {-}
 
+:::question
 The following app is very similar to one you’ve seen earlier in the chapter: you select a dataset from a package (this time we’re using the ggplot2 package) and the app prints out a summary and plot of the data. It also follows good practice and makes use of reactive expressions to avoid redundancy of code. However there are three bugs in the code provided below. Can you find and fix them?
+:::
   
 :::note
 The app doesn't work because calls to `plot()` take too long to render with data sets with many columns. You can replace `datasets <- "seals"` to see if everything was running OK.
 :::
+
+Because we are generating a plot we need to change `tableOutput` to `plotOutput` in our `ui`. The word `summry` was misspelled, so we can't find `input$summry` as it does not exist. Lastly, because we're using the reactive function to create dataset we must return it as a function, `dataset()`.
 
 ```{r eval=FALSE}
 library(ggplot2)
