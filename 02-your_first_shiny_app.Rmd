@@ -61,7 +61,7 @@ server <- function(input, output, session) {
 But unfortunately it has an error. Can you help them find and correct the error?
 :::
 
-The error here is that we need to specify `input$x`. Shiny accesses the ID's of elements within a list called `input`. By writing `x`, we are looking for element `x` which doesn't exist in the Shiny environment, as it only exists within the `input` list.
+The error here is that we need to specify `input$x`. Shiny accesses the ID's of elements within a read only object called `input`. By writing `x`, we are looking for element `x` which doesn't exist in the Shiny environment, as it only exists within the object `input`.
   
 ```{r eval=FALSE}
 library(shiny)
