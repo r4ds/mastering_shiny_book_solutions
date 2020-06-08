@@ -2,8 +2,8 @@
 
 ## 4.3.6.1 {-}
 
+:::question
 Draw the reactive graph for the following server functions:
-
 ```{r, eval=FALSE}
 server1 <- function(input, output, session) {
   c <- reactive(input$a + input$b)
@@ -11,9 +11,17 @@ server1 <- function(input, output, session) {
   output$f <- renderText(e())
 }
 ```
+:::
+
+- inputs: `input$a`, `input$b`, and `input$d`
+- reactives: `c()` and `e()`
+- outputs: `output$f`
+
+`input$a` and `input$b` are used to create `c()`, which is combined with `input$d` to create `e()`. The output of the application is `e()`, which depends on all inputs and reactives to be generated.
 
 <img src="www/reactive1.png"></img>
 
+:::question
 ```{r, eval=FALSE}
 server2 <- function(input, output, session) {
   x <- reactive(input$x1 + input$x2 + input$x3)
@@ -21,9 +29,17 @@ server2 <- function(input, output, session) {
   output$z <- renderText(x() / y())
 }
 ```
+:::
+
+- inputs: `input$y1`, `input$y2`, `input$x1`, `input$x2`, `input$x3`
+- reactives: `y()` and `x`
+- outputs: `output$z`
+
+Shiny inputs `y1` and `y2` are needed to create the reactive `y()` and the inputs `x1`, `x2`, and `x3` are needed to create the reactive `x()`. There is a singular output which is reliant on both `x()` and `y()` but a change to one of the `x` inputs will trigger the need to recalculate `y()` and vice versa.
 
 <img src="www/reactive2.png"></img>
 
+:::question
 ```{r, eval=FALSE}
 server3 <- function(input, output, session) {
   d <- reactive(c() ^ input$d)
@@ -32,18 +48,28 @@ server3 <- function(input, output, session) {
   b <- reactive(a() + input$b)
 }
 ```
+:::
+
+- inputs: `input$a`, `input$b`, `input$c`, `input$d`
+- reactives: `a()`, `b()`, `c()`, `d()`
+
+This is a hierarchical dependency tree where `a()` is only reliant on `input$a`, but `b()` is reliant on both `a()` and `input$b`. This cascade continues to `d()` which will be recalculated when there is any change to `a()`, `b()`, `c()`, or `d()`. 
 
 <img src="www/reactive3.png"></img>
 
 ## 4.3.6.2 {-}
 
+:::question
 Can the reactive graph contain a cycle? Why/why not?
+:::
 
 No! This will create circular references and a recursion loop!
 
-## 4.4.6.1 TODO {-}
+## 4.4.6.1 {-}
 
+:::question
 Use reactive expressions to reduce the duplicated code in the following simple apps.
+:::
 
 :::note
 Unclear what apps this question is referring to
