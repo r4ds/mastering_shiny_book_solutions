@@ -5,10 +5,13 @@ bookdown::gitbook:
       collapse: section
       before: |
         <li><a href="./">Mastering Shiny Solutions</a></li>
-      after: |
-        <li><a href="https://github.com/marlycormar/mastering_shiny_book_solutions" target="blank">Published with bookdown</a></li>
     edit: https://github.com/marlycormar/mastering_shiny_book_solutions/edit/master/%s
-    download: ["pdf", "epub"]
+    download: []
+    sharing:
+      facebook: no
+      twitter: no
+      github: yes
+      all: []
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

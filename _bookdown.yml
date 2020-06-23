@@ -3,3 +3,36 @@ language:
   ui:
     chapter_name: "Chapter "
 delete_merged_file: true
+new_session: yes
+
+rmd_files:
+  [
+    "index.Rmd",
+
+    "introduction.Rmd",
+
+    "basic-app.Rmd",
+    "basic-ui.Rmd",
+    "basic-reactivity.Rmd",
+    "basic-case-study.Rmd",
+
+    "action-workflow.Rmd",
+    "action-graphics.Rmd",
+    "action-feedback.Rmd",
+    "action-transfer.Rmd",
+    "action-dynamic.Rmd",
+    "action-bookmark.Rmd",
+    "action-tidy.Rmd",
+
+    "scaling-general.Rmd",
+    "scaling-functions.Rmd",
+    "scaling-modules.Rmd",
+    "scaling-testing.Rmd",
+    "scaling-safety.Rmd",
+
+    "reactivity-tracking.Rmd",
+    "reactivity-scoping.Rmd",
+    "reactivity-components.Rmd",
+
+    "advanced-ui.Rmd",
+  ]
