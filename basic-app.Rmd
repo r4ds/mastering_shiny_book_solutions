@@ -19,7 +19,7 @@ renderPlot("histogram", {
 ```
 :::
 
-For the UI function we will need the `textInput` for the user to dynamically input their text and `textOutput` to generate the text we want the user to see given their input. The corresponding server function to `textOutput` is `renderText` which we can use to compose the element we've named "greeting".
+For the UI function we will need the `textInput` for the user to input text and `textOutput` to generate the custom text we want the user to see. The corresponding server function to `textOutput` is `renderText` which we can use to compose the output element we've named "greeting".
 
 ```{r, eval=FALSE}
 library(shiny)
