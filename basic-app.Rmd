@@ -110,7 +110,7 @@ shinyApp(ui, server)
 ## 2.8.4 {-}
 
 :::question
-Replace the UI and server components of your app from the previous exercise with the UI and server components below, run the app, and describe the app’s functionality. Then reduce the duplication in the app by using a reactive expression.
+Replace the UI and server components of your app from the previous exercise with the UI and server components below, run the app, and describe the app's functionality. Then reduce the duplication in the app by using a reactive expression.
 
 ```{r eval=FALSE}
 ui <- fluidPage(
@@ -166,7 +166,7 @@ shinyApp(ui, server)
 ## 2.8.5 {-}
 
 :::question
-The following app is very similar to one you’ve seen earlier in the chapter: you select a dataset from a package (this time we’re using the ggplot2 package) and the app prints out a summary and plot of the data. It also follows good practice and makes use of reactive expressions to avoid redundancy of code. However there are three bugs in the code provided below. Can you find and fix them?
+The following app is very similar to one you've seen earlier in the chapter: you select a dataset from a package (this time we're using the ggplot2 package) and the app prints out a summary and plot of the data. It also follows good practice and makes use of reactive expressions to avoid redundancy of code. However there are three bugs in the code provided below. Can you find and fix them?
 :::
   
 :::note
