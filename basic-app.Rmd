@@ -3,10 +3,8 @@
 ## 2.8.1 {-}
   
 :::question
-Create an app that greets the user by name. You don't know all the functions you need to do this yet, so I've included some lines of code below. Figure out which lines you’ll use and then copy and paste them into the right place in a Shiny app.
-:::
+Create an app that greets the user by name. You don't know all the functions you need to do this yet, so I've included some lines of code below. Figure out which lines you'll use and then copy and paste them into the right place in a Shiny app.
 
-We are given the following list of supplied code:
 ```{r, eval=FALSE}
 textInput("name", "What's your name?")
 renderText({
@@ -19,6 +17,7 @@ renderPlot("histogram", {
   hist(rnorm(1000))
 }, res = 96)
 ```
+:::
 
 For the UI function we will need the `textInput` for the user to dynamically input their text and `textOutput` to generate the text we want the user to see given their input. The corresponding server function to `textOutput` is `renderText` which we can use to compose the element we've named "greeting".
 
