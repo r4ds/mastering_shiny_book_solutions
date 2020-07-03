@@ -160,7 +160,7 @@ server <- function(input, output, session) {
   
   output$product <- renderText( product() )
   output$product_plus5 <- renderText( product() + 5 )
-  output$product_plus5 <- renderText( product() + 10 )
+  output$product_plus10 <- renderText( product() + 10 )
 }
 shinyApp(ui, server)
 ```
