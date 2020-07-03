@@ -198,7 +198,11 @@ server <- function(input, output, session) {
 The app doesn't work because calls to `plot()` take too long to render with data sets with many columns. You can replace `datasets <- "seals"` to see if everything was running OK.
 :::
 
-Because we are generating a plot we need to change `tableOutput` to `plotOutput` in our `ui`. The word `summry` was misspelled, so we can't find `input$summry` as it does not exist. Lastly, because we're using the reactive function to create dataset we must return it as a function, `dataset()`.
+The app contains the following three bugs:
+
+1. Since we are generating a plot, we need to change `tableOutput` to `plotOutput` in our `ui`. 
+2. The word `summry` is misspelled, so we can't find `input$summry` as it does not exist.
+3. Lastly, because we're using the reactive function to create `dataset` we must return it as a function, i.e., `dataset()`.
 
 ```{r eval=FALSE}
 library(ggplot2)
@@ -207,7 +211,7 @@ datasets <- data(package = "ggplot2")$results[, "Item"]
 ui <- fluidPage(
   selectInput("dataset", "Dataset", choices = datasets),
   verbatimTextOutput("summary"),
-  #change tableOutput to plotOutput
+  # 1. Change tableOutput to plotOutput.
   plotOutput("plot")
 )
 
@@ -215,12 +219,12 @@ server <- function(input, output, session) {
   dataset <- reactive({
     get(input$dataset, "package:ggplot2")
   })
-  # change summry to summary
+  # 2. Change summry to summary.
   output$summary <- renderPrint({
     summary(dataset())
   })
   output$plot <- renderPlot({
-    #change dataset to dataset()
+    # 3. Change dataset to dataset().
     plot(dataset())
   })
 }
