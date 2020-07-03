@@ -204,6 +204,8 @@ The app contains the following three bugs:
 2. The word `summry` is misspelled, so we can't find `input$summry` as it does not exist.
 3. Lastly, because we're using the reactive function to create `dataset` we must return it as a function, i.e., `dataset()`.
 
+The fixed app looks as follows:
+
 ```{r eval=FALSE}
 library(ggplot2)
 datasets <- data(package = "ggplot2")$results[, "Item"]
