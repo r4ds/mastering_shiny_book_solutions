@@ -141,7 +141,7 @@ server <- function(input, output, session) {
 :::
 
 
-The application above has two numeric inputs `input$x` and `input$y`. The product output is `input$x * input$y`, the `product_plus5` and the `product_plus10` outputs only differ in the addition to `product`. We can reduce duplication by setting `product` to a reactive value and using that within all three outputs:
+The application above has two numeric inputs `input$x` and `input$y`. It computes three values: `x*y`, `x*y + 5`, and `x*y + 10`. We can reduce duplication by setting `product` to a reactive value and using that within all three outputs.
   
 ```{r eval=FALSE}
 library(shiny)
