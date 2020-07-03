@@ -83,7 +83,9 @@ shinyApp(ui, server)
 ## 2.8.3 {-}
 
 :::question
-Extend the app from the previous exercise to allow the user to set the value of the multiplier, `y`, so that the app yields the value of `x * y`.
+Extend the app from the previous exercise to allow the user to set the value of the multiplier, `y`, so that the app yields the value of `x * y`. The final result should look like this:
+
+`r knitr::include_graphics("./images/2.8.3.png")`
 :::
 
 We can add another `sliderInput` with ID `y`. Then we can use both `input$x` and `input$y` to calculate `output$product`.
