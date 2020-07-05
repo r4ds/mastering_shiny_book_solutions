@@ -92,11 +92,14 @@ Re-create the Shiny app from the plots section, this time setting height to 300p
 The function `plotOutput` can take on static `width` and `height` arguments. Using the app from the plots section, we only need to add the height argument and modify the width.
 
 ```{r eval=FALSE}
+library(shiny)
+
 ui <- fluidPage(
-  plotOutput("plot", width = "700px", height="300px")
+  plotOutput("plot", width = "700px", height = "300px")
 )
+
 server <- function(input, output, session) {
-  output$plot <- renderPlot(plot(1:5))
+  output$plot <- renderPlot(plot(1:5), res = 96)
 }
 
 shinyApp(ui, server)
