@@ -116,6 +116,8 @@ When creating the layout of a shiny app, you can use the `fluidRow` function to 
 For our problem, we need two columns of 50% width each, i.e., we should set the width of each column to 6.
 
 ```{r, eval=FALSE}
+library(shiny)
+
 ui <- fluidPage(
   fluidRow(
     column(width = 6, plotOutput("plot1")),
