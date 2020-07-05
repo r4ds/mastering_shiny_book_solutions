@@ -168,7 +168,7 @@ shinyApp(ui, server)
 Modify the Central Limit Theorem app so that the sidebar is on the right instead of the left.
 :::
 
-Looking at `?sidebarLayout` we can simply set the `position` argument to `right`.
+Looking at `?sidebarLayout` we can simply set the `position` argument to `right`. We only need to modify the UI of the app.
 
 ```{r, eval=FALSE}
 ui <- fluidPage(
@@ -182,14 +182,6 @@ ui <- fluidPage(
     )
   )
 )
-
-server <- function(input, output, session) {
-  output$hist <- renderPlot({
-    means <- replicate(1e4, mean(runif(input$m)))
-    hist(means, breaks = 20)
-  })
-}
-shinyApp(ui, server)
 ```
 
 ## 3.4.6.2 {-}
