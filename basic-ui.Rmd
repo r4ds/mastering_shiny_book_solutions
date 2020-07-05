@@ -89,7 +89,7 @@ The step argument is the amount by which the `numericInput` value is incremented
 Re-create the Shiny app from the plots section, this time setting height to 300px and width to 700px.
 :::
 
-The function `plotOutput` can take on static `width` and `height` arguments:
+The function `plotOutput` can take on static `width` and `height` arguments. Using the app from the plots section, we only need to add the height argument and modify the width.
 
 ```{r eval=FALSE}
 ui <- fluidPage(
