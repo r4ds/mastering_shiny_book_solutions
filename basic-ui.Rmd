@@ -173,7 +173,8 @@ Looking at `?sidebarLayout` we can simply set the `position` argument to `right`
 ```{r, eval=FALSE}
 ui <- fluidPage(
   headerPanel("Central limit theorem"),
-  sidebarLayout(position = "right",
+  sidebarLayout(
+    position = "right",
     sidebarPanel(
       numericInput("m", "Number of samples:", 2, min = 1, max = 100)
     ),
@@ -187,7 +188,7 @@ ui <- fluidPage(
 ## 3.4.6.2 {-}
 
 :::question
-Browse the themes available in the shinythemes package, pick an attractive theme, and apply it the Central Limit Theorem app.
+Browse the themes available in the shinythemes package, pick an attractive theme, and apply it to the Central Limit Theorem app.
 :::
 
 We can browse the themes [here](https://rstudio.github.io/shinythemes/) and apply it by setting the `theme` argument within `fluidPage` to `shinythemes::shinytheme("theme_name")`
@@ -198,7 +199,8 @@ library(shinythemes)
 ui <- fluidPage(
   theme = shinythemes::shinytheme("darkly"),
   headerPanel("Central limit theorem"),
-  sidebarLayout(position = "right",
+  sidebarLayout(
+    position = "right",
     sidebarPanel(
       numericInput("m", "Number of samples:", 2, min = 1, max = 100)
     ),
@@ -214,5 +216,6 @@ server <- function(input, output, session) {
     hist(means, breaks = 20)
   })
 }
+
 shinyApp(ui, server)
 ```
