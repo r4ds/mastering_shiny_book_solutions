@@ -10,7 +10,9 @@ When space is at a premium, it’s useful to label text boxes using a placeholde
 
 Looking at `?textInput` we see the argument `placeholder` which takes:
 
->	A character string giving the user a hint as to what can be entered into the control. Internet Explorer 8 and 9 do not support this option.
+>	A character string giving the user a hint as to what can be entered into the control.
+
+Therefore, we can use the `textInput` with arguments as shown below to generate the desired UI.
 
 ```{r eval=FALSE}
 textInput("text", "Text", placeholder = "Your name")
