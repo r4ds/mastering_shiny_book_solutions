@@ -26,6 +26,7 @@ Carefully read the documentation for `sliderInput()` to figure out how to create
 <img src="https://d33wubrfki0l68.cloudfront.net/16dea4a0f7a4462dfd578a917bdf3e492ed6a7cd/9686e/screenshots/basic-ui/date-slider.png" style="align:center;"/>
 :::
 
+To create such slider, we need the following code.
 ```{r eval=FALSE}
   sliderInput("dates", "Date Range:", 
               min = lubridate::as_date("2020-01-01"),
