@@ -3,7 +3,7 @@
 ## 3.2.8.1 {-}
 
 :::question
-When space is at a premium, it’s useful to label text boxes using a placeholder that appears inside the text entry area. How do you call `textInput()` to generate the UI below?
+When space is at a premium, it’s useful to label text boxes using a placeholder that appears _inside_ the text entry area. How do you call `textInput()` to generate the UI below?
 
 <img src="https://d33wubrfki0l68.cloudfront.net/0250dd2b285e770d5fd2a66670a6604775bb7f1e/42653/screenshots/basic-ui/placeholder.png" style="align=center;"/>
 :::
