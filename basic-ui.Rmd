@@ -46,11 +46,13 @@ If you have a moderately long list, it's useful to create sub-headings that brea
 We can make the `choices` argument a list of key-value pairs where the keys represent the sub-headings and the values are lists containing the categorized elements by keys. As an illustration, the example below separates animal breeds into two keys (categories): 'dogs' and 'cats'.
 
 ```{r, eval=FALSE}
-  selectInput("state", "Choose a number:",
-              list(`ONE` = list(1,2,3),
-                   `TWO` = list(4,5,6),
-                   `THREE` = list(7,8,9))
-              )
+selectInput(
+  "breed",
+  "Select your favorite animal breed:",
+  choices =
+    list(`dogs` = list('German Shepher', 'Bulldog', 'Labrador Retriever'),
+         `cats` = list('Persian cat', 'Bengal cat', 'Siamese Cat'))
+)
 ```
 
 
