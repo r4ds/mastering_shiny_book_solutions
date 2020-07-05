@@ -150,7 +150,7 @@ server <- function(input, output, session) {
 We can achieve this by setting `ordering` and `searching` to `FALSE` within the `options` list.
 
 ```{r eval=FALSE}
-library(shinythemes)
+library(shiny)
 
 ui <- fluidPage(
   dataTableOutput("table")
