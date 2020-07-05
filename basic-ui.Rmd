@@ -21,7 +21,7 @@ textInput("text", "", placeholder = "Your name")
 ## 3.2.8.2 {-}
 
 :::question
-Carefully read the documentation for `sliderInput()` to figure out how to create a date slider
+Carefully read the documentation for `sliderInput()` to figure out how to create a date slider, as shown below.
 
 <img src="https://d33wubrfki0l68.cloudfront.net/16dea4a0f7a4462dfd578a917bdf3e492ed6a7cd/9686e/screenshots/basic-ui/date-slider.png" style="align:center;"/>
 :::
