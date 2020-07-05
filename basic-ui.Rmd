@@ -3,7 +3,7 @@
 ## 3.2.8.1 {-}
 
 :::question
-When space is at a premium, it’s useful to label text boxes using a placeholder that appears _inside_ the text entry area. How do you call `textInput()` to generate the UI below?
+When space is at a premium, it's useful to label text boxes using a placeholder that appears _inside_ the text entry area. How do you call `textInput()` to generate the UI below?
 
 <img src="https://d33wubrfki0l68.cloudfront.net/0250dd2b285e770d5fd2a66670a6604775bb7f1e/42653/screenshots/basic-ui/placeholder.png" style="align=center;"/>
 :::
@@ -40,7 +40,7 @@ sliderInput(
 ## 3.2.8.3 {-}
 
 :::question
-If you have a moderately long list, it’s useful to create sub-headings that break the list up into pieces. Read the documentation for `selectInput()` to figure out how. (Hint: the underlying HTML is called <optgroup>.)
+If you have a moderately long list, it's useful to create sub-headings that break the list up into pieces. Read the documentation for `selectInput()` to figure out how. (Hint: the underlying HTML is called <optgroup>.)
 :::
 
 ```{r, eval=FALSE}
@@ -124,7 +124,7 @@ shinyApp(ui, server)
 ## 3.3.5.3 {-}
 
 :::question
-Update the options for `renderDataTable()` below so that the table is displayed, but nothing else, i.e. remove the search, ordering, and filtering commands. You’ll need to read ?renderDataTable and review the options at https://datatables.net/reference/option/.
+Update the options for `renderDataTable()` below so that the table is displayed, but nothing else, i.e. remove the search, ordering, and filtering commands. You'll need to read ?renderDataTable and review the options at https://datatables.net/reference/option/.
 :::
 
 We can achieve this by setting `ordering` and `searching` to `FALSE` within the `options` list.
