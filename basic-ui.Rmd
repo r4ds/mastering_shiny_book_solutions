@@ -63,7 +63,7 @@ If you run the snippet above in the console, you will see the HTML code needed t
 Create a slider input to select values between 0 and 100 where the interval between each selectable value on the slider is 5. Then, add animation to the input widget so when the user presses play the input widget scrolls through automatically.
 :::
 
-We can increment the value using the `step` argument, and play thought automatically by setting `animate = TRUE`
+We can set the interval between each selectable value using the `step` argument. In addition, by setting `animate = TRUE`, the slider will automatically animate once the user presses play.
 
 ```{r, eval=FALSE}
   sliderInput("slider", "Select Number", 
