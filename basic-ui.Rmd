@@ -43,6 +43,8 @@ sliderInput(
 If you have a moderately long list, it's useful to create sub-headings that break the list up into pieces. Read the documentation for `selectInput()` to figure out how. (Hint: the underlying HTML is called <optgroup>.)
 :::
 
+We can make the `choices` argument a list of key-value pairs where the keys represent the sub-headings and the values are lists containing the categorized elements by keys. As an illustration, the example below separates animal breeds into two keys (categories): 'dogs' and 'cats'.
+
 ```{r, eval=FALSE}
   selectInput("state", "Choose a number:",
               list(`ONE` = list(1,2,3),
@@ -51,7 +53,7 @@ If you have a moderately long list, it's useful to create sub-headings that brea
               )
 ```
 
-We can make the `choices` argument a list, where the header is followed by list items that can selected from.
+
 
 ## 3.2.8.4 {-}
 
