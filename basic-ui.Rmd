@@ -28,11 +28,13 @@ Carefully read the documentation for `sliderInput()` to figure out how to create
 
 To create such slider, we need the following code.
 ```{r eval=FALSE}
-  sliderInput("dates", "Date Range:", 
-              min = lubridate::as_date("2020-01-01"),
-              max = lubridate::as_date("2020-12-31"),
-              value = lubridate::as_date("2020-03-26"))
-  )
+sliderInput(
+  "dates",
+  "When should we deliver?",
+  min = as.Date("2019-08-09"),
+  max = as.Date("2019-08-16"),
+  value = as.Date("2019-08-10")
+)
 ```
 
 ## 3.2.8.3 {-}
