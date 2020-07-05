@@ -55,7 +55,7 @@ selectInput(
 )
 ```
 
-
+If you run the snippet above in the console, you will see the HTML code needed to generate the input. You can also see the `<optgroup>` as hinted in the exercise.
 
 ## 3.2.8.4 {-}
 
