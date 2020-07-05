@@ -118,12 +118,12 @@ For our problem, we need two columns of 50% width each, i.e., we should set the 
 ```{r, eval=FALSE}
 ui <- fluidPage(
   fluidRow(
-    column(6, plotOutput("plot")),
-    column(6, plotOutput("plot2"))
+    column(width = 6, plotOutput("plot1")),
+    column(width = 6, plotOutput("plot2"))
   )
 )
 server <- function(input, output, session) {
-  output$plot <- renderPlot(plot(1:5))
+  output$plot1 <- renderPlot(plot(1:5))
   output$plot2 <- renderPlot(plot(1:5))
 }
 
