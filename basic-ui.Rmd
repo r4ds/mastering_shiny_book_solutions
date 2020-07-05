@@ -81,7 +81,7 @@ numericInput("number", "Select a value", value = 150, min = 0, max = 1000, step 
 ```
 :::
 
-When the user clicks either of the [Spin Boxes](https://en.wikipedia.org/wiki/Spinner_%28computing%29), the number is incremented by +/- 50. However, by using a `numericInput` the user still has the ability to select *any* number.
+The step argument is the amount by which the `numericInput` value is incremented (decreased) when the user clicks the up (down) arrow. In the example above, when the user clicks the up (down) arrow the numeric value will increase (decrease) by 50. Note: by using a `numericInput` the user still has the ability to type *any* number.
 
 ## 3.3.5.1 {-}
 
