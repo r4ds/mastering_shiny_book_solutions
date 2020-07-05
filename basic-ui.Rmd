@@ -135,7 +135,16 @@ shinyApp(ui, server)
 ## 3.3.5.3 {-}
 
 :::question
-Update the options for `renderDataTable()` below so that the table is displayed, but nothing else, i.e. remove the search, ordering, and filtering commands. You'll need to read ?renderDataTable and review the options at https://datatables.net/reference/option/.
+Update the options for `renderDataTable()` below so that the table is displayed, but nothing else, i.e. remove the search, ordering, and filtering commands. You'll need to read `?renderDataTable` and review the options at https://datatables.net/reference/option/.
+
+```{r eval=FALSE}
+ui <- fluidPage(
+  dataTableOutput("table")
+)
+server <- function(input, output, session) {
+  output$table <- renderDataTable(mtcars, options = list(pageLength = 5))
+}
+```
 :::
 
 We can achieve this by setting `ordering` and `searching` to `FALSE` within the `options` list.
