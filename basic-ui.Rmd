@@ -15,7 +15,7 @@ Looking at `?textInput` we see the argument `placeholder` which takes:
 Therefore, we can use the `textInput` with arguments as shown below to generate the desired UI.
 
 ```{r eval=FALSE}
-textInput("text", "Text", placeholder = "Your name")
+textInput("text", "", placeholder = "Your name")
 ```
 
 ## 3.2.8.2 {-}
