@@ -75,11 +75,11 @@ We can set the interval between each selectable value using the `step` argument.
 
 :::question
 Using the following numeric input box the user can enter any value between 0 and 1000. What is the purpose of the step argument in this widget?
-:::
 
 ```{r, eval=FALSE}
 numericInput("number", "Select a value", value = 150, min = 0, max = 1000, step = 50)
 ```
+:::
 
 When the user clicks either of the [Spin Boxes](https://en.wikipedia.org/wiki/Spinner_%28computing%29), the number is incremented by +/- 50. However, by using a `numericInput` the user still has the ability to select *any* number.
 
