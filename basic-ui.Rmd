@@ -111,7 +111,9 @@ shinyApp(ui, server)
 Add an additional plot to the right of the existing plot, and size it so that each plot takes up half the width of the app.
 :::
 
-Each `fluidRow` function is made of columns that add to `12`. If you do not include a column argument it will default to the width of the browser. We can use the `column` function within `fluidRow` to subdivide the width of the browser.
+When creating the layout of a shiny app, you can use the `fluidRow` function to control the width of the objects it contains. This function can have columns and such columns can be set to have widths ranging from 1-12. Note that column widths within a `fluidRow` container should add up to 12.
+
+For our problem, we need two columns of 50% width each, i.e., we should set the width of each column to 6.
 
 ```{r, eval=FALSE}
 ui <- fluidPage(
