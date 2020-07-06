@@ -10,6 +10,19 @@ server1 <- function(input, output, session) {
   e <- reactive(c() + input$d)
   output$f <- renderText(e())
 }
+
+server2 <- function(input, output, session) {
+  x <- reactive(input$x1 + input$x2 + input$x3)
+  y <- reactive(input$y1 + input$y2)
+  output$z <- renderText(x() / y())
+}
+
+server3 <- function(input, output, session) {
+  d <- reactive(c() ^ input$d)
+  a <- reactive(input$a * 10)
+  c <- reactive(b() / input$c)
+  b <- reactive(a() + input$b)
+}
 ```
 :::
 
@@ -21,16 +34,6 @@ server1 <- function(input, output, session) {
 
 <img src="www/reactive1.png"></img>
 
-:::question
-```{r, eval=FALSE}
-server2 <- function(input, output, session) {
-  x <- reactive(input$x1 + input$x2 + input$x3)
-  y <- reactive(input$y1 + input$y2)
-  output$z <- renderText(x() / y())
-}
-```
-:::
-
 - inputs: `input$y1`, `input$y2`, `input$x1`, `input$x2`, `input$x3`
 - reactives: `y()` and `x`
 - outputs: `output$z`
@@ -38,17 +41,6 @@ server2 <- function(input, output, session) {
 Shiny inputs `y1` and `y2` are needed to create the reactive `y()` and the inputs `x1`, `x2`, and `x3` are needed to create the reactive `x()`. There is a singular output which is reliant on both `x()` and `y()` but a change to one of the `x` inputs will trigger the need to recalculate `y()` and vice versa.
 
 <img src="www/reactive2.png"></img>
-
-:::question
-```{r, eval=FALSE}
-server3 <- function(input, output, session) {
-  d <- reactive(c() ^ input$d)
-  a <- reactive(input$a * 10)
-  c <- reactive(b() / input$c) 
-  b <- reactive(a() + input$b)
-}
-```
-:::
 
 - inputs: `input$a`, `input$b`, `input$c`, `input$d`
 - reactives: `a()`, `b()`, `c()`, `d()`
