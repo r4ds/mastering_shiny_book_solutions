@@ -3,10 +3,8 @@
 ## 2.8.1 {-}
   
 :::question
-Create an app that greets the user by name. You don't know all the functions you need to do this yet, so I've included some lines of code below. Figure out which lines you’ll use and then copy and paste them into the right place in a Shiny app.
-:::
+Create an app that greets the user by name. You don't know all the functions you need to do this yet, so I've included some lines of code below. Figure out which lines you'll use and then copy and paste them into the right place in a Shiny app.
 
-We are given the following list of supplied code:
 ```{r, eval=FALSE}
 textInput("name", "What's your name?")
 renderText({
@@ -19,8 +17,9 @@ renderPlot("histogram", {
   hist(rnorm(1000))
 }, res = 96)
 ```
+:::
 
-For the UI function we will need the `textInput` for the user to dynamically input their text and `textOutput` to generate the text we want the user to see given their input. The corresponding server function to `textOutput` is `renderText` which we can use to compose the element we've named "greeting".
+For the UI function we will need the `textInput` for the user to input text and `textOutput` to generate the custom text we want the user to see. The corresponding server function to `textOutput` is `renderText` which we can use to compose the output element we've named "greeting".
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -42,7 +41,7 @@ shinyApp(ui, server)
 ## 2.8.2 {-}
 
 :::question
-Suppose your friend wants to design an app that allows the user to set a number (x) between 1 and 50, and displays the result of multiplying this number by 5. This is their first attempt:
+Suppose your friend wants to design an app that allows the user to set a number (`x`) between 1 and 50, and displays the result of multiplying this number by 5. This is their first attempt:
   
 ```{r eval=FALSE}
 ui <- fluidPage(
@@ -61,7 +60,7 @@ server <- function(input, output, session) {
 But unfortunately it has an error. Can you help them find and correct the error?
 :::
 
-The error here is that we need to specify `input$x`. Shiny accesses the ID's of elements within a read only object called `input`. By writing `x`, we are looking for element `x` which doesn't exist in the Shiny environment, as it only exists within the object `input`.
+The error here is that we need to specify `input$x`. Shiny accesses the ID's of elements within a read-only object called `input`. By writing `x`, we are looking for element `x` which doesn't exist in the Shiny environment; `x` only exists within the object `input`.
   
 ```{r eval=FALSE}
 library(shiny)
@@ -84,10 +83,12 @@ shinyApp(ui, server)
 ## 2.8.3 {-}
 
 :::question
-Extend the app from the previous exercise to allow the user to set the value of the multiplier, `y`, so that the app yields the value of `x * y`.
+Extend the app from the previous exercise to allow the user to set the value of the multiplier, `y`, so that the app yields the value of `x * y`. The final result should look like this:
+
+`r knitr::include_graphics("./images/2.8.3.png")`
 :::
 
-We can add another `slideInput` with ID `y`. Then can use both  using both `input$x` and `input$y` to calculate `output$product`.
+We can add another `sliderInput` with ID `y`. Then we can use both `input$x` and `input$y` to calculate `output$product`.
 
 ```{r eval=FALSE}
 library(shiny)
@@ -95,7 +96,7 @@ library(shiny)
 ui <- fluidPage(
   sliderInput("x", label = "If x is", min = 1, max = 50, value = 30),
   sliderInput("y", label = "and y is", min = 1, max = 50, value = 30),
-  "then x times y is",
+  "then x multiplied by y is",
   textOutput("product")
 )
 
@@ -111,7 +112,7 @@ shinyApp(ui, server)
 ## 2.8.4 {-}
 
 :::question
-Replace the UI and server components of your app from the previous exercise with the UI and server components below, run the app, and describe the app’s functionality. Then reduce the duplication in the app by using a reactive expression.
+Replace the UI and server components of your app from the previous exercise with the UI and server components below, run the app, and describe the app's functionality. Then reduce the duplication in the app by using a reactive expression.
 
 ```{r eval=FALSE}
 ui <- fluidPage(
@@ -140,7 +141,7 @@ server <- function(input, output, session) {
 :::
 
 
-The application above has two numeric inputs `input$x` and `input$y`. The product output is `input$x * input$y`, the `product_plus5` and the `product_plus10` outputs only differ in the addition to `product`. We can reduce duplication by setting `product` to a reactive value and using that within all three outputs:
+The application above has two numeric inputs `input$x` and `input$y`. It computes three values: `x*y`, `x*y + 5`, and `x*y + 10`. We can reduce duplication by setting `product` to a reactive value and using that within all three outputs.
   
 ```{r eval=FALSE}
 library(shiny)
@@ -159,7 +160,7 @@ server <- function(input, output, session) {
   
   output$product <- renderText( product() )
   output$product_plus5 <- renderText( product() + 5 )
-  output$product_plus5 <- renderText( product() + 10 )
+  output$product_plus10 <- renderText( product() + 10 )
 }
 shinyApp(ui, server)
 ```
@@ -167,14 +168,43 @@ shinyApp(ui, server)
 ## 2.8.5 {-}
 
 :::question
-The following app is very similar to one you’ve seen earlier in the chapter: you select a dataset from a package (this time we’re using the ggplot2 package) and the app prints out a summary and plot of the data. It also follows good practice and makes use of reactive expressions to avoid redundancy of code. However there are three bugs in the code provided below. Can you find and fix them?
+The following app is very similar to one you've seen earlier in the chapter: you select a dataset from a package (this time we're using the ggplot2 package) and the app prints out a summary and plot of the data. It also follows good practice and makes use of reactive expressions to avoid redundancy of code. However there are three bugs in the code provided below. Can you find and fix them?
+
+```{r eval=FALSE}
+library(ggplot2)
+datasets <- data(package = "ggplot2")$results[c(2, 4, 10), "Item"]
+
+ui <- fluidPage(
+  selectInput("dataset", "Dataset", choices = datasets),
+  verbatimTextOutput("summary"),
+  tableOutput("plot")
+)
+
+server <- function(input, output, session) {
+  dataset <- reactive({
+    get(input$dataset, "package:ggplot2")
+  })
+  output$summmry <- renderPrint({
+    summary(dataset())
+  })
+  output$plot <- renderPlot({
+    plot(dataset)
+  }, res = 96)
+}
+```
 :::
   
 :::note
 The app doesn't work because calls to `plot()` take too long to render with data sets with many columns. You can replace `datasets <- "seals"` to see if everything was running OK.
 :::
 
-Because we are generating a plot we need to change `tableOutput` to `plotOutput` in our `ui`. The word `summry` was misspelled, so we can't find `input$summry` as it does not exist. Lastly, because we're using the reactive function to create dataset we must return it as a function, `dataset()`.
+The app contains the following three bugs:
+
+1. Since we are generating a plot, we need to change `tableOutput` to `plotOutput` in our `ui`. 
+2. The word `summry` is misspelled, so we can't find `input$summry` as it does not exist.
+3. Lastly, because we're using the reactive function to create `dataset` we must return it as a function, i.e., `dataset()`.
+
+The fixed app looks as follows:
 
 ```{r eval=FALSE}
 library(ggplot2)
@@ -183,7 +213,7 @@ datasets <- data(package = "ggplot2")$results[, "Item"]
 ui <- fluidPage(
   selectInput("dataset", "Dataset", choices = datasets),
   verbatimTextOutput("summary"),
-  #change tableOutput to plotOutput
+  # 1. Change tableOutput to plotOutput.
   plotOutput("plot")
 )
 
@@ -191,12 +221,12 @@ server <- function(input, output, session) {
   dataset <- reactive({
     get(input$dataset, "package:ggplot2")
   })
-  # change summry to summary
+  # 2. Change summry to summary.
   output$summary <- renderPrint({
     summary(dataset())
   })
   output$plot <- renderPlot({
-    #change dataset to dataset()
+    # 3. Change dataset to dataset().
     plot(dataset())
   })
 }

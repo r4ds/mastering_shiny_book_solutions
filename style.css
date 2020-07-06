@@ -34,9 +34,7 @@ div.note {
 div.question {
     padding: 1em;
     margin: 1em 0;
-    background-size: 70px;
-    background-repeat: no-repeat;
-    background-position: 15px center;
-    color: black;
-    background-color: #E8E8E8;
+    border-left: 5px solid #1C6EA4;
+    border-right: 5px solid #1C6EA4;
+    border-radius: 31px;
 }
