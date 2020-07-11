@@ -13,6 +13,7 @@ ui <- fluidPage(
 ```
 :::
 
+
 This solution was a little wonky because it required shinyjs for the dateInput to properly update. I [opened up an issue here](https://github.com/rstudio/shiny/issues/2798) since I think this is not the most intuative answer.
 
 ```{r, eval=FALSE}
@@ -57,6 +58,8 @@ ui <- fluidPage(
 )
 ```
 :::
+
+We can use `updateSelectInput` to filter the county choices based on the user selected state. By making the label of `input$county` a reactive, we can use `switch` to change the label when either Alaska or Louisiana is selected.
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -112,6 +115,7 @@ ui <- fluidPage(
 ```
 :::
 
+As the question above, we are filtering the country input based on the continent by using `updateSelectInput` in the server. By storing the selected data in a reactive, `selected_data()` we can use the same filtered dataset for our `selectInput` and the table, reducing code redundancy.  
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -262,34 +266,7 @@ server <- function(input, output, session) {
 How could you instead implement it using dynamic visibility? If you implement dynamic visiblity, how could you keep the values in sync when you change the controls?
 :::
 
-## 10.3.4.2 {-}
 
-:::question
-Explain how this app works. Why does the password disappear when you click the enter password button for the second time?
-
-```{r}
-ui <- fluidPage(
-  actionButton("go", "Enter password"),
-  textOutput("text")
-)
-server <- function(input, output, session) {
-  observeEvent(input$go, {
-    showModal(modalDialog(
-      passwordInput("password", NULL),
-      title = "Please enter your password"
-    ))
-  })
-
-  output$text <- renderText({
-    if (!isTruthy(input$password)) {
-      "No password"
-    } else {
-      "Password entered"
-    }
-  })
-}
-```
-:::
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -339,6 +316,35 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 ```
+
+## 10.3.4.2 {-}
+
+:::question
+Explain how this app works. Why does the password disappear when you click the enter password button for the second time?
+
+```{r}
+ui <- fluidPage(
+  actionButton("go", "Enter password"),
+  textOutput("text")
+)
+server <- function(input, output, session) {
+  observeEvent(input$go, {
+    showModal(modalDialog(
+      passwordInput("password", NULL),
+      title = "Please enter your password"
+    ))
+  })
+
+  output$text <- renderText({
+    if (!isTruthy(input$password)) {
+      "No password"
+    } else {
+      "Password entered"
+    }
+  })
+}
+```
+:::
 
 ## 10.3.4.3 {-}
 
