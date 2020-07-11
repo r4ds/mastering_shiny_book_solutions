@@ -1,1 +1,25 @@
 # Uploads and Downloads
+
+## 9.4.1 {-}
+
+:::question
+Use the ambient package by Thomas Lin Pedersen to generate worley noise and download a PNG of it.
+:::
+
+## 9.4.2 {-}
+
+:::question
+Create an app that lets you upload a csv file, select a variable, and then perform a t.test() on that variable. After the user has uploaded the csv file, you’ll need to use updateSelectInput() to fill in the available variables. See Section 10.1 for details.
+:::
+
+## 9.4.3 {-}
+
+:::question
+Create an app that lets the user upload a csv file, select one variable, draw a histogram, and then download the histogram. For an additional challenge, allow the user to select from .png, .pdf, and .svg output formats.
+:::
+
+## 9.4.4 {-}
+
+:::question
+Write an app that allows the user to create a Lego mosaic from any .png file using Ryan Timpe’s brickr package. Once you’ve completed the basics, add controls to allow the user to select the size of the mosaic (in bricks), and choose whether to use “universal” or “generic” colour palettes.
+:::
