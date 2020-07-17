@@ -1,7 +1,7 @@
 --- 
 title: "Mastering Shiny Solutions"
 author: "Maya Gans and Marly Gotti"
-date: "(updated on `r Sys.Date()`)"
+date: "(updated on 2020-07-17)"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
