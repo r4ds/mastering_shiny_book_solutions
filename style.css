@@ -38,3 +38,14 @@ div.question {
     border-right: 5px solid #1C6EA4;
     border-radius: 31px;
 }
+
+div.TODO {
+    padding: 1em;
+    margin: 1em 0;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    color: white;
+    background-color: #b52914;
+    border: solid 5px #b52914;
+  }
