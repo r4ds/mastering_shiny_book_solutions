@@ -2,6 +2,7 @@
 
 ## 8.1.5.1 {-}
 
+:::question
 Complete the user interface below with a server function that updates `input$date` so that you can only select dates in `input$year`.
 
 ```{r, eval=FALSE}
@@ -10,8 +11,11 @@ ui <- fluidPage(
   dateInput("date", "date")
 )
 ```
+:::
 
-This solution was a little wonky because it required shinyjs for the dateInput to properly update. I [opened up an issue here](https://github.com/rstudio/shiny/issues/2798) since I think this is not the most intuative answer.
+:::note
+This solution was a little hacky because it required shinyjs for the dateInput to properly update. I [opened up an issue here](https://github.com/rstudio/shiny/issues/2798) since I think this is not the most intuative answer.
+:::
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -30,7 +34,7 @@ server <- function(input, output, session) {
     req(input$year) # stop if year is blank
     daterange <- range(as.Date(paste0(input$year, "-01-01")),as.Date(paste0(input$year, "-12-31")))
     updateDateInput(session, "date", min = daterange[1], max = daterange[2] )
-    delay(250,  # delay 250ms
+    delay(0,  # delay 250ms
           updateDateInput(session,"date",
                           value = daterange[1]
           ))
@@ -42,6 +46,7 @@ shinyApp(ui = ui, server = server)
 
 ## 8.1.5.2 {-}
 
+:::question
 Complete the user interface below with a server function that updates `input$county` choices based on `input$state`. For an added challenge, also change the label from “County” to “Parrish” for Louisana and “Borrough” for “Alaska”.
 
 ```{r, eval=FALSE}
@@ -53,6 +58,9 @@ ui <- fluidPage(
   selectInput("county", "County", choices = NULL)
 )
 ```
+:::
+
+We can use `updateSelectInput` to track the `selectInput` with id `county` and by appropriately filtering change it's values based on `input$state`. Additionally for the label argument in `updateSelectInput`, rather than supply a string we can use the reactive `label()`. This reactive uses `switch` to appropriately change the label text when either, `Alaska`, `Louisiana`, or any other state is supplied.
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -93,6 +101,7 @@ shinyApp(ui = ui, server = server)
 
 ## 8.1.5.3 {-}
 
+:::question
 Complete the user interface below with a server function that updates `input$country` choices based on the `input$continent`. Use `output$data` to display all matching rows.
 
 ```{r, eval=FALSE}
@@ -105,8 +114,9 @@ ui <- fluidPage(
   tableOutput("data")
 )
 ```
+:::
 
-
+Similar to the previous exercise we will use `updateSelectInput` to filter the `country` options based on the selected `continent`. Rather than perform this computation inside the input, we are doing it inside a reactive, `selected_data()` so that we can use this same reactive without `output$data` rather than repeat the computation twice.
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -155,11 +165,17 @@ shinyApp(ui = ui, server = server)
 
 ## 8.1.5.4 {-}
 
+:::question
 Extend the previous app so that you can also choose to select no continent, and hence see all countries. You’ll need to add "" to the list of choices, and then handle that specially when filtering.
+:::
+
+We initially set the choices of `input$continent` to `""` which results in `input$country` not filtering.
 
 :::note
-Initially setting the choices to `c("", as.character(continents))` allows the user to see all the Country options prior to a continent being selected. That said, once a continent is selected this `""` option is no longer available.
+Initially setting the choices to `c("", as.character(continents))` allows the user to see all the Country options prior to a continent being selected. That said, once a continent is selected this `""` option is no longer available. We can supply a default value like `All` and change the logic so that when `All` is selected we don't filter our data, but I'm not sure this is what the question was asking.
 :::
+
+
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -169,8 +185,6 @@ continents <- unique(gapminder$continent)
 
 ui <- fluidPage(
   selectInput("continent", "Continent", choices = c("", as.character(continents))), 
-   # @tanho63:
-  # selectInput("continent", "Continent", choices = c("All", as.character(continents))), 
   selectInput("country", "Country", choices = NULL),
   tableOutput("data")
 )
@@ -207,12 +221,15 @@ shinyApp(ui = ui, server = server)
 
 ## 8.1.5.5 {-}
 
+:::question
 What is at the heart of the problem described at https://community.rstudio.com/t/29307?
+:::
 
 Updating all three sliders creates a circular reference!
 
 ## 8.4.3.1 {-}
 
+:::question
 Take this very simple app based on the initial example in the chapter:
 
 ```{r, eval=FALSE}
@@ -232,6 +249,9 @@ server <- function(input, output, session) {
 ```
 
 How could you instead implement it using dynamic visibility? If you implement dynamic visiblity, how could you keep the values in sync when you change the controls?
+:::
+
+We can use two `observeEvent` functions that change the `slider` based on `numeric` and vice versa. To keep the values in sync we can use the `isolate` to....... (TODO: not really sure what isolate's function is here seemingly works okay without it....)
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -284,13 +304,17 @@ shinyApp(ui = ui, server = server)
 
 ## 8.4.3.2 {-}
 
+:::question
 Add support for date and date-time columns `make_ui()` and `filter_var()`. 
+:::
 
-In order to complete this, I had to 
+:::note
+In order to complete this, I had to:
 
 1) make a new dummy dataframe I called `x` in order to test for dates
 2) include checking for `is.Date` in the `make_ui` and `filter_var` functions
 3) Change `tableOutput` and `renderTable` to `DT::renderTableOutput` and `DT::renderTableOutput` becuase `renderTable` was rendering the dates as numbers and I think this could be because it uses `xtable()` for HTML table rendering?
+:::
 
 ```{r, eval=FALSE}
 # 8.4.3.2
