@@ -322,7 +322,7 @@ shinyApp(ui = ui, server = server)
 :::question
 Explain how this app works. Why does the password disappear when you click the enter password button for the second time?
 
-```{r}
+```{r, eval=FALSE}
 ui <- fluidPage(
   actionButton("go", "Enter password"),
   textOutput("text")

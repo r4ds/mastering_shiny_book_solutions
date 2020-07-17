@@ -47,7 +47,7 @@ selectFilterServer <- function(id) {
 Now we can update the `selectVarServer` to take on an additional `filter` argument, and change the update function to not only observe when the `data` reactive changes but also our new `filter` widget changes. Lastly we pass in the filter reactive to the `find_vars` function.
 
 
-```{r}
+```{r, eval=FALSE}
 selectVarServer <- function(id, data, filter) { # filter argument
     moduleServer(id, function(input, output, session) {
         observeEvent({
@@ -116,7 +116,7 @@ summaryServer <- function(id, var) {
 
 We only need to add the code above to the `selectVarApp()` example in the book, and adapt the app code to include the `summaryOutput` instead of the `verbatimTextOutput`, and on the server side pass `var` to the `summaryServer` function instead of to the text output. 
 
-```{r}
+```{r, eval=FALSE}
 selectVarApp <- function(filter = is.numeric) {
     ui <- fluidPage(
         datasetInput("data", is.data.frame),
@@ -154,7 +154,7 @@ ymdDateUI <- function(id, label) {
 
 We create a `ymdDateServer` function that renders the error if `strptime(input$date, "%Y-%m-%d")` is `NA`. 
 
-```{r}
+```{r, eval=FALSE}
 ymdDateServer <- function(id, label) {
     moduleServer(id, function(input, output, session) {
         output$error <- renderText({
@@ -253,5 +253,5 @@ radioExtraApp(c("a", "b", "c"))
 In `wizardServer()` verify that the namespacing has been set up correctly by using two or more wizards in a single add, and checking that you can navigate through each wizard independently.
 :::
 
-```{r}
+```{r, eval=FALSE}
 ```
