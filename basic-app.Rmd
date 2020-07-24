@@ -1,8 +1,7 @@
 # Your First Shiny App
 
-## 2.8.1 {-}
-  
-:::question
+### Exercise 2.8.1 {-}
+
 Create an app that greets the user by name. You don't know all the functions you need to do this yet, so I've included some lines of code below. Figure out which lines you'll use and then copy and paste them into the right place in a Shiny app.
 
 ```{r, eval=FALSE}
@@ -38,7 +37,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-## 2.8.2 {-}
+## Exercise 2.8.2 {-}
 
 :::question
 Suppose your friend wants to design an app that allows the user to set a number (`x`) between 1 and 50, and displays the result of multiplying this number by 5. This is their first attempt:
@@ -80,7 +79,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-## 2.8.3 {-}
+## Exercise 2.8.3 {-}
 
 :::question
 Extend the app from the previous exercise to allow the user to set the value of the multiplier, `y`, so that the app yields the value of `x * y`. The final result should look like this:
@@ -109,7 +108,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-## 2.8.4 {-}
+## Exercise 2.8.4 {-}
 
 :::question
 Replace the UI and server components of your app from the previous exercise with the UI and server components below, run the app, and describe the app's functionality. Then reduce the duplication in the app by using a reactive expression.
@@ -165,7 +164,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-## 2.8.5 {-}
+## Exercise 2.8.5 {-}
 
 :::question
 The following app is very similar to one you've seen earlier in the chapter: you select a dataset from a package (this time we're using the ggplot2 package) and the app prints out a summary and plot of the data. It also follows good practice and makes use of reactive expressions to avoid redundancy of code. However there are three bugs in the code provided below. Can you find and fix them?
