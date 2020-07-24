@@ -51,7 +51,7 @@ sliderInput(
 
 ## Exercise 3.2.8.3 {-}
 
-If you have a moderately long list, it's useful to create sub-headings that break the list up into pieces. Read the documentation for `selectInput()` to figure out how. (Hint: the underlying HTML is called <optgroup>.)
+If you have a moderately long list, it's useful to create sub-headings that break the list up into pieces. Read the documentation for `selectInput()` to figure out how. (Hint: the underlying HTML is called `<optgroup>`.)
 
 :::solution
 #### Solution {-}
