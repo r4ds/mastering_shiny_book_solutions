@@ -217,10 +217,6 @@ server <- function(input, output, session) {
 
 :::solution
 #### Solution {-}
-  
-:::note
-The app doesn't work because calls to `plot()` take too long to render with data sets with many columns. You can replace `datasets <- "seals"` to see if everything was running OK.
-:::
 
 The app contains the following three bugs:
 
@@ -232,7 +228,7 @@ The fixed app looks as follows:
 
 ```{r eval=FALSE}
 library(ggplot2)
-datasets <- data(package = "ggplot2")$results[, "Item"]
+datasets <- data(package = "ggplot2")$results[c(2, 4, 10), "Item"]
 
 ui <- fluidPage(
   selectInput("dataset", "Dataset", choices = datasets),
