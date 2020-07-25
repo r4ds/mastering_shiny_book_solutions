@@ -9,7 +9,10 @@ Draw the reactive graph for each app.
 
 ##### Prototype {-}
 
-The prototype application has a single input, `input$code`, which is used to generate the `selected()` reactive. This reactive is used directly in 3 outputs, `output$diag`, `output$body_part`, and `output$location`, and it is also used indirectly in the `output$age_sex` plot via the `summary()` reactive.
+The prototype application has a single input, `input$code`, which is used to
+generate the `selected()` reactive. This reactive is used directly in 3
+outputs, `output$diag`, `output$body_part`, and `output$location`, and it is
+also used indirectly in the `output$age_sex` plot via the `summary()` reactive.
 
 <center>
 ![reactive graph - prototype app](images/5.8.1-prototype.png){width=500px}
@@ -18,7 +21,8 @@ The prototype application has a single input, `input$code`, which is used to gen
 
 ##### Rate vs. Count {-}
 
-Building on the prototype, we create a second input `input$y` which is used along with the `summary()` reactive to create the `output$age_sex` plot.
+Building on the prototype, we create a second input `input$y` which is used
+along with the `summary()` reactive to create the `output$age_sex` plot.
 
 <center>
 ![reactive graph - rate vs. count app](images/5.8.1-ratecount.png){width=500px}
@@ -27,7 +31,8 @@ Building on the prototype, we create a second input `input$y` which is used alon
 
 ##### Narrative {-}
 
-Building on the application once more, we create an `output$narrative` that depends on the `selected()` reactive and a new input, `input$story`.
+Building on the application once more, we create an `output$narrative` that
+depends on the `selected()` reactive and a new input, `input$story`.
 
 <center>
 ![reactive graph - narrative app](images/5.8.1-narrative.png){width=500px}
@@ -40,16 +45,39 @@ Building on the application once more, we create an `output$narrative` that depe
 
 ### Exercise 5.8.2 {-}
 
-What happens if you flip `fct_infreq()` and `fct_lump()` in the code that reduces the summary tables?
+What happens if you flip `fct_infreq()` and `fct_lump()` in the code that
+reduces the summary tables?
 
 :::solution
 #### Solution {-}
 
 Using a test factor we see that we have 3 `a`s and 2 `c`s. if we first `fct_lump`, then every letter with a count of 2 will be placed into `Other`. `Other` now has 4 values so this becomes the 1st first factor when we factor based on frequency using `fct_infreq`. Because `Other` really represents different letters it should be placed as the last factor in our order.
 
-```{r, eval=FALSE}
-test <- factor(c("a", "a", "a", "c", "c", "b", "d", "e", "f"))
-fct_infreq(fct_lump(test$a, n = 2))
+```{r, include=FALSE}
+library(forcats)
+library(neiss)
+library(dplyr)
+```
+
+```{r, warning=FALSE, message=FALSE}
+table1 <- injuries %>%
+  mutate(diag = fct_lump(fct_infreq(diag), n = 5)) %>%
+  group_by(diag) %>%
+  summarise(n = as.integer(sum(weight))) %>%
+  arrange(n)
+
+table1
+```
+
+
+```{r, warning=FALSE, message=FALSE}
+table2 <- injuries %>%
+  mutate(diag = fct_infreq(fct_lump(diag, n = 5))) %>%
+  group_by(diag) %>%
+  summarise(n = as.integer(sum(weight))) %>%
+  arrange(n)
+
+table2
 ```
 :::
 
@@ -59,20 +87,29 @@ fct_infreq(fct_lump(test$a, n = 2))
 
 ### Exercise 5.8.3 {-}
 
-Add an input control that lets the user decide how many rows to show in the summary tables.
+Add an input control that lets the user decide how many rows to show in the
+summary tables.
 
 :::solution
 #### Solution {-}
 
-Our function `count_top` is responsible for grouping our variables into a set number of factors, lumping the rest of the values into `other`. The function has an argument `n` which is set to `5`. By creating a `numericInput` called `rows` we can let the user set the number of `fct_infreq` dynamically. However because `fct_infreq` is the number of factors + `Other`, we need to subtract 1 from what the user selects in order to display the number of rows they input. 
-
-:::note
-I tried downloading the data using the neiss package but I think that's already been cleaned. The data for this app can be found here: https://github.com/hadley/mastering-shiny/tree/master/neiss
-:::
+Our function `count_top` is responsible for grouping our variables into a set
+number of factors, lumping the rest of the values into `other`. The function
+has an argument `n` which is set to `5`. By creating a `numericInput` called
+`rows` we can let the user set the number of `fct_infreq` dynamically. However
+because `fct_infreq` is the number of factors + `Other`, we need to subtract 1
+from what the user selects in order to display the number of rows they input.
 
 ```{r, eval=FALSE}
 library(shiny)
-library(tidyr)
+library(forcats)
+library(neiss)
+library(dplyr)
+library(ggplot2)
+
+# Note: these exercises use the datasets `injuries`, `products`, and
+# `population` as created here:
+# https://github.com/hadley/mastering-shiny/blob/master/neiss/data.R
 
 count_top <- function(df, var, n = 5) {
   df %>%
@@ -162,13 +199,22 @@ shinyApp(ui, server)
 
 ### Exercise 5.8.4 {-}
 
-Provide a way to step through every narrative systematically with forward and backward buttons.
+Provide a way to step through every narrative systematically with forward and
+backward buttons.
+
+Advanced: Make the list of narratives "circular" so that advancing forward from
+the last narrative takes you to the first.
 
 :::solution
 #### Solution {-}
 
-We can create a counter by using the `reactiveValues` function, placing an observe event on our two buttons that will either subtract or add to the current value of the reactive.
-
+We can add two buttons `prev_story` and `next_story` to iterate through the
+narrative. In addition, we can include a reactive value, `story`, that keeps
+track of the current position in the narrative. When the button `prev_story` is
+pressed, `story` decreases by one. Similarly, when the button `next_story` is
+pressed, `story` increases by one.
+To do the advanced part, we use the mod function. This allows us to keep
+`story` between 1 and the current narrative's length, and simulate the "circular" motion.
 ```{r, eval=FALSE}
 # data downloaded from https://github.com/hadley/mastering-shiny/tree/master/neiss
 # this is not == the neiss package data!
