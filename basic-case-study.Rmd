@@ -10,21 +10,21 @@ Draw the reactive graph for each app.
 
 The prototype application has a single input, `input$code`, which is used to generate the `selected()` reactive. This reactive is used directly in 3 outputs, `output$diag`, `output$body_part`, and `output$location`, and it is also used indirectly in the `output$age_sex` plot via the `summary()` reactive. 
 
-<img src="www/reactlog1.png"></img>
+<img src="images/reactlog1.png"></img>
 
 
 #### Rate vs. Count {-}
 
 Building on the prototype, we create a second input `input$y` which is used along with the `summary()` reactive to create the `output$age_sex` plot. 
 
-<img src="www/reactlog2.png"></img>
+<img src="images/reactlog2.png"></img>
 
 
 #### Narrative {-}
 
 Building on the application once more, we create an `output$narritive` that uses the `selected()` reactive and a new input, `input$story` as it's inputs.
 
-<img src="www/reactlog3.png"></img>
+<img src="images/reactlog3.png"></img>
     
 ## 5.8.2 {-}
 
