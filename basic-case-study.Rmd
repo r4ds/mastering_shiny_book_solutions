@@ -51,7 +51,11 @@ reduces the summary tables?
 :::solution
 #### Solution {-}
 
-Using a test factor we see that we have 3 `a`s and 2 `c`s. if we first `fct_lump`, then every letter with a count of 2 will be placed into `Other`. `Other` now has 4 values so this becomes the 1st first factor when we factor based on frequency using `fct_infreq`. Because `Other` really represents different letters it should be placed as the last factor in our order.
+Flipping the order of `fct_infreq()` and `fct_lump()` will output the same
+dataset but it will change the order of the factors in the column that these
+functions are applied. For example, take a look at the following two tables,
+which only differ in the order the functions `fct_infreq()` and `fct_lump()`
+appear.
 
 ```{r, include=FALSE}
 library(forcats)
@@ -69,7 +73,6 @@ table1 <- injuries %>%
 table1
 ```
 
-
 ```{r, warning=FALSE, message=FALSE}
 table2 <- injuries %>%
   mutate(diag = fct_infreq(fct_lump(diag, n = 5))) %>%
@@ -78,6 +81,14 @@ table2 <- injuries %>%
   arrange(n)
 
 table2
+```
+
+The tables are identical. However, the order of the factors in `diag` is
+different.
+
+```{r}
+table1$diag
+table2$diag
 ```
 :::
 
