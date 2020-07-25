@@ -1,36 +1,49 @@
 # Case Study: ER Injuries
 
-## 5.8.1 {-}
+### Exercise 5.8.1 {-}
 
-:::question
 Draw the reactive graph for each app.
+
+:::solution
+#### Solution {-}
+
+##### Prototype {-}
+
+The prototype application has a single input, `input$code`, which is used to generate the `selected()` reactive. This reactive is used directly in 3 outputs, `output$diag`, `output$body_part`, and `output$location`, and it is also used indirectly in the `output$age_sex` plot via the `summary()` reactive.
+
+<center>
+![reactive graph - prototype app](images/5.8.1-prototype.png){width=500px}
+</center>
+<br>
+
+##### Rate vs. Count {-}
+
+Building on the prototype, we create a second input `input$y` which is used along with the `summary()` reactive to create the `output$age_sex` plot.
+
+<center>
+![reactive graph - rate vs. count app](images/5.8.1-ratecount.png){width=500px}
+</center>
+<br>
+
+##### Narrative {-}
+
+Building on the application once more, we create an `output$narrative` that depends on the `selected()` reactive and a new input, `input$story`.
+
+<center>
+![reactive graph - narrative app](images/5.8.1-narrative.png){width=500px}
+</center>
 :::
 
-#### Prototype {-}
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
 
-The prototype application has a single input, `input$code`, which is used to generate the `selected()` reactive. This reactive is used directly in 3 outputs, `output$diag`, `output$body_part`, and `output$location`, and it is also used indirectly in the `output$age_sex` plot via the `summary()` reactive. 
+### Exercise 5.8.2 {-}
 
-<img src="images/reactlog1.png"></img>
-
-
-#### Rate vs. Count {-}
-
-Building on the prototype, we create a second input `input$y` which is used along with the `summary()` reactive to create the `output$age_sex` plot. 
-
-<img src="images/reactlog2.png"></img>
-
-
-#### Narrative {-}
-
-Building on the application once more, we create an `output$narritive` that uses the `selected()` reactive and a new input, `input$story` as it's inputs.
-
-<img src="images/reactlog3.png"></img>
-    
-## 5.8.2 {-}
-
-:::question
 What happens if you flip `fct_infreq()` and `fct_lump()` in the code that reduces the summary tables?
-:::
+
+:::solution
+#### Solution {-}
 
 Using a test factor we see that we have 3 `a`s and 2 `c`s. if we first `fct_lump`, then every letter with a count of 2 will be placed into `Other`. `Other` now has 4 values so this becomes the 1st first factor when we factor based on frequency using `fct_infreq`. Because `Other` really represents different letters it should be placed as the last factor in our order.
 
@@ -38,12 +51,18 @@ Using a test factor we see that we have 3 `a`s and 2 `c`s. if we first `fct_lump
 test <- factor(c("a", "a", "a", "c", "c", "b", "d", "e", "f"))
 fct_infreq(fct_lump(test$a, n = 2))
 ```
-
-## 5.8.3 {-}
-
-:::question
-Add an input control that lets the user decide how many rows to show in the summary tables.
 :::
+
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+
+### Exercise 5.8.3 {-}
+
+Add an input control that lets the user decide how many rows to show in the summary tables.
+
+:::solution
+#### Solution {-}
 
 Our function `count_top` is responsible for grouping our variables into a set number of factors, lumping the rest of the values into `other`. The function has an argument `n` which is set to `5`. By creating a `numericInput` called `rows` we can let the user set the number of `fct_infreq` dynamically. However because `fct_infreq` is the number of factors + `Other`, we need to subtract 1 from what the user selects in order to display the number of rows they input. 
 
@@ -135,12 +154,18 @@ server <- function(input, output, session) {
 }
 shinyApp(ui, server)
 ```
-
-## 5.8.4 {-}
-
-:::question
-Provide a way to step through every narrative systematically with forward and backward buttons.
 :::
+
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+
+### Exercise 5.8.4 {-}
+
+Provide a way to step through every narrative systematically with forward and backward buttons.
+
+:::solution
+#### Solution {-}
 
 We can create a counter by using the `reactiveValues` function, placing an observe event on our two buttons that will either subtract or add to the current value of the reactive.
 
@@ -244,11 +269,12 @@ server <- function(input, output, session) {
   })
 }
 ```
-
-
-:::question
-Advanced: Make the list of narratives “circular” so that advancing forward from the last narrative takes you to the first.
 :::
+
+Advanced: Make the list of narratives “circular” so that advancing forward from the last narrative takes you to the first.
+
+:::solution
+#### Solution {-}
 
 Rather than simply adding or subtracting `1` to our reactive value, we can use `if` and `else` logic where the value of the counter will go back to `1` after reaching the `nrow` of the narratives. Likewise, when subtracting using the previous button once we reach `1` we can go back to the `nrow` of the narratives. 
 
@@ -369,4 +395,4 @@ server <- function(input, output, session) {
 }
 shinyApp(ui, server)
 ```
-
+:::
