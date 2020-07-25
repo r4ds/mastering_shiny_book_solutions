@@ -1,5 +1,9 @@
 # Dynamic UI
 
+```{r, echo=FALSE}
+htmltools::includeHTML("./partials/todo.html")
+```
+
 ## Exercise 10.1.5.1 {-}
 
 Complete the user interface below with a server function that updates `input$date` so that you can only select dates in `input$year`.
