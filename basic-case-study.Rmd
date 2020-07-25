@@ -105,9 +105,9 @@ summary tables.
 #### Solution {-}
 
 Our function `count_top` is responsible for grouping our variables into a set
-number of factors, lumping the rest of the values into `other`. The function
+number of factors, lumping the rest of the values into "Other". The function
 has an argument `n` which is set to `5`. By creating a `numericInput` called
-`rows` we can let the user set the number of `fct_infreq` dynamically. However
+`rows` we can let the user set the number of `fct_infreq` dynamically. However,
 because `fct_infreq` is the number of factors + `Other`, we need to subtract 1
 from what the user selects in order to display the number of rows they input.
 
@@ -129,24 +129,15 @@ count_top <- function(df, var, n = 5) {
     summarise(n = as.integer(sum(weight)))
 }
 
-fct_infreq(fct_lump(test$a, n = 2))
-
-injuries <- vroom::vroom("injuries.tsv.gz")
-products <- vroom::vroom("products.tsv")
-population <- vroom::vroom("population.tsv")
-
-selected <- injuries %>% filter(prod_code == 1842)
-
 ui <- fluidPage(
   fluidRow(
-    column(8,
-           selectInput("code", "Product",
-                       choices = setNames(products$prod_code, products$title),
-                       width = "100%"
-           )
+    column(8, selectInput("code", "Product",
+                          choices = setNames(products$prod_code, products$title),
+                          width = "100%")
     ),
-    column(2, numericInput("rows", "Number of Rows", min = 0, max = 10, value = 5)),
-    column(2, selectInput("y", "Y axis", c("rate", "count")))
+    column(2, numericInput("rows", "Number of Rows",
+                           min = 1, max = 10, value = 5)),
+    column(2, selectInput("y", "Y Axis", c("rate", "count")))
   ),
   fluidRow(
     column(4, tableOutput("diag")),
@@ -165,12 +156,28 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   selected <- reactive(injuries %>% filter(prod_code == input$code))
   
-  # use counter() for the n argument in count_top
-  counter <- reactive(input$rows - 1)
+  # Find the maximum possible of rows.
+  max_no_rows <- reactive(
+    max(length(unique(selected()$diag)),
+        length(unique(selected()$body_part)),
+        length(unique(selected()$location)))
+  )
   
-  output$diag <- renderTable(count_top(selected(), diag, n = counter()), width = "100%")
-  output$body_part <- renderTable(count_top(selected(), body_part, n = counter()), width = "100%")
-  output$location <- renderTable(count_top(selected(), location, n = counter()), width = "100%")
+  # Update the maximum value for the numericInput based on max_no_rows().
+  observeEvent(input$code, {
+    updateNumericInput(session, "rows", max = max_no_rows())
+  })
+  
+  table_rows <- reactive(input$rows - 1)
+  
+  output$diag <- renderTable(
+    count_top(selected(), diag, n = table_rows()), width = "100%")
+  
+  output$body_part <- renderTable(
+    count_top(selected(), body_part, n = table_rows()), width = "100%")
+  
+  output$location <- renderTable(
+    count_top(selected(), location, n = table_rows()), width = "100%")
   
   summary <- reactive({
     selected() %>%
@@ -200,6 +207,7 @@ server <- function(input, output, session) {
     selected() %>% pull(narrative) %>% sample(1)
   })
 }
+
 shinyApp(ui, server)
 ```
 :::
