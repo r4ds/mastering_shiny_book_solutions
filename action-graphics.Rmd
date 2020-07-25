@@ -1,10 +1,15 @@
 # Graphics
 
-## 7.5.1 {-}
+```{r, echo=FALSE}
+htmltools::includeHTML("./partials/todo.html")
+```
 
-:::question
+### Exercise 7.5.1 {-}
+
 Make a plot with click handle that shows all the data returned in the input.
-:::
+
+:::solution
+#### Solution {-}
 
 We can use the `allRows` argument in `nearPoints` to see all the data, and adds a boolean column that returns `TRUE` for the point that was clicked on
 
@@ -28,12 +33,18 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 ```
-
-## 7.5.2 {-}
-
-:::question
-Make a plot with click, dblclick, hover, and brush output handlers and nicely display the current selection in the sidebar. Plot the plot in the main panel.
 :::
+
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+
+### Exercise 7.5.2 {-}
+
+Make a plot with click, dblclick, hover, and brush output handlers and nicely display the current selection in the sidebar. Plot the plot in the main panel.
+
+:::solution
+#### Solution {-}
 
 We can use the `nearPoints` function to extract the data from `plot_click`, `plot_dbl`, and `plot_hover`. We need to use the function `brushedPoints` to extract the points within the `plot_brush` area.
 
@@ -80,13 +91,18 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 ```
-
-
-## 7.5.3 {-}
-
-:::question
-Compute the limits of the distance scale using the size of the plot.
 :::
+
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+
+### Exercise 7.5.3 {-}
+
+Compute the limits of the distance scale using the size of the plot.
+
+:::solution
+#### Solution {-}
 
 ```{r, eval=FALSE}
 output_size <- function(id) {
