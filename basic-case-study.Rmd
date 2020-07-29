@@ -83,11 +83,11 @@ levels(table1$diag)
 ```
 
 ```
-[1] "Other Or Not Stated"   "Fracture"              "Laceration"           
-[4] "Strain, Sprain"        "Contusion Or Abrasion" "Other"                
+[1] "Laceration" "Fracture" "Strain, Sprain"
+[4] "Contusion Or Abrasion" "Other Or Not Stated" "Other"            
 ```
 
-Conversely, we can first `fct_lump` first, which will make the most frequently seen factor `Other`. Now when we apply `fct_infreq()` the first level will be `Other` and not `Other Or Not Stated` as above.
+Conversely, we can first `fct_lump` first, which will make the most frequently seen factor `Other`. Now when we apply `fct_infreq()` the first level will be `Other` and not `Laceration` as above.
 
 ```{r, eval=FALSE}
 table2 <- injuries %>%
@@ -100,8 +100,8 @@ levels(table2$diag)
 ```
 
 ```
-[1] "Other"                 "Other Or Not Stated"   "Fracture"             
-[4] "Laceration"            "Strain, Sprain"        "Contusion Or Abrasion"
+[1] "Other" "Laceration" "Fracture"
+[4] "Strain, Sprain" "Contusion Or Abrasion" "Other Or Not Stated"
 ```
 
 <!---------------------------------------------------------------------------->
