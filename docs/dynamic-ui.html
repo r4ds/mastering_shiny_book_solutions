@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Dynamic UI | Mastering Shiny Solutions</title>
+  <meta name="description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Dynamic UI | Mastering Shiny Solutions" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  <meta name="github-repo" content="marlycormar/mastering_shiny_book_solutions" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Dynamic UI | Mastering Shiny Solutions" />
+  
+  <meta name="twitter:description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  
+
+<meta name="author" content="Maya Gans and Marly Gotti" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="uploads-and-downloads.html"/>
+<link rel="next" href="bookmarking.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Mastering Shiny Solutions</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#note-boxes"><i class="fa fa-check"></i>Note Boxes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html"><i class="fa fa-check"></i><b>2</b> Your First Shiny App</a>
+<ul>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.1"><i class="fa fa-check"></i>Exercise 2.8.1</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.2"><i class="fa fa-check"></i>Exercise 2.8.2</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.3"><i class="fa fa-check"></i>Exercise 2.8.3</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.4"><i class="fa fa-check"></i>Exercise 2.8.4</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.5"><i class="fa fa-check"></i>Exercise 2.8.5</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basic-ui.html"><a href="basic-ui.html"><i class="fa fa-check"></i><b>3</b> Basic UI</a>
+<ul>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.1"><i class="fa fa-check"></i>Exercise 3.2.8.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.2"><i class="fa fa-check"></i>Exercise 3.2.8.2</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.3"><i class="fa fa-check"></i>Exercise 3.2.8.3</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.4"><i class="fa fa-check"></i>Exercise 3.2.8.4</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.5"><i class="fa fa-check"></i>Exercise 3.2.8.5</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.1"><i class="fa fa-check"></i>Exercise 3.3.5.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.2"><i class="fa fa-check"></i>Exercise 3.3.5.2</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.3"><i class="fa fa-check"></i>Exercise 3.3.5.3</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.1"><i class="fa fa-check"></i>Exercise 3.4.6.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.2"><i class="fa fa-check"></i>Exercise 3.4.6.2</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-reactivity.html"><a href="basic-reactivity.html"><i class="fa fa-check"></i><b>4</b> Basic Reactivity</a>
+<ul>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.1"><i class="fa fa-check"></i>Exercise 4.3.6.1</a></li>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.2"><i class="fa fa-check"></i>Exercise 4.3.6.2</a></li>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.4.6.1"><i class="fa fa-check"></i>Exercise 4.4.6.1</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html"><i class="fa fa-check"></i><b>5</b> Case Study: ER Injuries</a>
+<ul>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.1"><i class="fa fa-check"></i>Exercise 5.8.1</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.2"><i class="fa fa-check"></i>Exercise 5.8.2</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.3"><i class="fa fa-check"></i>Exercise 5.8.3</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.4"><i class="fa fa-check"></i>Exercise 5.8.4</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="workflow.html"><a href="workflow.html"><i class="fa fa-check"></i><b>6</b> Workflow</a></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a>
+<ul>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.1"><i class="fa fa-check"></i>Exercise 7.5.1</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.2"><i class="fa fa-check"></i>Exercise 7.5.2</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.3"><i class="fa fa-check"></i>Exercise 7.5.3</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="user-feedback.html"><a href="user-feedback.html"><i class="fa fa-check"></i><b>8</b> User Feedback</a></li>
+<li class="chapter" data-level="9" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html"><i class="fa fa-check"></i><b>9</b> Uploads and Downloads</a>
+<ul>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.1"><i class="fa fa-check"></i>Exercise 9.4.1</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.2"><i class="fa fa-check"></i>Exercise 9.4.2</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.3"><i class="fa fa-check"></i>Exercise 9.4.3</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.4"><i class="fa fa-check"></i>Exercise 9.4.4</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dynamic-ui.html"><a href="dynamic-ui.html"><i class="fa fa-check"></i><b>10</b> Dynamic UI</a>
+<ul>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.1"><i class="fa fa-check"></i>Exercise 10.1.5.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.2"><i class="fa fa-check"></i>Exercise 10.1.5.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.3"><i class="fa fa-check"></i>Exercise 10.1.5.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.4"><i class="fa fa-check"></i>Exercise 10.1.5.4</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.5"><i class="fa fa-check"></i>Exercise 10.1.5.5</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.1"><i class="fa fa-check"></i>Exercise 10.2.3.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.2"><i class="fa fa-check"></i>Exercise 10.2.3.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.3"><i class="fa fa-check"></i>Exercise 10.2.3.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.1"><i class="fa fa-check"></i>Exercise 10.3.4.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.2"><i class="fa fa-check"></i>Exercise 10.3.4.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.3"><i class="fa fa-check"></i>Exercise 10.3.4.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.4"><i class="fa fa-check"></i>Exercise 10.3.4.4</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.5"><i class="fa fa-check"></i>Exercise 10.3.4.5</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="bookmarking.html"><a href="bookmarking.html"><i class="fa fa-check"></i><b>11</b> Bookmarking</a>
+<ul>
+<li class="chapter" data-level="" data-path="bookmarking.html"><a href="bookmarking.html#exercise-11.3.1"><i class="fa fa-check"></i>Exercise 11.3.1</a></li>
+<li class="chapter" data-level="" data-path="bookmarking.html"><a href="bookmarking.html#exercise-11.3.2"><i class="fa fa-check"></i>Exercise 11.3.2</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="tidy-evaluation.html"><a href="tidy-evaluation.html"><i class="fa fa-check"></i><b>12</b> Tidy Evaluation</a></li>
+<li class="chapter" data-level="13" data-path="general-guidelines.html"><a href="general-guidelines.html"><i class="fa fa-check"></i><b>13</b> General Guidelines</a></li>
+<li class="chapter" data-level="14" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>14</b> Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.1"><i class="fa fa-check"></i>Exercise 14.4.1</a></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.2"><i class="fa fa-check"></i>Exercise 14.4.2</a></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.3"><i class="fa fa-check"></i>Exercise 14.4.3</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>15</b> Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.1"><i class="fa fa-check"></i>Exercise 15.6.1</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.2"><i class="fa fa-check"></i>Exercise 15.6.2</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.3"><i class="fa fa-check"></i>Exercise 15.6.3</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.4"><i class="fa fa-check"></i>Exercise 15.6.4</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.5"><i class="fa fa-check"></i>Exercise 15.6.5</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.6"><i class="fa fa-check"></i>Exercise 15.6.6</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>16</b> Packages</a></li>
+<li class="chapter" data-level="17" data-path="testing.html"><a href="testing.html"><i class="fa fa-check"></i><b>17</b> Testing</a></li>
+<li class="chapter" data-level="18" data-path="safety.html"><a href="safety.html"><i class="fa fa-check"></i><b>18</b> Safety</a></li>
+<li class="chapter" data-level="19" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>19</b> Performance</a></li>
+<li class="chapter" data-level="20" data-path="why-reactivity.html"><a href="why-reactivity.html"><i class="fa fa-check"></i><b>20</b> Why reactivity?</a></li>
+<li class="chapter" data-level="21" data-path="dependency-tracking.html"><a href="dependency-tracking.html"><i class="fa fa-check"></i><b>21</b> Dependency Tracking</a></li>
+<li class="chapter" data-level="22" data-path="scoping.html"><a href="scoping.html"><i class="fa fa-check"></i><b>22</b> Scoping</a></li>
+<li class="chapter" data-level="23" data-path="reactive-components.html"><a href="reactive-components.html"><i class="fa fa-check"></i><b>23</b> Reactive Components</a></li>
+<li class="chapter" data-level="24" data-path="advanced-ui.html"><a href="advanced-ui.html"><i class="fa fa-check"></i><b>24</b> Advanced UI</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Mastering Shiny Solutions</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dynamic-ui" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Dynamic UI</h1>
+<div class="TODO">
+This chapter is in development...
+</div>
+<div id="exercise-10.1.5.1" class="section level3 unnumbered" number="">
+<h3>Exercise 10.1.5.1</h3>
+<p>Complete the user interface below with a server function that updates <code>input$date</code> so that you can only select dates in <code>input$year</code>.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="dynamic-ui.html#cb37-1"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb37-2"><a href="dynamic-ui.html#cb37-2"></a>  <span class="kw">numericInput</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="dv">2020</span>),</span>
+<span id="cb37-3"><a href="dynamic-ui.html#cb37-3"></a>  <span class="kw">dateInput</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
+<span id="cb37-4"><a href="dynamic-ui.html#cb37-4"></a>)</span></code></pre></div>
+<div id="solution" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>This solution was a little wonky because it required shinyjs for the dateInput to properly update. I <a href="https://github.com/rstudio/shiny/issues/2798">opened up an issue here</a> since I think this is not the most intuitive answer.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="dynamic-ui.html#cb38-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb38-2"><a href="dynamic-ui.html#cb38-2"></a><span class="kw">library</span>(shinyjs)</span>
+<span id="cb38-3"><a href="dynamic-ui.html#cb38-3"></a></span>
+<span id="cb38-4"><a href="dynamic-ui.html#cb38-4"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb38-5"><a href="dynamic-ui.html#cb38-5"></a>  <span class="kw">useShinyjs</span>() ,</span>
+<span id="cb38-6"><a href="dynamic-ui.html#cb38-6"></a>  <span class="kw">numericInput</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="dv">2020</span>),</span>
+<span id="cb38-7"><a href="dynamic-ui.html#cb38-7"></a>  <span class="kw">dateInput</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;date&quot;</span>, <span class="dt">value =</span> <span class="kw">Sys.Date</span>())</span>
+<span id="cb38-8"><a href="dynamic-ui.html#cb38-8"></a>)</span>
+<span id="cb38-9"><a href="dynamic-ui.html#cb38-9"></a></span>
+<span id="cb38-10"><a href="dynamic-ui.html#cb38-10"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb38-11"><a href="dynamic-ui.html#cb38-11"></a>  </span>
+<span id="cb38-12"><a href="dynamic-ui.html#cb38-12"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>year, {</span>
+<span id="cb38-13"><a href="dynamic-ui.html#cb38-13"></a>    </span>
+<span id="cb38-14"><a href="dynamic-ui.html#cb38-14"></a>    <span class="kw">req</span>(input<span class="op">$</span>year) <span class="co"># stop if year is blank</span></span>
+<span id="cb38-15"><a href="dynamic-ui.html#cb38-15"></a>    daterange &lt;-<span class="st"> </span><span class="kw">range</span>(<span class="kw">as.Date</span>(<span class="kw">paste0</span>(input<span class="op">$</span>year, <span class="st">&quot;-01-01&quot;</span>)),<span class="kw">as.Date</span>(<span class="kw">paste0</span>(input<span class="op">$</span>year, <span class="st">&quot;-12-31&quot;</span>)))</span>
+<span id="cb38-16"><a href="dynamic-ui.html#cb38-16"></a>    <span class="kw">updateDateInput</span>(session, <span class="st">&quot;date&quot;</span>, <span class="dt">min =</span> daterange[<span class="dv">1</span>], <span class="dt">max =</span> daterange[<span class="dv">2</span>] )</span>
+<span id="cb38-17"><a href="dynamic-ui.html#cb38-17"></a>    <span class="kw">delay</span>(<span class="dv">250</span>,  <span class="co"># delay 250ms</span></span>
+<span id="cb38-18"><a href="dynamic-ui.html#cb38-18"></a>          <span class="kw">updateDateInput</span>(session,<span class="st">&quot;date&quot;</span>,</span>
+<span id="cb38-19"><a href="dynamic-ui.html#cb38-19"></a>                          <span class="dt">value =</span> daterange[<span class="dv">1</span>]</span>
+<span id="cb38-20"><a href="dynamic-ui.html#cb38-20"></a>          ))</span>
+<span id="cb38-21"><a href="dynamic-ui.html#cb38-21"></a>  })</span>
+<span id="cb38-22"><a href="dynamic-ui.html#cb38-22"></a>}</span>
+<span id="cb38-23"><a href="dynamic-ui.html#cb38-23"></a></span>
+<span id="cb38-24"><a href="dynamic-ui.html#cb38-24"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.1.5.2" class="section level3 unnumbered" number="">
+<h3>Exercise 10.1.5.2</h3>
+<p>Complete the user interface below with a server function that updates <code>input$county</code> choices based on <code>input$state</code>. For an added challenge, also change the label from “County” to “Parrish” for Louisana and “Borrough” for “Alaska”.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="dynamic-ui.html#cb39-1"></a><span class="kw">library</span>(openintro)</span>
+<span id="cb39-2"><a href="dynamic-ui.html#cb39-2"></a>states &lt;-<span class="st"> </span><span class="kw">unique</span>(county<span class="op">$</span>state)</span>
+<span id="cb39-3"><a href="dynamic-ui.html#cb39-3"></a></span>
+<span id="cb39-4"><a href="dynamic-ui.html#cb39-4"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb39-5"><a href="dynamic-ui.html#cb39-5"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;State&quot;</span>, <span class="dt">choices =</span> states),</span>
+<span id="cb39-6"><a href="dynamic-ui.html#cb39-6"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;county&quot;</span>, <span class="st">&quot;County&quot;</span>, <span class="dt">choices =</span> <span class="ot">NULL</span>)</span>
+<span id="cb39-7"><a href="dynamic-ui.html#cb39-7"></a>)</span></code></pre></div>
+<div id="solution-1" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>We can use <code>updateSelectInput</code> to filter the county choices based on the user selected state. By making the label of <code>input$county</code> a reactive, we can use <code>switch</code> to change the label when either Alaska or Louisiana is selected.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="dynamic-ui.html#cb40-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb40-2"><a href="dynamic-ui.html#cb40-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb40-3"><a href="dynamic-ui.html#cb40-3"></a><span class="kw">library</span>(openintro)</span>
+<span id="cb40-4"><a href="dynamic-ui.html#cb40-4"></a></span>
+<span id="cb40-5"><a href="dynamic-ui.html#cb40-5"></a>states &lt;-<span class="st"> </span><span class="kw">unique</span>(county<span class="op">$</span>state)</span>
+<span id="cb40-6"><a href="dynamic-ui.html#cb40-6"></a>counties &lt;-<span class="st"> </span><span class="kw">unique</span>(county<span class="op">$</span>state)</span>
+<span id="cb40-7"><a href="dynamic-ui.html#cb40-7"></a></span>
+<span id="cb40-8"><a href="dynamic-ui.html#cb40-8"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb40-9"><a href="dynamic-ui.html#cb40-9"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;State&quot;</span>, <span class="dt">choices =</span> states),</span>
+<span id="cb40-10"><a href="dynamic-ui.html#cb40-10"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;county&quot;</span>, <span class="st">&quot;County&quot;</span>, <span class="dt">choices =</span> <span class="ot">NULL</span>)</span>
+<span id="cb40-11"><a href="dynamic-ui.html#cb40-11"></a>)</span>
+<span id="cb40-12"><a href="dynamic-ui.html#cb40-12"></a></span>
+<span id="cb40-13"><a href="dynamic-ui.html#cb40-13"></a></span>
+<span id="cb40-14"><a href="dynamic-ui.html#cb40-14"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb40-15"><a href="dynamic-ui.html#cb40-15"></a>  </span>
+<span id="cb40-16"><a href="dynamic-ui.html#cb40-16"></a>  label &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb40-17"><a href="dynamic-ui.html#cb40-17"></a>    <span class="cf">switch</span>(input<span class="op">$</span>state,</span>
+<span id="cb40-18"><a href="dynamic-ui.html#cb40-18"></a>           <span class="st">&quot;Alaska&quot;</span> =<span class="st"> &quot;Burrough&quot;</span>,</span>
+<span id="cb40-19"><a href="dynamic-ui.html#cb40-19"></a>           <span class="st">&quot;Louisiana&quot;</span> =<span class="st"> &quot;Parish&quot;</span>,</span>
+<span id="cb40-20"><a href="dynamic-ui.html#cb40-20"></a>           <span class="st">&quot;County&quot;</span>)</span>
+<span id="cb40-21"><a href="dynamic-ui.html#cb40-21"></a>  })</span>
+<span id="cb40-22"><a href="dynamic-ui.html#cb40-22"></a>   </span>
+<span id="cb40-23"><a href="dynamic-ui.html#cb40-23"></a>  <span class="kw">observeEvent</span>( input<span class="op">$</span>state, {</span>
+<span id="cb40-24"><a href="dynamic-ui.html#cb40-24"></a>    <span class="kw">updateSelectInput</span>(session, <span class="st">&quot;county&quot;</span>, <span class="dt">label =</span> <span class="kw">label</span>(),</span>
+<span id="cb40-25"><a href="dynamic-ui.html#cb40-25"></a>                      <span class="dt">choices =</span> county <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb40-26"><a href="dynamic-ui.html#cb40-26"></a><span class="st">                        </span><span class="kw">filter</span>(state <span class="op">==</span><span class="st"> </span>input<span class="op">$</span>state) <span class="op">%&gt;%</span></span>
+<span id="cb40-27"><a href="dynamic-ui.html#cb40-27"></a><span class="st">                        </span><span class="kw">select</span>(name) <span class="op">%&gt;%</span></span>
+<span id="cb40-28"><a href="dynamic-ui.html#cb40-28"></a><span class="st">                        </span><span class="kw">distinct</span>())</span>
+<span id="cb40-29"><a href="dynamic-ui.html#cb40-29"></a>  })</span>
+<span id="cb40-30"><a href="dynamic-ui.html#cb40-30"></a></span>
+<span id="cb40-31"><a href="dynamic-ui.html#cb40-31"></a>}</span>
+<span id="cb40-32"><a href="dynamic-ui.html#cb40-32"></a></span>
+<span id="cb40-33"><a href="dynamic-ui.html#cb40-33"></a></span>
+<span id="cb40-34"><a href="dynamic-ui.html#cb40-34"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.1.5.3" class="section level3 unnumbered" number="">
+<h3>Exercise 10.1.5.3</h3>
+<p>Complete the user interface below with a server function that updates <code>input$country</code> choices based on the <code>input$continent</code>. Use <code>output$data</code> to display all matching rows.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="dynamic-ui.html#cb41-1"></a><span class="kw">library</span>(gapminder)</span>
+<span id="cb41-2"><a href="dynamic-ui.html#cb41-2"></a>continents &lt;-<span class="st"> </span><span class="kw">unique</span>(gapminder<span class="op">$</span>continent)</span>
+<span id="cb41-3"><a href="dynamic-ui.html#cb41-3"></a></span>
+<span id="cb41-4"><a href="dynamic-ui.html#cb41-4"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb41-5"><a href="dynamic-ui.html#cb41-5"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;continent&quot;</span>, <span class="st">&quot;Continent&quot;</span>, <span class="dt">choices =</span> continents), </span>
+<span id="cb41-6"><a href="dynamic-ui.html#cb41-6"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;Country&quot;</span>, <span class="dt">choices =</span> <span class="ot">NULL</span>),</span>
+<span id="cb41-7"><a href="dynamic-ui.html#cb41-7"></a>  <span class="kw">tableOutput</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb41-8"><a href="dynamic-ui.html#cb41-8"></a>)</span></code></pre></div>
+<div id="solution-2" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>As the question above, we are filtering the country input based on the continent by using <code>updateSelectInput</code> in the server. By storing the selected data in a reactive, <code>selected_data()</code> we can use the same filtered dataset for our <code>selectInput</code> and the table, reducing code redundancy.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="dynamic-ui.html#cb42-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb42-2"><a href="dynamic-ui.html#cb42-2"></a></span>
+<span id="cb42-3"><a href="dynamic-ui.html#cb42-3"></a><span class="kw">library</span>(gapminder)</span>
+<span id="cb42-4"><a href="dynamic-ui.html#cb42-4"></a>continents &lt;-<span class="st"> </span><span class="kw">unique</span>(gapminder<span class="op">$</span>continent)</span>
+<span id="cb42-5"><a href="dynamic-ui.html#cb42-5"></a></span>
+<span id="cb42-6"><a href="dynamic-ui.html#cb42-6"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb42-7"><a href="dynamic-ui.html#cb42-7"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;continent&quot;</span>, <span class="st">&quot;Continent&quot;</span>, <span class="dt">choices =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="kw">as.character</span>(continents))), </span>
+<span id="cb42-8"><a href="dynamic-ui.html#cb42-8"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;Country&quot;</span>, <span class="dt">choices =</span> <span class="ot">NULL</span>),</span>
+<span id="cb42-9"><a href="dynamic-ui.html#cb42-9"></a>  <span class="kw">tableOutput</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb42-10"><a href="dynamic-ui.html#cb42-10"></a>)</span>
+<span id="cb42-11"><a href="dynamic-ui.html#cb42-11"></a></span>
+<span id="cb42-12"><a href="dynamic-ui.html#cb42-12"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb42-13"><a href="dynamic-ui.html#cb42-13"></a>  </span>
+<span id="cb42-14"><a href="dynamic-ui.html#cb42-14"></a>  selected_data &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb42-15"><a href="dynamic-ui.html#cb42-15"></a>    <span class="cf">if</span>(input<span class="op">$</span>continent <span class="op">%in%</span><span class="st"> </span>continents) {</span>
+<span id="cb42-16"><a href="dynamic-ui.html#cb42-16"></a>      gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb42-17"><a href="dynamic-ui.html#cb42-17"></a><span class="st">      </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> </span>input<span class="op">$</span>continent)</span>
+<span id="cb42-18"><a href="dynamic-ui.html#cb42-18"></a>    } <span class="cf">else</span> {</span>
+<span id="cb42-19"><a href="dynamic-ui.html#cb42-19"></a>      gapminder</span>
+<span id="cb42-20"><a href="dynamic-ui.html#cb42-20"></a>    }</span>
+<span id="cb42-21"><a href="dynamic-ui.html#cb42-21"></a>  })</span>
+<span id="cb42-22"><a href="dynamic-ui.html#cb42-22"></a>  </span>
+<span id="cb42-23"><a href="dynamic-ui.html#cb42-23"></a>  <span class="kw">observeEvent</span>( input<span class="op">$</span>continent, {</span>
+<span id="cb42-24"><a href="dynamic-ui.html#cb42-24"></a>    <span class="kw">updateSelectInput</span>(session, <span class="st">&quot;country&quot;</span>, <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb42-25"><a href="dynamic-ui.html#cb42-25"></a>                      <span class="dt">choices =</span> <span class="kw">selected_data</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb42-26"><a href="dynamic-ui.html#cb42-26"></a><span class="st">                        </span><span class="kw">select</span>(country) <span class="op">%&gt;%</span></span>
+<span id="cb42-27"><a href="dynamic-ui.html#cb42-27"></a><span class="st">                        </span><span class="kw">distinct</span>())</span>
+<span id="cb42-28"><a href="dynamic-ui.html#cb42-28"></a>  })</span>
+<span id="cb42-29"><a href="dynamic-ui.html#cb42-29"></a>  </span>
+<span id="cb42-30"><a href="dynamic-ui.html#cb42-30"></a>  output<span class="op">$</span>data &lt;-<span class="st"> </span><span class="kw">renderTable</span>({ </span>
+<span id="cb42-31"><a href="dynamic-ui.html#cb42-31"></a>    <span class="kw">selected_data</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb42-32"><a href="dynamic-ui.html#cb42-32"></a><span class="st">      </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> </span>input<span class="op">$</span>country) </span>
+<span id="cb42-33"><a href="dynamic-ui.html#cb42-33"></a>  })</span>
+<span id="cb42-34"><a href="dynamic-ui.html#cb42-34"></a>}</span>
+<span id="cb42-35"><a href="dynamic-ui.html#cb42-35"></a></span>
+<span id="cb42-36"><a href="dynamic-ui.html#cb42-36"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.1.5.4" class="section level3 unnumbered" number="">
+<h3>Exercise 10.1.5.4</h3>
+<p>Extend the previous app so that you can also choose to select no continent, and hence see all countries. You’ll need to add "" to the list of choices, and then handle that specially when filtering.</p>
+<div id="solution-3" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<div class="note">
+<p>Initially setting the choices to <code>c("", as.character(continents))</code> allows the user to see all the Country options prior to a continent being selected. That said, once a continent is selected this <code>""</code> option is no longer available.</p>
+</div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="dynamic-ui.html#cb43-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb43-2"><a href="dynamic-ui.html#cb43-2"></a></span>
+<span id="cb43-3"><a href="dynamic-ui.html#cb43-3"></a><span class="kw">library</span>(gapminder)</span>
+<span id="cb43-4"><a href="dynamic-ui.html#cb43-4"></a>continents &lt;-<span class="st"> </span><span class="kw">unique</span>(gapminder<span class="op">$</span>continent)</span>
+<span id="cb43-5"><a href="dynamic-ui.html#cb43-5"></a></span>
+<span id="cb43-6"><a href="dynamic-ui.html#cb43-6"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb43-7"><a href="dynamic-ui.html#cb43-7"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;continent&quot;</span>, <span class="st">&quot;Continent&quot;</span>, <span class="dt">choices =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="kw">as.character</span>(continents))), </span>
+<span id="cb43-8"><a href="dynamic-ui.html#cb43-8"></a>   <span class="co"># @tanho63:</span></span>
+<span id="cb43-9"><a href="dynamic-ui.html#cb43-9"></a>  <span class="co"># selectInput(&quot;continent&quot;, &quot;Continent&quot;, choices = c(&quot;All&quot;, as.character(continents))), </span></span>
+<span id="cb43-10"><a href="dynamic-ui.html#cb43-10"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;Country&quot;</span>, <span class="dt">choices =</span> <span class="ot">NULL</span>),</span>
+<span id="cb43-11"><a href="dynamic-ui.html#cb43-11"></a>  <span class="kw">tableOutput</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb43-12"><a href="dynamic-ui.html#cb43-12"></a>)</span>
+<span id="cb43-13"><a href="dynamic-ui.html#cb43-13"></a></span>
+<span id="cb43-14"><a href="dynamic-ui.html#cb43-14"></a></span>
+<span id="cb43-15"><a href="dynamic-ui.html#cb43-15"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb43-16"><a href="dynamic-ui.html#cb43-16"></a>  </span>
+<span id="cb43-17"><a href="dynamic-ui.html#cb43-17"></a>  selected_data &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb43-18"><a href="dynamic-ui.html#cb43-18"></a>    <span class="cf">if</span>(input<span class="op">$</span>continent <span class="op">%in%</span><span class="st"> </span>continents) {</span>
+<span id="cb43-19"><a href="dynamic-ui.html#cb43-19"></a>      gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb43-20"><a href="dynamic-ui.html#cb43-20"></a><span class="st">      </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> </span>input<span class="op">$</span>continent)</span>
+<span id="cb43-21"><a href="dynamic-ui.html#cb43-21"></a>    } <span class="cf">else</span> {</span>
+<span id="cb43-22"><a href="dynamic-ui.html#cb43-22"></a>      gapminder</span>
+<span id="cb43-23"><a href="dynamic-ui.html#cb43-23"></a>    }</span>
+<span id="cb43-24"><a href="dynamic-ui.html#cb43-24"></a>  })</span>
+<span id="cb43-25"><a href="dynamic-ui.html#cb43-25"></a>  </span>
+<span id="cb43-26"><a href="dynamic-ui.html#cb43-26"></a>  <span class="kw">observeEvent</span>( input<span class="op">$</span>continent, {</span>
+<span id="cb43-27"><a href="dynamic-ui.html#cb43-27"></a>    </span>
+<span id="cb43-28"><a href="dynamic-ui.html#cb43-28"></a>    <span class="co"># @tanho63:</span></span>
+<span id="cb43-29"><a href="dynamic-ui.html#cb43-29"></a>    <span class="kw">updateSelectInput</span>(session, <span class="st">&quot;country&quot;</span>,</span>
+<span id="cb43-30"><a href="dynamic-ui.html#cb43-30"></a>                      <span class="dt">choices =</span> <span class="kw">unique</span>(<span class="kw">selected_data</span>()<span class="op">$</span>country))</span>
+<span id="cb43-31"><a href="dynamic-ui.html#cb43-31"></a>  })</span>
+<span id="cb43-32"><a href="dynamic-ui.html#cb43-32"></a>  </span>
+<span id="cb43-33"><a href="dynamic-ui.html#cb43-33"></a>  output<span class="op">$</span>data &lt;-<span class="st"> </span><span class="kw">renderTable</span>({ </span>
+<span id="cb43-34"><a href="dynamic-ui.html#cb43-34"></a>    <span class="kw">selected_data</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb43-35"><a href="dynamic-ui.html#cb43-35"></a><span class="st">      </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> </span>input<span class="op">$</span>country) </span>
+<span id="cb43-36"><a href="dynamic-ui.html#cb43-36"></a>  })</span>
+<span id="cb43-37"><a href="dynamic-ui.html#cb43-37"></a></span>
+<span id="cb43-38"><a href="dynamic-ui.html#cb43-38"></a>}</span>
+<span id="cb43-39"><a href="dynamic-ui.html#cb43-39"></a></span>
+<span id="cb43-40"><a href="dynamic-ui.html#cb43-40"></a></span>
+<span id="cb43-41"><a href="dynamic-ui.html#cb43-41"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.1.5.5" class="section level3 unnumbered" number="">
+<h3>Exercise 10.1.5.5</h3>
+<p>What is at the heart of the problem described at <a href="https://community.rstudio.com/t/29307" class="uri">https://community.rstudio.com/t/29307</a>?</p>
+<div id="solution-4" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>Updating all three sliders creates a circular reference!</p>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.2.3.1" class="section level3 unnumbered" number="">
+<h3>Exercise 10.2.3.1</h3>
+<p>Use a hidden tabset to show additional controls only if the user checks an “advanced” check box.</p>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.2.3.2" class="section level3 unnumbered" number="">
+<h3>Exercise 10.2.3.2</h3>
+<p>Create that allows the user to select from geom_smooth(), geom_histogram(), or geom_point(). Use a hidden tabset to allow the user to select different options depending on the geom. geom_smooth() should have a text both for the model, and checkbox for whether or not to add standard errors. geom_histogram() should have a numeric input for the bin width, and geom_point() doesn’t need any additional options.</p>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.2.3.3" class="section level3 unnumbered" number="">
+<h3>Exercise 10.2.3.3</h3>
+<p>Create a wizard interface that steers the user along the path …</p>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.3.4.1" class="section level3 unnumbered" number="">
+<h3>Exercise 10.3.4.1</h3>
+<p>Take this very simple app based on the initial example in the chapter:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="dynamic-ui.html#cb44-1"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb44-2"><a href="dynamic-ui.html#cb44-2"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;type&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;slider&quot;</span>, <span class="st">&quot;numeric&quot;</span>)),</span>
+<span id="cb44-3"><a href="dynamic-ui.html#cb44-3"></a>  <span class="kw">uiOutput</span>(<span class="st">&quot;numeric&quot;</span>)</span>
+<span id="cb44-4"><a href="dynamic-ui.html#cb44-4"></a>)</span>
+<span id="cb44-5"><a href="dynamic-ui.html#cb44-5"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb44-6"><a href="dynamic-ui.html#cb44-6"></a>  output<span class="op">$</span>numeric &lt;-<span class="st"> </span><span class="kw">renderUI</span>({</span>
+<span id="cb44-7"><a href="dynamic-ui.html#cb44-7"></a>    <span class="cf">if</span> (input<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;slider&quot;</span>) {</span>
+<span id="cb44-8"><a href="dynamic-ui.html#cb44-8"></a>      <span class="kw">sliderInput</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="dt">value =</span> <span class="dv">0</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">100</span>)</span>
+<span id="cb44-9"><a href="dynamic-ui.html#cb44-9"></a>    } <span class="cf">else</span> {</span>
+<span id="cb44-10"><a href="dynamic-ui.html#cb44-10"></a>      <span class="kw">numericInput</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="dt">value =</span> <span class="dv">0</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">100</span>)  </span>
+<span id="cb44-11"><a href="dynamic-ui.html#cb44-11"></a>    }</span>
+<span id="cb44-12"><a href="dynamic-ui.html#cb44-12"></a>  })</span>
+<span id="cb44-13"><a href="dynamic-ui.html#cb44-13"></a>}</span></code></pre></div>
+<p>How could you instead implement it using dynamic visibility? If you implement dynamic visibility, how could you keep the values in sync when you change the controls?</p>
+<div id="solution-5" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="dynamic-ui.html#cb45-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb45-2"><a href="dynamic-ui.html#cb45-2"></a>parameter_tabs &lt;-<span class="st"> </span><span class="kw">tagList</span>(</span>
+<span id="cb45-3"><a href="dynamic-ui.html#cb45-3"></a>  tags<span class="op">$</span><span class="kw">style</span>(<span class="st">&quot;#params { display:none; }&quot;</span>),</span>
+<span id="cb45-4"><a href="dynamic-ui.html#cb45-4"></a>  <span class="kw">tabsetPanel</span>(<span class="dt">id =</span> <span class="st">&quot;params&quot;</span>,</span>
+<span id="cb45-5"><a href="dynamic-ui.html#cb45-5"></a>              <span class="kw">tabPanel</span>(<span class="st">&quot;slider&quot;</span>,</span>
+<span id="cb45-6"><a href="dynamic-ui.html#cb45-6"></a>                       <span class="kw">sliderInput</span>(<span class="st">&quot;my_slider&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="dt">value =</span> <span class="dv">0</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">100</span>)</span>
+<span id="cb45-7"><a href="dynamic-ui.html#cb45-7"></a>              ),</span>
+<span id="cb45-8"><a href="dynamic-ui.html#cb45-8"></a>              <span class="kw">tabPanel</span>(<span class="st">&quot;numeric&quot;</span>, </span>
+<span id="cb45-9"><a href="dynamic-ui.html#cb45-9"></a>                       <span class="kw">numericInput</span>(<span class="st">&quot;my_numeric&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="dt">value =</span> <span class="dv">0</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">100</span>)  </span>
+<span id="cb45-10"><a href="dynamic-ui.html#cb45-10"></a>              )</span>
+<span id="cb45-11"><a href="dynamic-ui.html#cb45-11"></a>  )</span>
+<span id="cb45-12"><a href="dynamic-ui.html#cb45-12"></a>)</span>
+<span id="cb45-13"><a href="dynamic-ui.html#cb45-13"></a></span>
+<span id="cb45-14"><a href="dynamic-ui.html#cb45-14"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb45-15"><a href="dynamic-ui.html#cb45-15"></a>  <span class="kw">sidebarLayout</span>(</span>
+<span id="cb45-16"><a href="dynamic-ui.html#cb45-16"></a>    <span class="kw">sidebarPanel</span>(</span>
+<span id="cb45-17"><a href="dynamic-ui.html#cb45-17"></a>      <span class="kw">selectInput</span>(<span class="st">&quot;my_selector&quot;</span>, <span class="st">&quot;Input Type&quot;</span>, </span>
+<span id="cb45-18"><a href="dynamic-ui.html#cb45-18"></a>                  <span class="dt">choices =</span> <span class="kw">c</span>(<span class="st">&quot;slider&quot;</span>, <span class="st">&quot;numeric&quot;</span>)</span>
+<span id="cb45-19"><a href="dynamic-ui.html#cb45-19"></a>      ),</span>
+<span id="cb45-20"><a href="dynamic-ui.html#cb45-20"></a>      parameter_tabs,</span>
+<span id="cb45-21"><a href="dynamic-ui.html#cb45-21"></a>    ),</span>
+<span id="cb45-22"><a href="dynamic-ui.html#cb45-22"></a>    <span class="kw">mainPanel</span>()</span>
+<span id="cb45-23"><a href="dynamic-ui.html#cb45-23"></a>  )</span>
+<span id="cb45-24"><a href="dynamic-ui.html#cb45-24"></a>)</span>
+<span id="cb45-25"><a href="dynamic-ui.html#cb45-25"></a></span>
+<span id="cb45-26"><a href="dynamic-ui.html#cb45-26"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb45-27"><a href="dynamic-ui.html#cb45-27"></a>  </span>
+<span id="cb45-28"><a href="dynamic-ui.html#cb45-28"></a>  <span class="co"># if slider changes, update numeric</span></span>
+<span id="cb45-29"><a href="dynamic-ui.html#cb45-29"></a>  <span class="kw">observeEvent</span>( input<span class="op">$</span>my_slider, {</span>
+<span id="cb45-30"><a href="dynamic-ui.html#cb45-30"></a>    <span class="kw">updateNumericInput</span>(session, <span class="st">&quot;my_numeric&quot;</span>, <span class="dt">value =</span> <span class="kw">isolate</span>(input<span class="op">$</span>my_slider))</span>
+<span id="cb45-31"><a href="dynamic-ui.html#cb45-31"></a>  })</span>
+<span id="cb45-32"><a href="dynamic-ui.html#cb45-32"></a>  </span>
+<span id="cb45-33"><a href="dynamic-ui.html#cb45-33"></a>  <span class="co"># if numeric changes update slider</span></span>
+<span id="cb45-34"><a href="dynamic-ui.html#cb45-34"></a>  <span class="kw">observeEvent</span>( input<span class="op">$</span>my_numeric, {</span>
+<span id="cb45-35"><a href="dynamic-ui.html#cb45-35"></a>    <span class="kw">updateSliderInput</span>(session, <span class="st">&quot;my_slider&quot;</span>, <span class="dt">value =</span> <span class="kw">isolate</span>(input<span class="op">$</span>my_numeric))</span>
+<span id="cb45-36"><a href="dynamic-ui.html#cb45-36"></a>  })</span>
+<span id="cb45-37"><a href="dynamic-ui.html#cb45-37"></a>  </span>
+<span id="cb45-38"><a href="dynamic-ui.html#cb45-38"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>my_selector, {</span>
+<span id="cb45-39"><a href="dynamic-ui.html#cb45-39"></a>    <span class="kw">updateTabsetPanel</span>(session, <span class="st">&quot;params&quot;</span>, <span class="dt">selected =</span> input<span class="op">$</span>my_selector)</span>
+<span id="cb45-40"><a href="dynamic-ui.html#cb45-40"></a>  }) </span>
+<span id="cb45-41"><a href="dynamic-ui.html#cb45-41"></a>  </span>
+<span id="cb45-42"><a href="dynamic-ui.html#cb45-42"></a>}</span>
+<span id="cb45-43"><a href="dynamic-ui.html#cb45-43"></a></span>
+<span id="cb45-44"><a href="dynamic-ui.html#cb45-44"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.3.4.2" class="section level3 unnumbered" number="">
+<h3>Exercise 10.3.4.2</h3>
+<p>Explain how this app works. Why does the password disappear when you click the enter password button for the second time?</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="dynamic-ui.html#cb46-1"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb46-2"><a href="dynamic-ui.html#cb46-2"></a>  <span class="kw">actionButton</span>(<span class="st">&quot;go&quot;</span>, <span class="st">&quot;Enter password&quot;</span>),</span>
+<span id="cb46-3"><a href="dynamic-ui.html#cb46-3"></a>  <span class="kw">textOutput</span>(<span class="st">&quot;text&quot;</span>)</span>
+<span id="cb46-4"><a href="dynamic-ui.html#cb46-4"></a>)</span>
+<span id="cb46-5"><a href="dynamic-ui.html#cb46-5"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb46-6"><a href="dynamic-ui.html#cb46-6"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>go, {</span>
+<span id="cb46-7"><a href="dynamic-ui.html#cb46-7"></a>    <span class="kw">showModal</span>(<span class="kw">modalDialog</span>(</span>
+<span id="cb46-8"><a href="dynamic-ui.html#cb46-8"></a>      <span class="kw">passwordInput</span>(<span class="st">&quot;password&quot;</span>, <span class="ot">NULL</span>),</span>
+<span id="cb46-9"><a href="dynamic-ui.html#cb46-9"></a>      <span class="dt">title =</span> <span class="st">&quot;Please enter your password&quot;</span></span>
+<span id="cb46-10"><a href="dynamic-ui.html#cb46-10"></a>    ))</span>
+<span id="cb46-11"><a href="dynamic-ui.html#cb46-11"></a>  })</span>
+<span id="cb46-12"><a href="dynamic-ui.html#cb46-12"></a></span>
+<span id="cb46-13"><a href="dynamic-ui.html#cb46-13"></a>  output<span class="op">$</span>text &lt;-<span class="st"> </span><span class="kw">renderText</span>({</span>
+<span id="cb46-14"><a href="dynamic-ui.html#cb46-14"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">isTruthy</span>(input<span class="op">$</span>password)) {</span>
+<span id="cb46-15"><a href="dynamic-ui.html#cb46-15"></a>      <span class="st">&quot;No password&quot;</span></span>
+<span id="cb46-16"><a href="dynamic-ui.html#cb46-16"></a>    } <span class="cf">else</span> {</span>
+<span id="cb46-17"><a href="dynamic-ui.html#cb46-17"></a>      <span class="st">&quot;Password entered&quot;</span></span>
+<span id="cb46-18"><a href="dynamic-ui.html#cb46-18"></a>    }</span>
+<span id="cb46-19"><a href="dynamic-ui.html#cb46-19"></a>  })</span>
+<span id="cb46-20"><a href="dynamic-ui.html#cb46-20"></a>}</span></code></pre></div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.3.4.3" class="section level3 unnumbered" number="">
+<h3>Exercise 10.3.4.3</h3>
+<p>Add support for date and date-time columns <code>make_ui()</code> and <code>filter_var()</code>.</p>
+<div id="solution-6" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>In order to complete this, I had to</p>
+<ol style="list-style-type: decimal">
+<li>make a new dummy dataframe I called <code>x</code> in order to test for dates</li>
+<li>include checking for <code>is.Date</code> in the <code>make_ui</code> and <code>filter_var</code> functions</li>
+<li>Change <code>tableOutput</code> and <code>renderTable</code> to <code>DT::renderTableOutput</code> and <code>DT::renderTableOutput</code> because <code>renderTable</code> was rendering the dates as numbers and I think this could be because it uses <code>xtable()</code> for HTML table rendering?</li>
+</ol>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="dynamic-ui.html#cb47-1"></a><span class="co"># 8.4.3.2</span></span>
+<span id="cb47-2"><a href="dynamic-ui.html#cb47-2"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb47-3"><a href="dynamic-ui.html#cb47-3"></a><span class="kw">library</span>(purrr)</span>
+<span id="cb47-4"><a href="dynamic-ui.html#cb47-4"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb47-5"><a href="dynamic-ui.html#cb47-5"></a></span>
+<span id="cb47-6"><a href="dynamic-ui.html#cb47-6"></a>make_ui &lt;-<span class="st"> </span><span class="cf">function</span>(x, var) {</span>
+<span id="cb47-7"><a href="dynamic-ui.html#cb47-7"></a>  <span class="cf">if</span> (<span class="kw">is.numeric</span>(x)) {</span>
+<span id="cb47-8"><a href="dynamic-ui.html#cb47-8"></a>    rng &lt;-<span class="st"> </span><span class="kw">range</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb47-9"><a href="dynamic-ui.html#cb47-9"></a>    <span class="kw">sliderInput</span>(var, var, <span class="dt">min =</span> rng[<span class="dv">1</span>], <span class="dt">max =</span> rng[<span class="dv">2</span>], <span class="dt">value =</span> rng)</span>
+<span id="cb47-10"><a href="dynamic-ui.html#cb47-10"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="kw">is.factor</span>(x)) {</span>
+<span id="cb47-11"><a href="dynamic-ui.html#cb47-11"></a>    levs &lt;-<span class="st"> </span><span class="kw">levels</span>(x)</span>
+<span id="cb47-12"><a href="dynamic-ui.html#cb47-12"></a>    <span class="kw">selectInput</span>(var, var, <span class="dt">choices =</span> levs, <span class="dt">selected =</span> levs, <span class="dt">multiple =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb47-13"><a href="dynamic-ui.html#cb47-13"></a>  } <span class="cf">else</span> <span class="cf">if</span> (lubridate<span class="op">::</span><span class="kw">is.Date</span>(x)) {</span>
+<span id="cb47-14"><a href="dynamic-ui.html#cb47-14"></a>    rng &lt;-<span class="st"> </span><span class="kw">range</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb47-15"><a href="dynamic-ui.html#cb47-15"></a>    <span class="kw">dateInput</span>(var, var, <span class="dt">min =</span> rng[<span class="dv">1</span>], <span class="dt">max =</span> rng[<span class="dv">2</span>], <span class="dt">value =</span> rng[<span class="dv">1</span>])</span>
+<span id="cb47-16"><a href="dynamic-ui.html#cb47-16"></a>  } <span class="cf">else</span> {</span>
+<span id="cb47-17"><a href="dynamic-ui.html#cb47-17"></a>    <span class="co"># No control, so don&#39;t filter</span></span>
+<span id="cb47-18"><a href="dynamic-ui.html#cb47-18"></a>    <span class="ot">NULL</span></span>
+<span id="cb47-19"><a href="dynamic-ui.html#cb47-19"></a>  }</span>
+<span id="cb47-20"><a href="dynamic-ui.html#cb47-20"></a>}</span>
+<span id="cb47-21"><a href="dynamic-ui.html#cb47-21"></a></span>
+<span id="cb47-22"><a href="dynamic-ui.html#cb47-22"></a></span>
+<span id="cb47-23"><a href="dynamic-ui.html#cb47-23"></a>filter_var &lt;-<span class="st"> </span><span class="cf">function</span>(x, val) {</span>
+<span id="cb47-24"><a href="dynamic-ui.html#cb47-24"></a>  <span class="cf">if</span> (<span class="kw">is.numeric</span>(x)) {</span>
+<span id="cb47-25"><a href="dynamic-ui.html#cb47-25"></a>    <span class="op">!</span><span class="kw">is.na</span>(x) <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&gt;=</span><span class="st"> </span>val[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;=</span><span class="st"> </span>val[<span class="dv">2</span>]</span>
+<span id="cb47-26"><a href="dynamic-ui.html#cb47-26"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="kw">is.factor</span>(x)) {</span>
+<span id="cb47-27"><a href="dynamic-ui.html#cb47-27"></a>    x <span class="op">%in%</span><span class="st"> </span>val</span>
+<span id="cb47-28"><a href="dynamic-ui.html#cb47-28"></a>  } <span class="cf">else</span> <span class="cf">if</span> (lubridate<span class="op">::</span><span class="kw">is.Date</span>(x)) {</span>
+<span id="cb47-29"><a href="dynamic-ui.html#cb47-29"></a>    x <span class="op">%in%</span><span class="st"> </span>val</span>
+<span id="cb47-30"><a href="dynamic-ui.html#cb47-30"></a>  } <span class="cf">else</span> {</span>
+<span id="cb47-31"><a href="dynamic-ui.html#cb47-31"></a>    <span class="ot">TRUE</span></span>
+<span id="cb47-32"><a href="dynamic-ui.html#cb47-32"></a>  }</span>
+<span id="cb47-33"><a href="dynamic-ui.html#cb47-33"></a>}</span>
+<span id="cb47-34"><a href="dynamic-ui.html#cb47-34"></a></span>
+<span id="cb47-35"><a href="dynamic-ui.html#cb47-35"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb47-36"><a href="dynamic-ui.html#cb47-36"></a></span>
+<span id="cb47-37"><a href="dynamic-ui.html#cb47-37"></a>dfs &lt;-<span class="st"> </span><span class="kw">keep</span>(<span class="kw">ls</span>(<span class="st">&quot;package:datasets&quot;</span>), <span class="op">~</span><span class="st"> </span><span class="kw">is.data.frame</span>(<span class="kw">get</span>(.x, <span class="st">&quot;package:datasets&quot;</span>)))</span>
+<span id="cb47-38"><a href="dynamic-ui.html#cb47-38"></a></span>
+<span id="cb47-39"><a href="dynamic-ui.html#cb47-39"></a><span class="co"># add a dataframe with dates in it since I cant find one in the datasets above</span></span>
+<span id="cb47-40"><a href="dynamic-ui.html#cb47-40"></a><span class="co"># rep 5 dates five times, each include 1 factor a-e</span></span>
+<span id="cb47-41"><a href="dynamic-ui.html#cb47-41"></a>x &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">date =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2020/1/1&quot;</span>), <span class="dv">5</span>),</span>
+<span id="cb47-42"><a href="dynamic-ui.html#cb47-42"></a>                         <span class="kw">rep</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2020/2/2&quot;</span>), <span class="dv">5</span>),</span>
+<span id="cb47-43"><a href="dynamic-ui.html#cb47-43"></a>                         <span class="kw">rep</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2020/3/3&quot;</span>), <span class="dv">5</span>),</span>
+<span id="cb47-44"><a href="dynamic-ui.html#cb47-44"></a>                         <span class="kw">rep</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2020/4/4&quot;</span>), <span class="dv">5</span>),</span>
+<span id="cb47-45"><a href="dynamic-ui.html#cb47-45"></a>                         <span class="kw">rep</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2020/5/5&quot;</span>), <span class="dv">5</span>)),</span>
+<span id="cb47-46"><a href="dynamic-ui.html#cb47-46"></a>                <span class="dt">fac =</span> <span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>)))</span>
+<span id="cb47-47"><a href="dynamic-ui.html#cb47-47"></a></span>
+<span id="cb47-48"><a href="dynamic-ui.html#cb47-48"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb47-49"><a href="dynamic-ui.html#cb47-49"></a>  <span class="kw">sidebarLayout</span>(</span>
+<span id="cb47-50"><a href="dynamic-ui.html#cb47-50"></a>    <span class="kw">sidebarPanel</span>(</span>
+<span id="cb47-51"><a href="dynamic-ui.html#cb47-51"></a>      <span class="co">#selectInput(&quot;dataset&quot;, label = &quot;Dataset&quot;, choices = c(dfs, &quot;x&quot;)),</span></span>
+<span id="cb47-52"><a href="dynamic-ui.html#cb47-52"></a>      <span class="kw">uiOutput</span>(<span class="st">&quot;filter&quot;</span>)</span>
+<span id="cb47-53"><a href="dynamic-ui.html#cb47-53"></a>    ),</span>
+<span id="cb47-54"><a href="dynamic-ui.html#cb47-54"></a>    <span class="kw">mainPanel</span>(</span>
+<span id="cb47-55"><a href="dynamic-ui.html#cb47-55"></a>      DT<span class="op">::</span><span class="kw">dataTableOutput</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb47-56"><a href="dynamic-ui.html#cb47-56"></a>    )</span>
+<span id="cb47-57"><a href="dynamic-ui.html#cb47-57"></a>  )</span>
+<span id="cb47-58"><a href="dynamic-ui.html#cb47-58"></a>)</span>
+<span id="cb47-59"><a href="dynamic-ui.html#cb47-59"></a></span>
+<span id="cb47-60"><a href="dynamic-ui.html#cb47-60"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb47-61"><a href="dynamic-ui.html#cb47-61"></a>  </span>
+<span id="cb47-62"><a href="dynamic-ui.html#cb47-62"></a>  <span class="co"># data is either my dummy dataset or from datasets</span></span>
+<span id="cb47-63"><a href="dynamic-ui.html#cb47-63"></a>  data &lt;-<span class="st"> </span><span class="kw">reactive</span>(x)</span>
+<span id="cb47-64"><a href="dynamic-ui.html#cb47-64"></a>  </span>
+<span id="cb47-65"><a href="dynamic-ui.html#cb47-65"></a>  vars &lt;-<span class="st"> </span><span class="kw">reactive</span>(<span class="kw">names</span>(<span class="kw">data</span>()))</span>
+<span id="cb47-66"><a href="dynamic-ui.html#cb47-66"></a>  </span>
+<span id="cb47-67"><a href="dynamic-ui.html#cb47-67"></a>  output<span class="op">$</span>filter &lt;-<span class="st"> </span><span class="kw">renderUI</span>(</span>
+<span id="cb47-68"><a href="dynamic-ui.html#cb47-68"></a>    <span class="co"># take eahc column name and make ui</span></span>
+<span id="cb47-69"><a href="dynamic-ui.html#cb47-69"></a>    <span class="co"># data()[[.x]] is each column</span></span>
+<span id="cb47-70"><a href="dynamic-ui.html#cb47-70"></a>    <span class="co"># and .x is each column name (vars())</span></span>
+<span id="cb47-71"><a href="dynamic-ui.html#cb47-71"></a>    <span class="kw">map</span>(<span class="kw">vars</span>(), <span class="op">~</span><span class="st"> </span><span class="kw">make_ui</span>(<span class="kw">data</span>()[[.x]], .x))</span>
+<span id="cb47-72"><a href="dynamic-ui.html#cb47-72"></a>  )</span>
+<span id="cb47-73"><a href="dynamic-ui.html#cb47-73"></a>  </span>
+<span id="cb47-74"><a href="dynamic-ui.html#cb47-74"></a>  selected &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb47-75"><a href="dynamic-ui.html#cb47-75"></a>    <span class="co"># take each column name and filer var</span></span>
+<span id="cb47-76"><a href="dynamic-ui.html#cb47-76"></a>    <span class="co"># with the first argument the column in the data</span></span>
+<span id="cb47-77"><a href="dynamic-ui.html#cb47-77"></a>    <span class="co"># and the second argument the input$vars()</span></span>
+<span id="cb47-78"><a href="dynamic-ui.html#cb47-78"></a>    <span class="co"># so for date check that input[[date]] in data[[1]]</span></span>
+<span id="cb47-79"><a href="dynamic-ui.html#cb47-79"></a>    each_var &lt;-<span class="st"> </span><span class="kw">map</span>(<span class="kw">vars</span>(), <span class="op">~</span><span class="st"> </span><span class="kw">filter_var</span>(<span class="kw">data</span>()[[.x]], input[[.x]]))</span>
+<span id="cb47-80"><a href="dynamic-ui.html#cb47-80"></a>    </span>
+<span id="cb47-81"><a href="dynamic-ui.html#cb47-81"></a>    <span class="co"># notes from @mapaulacaldas</span></span>
+<span id="cb47-82"><a href="dynamic-ui.html#cb47-82"></a>    <span class="co"># collapse list of TRUE and FALSE using `&amp;`</span></span>
+<span id="cb47-83"><a href="dynamic-ui.html#cb47-83"></a>    <span class="co"># conditions &lt;- list(TRUE, TRUE, TRUE, FALSE)</span></span>
+<span id="cb47-84"><a href="dynamic-ui.html#cb47-84"></a>    <span class="co"># purrr::reduce(conditions, `&amp;`) ==</span></span>
+<span id="cb47-85"><a href="dynamic-ui.html#cb47-85"></a>    <span class="co"># ((conditions[[1]] &amp; conditions[[2]]) &amp; conditions[[3]]) &amp; conditions[[4]]</span></span>
+<span id="cb47-86"><a href="dynamic-ui.html#cb47-86"></a>    <span class="kw">reduce</span>(each_var, <span class="st">`</span><span class="dt">&amp;</span><span class="st">`</span>)</span>
+<span id="cb47-87"><a href="dynamic-ui.html#cb47-87"></a>  })</span>
+<span id="cb47-88"><a href="dynamic-ui.html#cb47-88"></a>  </span>
+<span id="cb47-89"><a href="dynamic-ui.html#cb47-89"></a>  <span class="co"># subset the data by the vars that are true</span></span>
+<span id="cb47-90"><a href="dynamic-ui.html#cb47-90"></a>  output<span class="op">$</span>data &lt;-<span class="st"> </span>DT<span class="op">::</span><span class="kw">renderDataTable</span>(<span class="kw">data</span>()[<span class="kw">selected</span>(), ])</span>
+<span id="cb47-91"><a href="dynamic-ui.html#cb47-91"></a>}</span>
+<span id="cb47-92"><a href="dynamic-ui.html#cb47-92"></a><span class="co"># Run the application </span></span>
+<span id="cb47-93"><a href="dynamic-ui.html#cb47-93"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.3.4.4" class="section level3 unnumbered" number="">
+<h3>Exercise 10.3.4.4</h3>
+<p>(Advanced) If you know the S3 OOP system, consider how you could replace the if blocks in <code>make_ui()</code> and <code>filter_var()</code> with generic functions.</p>
+<div id="solution-7" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="dynamic-ui.html#cb48-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb48-2"><a href="dynamic-ui.html#cb48-2"></a><span class="kw">library</span>(purrr)</span>
+<span id="cb48-3"><a href="dynamic-ui.html#cb48-3"></a></span>
+<span id="cb48-4"><a href="dynamic-ui.html#cb48-4"></a>make_ui &lt;-<span class="st"> </span><span class="cf">function</span>(obj, var) { <span class="kw">UseMethod</span>(<span class="st">&quot;make_ui&quot;</span>) }</span>
+<span id="cb48-5"><a href="dynamic-ui.html#cb48-5"></a></span>
+<span id="cb48-6"><a href="dynamic-ui.html#cb48-6"></a>make_ui.numeric &lt;-<span class="st"> </span><span class="cf">function</span>(x, var) {</span>
+<span id="cb48-7"><a href="dynamic-ui.html#cb48-7"></a>  rng &lt;-<span class="st"> </span><span class="kw">range</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb48-8"><a href="dynamic-ui.html#cb48-8"></a>  <span class="kw">sliderInput</span>(var, var, <span class="dt">min =</span> rng[<span class="dv">1</span>], <span class="dt">max =</span> rng[<span class="dv">2</span>], <span class="dt">value =</span> rng)</span>
+<span id="cb48-9"><a href="dynamic-ui.html#cb48-9"></a>}</span>
+<span id="cb48-10"><a href="dynamic-ui.html#cb48-10"></a></span>
+<span id="cb48-11"><a href="dynamic-ui.html#cb48-11"></a>make_ui.factor &lt;-<span class="st"> </span><span class="cf">function</span>(x, var) { </span>
+<span id="cb48-12"><a href="dynamic-ui.html#cb48-12"></a>  levs &lt;-<span class="st"> </span><span class="kw">levels</span>(x) </span>
+<span id="cb48-13"><a href="dynamic-ui.html#cb48-13"></a>  <span class="kw">selectInput</span>(var, var, <span class="dt">choices =</span> levs, <span class="dt">selected =</span> levs, <span class="dt">multiple =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb48-14"><a href="dynamic-ui.html#cb48-14"></a>}</span>
+<span id="cb48-15"><a href="dynamic-ui.html#cb48-15"></a></span>
+<span id="cb48-16"><a href="dynamic-ui.html#cb48-16"></a>make_ui.default &lt;-<span class="st"> </span><span class="cf">function</span>(x, var) { <span class="ot">NULL</span> }</span>
+<span id="cb48-17"><a href="dynamic-ui.html#cb48-17"></a></span>
+<span id="cb48-18"><a href="dynamic-ui.html#cb48-18"></a>filter_var &lt;-<span class="st"> </span><span class="cf">function</span>(x, val) { <span class="kw">UseMethod</span>(<span class="st">&quot;filter_var&quot;</span>) }</span>
+<span id="cb48-19"><a href="dynamic-ui.html#cb48-19"></a>filter_var.numeric &lt;-<span class="st"> </span><span class="cf">function</span>(x, val) { <span class="op">!</span><span class="kw">is.na</span>(x) <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&gt;=</span><span class="st"> </span>val[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;=</span><span class="st"> </span>val[<span class="dv">2</span>] }</span>
+<span id="cb48-20"><a href="dynamic-ui.html#cb48-20"></a>filter_var.factor &lt;-<span class="st"> </span><span class="cf">function</span>(x, val) { x <span class="op">%in%</span><span class="st"> </span>val }</span>
+<span id="cb48-21"><a href="dynamic-ui.html#cb48-21"></a>filter_var.default &lt;-<span class="st"> </span><span class="cf">function</span>(x, val) { <span class="ot">TRUE</span> }</span>
+<span id="cb48-22"><a href="dynamic-ui.html#cb48-22"></a></span>
+<span id="cb48-23"><a href="dynamic-ui.html#cb48-23"></a>dfs &lt;-<span class="st"> </span><span class="kw">keep</span>(<span class="kw">ls</span>(<span class="st">&quot;package:datasets&quot;</span>), <span class="op">~</span><span class="st"> </span><span class="kw">is.data.frame</span>(<span class="kw">get</span>(.x, <span class="st">&quot;package:datasets&quot;</span>)))</span>
+<span id="cb48-24"><a href="dynamic-ui.html#cb48-24"></a></span>
+<span id="cb48-25"><a href="dynamic-ui.html#cb48-25"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb48-26"><a href="dynamic-ui.html#cb48-26"></a>  <span class="kw">sidebarLayout</span>(</span>
+<span id="cb48-27"><a href="dynamic-ui.html#cb48-27"></a>    <span class="kw">sidebarPanel</span>(</span>
+<span id="cb48-28"><a href="dynamic-ui.html#cb48-28"></a>      <span class="kw">selectInput</span>(<span class="st">&quot;dataset&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Dataset&quot;</span>, <span class="dt">choices =</span> dfs),</span>
+<span id="cb48-29"><a href="dynamic-ui.html#cb48-29"></a>      <span class="kw">uiOutput</span>(<span class="st">&quot;filter&quot;</span>)</span>
+<span id="cb48-30"><a href="dynamic-ui.html#cb48-30"></a>    ),</span>
+<span id="cb48-31"><a href="dynamic-ui.html#cb48-31"></a>    <span class="kw">mainPanel</span>(</span>
+<span id="cb48-32"><a href="dynamic-ui.html#cb48-32"></a>      <span class="kw">tableOutput</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb48-33"><a href="dynamic-ui.html#cb48-33"></a>    )</span>
+<span id="cb48-34"><a href="dynamic-ui.html#cb48-34"></a>  )</span>
+<span id="cb48-35"><a href="dynamic-ui.html#cb48-35"></a>)</span>
+<span id="cb48-36"><a href="dynamic-ui.html#cb48-36"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb48-37"><a href="dynamic-ui.html#cb48-37"></a>  data &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb48-38"><a href="dynamic-ui.html#cb48-38"></a>    <span class="kw">get</span>(input<span class="op">$</span>dataset, <span class="st">&quot;package:datasets&quot;</span>)</span>
+<span id="cb48-39"><a href="dynamic-ui.html#cb48-39"></a>  })</span>
+<span id="cb48-40"><a href="dynamic-ui.html#cb48-40"></a>  </span>
+<span id="cb48-41"><a href="dynamic-ui.html#cb48-41"></a>  vars &lt;-<span class="st"> </span><span class="kw">reactive</span>(<span class="kw">names</span>(<span class="kw">data</span>()))</span>
+<span id="cb48-42"><a href="dynamic-ui.html#cb48-42"></a>  </span>
+<span id="cb48-43"><a href="dynamic-ui.html#cb48-43"></a>  output<span class="op">$</span>filter &lt;-<span class="st"> </span><span class="kw">renderUI</span>(</span>
+<span id="cb48-44"><a href="dynamic-ui.html#cb48-44"></a>    <span class="kw">map</span>(<span class="kw">vars</span>(), <span class="op">~</span><span class="st"> </span><span class="kw">make_ui</span>(<span class="kw">data</span>()[[.x]], .x))</span>
+<span id="cb48-45"><a href="dynamic-ui.html#cb48-45"></a>  )</span>
+<span id="cb48-46"><a href="dynamic-ui.html#cb48-46"></a>  </span>
+<span id="cb48-47"><a href="dynamic-ui.html#cb48-47"></a>  selected &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb48-48"><a href="dynamic-ui.html#cb48-48"></a>    each_var &lt;-<span class="st"> </span><span class="kw">map</span>(<span class="kw">vars</span>(), <span class="op">~</span><span class="st"> </span><span class="kw">filter_var</span>(<span class="kw">data</span>()[[.x]], input[[.x]]))</span>
+<span id="cb48-49"><a href="dynamic-ui.html#cb48-49"></a>    <span class="kw">reduce</span>(each_var, <span class="st">`</span><span class="dt">&amp;</span><span class="st">`</span>)</span>
+<span id="cb48-50"><a href="dynamic-ui.html#cb48-50"></a>  })</span>
+<span id="cb48-51"><a href="dynamic-ui.html#cb48-51"></a>  </span>
+<span id="cb48-52"><a href="dynamic-ui.html#cb48-52"></a>  output<span class="op">$</span>data &lt;-<span class="st"> </span><span class="kw">renderTable</span>(<span class="kw">head</span>(<span class="kw">data</span>()[<span class="kw">selected</span>(), ], <span class="dv">12</span>))</span>
+<span id="cb48-53"><a href="dynamic-ui.html#cb48-53"></a>}</span>
+<span id="cb48-54"><a href="dynamic-ui.html#cb48-54"></a></span>
+<span id="cb48-55"><a href="dynamic-ui.html#cb48-55"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-10.3.4.5" class="section level3 unnumbered" number="">
+<h3>Exercise 10.3.4.5</h3>
+<p>(Hard) Make a wizard that allows the user to upload their own dataset. The first page should handle the upload. The second should handle reading it, providing one drop down for each variable that lets the user select the column type. The third page should provide some way to get a summary of the dataset.</p>
+<div id="solution-8" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<div class="note">
+<p>I wasn’t really sure what was meant by “some way to get a summary of the dataset” So I’m just using the summary function.</p>
+</div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="dynamic-ui.html#cb49-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb49-2"><a href="dynamic-ui.html#cb49-2"></a><span class="kw">library</span>(readr)</span>
+<span id="cb49-3"><a href="dynamic-ui.html#cb49-3"></a></span>
+<span id="cb49-4"><a href="dynamic-ui.html#cb49-4"></a>make_dropdown &lt;-<span class="st"> </span><span class="cf">function</span>(name_of_vector) {</span>
+<span id="cb49-5"><a href="dynamic-ui.html#cb49-5"></a>  <span class="kw">selectInput</span>(<span class="dt">inputId =</span> name_of_vector, <span class="dt">label =</span>  name_of_vector, <span class="dt">choices =</span> </span>
+<span id="cb49-6"><a href="dynamic-ui.html#cb49-6"></a>                <span class="kw">c</span>(<span class="st">&quot;numeric&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;logical&quot;</span>))</span>
+<span id="cb49-7"><a href="dynamic-ui.html#cb49-7"></a>}  </span>
+<span id="cb49-8"><a href="dynamic-ui.html#cb49-8"></a></span>
+<span id="cb49-9"><a href="dynamic-ui.html#cb49-9"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb49-10"><a href="dynamic-ui.html#cb49-10"></a>  tags<span class="op">$</span><span class="kw">style</span>(<span class="st">&quot;#wizard { display:none; }&quot;</span>),</span>
+<span id="cb49-11"><a href="dynamic-ui.html#cb49-11"></a>  <span class="kw">tabsetPanel</span>(<span class="dt">id =</span> <span class="st">&quot;wizard&quot;</span>,</span>
+<span id="cb49-12"><a href="dynamic-ui.html#cb49-12"></a>              <span class="kw">tabPanel</span>(<span class="st">&quot;page1&quot;</span>, </span>
+<span id="cb49-13"><a href="dynamic-ui.html#cb49-13"></a>                       <span class="kw">fileInput</span>(<span class="st">&quot;data_input&quot;</span>, <span class="st">&quot;input&quot;</span>),</span>
+<span id="cb49-14"><a href="dynamic-ui.html#cb49-14"></a>                       <span class="kw">actionButton</span>(<span class="st">&quot;page12&quot;</span>, <span class="st">&quot;next&quot;</span>)</span>
+<span id="cb49-15"><a href="dynamic-ui.html#cb49-15"></a>              ),</span>
+<span id="cb49-16"><a href="dynamic-ui.html#cb49-16"></a>              <span class="kw">tabPanel</span>(<span class="st">&quot;page2&quot;</span>,</span>
+<span id="cb49-17"><a href="dynamic-ui.html#cb49-17"></a>                         <span class="kw">sidebarLayout</span>(</span>
+<span id="cb49-18"><a href="dynamic-ui.html#cb49-18"></a>                           <span class="kw">sidebarPanel</span>(</span>
+<span id="cb49-19"><a href="dynamic-ui.html#cb49-19"></a>                             <span class="kw">uiOutput</span>(<span class="st">&quot;type_of&quot;</span>)</span>
+<span id="cb49-20"><a href="dynamic-ui.html#cb49-20"></a>                           ),</span>
+<span id="cb49-21"><a href="dynamic-ui.html#cb49-21"></a>                           <span class="kw">mainPanel</span>(</span>
+<span id="cb49-22"><a href="dynamic-ui.html#cb49-22"></a>                             <span class="kw">tableOutput</span>(<span class="st">&#39;type_table&#39;</span>)</span>
+<span id="cb49-23"><a href="dynamic-ui.html#cb49-23"></a>                           )),</span>
+<span id="cb49-24"><a href="dynamic-ui.html#cb49-24"></a>                       <span class="kw">actionButton</span>(<span class="st">&quot;page21&quot;</span>, <span class="st">&quot;prev&quot;</span>),</span>
+<span id="cb49-25"><a href="dynamic-ui.html#cb49-25"></a>                       <span class="kw">actionButton</span>(<span class="st">&quot;page23&quot;</span>, <span class="st">&quot;next&quot;</span>)</span>
+<span id="cb49-26"><a href="dynamic-ui.html#cb49-26"></a>              ),</span>
+<span id="cb49-27"><a href="dynamic-ui.html#cb49-27"></a>              <span class="kw">tabPanel</span>(<span class="st">&quot;page3&quot;</span>, </span>
+<span id="cb49-28"><a href="dynamic-ui.html#cb49-28"></a>                       <span class="kw">tableOutput</span>(<span class="st">&quot;summary_table&quot;</span>),</span>
+<span id="cb49-29"><a href="dynamic-ui.html#cb49-29"></a>                       <span class="kw">actionButton</span>(<span class="st">&quot;page32&quot;</span>, <span class="st">&quot;prev&quot;</span>)</span>
+<span id="cb49-30"><a href="dynamic-ui.html#cb49-30"></a>              )</span>
+<span id="cb49-31"><a href="dynamic-ui.html#cb49-31"></a>  )</span>
+<span id="cb49-32"><a href="dynamic-ui.html#cb49-32"></a>)</span>
+<span id="cb49-33"><a href="dynamic-ui.html#cb49-33"></a></span>
+<span id="cb49-34"><a href="dynamic-ui.html#cb49-34"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb49-35"><a href="dynamic-ui.html#cb49-35"></a>  </span>
+<span id="cb49-36"><a href="dynamic-ui.html#cb49-36"></a>  <span class="co">################ WIZARD  ###############################</span></span>
+<span id="cb49-37"><a href="dynamic-ui.html#cb49-37"></a>  </span>
+<span id="cb49-38"><a href="dynamic-ui.html#cb49-38"></a>  switch_tab &lt;-<span class="st"> </span><span class="cf">function</span>(page) {</span>
+<span id="cb49-39"><a href="dynamic-ui.html#cb49-39"></a>    <span class="kw">updateTabsetPanel</span>(session, <span class="st">&quot;wizard&quot;</span>, <span class="dt">selected =</span> page)</span>
+<span id="cb49-40"><a href="dynamic-ui.html#cb49-40"></a>  }</span>
+<span id="cb49-41"><a href="dynamic-ui.html#cb49-41"></a>  </span>
+<span id="cb49-42"><a href="dynamic-ui.html#cb49-42"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>page12, <span class="kw">switch_tab</span>(<span class="st">&quot;page2&quot;</span>))</span>
+<span id="cb49-43"><a href="dynamic-ui.html#cb49-43"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>page21, <span class="kw">switch_tab</span>(<span class="st">&quot;page1&quot;</span>))</span>
+<span id="cb49-44"><a href="dynamic-ui.html#cb49-44"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>page23, <span class="kw">switch_tab</span>(<span class="st">&quot;page3&quot;</span>))</span>
+<span id="cb49-45"><a href="dynamic-ui.html#cb49-45"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>page32, <span class="kw">switch_tab</span>(<span class="st">&quot;page2&quot;</span>))</span>
+<span id="cb49-46"><a href="dynamic-ui.html#cb49-46"></a>  </span>
+<span id="cb49-47"><a href="dynamic-ui.html#cb49-47"></a>  <span class="co">##################### FILE INPUT #######################</span></span>
+<span id="cb49-48"><a href="dynamic-ui.html#cb49-48"></a>  </span>
+<span id="cb49-49"><a href="dynamic-ui.html#cb49-49"></a>  dat &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb49-50"><a href="dynamic-ui.html#cb49-50"></a>    <span class="kw">req</span>(input<span class="op">$</span>data_input)</span>
+<span id="cb49-51"><a href="dynamic-ui.html#cb49-51"></a>    <span class="kw">read.csv</span>(input<span class="op">$</span>data_input<span class="op">$</span>datapath)</span>
+<span id="cb49-52"><a href="dynamic-ui.html#cb49-52"></a>  })</span>
+<span id="cb49-53"><a href="dynamic-ui.html#cb49-53"></a>  </span>
+<span id="cb49-54"><a href="dynamic-ui.html#cb49-54"></a>  <span class="co">##################### TABLE TYPE #######################</span></span>
+<span id="cb49-55"><a href="dynamic-ui.html#cb49-55"></a>  </span>
+<span id="cb49-56"><a href="dynamic-ui.html#cb49-56"></a>  <span class="co"># make a dropdown using the names of each column</span></span>
+<span id="cb49-57"><a href="dynamic-ui.html#cb49-57"></a>  output<span class="op">$</span>type_of &lt;-<span class="st"> </span><span class="kw">renderUI</span>({ <span class="kw">map</span>(<span class="kw">names</span>(<span class="kw">dat</span>()), <span class="op">~</span><span class="st"> </span><span class="kw">make_dropdown</span>(.x)) })</span>
+<span id="cb49-58"><a href="dynamic-ui.html#cb49-58"></a>  </span>
+<span id="cb49-59"><a href="dynamic-ui.html#cb49-59"></a>  </span>
+<span id="cb49-60"><a href="dynamic-ui.html#cb49-60"></a>  <span class="co"># switch the type of column based on the input</span></span>
+<span id="cb49-61"><a href="dynamic-ui.html#cb49-61"></a>  <span class="co"># name of vector == &quot;Sepal.Length&quot;</span></span>
+<span id="cb49-62"><a href="dynamic-ui.html#cb49-62"></a>  <span class="co"># vector == Sepal.Length</span></span>
+<span id="cb49-63"><a href="dynamic-ui.html#cb49-63"></a>  change_type &lt;-<span class="st"> </span><span class="cf">function</span>(vector, name_of_vector) {</span>
+<span id="cb49-64"><a href="dynamic-ui.html#cb49-64"></a>    <span class="cf">switch</span>(input[[name_of_vector]],</span>
+<span id="cb49-65"><a href="dynamic-ui.html#cb49-65"></a>           <span class="st">&quot;numeric&quot;</span> =<span class="st"> </span>vector &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(vector),</span>
+<span id="cb49-66"><a href="dynamic-ui.html#cb49-66"></a>           <span class="st">&quot;character&quot;</span> =<span class="st"> </span>vector &lt;-<span class="st"> </span><span class="kw">as.character</span>(vector),</span>
+<span id="cb49-67"><a href="dynamic-ui.html#cb49-67"></a>           <span class="st">&quot;logical&quot;</span> =<span class="st"> </span>vector &lt;-<span class="st"> </span><span class="kw">as.complex</span>(vector)</span>
+<span id="cb49-68"><a href="dynamic-ui.html#cb49-68"></a>    )</span>
+<span id="cb49-69"><a href="dynamic-ui.html#cb49-69"></a>  }</span>
+<span id="cb49-70"><a href="dynamic-ui.html#cb49-70"></a>  </span>
+<span id="cb49-71"><a href="dynamic-ui.html#cb49-71"></a>  <span class="co"># convert the supplied data to a list</span></span>
+<span id="cb49-72"><a href="dynamic-ui.html#cb49-72"></a>  <span class="co"># use imap because it is a condensed version o map</span></span>
+<span id="cb49-73"><a href="dynamic-ui.html#cb49-73"></a>  <span class="co"># with two arguments == x &amp; name_of_x</span></span>
+<span id="cb49-74"><a href="dynamic-ui.html#cb49-74"></a>  <span class="co"># so we don&#39;t need to supply it arguments beyond the list!</span></span>
+<span id="cb49-75"><a href="dynamic-ui.html#cb49-75"></a>  df&lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb49-76"><a href="dynamic-ui.html#cb49-76"></a>    <span class="kw">dat</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb49-77"><a href="dynamic-ui.html#cb49-77"></a><span class="st">      </span><span class="kw">as.list</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb49-78"><a href="dynamic-ui.html#cb49-78"></a><span class="st">      </span><span class="kw">imap</span>(change_type) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb49-79"><a href="dynamic-ui.html#cb49-79"></a><span class="st">      </span><span class="kw">as_tibble</span>()</span>
+<span id="cb49-80"><a href="dynamic-ui.html#cb49-80"></a>  })</span>
+<span id="cb49-81"><a href="dynamic-ui.html#cb49-81"></a>  </span>
+<span id="cb49-82"><a href="dynamic-ui.html#cb49-82"></a>  <span class="co"># create an output of the data&#39;s names</span></span>
+<span id="cb49-83"><a href="dynamic-ui.html#cb49-83"></a>  <span class="co"># and their types</span></span>
+<span id="cb49-84"><a href="dynamic-ui.html#cb49-84"></a>  output<span class="op">$</span>type_table &lt;-<span class="st"> </span><span class="kw">renderTable</span>(<span class="kw">data.frame</span>(</span>
+<span id="cb49-85"><a href="dynamic-ui.html#cb49-85"></a>    <span class="dt">names =</span> <span class="kw">names</span>(<span class="kw">df</span>()),</span>
+<span id="cb49-86"><a href="dynamic-ui.html#cb49-86"></a>    <span class="dt">type =</span> <span class="kw">map_chr</span>(<span class="kw">df</span>(), <span class="cf">function</span>(x) <span class="kw">typeof</span>(x)))</span>
+<span id="cb49-87"><a href="dynamic-ui.html#cb49-87"></a>  )</span>
+<span id="cb49-88"><a href="dynamic-ui.html#cb49-88"></a>  </span>
+<span id="cb49-89"><a href="dynamic-ui.html#cb49-89"></a>  <span class="co">##################### TABLE OUTPUT #####################</span></span>
+<span id="cb49-90"><a href="dynamic-ui.html#cb49-90"></a>  </span>
+<span id="cb49-91"><a href="dynamic-ui.html#cb49-91"></a>  output<span class="op">$</span>summary_table &lt;-<span class="st"> </span><span class="kw">renderTable</span>( <span class="kw">summary</span>(<span class="kw">df</span>()) )</span>
+<span id="cb49-92"><a href="dynamic-ui.html#cb49-92"></a>}</span>
+<span id="cb49-93"><a href="dynamic-ui.html#cb49-93"></a></span>
+<span id="cb49-94"><a href="dynamic-ui.html#cb49-94"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="uploads-and-downloads.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bookmarking.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/marlycormar/mastering_shiny_book_solutions/edit/master/action-dynamic.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

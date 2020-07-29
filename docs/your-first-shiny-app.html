@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Your First Shiny App | Mastering Shiny Solutions</title>
+  <meta name="description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Your First Shiny App | Mastering Shiny Solutions" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  <meta name="github-repo" content="marlycormar/mastering_shiny_book_solutions" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Your First Shiny App | Mastering Shiny Solutions" />
+  
+  <meta name="twitter:description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  
+
+<meta name="author" content="Maya Gans and Marly Gotti" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="preface.html"/>
+<link rel="next" href="basic-ui.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Mastering Shiny Solutions</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#note-boxes"><i class="fa fa-check"></i>Note Boxes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html"><i class="fa fa-check"></i><b>2</b> Your First Shiny App</a>
+<ul>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.1"><i class="fa fa-check"></i>Exercise 2.8.1</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.2"><i class="fa fa-check"></i>Exercise 2.8.2</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.3"><i class="fa fa-check"></i>Exercise 2.8.3</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.4"><i class="fa fa-check"></i>Exercise 2.8.4</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.5"><i class="fa fa-check"></i>Exercise 2.8.5</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basic-ui.html"><a href="basic-ui.html"><i class="fa fa-check"></i><b>3</b> Basic UI</a>
+<ul>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.1"><i class="fa fa-check"></i>Exercise 3.2.8.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.2"><i class="fa fa-check"></i>Exercise 3.2.8.2</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.3"><i class="fa fa-check"></i>Exercise 3.2.8.3</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.4"><i class="fa fa-check"></i>Exercise 3.2.8.4</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.5"><i class="fa fa-check"></i>Exercise 3.2.8.5</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.1"><i class="fa fa-check"></i>Exercise 3.3.5.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.2"><i class="fa fa-check"></i>Exercise 3.3.5.2</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.3"><i class="fa fa-check"></i>Exercise 3.3.5.3</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.1"><i class="fa fa-check"></i>Exercise 3.4.6.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.2"><i class="fa fa-check"></i>Exercise 3.4.6.2</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-reactivity.html"><a href="basic-reactivity.html"><i class="fa fa-check"></i><b>4</b> Basic Reactivity</a>
+<ul>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.1"><i class="fa fa-check"></i>Exercise 4.3.6.1</a></li>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.2"><i class="fa fa-check"></i>Exercise 4.3.6.2</a></li>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.4.6.1"><i class="fa fa-check"></i>Exercise 4.4.6.1</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html"><i class="fa fa-check"></i><b>5</b> Case Study: ER Injuries</a>
+<ul>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.1"><i class="fa fa-check"></i>Exercise 5.8.1</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.2"><i class="fa fa-check"></i>Exercise 5.8.2</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.3"><i class="fa fa-check"></i>Exercise 5.8.3</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.4"><i class="fa fa-check"></i>Exercise 5.8.4</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="workflow.html"><a href="workflow.html"><i class="fa fa-check"></i><b>6</b> Workflow</a></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a>
+<ul>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.1"><i class="fa fa-check"></i>Exercise 7.5.1</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.2"><i class="fa fa-check"></i>Exercise 7.5.2</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.3"><i class="fa fa-check"></i>Exercise 7.5.3</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="user-feedback.html"><a href="user-feedback.html"><i class="fa fa-check"></i><b>8</b> User Feedback</a></li>
+<li class="chapter" data-level="9" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html"><i class="fa fa-check"></i><b>9</b> Uploads and Downloads</a>
+<ul>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.1"><i class="fa fa-check"></i>Exercise 9.4.1</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.2"><i class="fa fa-check"></i>Exercise 9.4.2</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.3"><i class="fa fa-check"></i>Exercise 9.4.3</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.4"><i class="fa fa-check"></i>Exercise 9.4.4</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dynamic-ui.html"><a href="dynamic-ui.html"><i class="fa fa-check"></i><b>10</b> Dynamic UI</a>
+<ul>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.1"><i class="fa fa-check"></i>Exercise 10.1.5.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.2"><i class="fa fa-check"></i>Exercise 10.1.5.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.3"><i class="fa fa-check"></i>Exercise 10.1.5.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.4"><i class="fa fa-check"></i>Exercise 10.1.5.4</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.5"><i class="fa fa-check"></i>Exercise 10.1.5.5</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.1"><i class="fa fa-check"></i>Exercise 10.2.3.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.2"><i class="fa fa-check"></i>Exercise 10.2.3.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.3"><i class="fa fa-check"></i>Exercise 10.2.3.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.1"><i class="fa fa-check"></i>Exercise 10.3.4.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.2"><i class="fa fa-check"></i>Exercise 10.3.4.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.3"><i class="fa fa-check"></i>Exercise 10.3.4.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.4"><i class="fa fa-check"></i>Exercise 10.3.4.4</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.5"><i class="fa fa-check"></i>Exercise 10.3.4.5</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="bookmarking.html"><a href="bookmarking.html"><i class="fa fa-check"></i><b>11</b> Bookmarking</a>
+<ul>
+<li class="chapter" data-level="" data-path="bookmarking.html"><a href="bookmarking.html#exercise-11.3.1"><i class="fa fa-check"></i>Exercise 11.3.1</a></li>
+<li class="chapter" data-level="" data-path="bookmarking.html"><a href="bookmarking.html#exercise-11.3.2"><i class="fa fa-check"></i>Exercise 11.3.2</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="tidy-evaluation.html"><a href="tidy-evaluation.html"><i class="fa fa-check"></i><b>12</b> Tidy Evaluation</a></li>
+<li class="chapter" data-level="13" data-path="general-guidelines.html"><a href="general-guidelines.html"><i class="fa fa-check"></i><b>13</b> General Guidelines</a></li>
+<li class="chapter" data-level="14" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>14</b> Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.1"><i class="fa fa-check"></i>Exercise 14.4.1</a></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.2"><i class="fa fa-check"></i>Exercise 14.4.2</a></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.3"><i class="fa fa-check"></i>Exercise 14.4.3</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>15</b> Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.1"><i class="fa fa-check"></i>Exercise 15.6.1</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.2"><i class="fa fa-check"></i>Exercise 15.6.2</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.3"><i class="fa fa-check"></i>Exercise 15.6.3</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.4"><i class="fa fa-check"></i>Exercise 15.6.4</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.5"><i class="fa fa-check"></i>Exercise 15.6.5</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.6"><i class="fa fa-check"></i>Exercise 15.6.6</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>16</b> Packages</a></li>
+<li class="chapter" data-level="17" data-path="testing.html"><a href="testing.html"><i class="fa fa-check"></i><b>17</b> Testing</a></li>
+<li class="chapter" data-level="18" data-path="safety.html"><a href="safety.html"><i class="fa fa-check"></i><b>18</b> Safety</a></li>
+<li class="chapter" data-level="19" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>19</b> Performance</a></li>
+<li class="chapter" data-level="20" data-path="why-reactivity.html"><a href="why-reactivity.html"><i class="fa fa-check"></i><b>20</b> Why reactivity?</a></li>
+<li class="chapter" data-level="21" data-path="dependency-tracking.html"><a href="dependency-tracking.html"><i class="fa fa-check"></i><b>21</b> Dependency Tracking</a></li>
+<li class="chapter" data-level="22" data-path="scoping.html"><a href="scoping.html"><i class="fa fa-check"></i><b>22</b> Scoping</a></li>
+<li class="chapter" data-level="23" data-path="reactive-components.html"><a href="reactive-components.html"><i class="fa fa-check"></i><b>23</b> Reactive Components</a></li>
+<li class="chapter" data-level="24" data-path="advanced-ui.html"><a href="advanced-ui.html"><i class="fa fa-check"></i><b>24</b> Advanced UI</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Mastering Shiny Solutions</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="your-first-shiny-app" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Your First Shiny App</h1>
+<div id="exercise-2.8.1" class="section level3 unnumbered" number="">
+<h3>Exercise 2.8.1</h3>
+<p>Create an app that greets the user by name. You don’t know all the functions
+you need to do this yet, so I’ve included some lines of code below. Figure out
+which lines you’ll use and then copy and paste them into the right place in a
+Shiny app.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="your-first-shiny-app.html#cb1-1"></a><span class="kw">textInput</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;What&#39;s your name?&quot;</span>)</span>
+<span id="cb1-2"><a href="your-first-shiny-app.html#cb1-2"></a><span class="kw">renderText</span>({</span>
+<span id="cb1-3"><a href="your-first-shiny-app.html#cb1-3"></a>  <span class="kw">paste0</span>(<span class="st">&quot;Hello &quot;</span>, input<span class="op">$</span>name)</span>
+<span id="cb1-4"><a href="your-first-shiny-app.html#cb1-4"></a>})</span>
+<span id="cb1-5"><a href="your-first-shiny-app.html#cb1-5"></a><span class="kw">numericInput</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;How old are you?&quot;</span>)</span>
+<span id="cb1-6"><a href="your-first-shiny-app.html#cb1-6"></a><span class="kw">textOutput</span>(<span class="st">&quot;greeting&quot;</span>)</span>
+<span id="cb1-7"><a href="your-first-shiny-app.html#cb1-7"></a><span class="kw">tableOutput</span>(<span class="st">&quot;mortgage&quot;</span>)</span>
+<span id="cb1-8"><a href="your-first-shiny-app.html#cb1-8"></a><span class="kw">renderPlot</span>(<span class="st">&quot;histogram&quot;</span>, {</span>
+<span id="cb1-9"><a href="your-first-shiny-app.html#cb1-9"></a>  <span class="kw">hist</span>(<span class="kw">rnorm</span>(<span class="dv">1000</span>))</span>
+<span id="cb1-10"><a href="your-first-shiny-app.html#cb1-10"></a>}, <span class="dt">res =</span> <span class="dv">96</span>)</span></code></pre></div>
+<div id="solution" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>In the UI, we will need a <code>textInput</code> for the user to input text, and
+a <code>textOutput</code> to output any custom text to the app. The corresponding server
+function to <code>textOutput</code> is <code>renderText</code>, which we can use to compose the
+output element we’ve named “greeting”.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="your-first-shiny-app.html#cb2-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb2-2"><a href="your-first-shiny-app.html#cb2-2"></a></span>
+<span id="cb2-3"><a href="your-first-shiny-app.html#cb2-3"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb2-4"><a href="your-first-shiny-app.html#cb2-4"></a>  <span class="kw">textInput</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;What&#39;s your name?&quot;</span>),</span>
+<span id="cb2-5"><a href="your-first-shiny-app.html#cb2-5"></a>  <span class="kw">textOutput</span>(<span class="st">&quot;greeting&quot;</span>)</span>
+<span id="cb2-6"><a href="your-first-shiny-app.html#cb2-6"></a>)</span>
+<span id="cb2-7"><a href="your-first-shiny-app.html#cb2-7"></a></span>
+<span id="cb2-8"><a href="your-first-shiny-app.html#cb2-8"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb2-9"><a href="your-first-shiny-app.html#cb2-9"></a>  output<span class="op">$</span>greeting &lt;-<span class="st"> </span><span class="kw">renderText</span>({</span>
+<span id="cb2-10"><a href="your-first-shiny-app.html#cb2-10"></a>    <span class="kw">paste0</span>(<span class="st">&quot;Hello &quot;</span>, input<span class="op">$</span>name)</span>
+<span id="cb2-11"><a href="your-first-shiny-app.html#cb2-11"></a>  })</span>
+<span id="cb2-12"><a href="your-first-shiny-app.html#cb2-12"></a>}</span>
+<span id="cb2-13"><a href="your-first-shiny-app.html#cb2-13"></a></span>
+<span id="cb2-14"><a href="your-first-shiny-app.html#cb2-14"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-2.8.2" class="section level2 unnumbered" number="">
+<h2>Exercise 2.8.2</h2>
+<p>Suppose your friend wants to design an app that allows the user to set a number
+(<code>x</code>) between 1 and 50, and displays the result of multiplying this number by
+5. This is their first attempt:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="your-first-shiny-app.html#cb3-1"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb3-2"><a href="your-first-shiny-app.html#cb3-2"></a>  <span class="kw">sliderInput</span>(<span class="st">&quot;x&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;If x is&quot;</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">50</span>, <span class="dt">value =</span> <span class="dv">30</span>),</span>
+<span id="cb3-3"><a href="your-first-shiny-app.html#cb3-3"></a>  <span class="st">&quot;then x times 5 is&quot;</span>,</span>
+<span id="cb3-4"><a href="your-first-shiny-app.html#cb3-4"></a>  <span class="kw">textOutput</span>(<span class="st">&quot;product&quot;</span>)</span>
+<span id="cb3-5"><a href="your-first-shiny-app.html#cb3-5"></a>)</span>
+<span id="cb3-6"><a href="your-first-shiny-app.html#cb3-6"></a></span>
+<span id="cb3-7"><a href="your-first-shiny-app.html#cb3-7"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb3-8"><a href="your-first-shiny-app.html#cb3-8"></a>  output<span class="op">$</span>product &lt;-<span class="st"> </span><span class="kw">renderText</span>({ </span>
+<span id="cb3-9"><a href="your-first-shiny-app.html#cb3-9"></a>    x <span class="op">*</span><span class="st"> </span><span class="dv">5</span></span>
+<span id="cb3-10"><a href="your-first-shiny-app.html#cb3-10"></a>  })</span>
+<span id="cb3-11"><a href="your-first-shiny-app.html#cb3-11"></a>}</span></code></pre></div>
+<p>But unfortunately it has an error:</p>
+<br>
+<center>
+<img src="images/ex-x-times-5.png" title="fig:" alt="placeholder" />
+</center>
+<p>Can you help them find and correct the error?</p>
+<div id="solution-1" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>The error here arises because on the server side we need to write <code>input$x</code>
+rather than <code>x</code>. By writing <code>x</code>, we are looking for element <code>x</code> which doesn’t
+exist in the Shiny environment; <code>x</code> only exists within the read-only object
+<code>input</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="your-first-shiny-app.html#cb4-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb4-2"><a href="your-first-shiny-app.html#cb4-2"></a></span>
+<span id="cb4-3"><a href="your-first-shiny-app.html#cb4-3"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb4-4"><a href="your-first-shiny-app.html#cb4-4"></a>  <span class="kw">sliderInput</span>(<span class="st">&quot;x&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;If x is&quot;</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">50</span>, <span class="dt">value =</span> <span class="dv">30</span>),</span>
+<span id="cb4-5"><a href="your-first-shiny-app.html#cb4-5"></a>  <span class="st">&quot;then x times 5 is&quot;</span>,</span>
+<span id="cb4-6"><a href="your-first-shiny-app.html#cb4-6"></a>  <span class="kw">textOutput</span>(<span class="st">&quot;product&quot;</span>)</span>
+<span id="cb4-7"><a href="your-first-shiny-app.html#cb4-7"></a>)</span>
+<span id="cb4-8"><a href="your-first-shiny-app.html#cb4-8"></a></span>
+<span id="cb4-9"><a href="your-first-shiny-app.html#cb4-9"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb4-10"><a href="your-first-shiny-app.html#cb4-10"></a>  output<span class="op">$</span>product &lt;-<span class="st"> </span><span class="kw">renderText</span>({ </span>
+<span id="cb4-11"><a href="your-first-shiny-app.html#cb4-11"></a>    input<span class="op">$</span>x <span class="op">*</span><span class="st"> </span><span class="dv">5</span></span>
+<span id="cb4-12"><a href="your-first-shiny-app.html#cb4-12"></a>  })</span>
+<span id="cb4-13"><a href="your-first-shiny-app.html#cb4-13"></a>}</span>
+<span id="cb4-14"><a href="your-first-shiny-app.html#cb4-14"></a></span>
+<span id="cb4-15"><a href="your-first-shiny-app.html#cb4-15"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-2.8.3" class="section level2 unnumbered" number="">
+<h2>Exercise 2.8.3</h2>
+<p>Extend the app from the previous exercise to allow the user to set the value of
+the multiplier, <code>y</code>, so that the app yields the value of <code>x * y</code>. The final
+result should look like this:</p>
+<p><img src="images/2.8.3.png" width="600" /></p>
+<div id="solution-2" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>Let us add another <code>sliderInput</code> with ID <code>y</code>, and use both <code>input$x</code>
+and <code>input$y</code> to calculate <code>output$product</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="your-first-shiny-app.html#cb5-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb5-2"><a href="your-first-shiny-app.html#cb5-2"></a></span>
+<span id="cb5-3"><a href="your-first-shiny-app.html#cb5-3"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb5-4"><a href="your-first-shiny-app.html#cb5-4"></a>  <span class="kw">sliderInput</span>(<span class="st">&quot;x&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;If x is&quot;</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">50</span>, <span class="dt">value =</span> <span class="dv">30</span>),</span>
+<span id="cb5-5"><a href="your-first-shiny-app.html#cb5-5"></a>  <span class="kw">sliderInput</span>(<span class="st">&quot;y&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;and y is&quot;</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">50</span>, <span class="dt">value =</span> <span class="dv">30</span>),</span>
+<span id="cb5-6"><a href="your-first-shiny-app.html#cb5-6"></a>  <span class="st">&quot;then x multiplied by y is&quot;</span>,</span>
+<span id="cb5-7"><a href="your-first-shiny-app.html#cb5-7"></a>  <span class="kw">textOutput</span>(<span class="st">&quot;product&quot;</span>)</span>
+<span id="cb5-8"><a href="your-first-shiny-app.html#cb5-8"></a>)</span>
+<span id="cb5-9"><a href="your-first-shiny-app.html#cb5-9"></a></span>
+<span id="cb5-10"><a href="your-first-shiny-app.html#cb5-10"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb5-11"><a href="your-first-shiny-app.html#cb5-11"></a>  output<span class="op">$</span>product &lt;-<span class="st"> </span><span class="kw">renderText</span>({ </span>
+<span id="cb5-12"><a href="your-first-shiny-app.html#cb5-12"></a>    input<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>input<span class="op">$</span>y</span>
+<span id="cb5-13"><a href="your-first-shiny-app.html#cb5-13"></a>  })</span>
+<span id="cb5-14"><a href="your-first-shiny-app.html#cb5-14"></a>}</span>
+<span id="cb5-15"><a href="your-first-shiny-app.html#cb5-15"></a></span>
+<span id="cb5-16"><a href="your-first-shiny-app.html#cb5-16"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-2.8.4" class="section level2 unnumbered" number="">
+<h2>Exercise 2.8.4</h2>
+<p>Replace the UI and server components of your app from the previous exercise
+with the UI and server components below, run the app, and describe the app’s
+functionality. Then reduce the duplication in the app by using a reactive
+expression.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="your-first-shiny-app.html#cb6-1"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb6-2"><a href="your-first-shiny-app.html#cb6-2"></a>  <span class="kw">sliderInput</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;If x is&quot;</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">50</span>, <span class="dt">value =</span> <span class="dv">30</span>),</span>
+<span id="cb6-3"><a href="your-first-shiny-app.html#cb6-3"></a>  <span class="kw">sliderInput</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;and y is&quot;</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">50</span>, <span class="dt">value =</span> <span class="dv">5</span>),</span>
+<span id="cb6-4"><a href="your-first-shiny-app.html#cb6-4"></a>  <span class="st">&quot;then, (x * y) is&quot;</span>, <span class="kw">textOutput</span>(<span class="st">&quot;product&quot;</span>),</span>
+<span id="cb6-5"><a href="your-first-shiny-app.html#cb6-5"></a>  <span class="st">&quot;and, (x * y) + 5 is&quot;</span>, <span class="kw">textOutput</span>(<span class="st">&quot;product_plus5&quot;</span>),</span>
+<span id="cb6-6"><a href="your-first-shiny-app.html#cb6-6"></a>  <span class="st">&quot;and (x * y) + 10 is&quot;</span>, <span class="kw">textOutput</span>(<span class="st">&quot;product_plus10&quot;</span>)</span>
+<span id="cb6-7"><a href="your-first-shiny-app.html#cb6-7"></a>)</span>
+<span id="cb6-8"><a href="your-first-shiny-app.html#cb6-8"></a></span>
+<span id="cb6-9"><a href="your-first-shiny-app.html#cb6-9"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb6-10"><a href="your-first-shiny-app.html#cb6-10"></a>  output<span class="op">$</span>product &lt;-<span class="st"> </span><span class="kw">renderText</span>({ </span>
+<span id="cb6-11"><a href="your-first-shiny-app.html#cb6-11"></a>    product &lt;-<span class="st"> </span>input<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>input<span class="op">$</span>y</span>
+<span id="cb6-12"><a href="your-first-shiny-app.html#cb6-12"></a>    product</span>
+<span id="cb6-13"><a href="your-first-shiny-app.html#cb6-13"></a>  })</span>
+<span id="cb6-14"><a href="your-first-shiny-app.html#cb6-14"></a>  output<span class="op">$</span>product_plus5 &lt;-<span class="st"> </span><span class="kw">renderText</span>({ </span>
+<span id="cb6-15"><a href="your-first-shiny-app.html#cb6-15"></a>    product &lt;-<span class="st"> </span>input<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>input<span class="op">$</span>y</span>
+<span id="cb6-16"><a href="your-first-shiny-app.html#cb6-16"></a>    product <span class="op">+</span><span class="st"> </span><span class="dv">5</span></span>
+<span id="cb6-17"><a href="your-first-shiny-app.html#cb6-17"></a>  })</span>
+<span id="cb6-18"><a href="your-first-shiny-app.html#cb6-18"></a>  output<span class="op">$</span>product_plus10 &lt;-<span class="st"> </span><span class="kw">renderText</span>({ </span>
+<span id="cb6-19"><a href="your-first-shiny-app.html#cb6-19"></a>    product &lt;-<span class="st"> </span>input<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>input<span class="op">$</span>y</span>
+<span id="cb6-20"><a href="your-first-shiny-app.html#cb6-20"></a>    product <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span>
+<span id="cb6-21"><a href="your-first-shiny-app.html#cb6-21"></a>  })</span>
+<span id="cb6-22"><a href="your-first-shiny-app.html#cb6-22"></a>}</span></code></pre></div>
+<div id="solution-3" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>The application above has two numeric inputs <code>input$x</code> and <code>input$y</code>. It
+computes three values: <code>x*y</code>, <code>x*y + 5</code>, and <code>x*y + 10</code>. We can reduce
+duplication by making the <code>product</code> variable a reactive value and using it
+within all three outputs.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="your-first-shiny-app.html#cb7-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb7-2"><a href="your-first-shiny-app.html#cb7-2"></a></span>
+<span id="cb7-3"><a href="your-first-shiny-app.html#cb7-3"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb7-4"><a href="your-first-shiny-app.html#cb7-4"></a>  <span class="kw">sliderInput</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;If x is&quot;</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">50</span>, <span class="dt">value =</span> <span class="dv">30</span>),</span>
+<span id="cb7-5"><a href="your-first-shiny-app.html#cb7-5"></a>  <span class="kw">sliderInput</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;and y is&quot;</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">50</span>, <span class="dt">value =</span> <span class="dv">5</span>),</span>
+<span id="cb7-6"><a href="your-first-shiny-app.html#cb7-6"></a>  <span class="st">&quot;then, (x * y) is&quot;</span>, <span class="kw">textOutput</span>(<span class="st">&quot;product&quot;</span>),</span>
+<span id="cb7-7"><a href="your-first-shiny-app.html#cb7-7"></a>  <span class="st">&quot;and, (x * y) + 5 is&quot;</span>, <span class="kw">textOutput</span>(<span class="st">&quot;product_plus5&quot;</span>),</span>
+<span id="cb7-8"><a href="your-first-shiny-app.html#cb7-8"></a>  <span class="st">&quot;and (x * y) + 10 is&quot;</span>, <span class="kw">textOutput</span>(<span class="st">&quot;product_plus10&quot;</span>)</span>
+<span id="cb7-9"><a href="your-first-shiny-app.html#cb7-9"></a>)</span>
+<span id="cb7-10"><a href="your-first-shiny-app.html#cb7-10"></a></span>
+<span id="cb7-11"><a href="your-first-shiny-app.html#cb7-11"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb7-12"><a href="your-first-shiny-app.html#cb7-12"></a>  </span>
+<span id="cb7-13"><a href="your-first-shiny-app.html#cb7-13"></a>  product &lt;-<span class="st"> </span><span class="kw">reactive</span>(input<span class="op">$</span>x <span class="op">*</span><span class="st"> </span>input<span class="op">$</span>y)</span>
+<span id="cb7-14"><a href="your-first-shiny-app.html#cb7-14"></a>  </span>
+<span id="cb7-15"><a href="your-first-shiny-app.html#cb7-15"></a>  output<span class="op">$</span>product &lt;-<span class="st"> </span><span class="kw">renderText</span>( <span class="kw">product</span>() )</span>
+<span id="cb7-16"><a href="your-first-shiny-app.html#cb7-16"></a>  output<span class="op">$</span>product_plus5 &lt;-<span class="st"> </span><span class="kw">renderText</span>( <span class="kw">product</span>() <span class="op">+</span><span class="st"> </span><span class="dv">5</span> )</span>
+<span id="cb7-17"><a href="your-first-shiny-app.html#cb7-17"></a>  output<span class="op">$</span>product_plus10 &lt;-<span class="st"> </span><span class="kw">renderText</span>( <span class="kw">product</span>() <span class="op">+</span><span class="st"> </span><span class="dv">10</span> )</span>
+<span id="cb7-18"><a href="your-first-shiny-app.html#cb7-18"></a>}</span>
+<span id="cb7-19"><a href="your-first-shiny-app.html#cb7-19"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-2.8.5" class="section level2 unnumbered" number="">
+<h2>Exercise 2.8.5</h2>
+<p>The following app is very similar to one you’ve seen earlier in the chapter:
+you select a dataset from a package (this time we’re using the ggplot2 package)
+and the app prints out a summary and plot of the data. It also follows good
+practice and makes use of reactive expressions to avoid redundancy of code.
+However there are three bugs in the code provided below. Can you find and fix
+them?</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="your-first-shiny-app.html#cb8-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb8-2"><a href="your-first-shiny-app.html#cb8-2"></a>datasets &lt;-<span class="st"> </span><span class="kw">data</span>(<span class="dt">package =</span> <span class="st">&quot;ggplot2&quot;</span>)<span class="op">$</span>results[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">10</span>), <span class="st">&quot;Item&quot;</span>]</span>
+<span id="cb8-3"><a href="your-first-shiny-app.html#cb8-3"></a></span>
+<span id="cb8-4"><a href="your-first-shiny-app.html#cb8-4"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb8-5"><a href="your-first-shiny-app.html#cb8-5"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;dataset&quot;</span>, <span class="st">&quot;Dataset&quot;</span>, <span class="dt">choices =</span> datasets),</span>
+<span id="cb8-6"><a href="your-first-shiny-app.html#cb8-6"></a>  <span class="kw">verbatimTextOutput</span>(<span class="st">&quot;summary&quot;</span>),</span>
+<span id="cb8-7"><a href="your-first-shiny-app.html#cb8-7"></a>  <span class="kw">tableOutput</span>(<span class="st">&quot;plot&quot;</span>)</span>
+<span id="cb8-8"><a href="your-first-shiny-app.html#cb8-8"></a>)</span>
+<span id="cb8-9"><a href="your-first-shiny-app.html#cb8-9"></a></span>
+<span id="cb8-10"><a href="your-first-shiny-app.html#cb8-10"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb8-11"><a href="your-first-shiny-app.html#cb8-11"></a>  dataset &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb8-12"><a href="your-first-shiny-app.html#cb8-12"></a>    <span class="kw">get</span>(input<span class="op">$</span>dataset, <span class="st">&quot;package:ggplot2&quot;</span>)</span>
+<span id="cb8-13"><a href="your-first-shiny-app.html#cb8-13"></a>  })</span>
+<span id="cb8-14"><a href="your-first-shiny-app.html#cb8-14"></a>  output<span class="op">$</span>summmry &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({</span>
+<span id="cb8-15"><a href="your-first-shiny-app.html#cb8-15"></a>    <span class="kw">summary</span>(<span class="kw">dataset</span>())</span>
+<span id="cb8-16"><a href="your-first-shiny-app.html#cb8-16"></a>  })</span>
+<span id="cb8-17"><a href="your-first-shiny-app.html#cb8-17"></a>  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
+<span id="cb8-18"><a href="your-first-shiny-app.html#cb8-18"></a>    <span class="kw">plot</span>(dataset)</span>
+<span id="cb8-19"><a href="your-first-shiny-app.html#cb8-19"></a>  }, <span class="dt">res =</span> <span class="dv">96</span>)</span>
+<span id="cb8-20"><a href="your-first-shiny-app.html#cb8-20"></a>}</span></code></pre></div>
+<div id="solution-4" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>The app contains the following three bugs:</p>
+<ol style="list-style-type: decimal">
+<li>In the UI, the <code>tableOutput</code> object should really be a <code>plotOutput</code>.</li>
+<li>In the server, the word “summry” in <code>output$summry</code> is misspelled.</li>
+<li>In the server, the <code>plot</code> function in the <code>output$plot</code> should call
+<code>dataset()</code> rather than the reactive object.</li>
+</ol>
+<p>The fixed app looks as follows:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="your-first-shiny-app.html#cb9-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb9-2"><a href="your-first-shiny-app.html#cb9-2"></a>datasets &lt;-<span class="st"> </span><span class="kw">data</span>(<span class="dt">package =</span> <span class="st">&quot;ggplot2&quot;</span>)<span class="op">$</span>results[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">10</span>), <span class="st">&quot;Item&quot;</span>]</span>
+<span id="cb9-3"><a href="your-first-shiny-app.html#cb9-3"></a></span>
+<span id="cb9-4"><a href="your-first-shiny-app.html#cb9-4"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb9-5"><a href="your-first-shiny-app.html#cb9-5"></a>  <span class="kw">selectInput</span>(<span class="st">&quot;dataset&quot;</span>, <span class="st">&quot;Dataset&quot;</span>, <span class="dt">choices =</span> datasets),</span>
+<span id="cb9-6"><a href="your-first-shiny-app.html#cb9-6"></a>  <span class="kw">verbatimTextOutput</span>(<span class="st">&quot;summary&quot;</span>),</span>
+<span id="cb9-7"><a href="your-first-shiny-app.html#cb9-7"></a>  <span class="co"># 1. Change tableOutput to plotOutput.</span></span>
+<span id="cb9-8"><a href="your-first-shiny-app.html#cb9-8"></a>  <span class="kw">plotOutput</span>(<span class="st">&quot;plot&quot;</span>)</span>
+<span id="cb9-9"><a href="your-first-shiny-app.html#cb9-9"></a>)</span>
+<span id="cb9-10"><a href="your-first-shiny-app.html#cb9-10"></a></span>
+<span id="cb9-11"><a href="your-first-shiny-app.html#cb9-11"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb9-12"><a href="your-first-shiny-app.html#cb9-12"></a>  dataset &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb9-13"><a href="your-first-shiny-app.html#cb9-13"></a>    <span class="kw">get</span>(input<span class="op">$</span>dataset, <span class="st">&quot;package:ggplot2&quot;</span>)</span>
+<span id="cb9-14"><a href="your-first-shiny-app.html#cb9-14"></a>  })</span>
+<span id="cb9-15"><a href="your-first-shiny-app.html#cb9-15"></a>  <span class="co"># 2. Change summry to summary.</span></span>
+<span id="cb9-16"><a href="your-first-shiny-app.html#cb9-16"></a>  output<span class="op">$</span>summary &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({</span>
+<span id="cb9-17"><a href="your-first-shiny-app.html#cb9-17"></a>    <span class="kw">summary</span>(<span class="kw">dataset</span>())</span>
+<span id="cb9-18"><a href="your-first-shiny-app.html#cb9-18"></a>  })</span>
+<span id="cb9-19"><a href="your-first-shiny-app.html#cb9-19"></a>  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
+<span id="cb9-20"><a href="your-first-shiny-app.html#cb9-20"></a>    <span class="co"># 3. Change dataset to dataset().</span></span>
+<span id="cb9-21"><a href="your-first-shiny-app.html#cb9-21"></a>    <span class="kw">plot</span>(<span class="kw">dataset</span>())</span>
+<span id="cb9-22"><a href="your-first-shiny-app.html#cb9-22"></a>  })</span>
+<span id="cb9-23"><a href="your-first-shiny-app.html#cb9-23"></a>}</span>
+<span id="cb9-24"><a href="your-first-shiny-app.html#cb9-24"></a></span>
+<span id="cb9-25"><a href="your-first-shiny-app.html#cb9-25"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="preface.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="basic-ui.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/marlycormar/mastering_shiny_book_solutions/edit/master/basic-app.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

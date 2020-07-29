@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Case Study: ER Injuries | Mastering Shiny Solutions</title>
+  <meta name="description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Case Study: ER Injuries | Mastering Shiny Solutions" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  <meta name="github-repo" content="marlycormar/mastering_shiny_book_solutions" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Case Study: ER Injuries | Mastering Shiny Solutions" />
+  
+  <meta name="twitter:description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  
+
+<meta name="author" content="Maya Gans and Marly Gotti" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="basic-reactivity.html"/>
+<link rel="next" href="workflow.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Mastering Shiny Solutions</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#note-boxes"><i class="fa fa-check"></i>Note Boxes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html"><i class="fa fa-check"></i><b>2</b> Your First Shiny App</a>
+<ul>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.1"><i class="fa fa-check"></i>Exercise 2.8.1</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.2"><i class="fa fa-check"></i>Exercise 2.8.2</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.3"><i class="fa fa-check"></i>Exercise 2.8.3</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.4"><i class="fa fa-check"></i>Exercise 2.8.4</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.5"><i class="fa fa-check"></i>Exercise 2.8.5</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basic-ui.html"><a href="basic-ui.html"><i class="fa fa-check"></i><b>3</b> Basic UI</a>
+<ul>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.1"><i class="fa fa-check"></i>Exercise 3.2.8.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.2"><i class="fa fa-check"></i>Exercise 3.2.8.2</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.3"><i class="fa fa-check"></i>Exercise 3.2.8.3</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.4"><i class="fa fa-check"></i>Exercise 3.2.8.4</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.5"><i class="fa fa-check"></i>Exercise 3.2.8.5</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.1"><i class="fa fa-check"></i>Exercise 3.3.5.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.2"><i class="fa fa-check"></i>Exercise 3.3.5.2</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.3"><i class="fa fa-check"></i>Exercise 3.3.5.3</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.1"><i class="fa fa-check"></i>Exercise 3.4.6.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.2"><i class="fa fa-check"></i>Exercise 3.4.6.2</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-reactivity.html"><a href="basic-reactivity.html"><i class="fa fa-check"></i><b>4</b> Basic Reactivity</a>
+<ul>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.1"><i class="fa fa-check"></i>Exercise 4.3.6.1</a></li>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.2"><i class="fa fa-check"></i>Exercise 4.3.6.2</a></li>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.4.6.1"><i class="fa fa-check"></i>Exercise 4.4.6.1</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html"><i class="fa fa-check"></i><b>5</b> Case Study: ER Injuries</a>
+<ul>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.1"><i class="fa fa-check"></i>Exercise 5.8.1</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.2"><i class="fa fa-check"></i>Exercise 5.8.2</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.3"><i class="fa fa-check"></i>Exercise 5.8.3</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.4"><i class="fa fa-check"></i>Exercise 5.8.4</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="workflow.html"><a href="workflow.html"><i class="fa fa-check"></i><b>6</b> Workflow</a></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a>
+<ul>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.1"><i class="fa fa-check"></i>Exercise 7.5.1</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.2"><i class="fa fa-check"></i>Exercise 7.5.2</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.3"><i class="fa fa-check"></i>Exercise 7.5.3</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="user-feedback.html"><a href="user-feedback.html"><i class="fa fa-check"></i><b>8</b> User Feedback</a></li>
+<li class="chapter" data-level="9" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html"><i class="fa fa-check"></i><b>9</b> Uploads and Downloads</a>
+<ul>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.1"><i class="fa fa-check"></i>Exercise 9.4.1</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.2"><i class="fa fa-check"></i>Exercise 9.4.2</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.3"><i class="fa fa-check"></i>Exercise 9.4.3</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.4"><i class="fa fa-check"></i>Exercise 9.4.4</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dynamic-ui.html"><a href="dynamic-ui.html"><i class="fa fa-check"></i><b>10</b> Dynamic UI</a>
+<ul>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.1"><i class="fa fa-check"></i>Exercise 10.1.5.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.2"><i class="fa fa-check"></i>Exercise 10.1.5.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.3"><i class="fa fa-check"></i>Exercise 10.1.5.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.4"><i class="fa fa-check"></i>Exercise 10.1.5.4</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.5"><i class="fa fa-check"></i>Exercise 10.1.5.5</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.1"><i class="fa fa-check"></i>Exercise 10.2.3.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.2"><i class="fa fa-check"></i>Exercise 10.2.3.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.3"><i class="fa fa-check"></i>Exercise 10.2.3.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.1"><i class="fa fa-check"></i>Exercise 10.3.4.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.2"><i class="fa fa-check"></i>Exercise 10.3.4.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.3"><i class="fa fa-check"></i>Exercise 10.3.4.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.4"><i class="fa fa-check"></i>Exercise 10.3.4.4</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.5"><i class="fa fa-check"></i>Exercise 10.3.4.5</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="bookmarking.html"><a href="bookmarking.html"><i class="fa fa-check"></i><b>11</b> Bookmarking</a>
+<ul>
+<li class="chapter" data-level="" data-path="bookmarking.html"><a href="bookmarking.html#exercise-11.3.1"><i class="fa fa-check"></i>Exercise 11.3.1</a></li>
+<li class="chapter" data-level="" data-path="bookmarking.html"><a href="bookmarking.html#exercise-11.3.2"><i class="fa fa-check"></i>Exercise 11.3.2</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="tidy-evaluation.html"><a href="tidy-evaluation.html"><i class="fa fa-check"></i><b>12</b> Tidy Evaluation</a></li>
+<li class="chapter" data-level="13" data-path="general-guidelines.html"><a href="general-guidelines.html"><i class="fa fa-check"></i><b>13</b> General Guidelines</a></li>
+<li class="chapter" data-level="14" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>14</b> Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.1"><i class="fa fa-check"></i>Exercise 14.4.1</a></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.2"><i class="fa fa-check"></i>Exercise 14.4.2</a></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.3"><i class="fa fa-check"></i>Exercise 14.4.3</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>15</b> Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.1"><i class="fa fa-check"></i>Exercise 15.6.1</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.2"><i class="fa fa-check"></i>Exercise 15.6.2</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.3"><i class="fa fa-check"></i>Exercise 15.6.3</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.4"><i class="fa fa-check"></i>Exercise 15.6.4</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.5"><i class="fa fa-check"></i>Exercise 15.6.5</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.6"><i class="fa fa-check"></i>Exercise 15.6.6</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>16</b> Packages</a></li>
+<li class="chapter" data-level="17" data-path="testing.html"><a href="testing.html"><i class="fa fa-check"></i><b>17</b> Testing</a></li>
+<li class="chapter" data-level="18" data-path="safety.html"><a href="safety.html"><i class="fa fa-check"></i><b>18</b> Safety</a></li>
+<li class="chapter" data-level="19" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>19</b> Performance</a></li>
+<li class="chapter" data-level="20" data-path="why-reactivity.html"><a href="why-reactivity.html"><i class="fa fa-check"></i><b>20</b> Why reactivity?</a></li>
+<li class="chapter" data-level="21" data-path="dependency-tracking.html"><a href="dependency-tracking.html"><i class="fa fa-check"></i><b>21</b> Dependency Tracking</a></li>
+<li class="chapter" data-level="22" data-path="scoping.html"><a href="scoping.html"><i class="fa fa-check"></i><b>22</b> Scoping</a></li>
+<li class="chapter" data-level="23" data-path="reactive-components.html"><a href="reactive-components.html"><i class="fa fa-check"></i><b>23</b> Reactive Components</a></li>
+<li class="chapter" data-level="24" data-path="advanced-ui.html"><a href="advanced-ui.html"><i class="fa fa-check"></i><b>24</b> Advanced UI</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Mastering Shiny Solutions</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="case-study-er-injuries" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Case Study: ER Injuries</h1>
+<div id="exercise-5.8.1" class="section level3 unnumbered" number="">
+<h3>Exercise 5.8.1</h3>
+<p>Draw the reactive graph for each app.</p>
+<div id="solution" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<div id="prototype" class="section level5 unnumbered" number="">
+<h5>Prototype</h5>
+<p>The prototype application has a single input, <code>input$code</code>, which is used to
+generate the <code>selected()</code> reactive. This reactive is used directly in 3
+outputs, <code>output$diag</code>, <code>output$body_part</code>, and <code>output$location</code>, and it is
+also used indirectly in the <code>output$age_sex</code> plot via the <code>summary()</code> reactive.</p>
+<center>
+<img src="images/5.8.1-prototype.png" title="fig:" width="500" alt="reactive graph - prototype app" />
+</center>
+<p><br></p>
+</div>
+<div id="rate-vs.-count" class="section level5 unnumbered" number="">
+<h5>Rate vs. Count</h5>
+<p>Building on the prototype, we create a second input <code>input$y</code> which is used
+along with the <code>summary()</code> reactive to create the <code>output$age_sex</code> plot.</p>
+<center>
+<img src="images/5.8.1-ratecount.png" title="fig:" width="500" alt="reactive graph - rate vs. count app" />
+</center>
+<p><br></p>
+</div>
+<div id="narrative" class="section level5 unnumbered" number="">
+<h5>Narrative</h5>
+<p>Building on the application once more, we create an <code>output$narrative</code> that
+depends on the <code>selected()</code> reactive and a new input, <code>input$story</code>.</p>
+<center>
+<img src="images/5.8.1-narrative.png" title="fig:" width="500" alt="reactive graph - narrative app" />
+</center>
+</div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-5.8.2" class="section level3 unnumbered" number="">
+<h3>Exercise 5.8.2</h3>
+<p>What happens if you flip <code>fct_infreq()</code> and <code>fct_lump()</code> in the code that
+reduces the summary tables?</p>
+<p>:::solution
+#### Solution {-}</p>
+<p>Flipping the order of <code>fct_infreq()</code> and <code>fct_lump()</code> will output the same
+dataset, but it will change the order of the factors in the column that these
+functions are applied. <code>fct_infreq()</code> orders the factor levels by frequency, and <code>fct_lump()</code> preserves the top number of factors specified, grouping the rest.</p>
+<p>For example, let’s look at the number of times each level within <code>diag</code> occurs in the <code>injuries</code> dataset:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="case-study-er-injuries.html#cb22-1"></a>injuries <span class="op">%&gt;%</span></span>
+<span id="cb22-2"><a href="case-study-er-injuries.html#cb22-2"></a><span class="st">  </span><span class="kw">group_by</span>(diag) <span class="op">%&gt;%</span></span>
+<span id="cb22-3"><a href="case-study-er-injuries.html#cb22-3"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb22-4"><a href="case-study-er-injuries.html#cb22-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>n)</span></code></pre></div>
+<pre><code>## # A tibble: 30 x 2
+## # Groups:   diag [30]
+##    diag                       n
+##    &lt;chr&gt;                  &lt;int&gt;
+##  1 Laceration            331386
+##  2 Fracture              282206
+##  3 Strain, Sprain        273714
+##  4 Contusion Or Abrasion 263572
+##  5 Other Or Not Stated   262173
+##  6 Inter Organ Injury    181762
+##  7 Concussion             43181
+##  8 Foreign Body           34682
+##  9 Dislocation            28811
+## 10 Poisoning              22200
+## # … with 20 more rows</code></pre>
+<p><code>fct_infreq</code> will reorder the factors in descending order as seen in the table above, and then <code>fct_lump</code> will lump together everything after the 5th most commonly seen level.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="case-study-er-injuries.html#cb24-1"></a>table1 &lt;-<span class="st"> </span>injuries <span class="op">%&gt;%</span></span>
+<span id="cb24-2"><a href="case-study-er-injuries.html#cb24-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diag =</span> <span class="kw">fct_lump</span>(<span class="kw">fct_infreq</span>(diag), <span class="dt">n =</span> <span class="dv">5</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb24-3"><a href="case-study-er-injuries.html#cb24-3"></a><span class="st">  </span><span class="kw">group_by</span>(diag) <span class="op">%&gt;%</span></span>
+<span id="cb24-4"><a href="case-study-er-injuries.html#cb24-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">as.integer</span>(<span class="kw">sum</span>(weight))) <span class="op">%&gt;%</span></span>
+<span id="cb24-5"><a href="case-study-er-injuries.html#cb24-5"></a><span class="st">  </span><span class="kw">arrange</span>(n)</span>
+<span id="cb24-6"><a href="case-study-er-injuries.html#cb24-6"></a></span>
+<span id="cb24-7"><a href="case-study-er-injuries.html#cb24-7"></a><span class="kw">levels</span>(table1<span class="op">$</span>diag)</span></code></pre></div>
+<pre><code>[1] &quot;Other Or Not Stated&quot;   &quot;Fracture&quot;              &quot;Laceration&quot;           
+[4] &quot;Strain, Sprain&quot;        &quot;Contusion Or Abrasion&quot; &quot;Other&quot;                </code></pre>
+<p>Conversely, we can first <code>fct_lump</code> first, which will make the most frequently seen factor <code>Other</code>. Now when we apply <code>fct_infreq()</code> the first level will be <code>Other</code> and not <code>Other Or Not Stated</code> as above.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="case-study-er-injuries.html#cb26-1"></a>table2 &lt;-<span class="st"> </span>injuries <span class="op">%&gt;%</span></span>
+<span id="cb26-2"><a href="case-study-er-injuries.html#cb26-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diag =</span> <span class="kw">fct_infreq</span>(<span class="kw">fct_lump</span>(diag, <span class="dt">n =</span> <span class="dv">5</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb26-3"><a href="case-study-er-injuries.html#cb26-3"></a><span class="st">  </span><span class="kw">group_by</span>(diag) <span class="op">%&gt;%</span></span>
+<span id="cb26-4"><a href="case-study-er-injuries.html#cb26-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">as.integer</span>(<span class="kw">sum</span>(weight))) <span class="op">%&gt;%</span></span>
+<span id="cb26-5"><a href="case-study-er-injuries.html#cb26-5"></a><span class="st">  </span><span class="kw">arrange</span>(n)</span>
+<span id="cb26-6"><a href="case-study-er-injuries.html#cb26-6"></a></span>
+<span id="cb26-7"><a href="case-study-er-injuries.html#cb26-7"></a><span class="kw">levels</span>(table2<span class="op">$</span>diag)</span></code></pre></div>
+<pre><code>[1] &quot;Other&quot;                 &quot;Other Or Not Stated&quot;   &quot;Fracture&quot;             
+[4] &quot;Laceration&quot;            &quot;Strain, Sprain&quot;        &quot;Contusion Or Abrasion&quot;</code></pre>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-5.8.3" class="section level3 unnumbered" number="">
+<h3>Exercise 5.8.3</h3>
+<p>Add an input control that lets the user decide how many rows to show in the
+summary tables.</p>
+<div id="solution-1" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>Our function <code>count_top</code> is responsible for grouping our variables into a set
+number of factors, lumping the rest of the values into “Other”. The function
+has an argument <code>n</code> which is set to <code>5</code>. By creating a <code>numericInput</code> called
+<code>rows</code> we can let the user set the number of <code>fct_infreq</code> dynamically. However,
+because <code>fct_infreq</code> is the number of factors + <code>Other</code>, we need to subtract 1
+from what the user selects in order to display the number of rows they input.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="case-study-er-injuries.html#cb28-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb28-2"><a href="case-study-er-injuries.html#cb28-2"></a><span class="kw">library</span>(forcats)</span>
+<span id="cb28-3"><a href="case-study-er-injuries.html#cb28-3"></a><span class="kw">library</span>(neiss)</span>
+<span id="cb28-4"><a href="case-study-er-injuries.html#cb28-4"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb28-5"><a href="case-study-er-injuries.html#cb28-5"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb28-6"><a href="case-study-er-injuries.html#cb28-6"></a></span>
+<span id="cb28-7"><a href="case-study-er-injuries.html#cb28-7"></a><span class="co"># Note: these exercises use the datasets `injuries`, `products`, and</span></span>
+<span id="cb28-8"><a href="case-study-er-injuries.html#cb28-8"></a><span class="co"># `population` as created here:</span></span>
+<span id="cb28-9"><a href="case-study-er-injuries.html#cb28-9"></a><span class="co"># https://github.com/hadley/mastering-shiny/blob/master/neiss/data.R</span></span>
+<span id="cb28-10"><a href="case-study-er-injuries.html#cb28-10"></a></span>
+<span id="cb28-11"><a href="case-study-er-injuries.html#cb28-11"></a>count_top &lt;-<span class="st"> </span><span class="cf">function</span>(df, var, <span class="dt">n =</span> <span class="dv">5</span>) {</span>
+<span id="cb28-12"><a href="case-study-er-injuries.html#cb28-12"></a>  df <span class="op">%&gt;%</span></span>
+<span id="cb28-13"><a href="case-study-er-injuries.html#cb28-13"></a><span class="st">    </span><span class="kw">mutate</span>({{ var }} <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">fct_lump</span>(<span class="kw">fct_infreq</span>({{ var }}), <span class="dt">n =</span> n)) <span class="op">%&gt;%</span></span>
+<span id="cb28-14"><a href="case-study-er-injuries.html#cb28-14"></a><span class="st">    </span><span class="kw">group_by</span>({{ var }}) <span class="op">%&gt;%</span></span>
+<span id="cb28-15"><a href="case-study-er-injuries.html#cb28-15"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">as.integer</span>(<span class="kw">sum</span>(weight)))</span>
+<span id="cb28-16"><a href="case-study-er-injuries.html#cb28-16"></a>}</span>
+<span id="cb28-17"><a href="case-study-er-injuries.html#cb28-17"></a></span>
+<span id="cb28-18"><a href="case-study-er-injuries.html#cb28-18"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb28-19"><a href="case-study-er-injuries.html#cb28-19"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb28-20"><a href="case-study-er-injuries.html#cb28-20"></a>    <span class="kw">column</span>(<span class="dv">8</span>, <span class="kw">selectInput</span>(<span class="st">&quot;code&quot;</span>, <span class="st">&quot;Product&quot;</span>,</span>
+<span id="cb28-21"><a href="case-study-er-injuries.html#cb28-21"></a>                          <span class="dt">choices =</span> <span class="kw">setNames</span>(products<span class="op">$</span>prod_code, products<span class="op">$</span>title),</span>
+<span id="cb28-22"><a href="case-study-er-injuries.html#cb28-22"></a>                          <span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</span>
+<span id="cb28-23"><a href="case-study-er-injuries.html#cb28-23"></a>    ),</span>
+<span id="cb28-24"><a href="case-study-er-injuries.html#cb28-24"></a>    <span class="kw">column</span>(<span class="dv">2</span>, <span class="kw">numericInput</span>(<span class="st">&quot;rows&quot;</span>, <span class="st">&quot;Number of Rows&quot;</span>,</span>
+<span id="cb28-25"><a href="case-study-er-injuries.html#cb28-25"></a>                           <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>, <span class="dt">value =</span> <span class="dv">5</span>)),</span>
+<span id="cb28-26"><a href="case-study-er-injuries.html#cb28-26"></a>    <span class="kw">column</span>(<span class="dv">2</span>, <span class="kw">selectInput</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;Y Axis&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;count&quot;</span>)))</span>
+<span id="cb28-27"><a href="case-study-er-injuries.html#cb28-27"></a>  ),</span>
+<span id="cb28-28"><a href="case-study-er-injuries.html#cb28-28"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb28-29"><a href="case-study-er-injuries.html#cb28-29"></a>    <span class="kw">column</span>(<span class="dv">4</span>, <span class="kw">tableOutput</span>(<span class="st">&quot;diag&quot;</span>)),</span>
+<span id="cb28-30"><a href="case-study-er-injuries.html#cb28-30"></a>    <span class="kw">column</span>(<span class="dv">4</span>, <span class="kw">tableOutput</span>(<span class="st">&quot;body_part&quot;</span>)),</span>
+<span id="cb28-31"><a href="case-study-er-injuries.html#cb28-31"></a>    <span class="kw">column</span>(<span class="dv">4</span>, <span class="kw">tableOutput</span>(<span class="st">&quot;location&quot;</span>))</span>
+<span id="cb28-32"><a href="case-study-er-injuries.html#cb28-32"></a>  ),</span>
+<span id="cb28-33"><a href="case-study-er-injuries.html#cb28-33"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb28-34"><a href="case-study-er-injuries.html#cb28-34"></a>    <span class="kw">column</span>(<span class="dv">12</span>, <span class="kw">plotOutput</span>(<span class="st">&quot;age_sex&quot;</span>))</span>
+<span id="cb28-35"><a href="case-study-er-injuries.html#cb28-35"></a>  ),</span>
+<span id="cb28-36"><a href="case-study-er-injuries.html#cb28-36"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb28-37"><a href="case-study-er-injuries.html#cb28-37"></a>    <span class="kw">column</span>(<span class="dv">2</span>, <span class="kw">actionButton</span>(<span class="st">&quot;story&quot;</span>, <span class="st">&quot;Tell me a story&quot;</span>)),</span>
+<span id="cb28-38"><a href="case-study-er-injuries.html#cb28-38"></a>    <span class="kw">column</span>(<span class="dv">10</span>, <span class="kw">textOutput</span>(<span class="st">&quot;narrative&quot;</span>))</span>
+<span id="cb28-39"><a href="case-study-er-injuries.html#cb28-39"></a>  )</span>
+<span id="cb28-40"><a href="case-study-er-injuries.html#cb28-40"></a>)</span>
+<span id="cb28-41"><a href="case-study-er-injuries.html#cb28-41"></a></span>
+<span id="cb28-42"><a href="case-study-er-injuries.html#cb28-42"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb28-43"><a href="case-study-er-injuries.html#cb28-43"></a>  selected &lt;-<span class="st"> </span><span class="kw">reactive</span>(injuries <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(prod_code <span class="op">==</span><span class="st"> </span>input<span class="op">$</span>code))</span>
+<span id="cb28-44"><a href="case-study-er-injuries.html#cb28-44"></a>  </span>
+<span id="cb28-45"><a href="case-study-er-injuries.html#cb28-45"></a>  <span class="co"># Find the maximum possible of rows.</span></span>
+<span id="cb28-46"><a href="case-study-er-injuries.html#cb28-46"></a>  max_no_rows &lt;-<span class="st"> </span><span class="kw">reactive</span>(</span>
+<span id="cb28-47"><a href="case-study-er-injuries.html#cb28-47"></a>    <span class="kw">max</span>(<span class="kw">length</span>(<span class="kw">unique</span>(<span class="kw">selected</span>()<span class="op">$</span>diag)),</span>
+<span id="cb28-48"><a href="case-study-er-injuries.html#cb28-48"></a>        <span class="kw">length</span>(<span class="kw">unique</span>(<span class="kw">selected</span>()<span class="op">$</span>body_part)),</span>
+<span id="cb28-49"><a href="case-study-er-injuries.html#cb28-49"></a>        <span class="kw">length</span>(<span class="kw">unique</span>(<span class="kw">selected</span>()<span class="op">$</span>location)))</span>
+<span id="cb28-50"><a href="case-study-er-injuries.html#cb28-50"></a>  )</span>
+<span id="cb28-51"><a href="case-study-er-injuries.html#cb28-51"></a>  </span>
+<span id="cb28-52"><a href="case-study-er-injuries.html#cb28-52"></a>  <span class="co"># Update the maximum value for the numericInput based on max_no_rows().</span></span>
+<span id="cb28-53"><a href="case-study-er-injuries.html#cb28-53"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>code, {</span>
+<span id="cb28-54"><a href="case-study-er-injuries.html#cb28-54"></a>    <span class="kw">updateNumericInput</span>(session, <span class="st">&quot;rows&quot;</span>, <span class="dt">max =</span> <span class="kw">max_no_rows</span>())</span>
+<span id="cb28-55"><a href="case-study-er-injuries.html#cb28-55"></a>  })</span>
+<span id="cb28-56"><a href="case-study-er-injuries.html#cb28-56"></a>  </span>
+<span id="cb28-57"><a href="case-study-er-injuries.html#cb28-57"></a>  table_rows &lt;-<span class="st"> </span><span class="kw">reactive</span>(input<span class="op">$</span>rows <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb28-58"><a href="case-study-er-injuries.html#cb28-58"></a>  </span>
+<span id="cb28-59"><a href="case-study-er-injuries.html#cb28-59"></a>  output<span class="op">$</span>diag &lt;-<span class="st"> </span><span class="kw">renderTable</span>(</span>
+<span id="cb28-60"><a href="case-study-er-injuries.html#cb28-60"></a>    <span class="kw">count_top</span>(<span class="kw">selected</span>(), diag, <span class="dt">n =</span> <span class="kw">table_rows</span>()), <span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</span>
+<span id="cb28-61"><a href="case-study-er-injuries.html#cb28-61"></a>  </span>
+<span id="cb28-62"><a href="case-study-er-injuries.html#cb28-62"></a>  output<span class="op">$</span>body_part &lt;-<span class="st"> </span><span class="kw">renderTable</span>(</span>
+<span id="cb28-63"><a href="case-study-er-injuries.html#cb28-63"></a>    <span class="kw">count_top</span>(<span class="kw">selected</span>(), body_part, <span class="dt">n =</span> <span class="kw">table_rows</span>()), <span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</span>
+<span id="cb28-64"><a href="case-study-er-injuries.html#cb28-64"></a>  </span>
+<span id="cb28-65"><a href="case-study-er-injuries.html#cb28-65"></a>  output<span class="op">$</span>location &lt;-<span class="st"> </span><span class="kw">renderTable</span>(</span>
+<span id="cb28-66"><a href="case-study-er-injuries.html#cb28-66"></a>    <span class="kw">count_top</span>(<span class="kw">selected</span>(), location, <span class="dt">n =</span> <span class="kw">table_rows</span>()), <span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</span>
+<span id="cb28-67"><a href="case-study-er-injuries.html#cb28-67"></a>  </span>
+<span id="cb28-68"><a href="case-study-er-injuries.html#cb28-68"></a>  summary &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb28-69"><a href="case-study-er-injuries.html#cb28-69"></a>    <span class="kw">selected</span>() <span class="op">%&gt;%</span></span>
+<span id="cb28-70"><a href="case-study-er-injuries.html#cb28-70"></a><span class="st">      </span><span class="kw">count</span>(age, sex, <span class="dt">wt =</span> weight) <span class="op">%&gt;%</span></span>
+<span id="cb28-71"><a href="case-study-er-injuries.html#cb28-71"></a><span class="st">      </span><span class="kw">left_join</span>(population, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;sex&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb28-72"><a href="case-study-er-injuries.html#cb28-72"></a><span class="st">      </span><span class="kw">mutate</span>(<span class="dt">rate =</span> n <span class="op">/</span><span class="st"> </span>population <span class="op">*</span><span class="st"> </span><span class="fl">1e4</span>)</span>
+<span id="cb28-73"><a href="case-study-er-injuries.html#cb28-73"></a>  })</span>
+<span id="cb28-74"><a href="case-study-er-injuries.html#cb28-74"></a>  </span>
+<span id="cb28-75"><a href="case-study-er-injuries.html#cb28-75"></a>  output<span class="op">$</span>age_sex &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
+<span id="cb28-76"><a href="case-study-er-injuries.html#cb28-76"></a>    <span class="cf">if</span> (input<span class="op">$</span>y <span class="op">==</span><span class="st"> &quot;count&quot;</span>) {</span>
+<span id="cb28-77"><a href="case-study-er-injuries.html#cb28-77"></a>      <span class="kw">summary</span>() <span class="op">%&gt;%</span></span>
+<span id="cb28-78"><a href="case-study-er-injuries.html#cb28-78"></a><span class="st">        </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(age, n, <span class="dt">colour =</span> sex)) <span class="op">+</span></span>
+<span id="cb28-79"><a href="case-study-er-injuries.html#cb28-79"></a><span class="st">        </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb28-80"><a href="case-study-er-injuries.html#cb28-80"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Estimated number of injuries&quot;</span>) <span class="op">+</span></span>
+<span id="cb28-81"><a href="case-study-er-injuries.html#cb28-81"></a><span class="st">        </span><span class="kw">theme_grey</span>(<span class="dv">15</span>)</span>
+<span id="cb28-82"><a href="case-study-er-injuries.html#cb28-82"></a>    } <span class="cf">else</span> {</span>
+<span id="cb28-83"><a href="case-study-er-injuries.html#cb28-83"></a>      <span class="kw">summary</span>() <span class="op">%&gt;%</span></span>
+<span id="cb28-84"><a href="case-study-er-injuries.html#cb28-84"></a><span class="st">        </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(age, rate, <span class="dt">colour =</span> sex)) <span class="op">+</span></span>
+<span id="cb28-85"><a href="case-study-er-injuries.html#cb28-85"></a><span class="st">        </span><span class="kw">geom_line</span>(<span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb28-86"><a href="case-study-er-injuries.html#cb28-86"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Injuries per 10,000 people&quot;</span>) <span class="op">+</span></span>
+<span id="cb28-87"><a href="case-study-er-injuries.html#cb28-87"></a><span class="st">        </span><span class="kw">theme_grey</span>(<span class="dv">15</span>)</span>
+<span id="cb28-88"><a href="case-study-er-injuries.html#cb28-88"></a>    }</span>
+<span id="cb28-89"><a href="case-study-er-injuries.html#cb28-89"></a>  })</span>
+<span id="cb28-90"><a href="case-study-er-injuries.html#cb28-90"></a>  </span>
+<span id="cb28-91"><a href="case-study-er-injuries.html#cb28-91"></a>  output<span class="op">$</span>narrative &lt;-<span class="st"> </span><span class="kw">renderText</span>({</span>
+<span id="cb28-92"><a href="case-study-er-injuries.html#cb28-92"></a>    input<span class="op">$</span>story</span>
+<span id="cb28-93"><a href="case-study-er-injuries.html#cb28-93"></a>    <span class="kw">selected</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(narrative) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>)</span>
+<span id="cb28-94"><a href="case-study-er-injuries.html#cb28-94"></a>  })</span>
+<span id="cb28-95"><a href="case-study-er-injuries.html#cb28-95"></a>}</span>
+<span id="cb28-96"><a href="case-study-er-injuries.html#cb28-96"></a></span>
+<span id="cb28-97"><a href="case-study-er-injuries.html#cb28-97"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-5.8.4" class="section level3 unnumbered" number="">
+<h3>Exercise 5.8.4</h3>
+<p>Provide a way to step through every narrative systematically with forward and
+backward buttons.</p>
+<p>Advanced: Make the list of narratives “circular” so that advancing forward from
+the last narrative takes you to the first.</p>
+<div id="solution-2" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>We can add two buttons <code>prev_story</code> and <code>next_story</code> to iterate through the
+narrative. In addition, we can include a reactive value, <code>story</code>, that keeps
+track of the current position in the narrative. When the button <code>prev_story</code> is
+pressed, <code>story</code> decreases by one. Similarly, when the button <code>next_story</code> is
+pressed, <code>story</code> increases by one.
+To do the advanced part, we use the mod function. This allows us to keep
+<code>story</code> between 1 and the current narrative’s length, and simulate the “circular” motion.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="case-study-er-injuries.html#cb29-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb29-2"><a href="case-study-er-injuries.html#cb29-2"></a><span class="kw">library</span>(forcats)</span>
+<span id="cb29-3"><a href="case-study-er-injuries.html#cb29-3"></a><span class="kw">library</span>(neiss)</span>
+<span id="cb29-4"><a href="case-study-er-injuries.html#cb29-4"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb29-5"><a href="case-study-er-injuries.html#cb29-5"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb29-6"><a href="case-study-er-injuries.html#cb29-6"></a></span>
+<span id="cb29-7"><a href="case-study-er-injuries.html#cb29-7"></a><span class="co"># Note: these exercises use the datasets `injuries`, `products`, and</span></span>
+<span id="cb29-8"><a href="case-study-er-injuries.html#cb29-8"></a><span class="co"># `population` as created here:</span></span>
+<span id="cb29-9"><a href="case-study-er-injuries.html#cb29-9"></a><span class="co"># https://github.com/hadley/mastering-shiny/blob/master/neiss/data.R</span></span>
+<span id="cb29-10"><a href="case-study-er-injuries.html#cb29-10"></a></span>
+<span id="cb29-11"><a href="case-study-er-injuries.html#cb29-11"></a>count_top &lt;-<span class="st"> </span><span class="cf">function</span>(df, var, <span class="dt">n =</span> <span class="dv">5</span>) {</span>
+<span id="cb29-12"><a href="case-study-er-injuries.html#cb29-12"></a>  df <span class="op">%&gt;%</span></span>
+<span id="cb29-13"><a href="case-study-er-injuries.html#cb29-13"></a><span class="st">    </span><span class="kw">mutate</span>({{ var }} <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">fct_lump</span>(<span class="kw">fct_infreq</span>({{ var }}), <span class="dt">n =</span> n)) <span class="op">%&gt;%</span></span>
+<span id="cb29-14"><a href="case-study-er-injuries.html#cb29-14"></a><span class="st">    </span><span class="kw">group_by</span>({{ var }}) <span class="op">%&gt;%</span></span>
+<span id="cb29-15"><a href="case-study-er-injuries.html#cb29-15"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">as.integer</span>(<span class="kw">sum</span>(weight)))</span>
+<span id="cb29-16"><a href="case-study-er-injuries.html#cb29-16"></a>}</span>
+<span id="cb29-17"><a href="case-study-er-injuries.html#cb29-17"></a></span>
+<span id="cb29-18"><a href="case-study-er-injuries.html#cb29-18"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb29-19"><a href="case-study-er-injuries.html#cb29-19"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb29-20"><a href="case-study-er-injuries.html#cb29-20"></a>    <span class="kw">column</span>(<span class="dv">8</span>, <span class="kw">selectInput</span>(<span class="st">&quot;code&quot;</span>, <span class="st">&quot;Product&quot;</span>,</span>
+<span id="cb29-21"><a href="case-study-er-injuries.html#cb29-21"></a>                          <span class="dt">choices =</span> <span class="kw">setNames</span>(products<span class="op">$</span>prod_code, products<span class="op">$</span>title),</span>
+<span id="cb29-22"><a href="case-study-er-injuries.html#cb29-22"></a>                          <span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</span>
+<span id="cb29-23"><a href="case-study-er-injuries.html#cb29-23"></a>    ),</span>
+<span id="cb29-24"><a href="case-study-er-injuries.html#cb29-24"></a>    <span class="kw">column</span>(<span class="dv">2</span>, <span class="kw">numericInput</span>(<span class="st">&quot;rows&quot;</span>, <span class="st">&quot;Number of Rows&quot;</span>,</span>
+<span id="cb29-25"><a href="case-study-er-injuries.html#cb29-25"></a>                           <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">10</span>, <span class="dt">value =</span> <span class="dv">5</span>)),</span>
+<span id="cb29-26"><a href="case-study-er-injuries.html#cb29-26"></a>    <span class="kw">column</span>(<span class="dv">2</span>, <span class="kw">selectInput</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;Y Axis&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;rate&quot;</span>, <span class="st">&quot;count&quot;</span>)))</span>
+<span id="cb29-27"><a href="case-study-er-injuries.html#cb29-27"></a>  ),</span>
+<span id="cb29-28"><a href="case-study-er-injuries.html#cb29-28"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb29-29"><a href="case-study-er-injuries.html#cb29-29"></a>    <span class="kw">column</span>(<span class="dv">4</span>, <span class="kw">tableOutput</span>(<span class="st">&quot;diag&quot;</span>)),</span>
+<span id="cb29-30"><a href="case-study-er-injuries.html#cb29-30"></a>    <span class="kw">column</span>(<span class="dv">4</span>, <span class="kw">tableOutput</span>(<span class="st">&quot;body_part&quot;</span>)),</span>
+<span id="cb29-31"><a href="case-study-er-injuries.html#cb29-31"></a>    <span class="kw">column</span>(<span class="dv">4</span>, <span class="kw">tableOutput</span>(<span class="st">&quot;location&quot;</span>))</span>
+<span id="cb29-32"><a href="case-study-er-injuries.html#cb29-32"></a>  ),</span>
+<span id="cb29-33"><a href="case-study-er-injuries.html#cb29-33"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb29-34"><a href="case-study-er-injuries.html#cb29-34"></a>    <span class="kw">column</span>(<span class="dv">12</span>, <span class="kw">plotOutput</span>(<span class="st">&quot;age_sex&quot;</span>))</span>
+<span id="cb29-35"><a href="case-study-er-injuries.html#cb29-35"></a>  ),</span>
+<span id="cb29-36"><a href="case-study-er-injuries.html#cb29-36"></a>  <span class="kw">fluidRow</span>(</span>
+<span id="cb29-37"><a href="case-study-er-injuries.html#cb29-37"></a>    <span class="kw">column</span>(<span class="dv">2</span>, <span class="kw">actionButton</span>(<span class="st">&quot;prev_story&quot;</span>, <span class="st">&quot;Previous story&quot;</span>)),</span>
+<span id="cb29-38"><a href="case-study-er-injuries.html#cb29-38"></a>    <span class="kw">column</span>(<span class="dv">2</span>, <span class="kw">actionButton</span>(<span class="st">&quot;next_story&quot;</span>, <span class="st">&quot;Next story&quot;</span>)),</span>
+<span id="cb29-39"><a href="case-study-er-injuries.html#cb29-39"></a>    <span class="kw">column</span>(<span class="dv">8</span>, <span class="kw">textOutput</span>(<span class="st">&quot;narrative&quot;</span>))</span>
+<span id="cb29-40"><a href="case-study-er-injuries.html#cb29-40"></a>  )</span>
+<span id="cb29-41"><a href="case-study-er-injuries.html#cb29-41"></a>)</span>
+<span id="cb29-42"><a href="case-study-er-injuries.html#cb29-42"></a></span>
+<span id="cb29-43"><a href="case-study-er-injuries.html#cb29-43"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb29-44"><a href="case-study-er-injuries.html#cb29-44"></a>  selected &lt;-<span class="st"> </span><span class="kw">reactive</span>(injuries <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(prod_code <span class="op">==</span><span class="st"> </span>input<span class="op">$</span>code))</span>
+<span id="cb29-45"><a href="case-study-er-injuries.html#cb29-45"></a>  </span>
+<span id="cb29-46"><a href="case-study-er-injuries.html#cb29-46"></a>  <span class="co"># Find the maximum possible of rows.</span></span>
+<span id="cb29-47"><a href="case-study-er-injuries.html#cb29-47"></a>  max_no_rows &lt;-<span class="st"> </span><span class="kw">reactive</span>(</span>
+<span id="cb29-48"><a href="case-study-er-injuries.html#cb29-48"></a>    <span class="kw">max</span>(<span class="kw">length</span>(<span class="kw">unique</span>(<span class="kw">selected</span>()<span class="op">$</span>diag)),</span>
+<span id="cb29-49"><a href="case-study-er-injuries.html#cb29-49"></a>        <span class="kw">length</span>(<span class="kw">unique</span>(<span class="kw">selected</span>()<span class="op">$</span>body_part)),</span>
+<span id="cb29-50"><a href="case-study-er-injuries.html#cb29-50"></a>        <span class="kw">length</span>(<span class="kw">unique</span>(<span class="kw">selected</span>()<span class="op">$</span>location)))</span>
+<span id="cb29-51"><a href="case-study-er-injuries.html#cb29-51"></a>  )</span>
+<span id="cb29-52"><a href="case-study-er-injuries.html#cb29-52"></a>  </span>
+<span id="cb29-53"><a href="case-study-er-injuries.html#cb29-53"></a>  <span class="co"># Update the maximum value for the numericInput based on max_no_rows().</span></span>
+<span id="cb29-54"><a href="case-study-er-injuries.html#cb29-54"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>code, {</span>
+<span id="cb29-55"><a href="case-study-er-injuries.html#cb29-55"></a>    <span class="kw">updateNumericInput</span>(session, <span class="st">&quot;rows&quot;</span>, <span class="dt">max =</span> <span class="kw">max_no_rows</span>())</span>
+<span id="cb29-56"><a href="case-study-er-injuries.html#cb29-56"></a>  })</span>
+<span id="cb29-57"><a href="case-study-er-injuries.html#cb29-57"></a>  </span>
+<span id="cb29-58"><a href="case-study-er-injuries.html#cb29-58"></a>  table_rows &lt;-<span class="st"> </span><span class="kw">reactive</span>(input<span class="op">$</span>rows <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb29-59"><a href="case-study-er-injuries.html#cb29-59"></a>  </span>
+<span id="cb29-60"><a href="case-study-er-injuries.html#cb29-60"></a>  output<span class="op">$</span>diag &lt;-<span class="st"> </span><span class="kw">renderTable</span>(</span>
+<span id="cb29-61"><a href="case-study-er-injuries.html#cb29-61"></a>    <span class="kw">count_top</span>(<span class="kw">selected</span>(), diag, <span class="dt">n =</span> <span class="kw">table_rows</span>()), <span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</span>
+<span id="cb29-62"><a href="case-study-er-injuries.html#cb29-62"></a>  </span>
+<span id="cb29-63"><a href="case-study-er-injuries.html#cb29-63"></a>  output<span class="op">$</span>body_part &lt;-<span class="st"> </span><span class="kw">renderTable</span>(</span>
+<span id="cb29-64"><a href="case-study-er-injuries.html#cb29-64"></a>    <span class="kw">count_top</span>(<span class="kw">selected</span>(), body_part, <span class="dt">n =</span> <span class="kw">table_rows</span>()), <span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</span>
+<span id="cb29-65"><a href="case-study-er-injuries.html#cb29-65"></a>  </span>
+<span id="cb29-66"><a href="case-study-er-injuries.html#cb29-66"></a>  output<span class="op">$</span>location &lt;-<span class="st"> </span><span class="kw">renderTable</span>(</span>
+<span id="cb29-67"><a href="case-study-er-injuries.html#cb29-67"></a>    <span class="kw">count_top</span>(<span class="kw">selected</span>(), location, <span class="dt">n =</span> <span class="kw">table_rows</span>()), <span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</span>
+<span id="cb29-68"><a href="case-study-er-injuries.html#cb29-68"></a>  </span>
+<span id="cb29-69"><a href="case-study-er-injuries.html#cb29-69"></a>  summary &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb29-70"><a href="case-study-er-injuries.html#cb29-70"></a>    <span class="kw">selected</span>() <span class="op">%&gt;%</span></span>
+<span id="cb29-71"><a href="case-study-er-injuries.html#cb29-71"></a><span class="st">      </span><span class="kw">count</span>(age, sex, <span class="dt">wt =</span> weight) <span class="op">%&gt;%</span></span>
+<span id="cb29-72"><a href="case-study-er-injuries.html#cb29-72"></a><span class="st">      </span><span class="kw">left_join</span>(population, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;sex&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb29-73"><a href="case-study-er-injuries.html#cb29-73"></a><span class="st">      </span><span class="kw">mutate</span>(<span class="dt">rate =</span> n <span class="op">/</span><span class="st"> </span>population <span class="op">*</span><span class="st"> </span><span class="fl">1e4</span>)</span>
+<span id="cb29-74"><a href="case-study-er-injuries.html#cb29-74"></a>  })</span>
+<span id="cb29-75"><a href="case-study-er-injuries.html#cb29-75"></a>  </span>
+<span id="cb29-76"><a href="case-study-er-injuries.html#cb29-76"></a>  output<span class="op">$</span>age_sex &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
+<span id="cb29-77"><a href="case-study-er-injuries.html#cb29-77"></a>    <span class="cf">if</span> (input<span class="op">$</span>y <span class="op">==</span><span class="st"> &quot;count&quot;</span>) {</span>
+<span id="cb29-78"><a href="case-study-er-injuries.html#cb29-78"></a>      <span class="kw">summary</span>() <span class="op">%&gt;%</span></span>
+<span id="cb29-79"><a href="case-study-er-injuries.html#cb29-79"></a><span class="st">        </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(age, n, <span class="dt">colour =</span> sex)) <span class="op">+</span></span>
+<span id="cb29-80"><a href="case-study-er-injuries.html#cb29-80"></a><span class="st">        </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb29-81"><a href="case-study-er-injuries.html#cb29-81"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Estimated number of injuries&quot;</span>) <span class="op">+</span></span>
+<span id="cb29-82"><a href="case-study-er-injuries.html#cb29-82"></a><span class="st">        </span><span class="kw">theme_grey</span>(<span class="dv">15</span>)</span>
+<span id="cb29-83"><a href="case-study-er-injuries.html#cb29-83"></a>    } <span class="cf">else</span> {</span>
+<span id="cb29-84"><a href="case-study-er-injuries.html#cb29-84"></a>      <span class="kw">summary</span>() <span class="op">%&gt;%</span></span>
+<span id="cb29-85"><a href="case-study-er-injuries.html#cb29-85"></a><span class="st">        </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(age, rate, <span class="dt">colour =</span> sex)) <span class="op">+</span></span>
+<span id="cb29-86"><a href="case-study-er-injuries.html#cb29-86"></a><span class="st">        </span><span class="kw">geom_line</span>(<span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb29-87"><a href="case-study-er-injuries.html#cb29-87"></a><span class="st">        </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Injuries per 10,000 people&quot;</span>) <span class="op">+</span></span>
+<span id="cb29-88"><a href="case-study-er-injuries.html#cb29-88"></a><span class="st">        </span><span class="kw">theme_grey</span>(<span class="dv">15</span>)</span>
+<span id="cb29-89"><a href="case-study-er-injuries.html#cb29-89"></a>    }</span>
+<span id="cb29-90"><a href="case-study-er-injuries.html#cb29-90"></a>  })</span>
+<span id="cb29-91"><a href="case-study-er-injuries.html#cb29-91"></a>  </span>
+<span id="cb29-92"><a href="case-study-er-injuries.html#cb29-92"></a>  <span class="co"># Store the maximum posible number of stories.</span></span>
+<span id="cb29-93"><a href="case-study-er-injuries.html#cb29-93"></a>  max_no_stories &lt;-<span class="st"> </span><span class="kw">reactive</span>(<span class="kw">length</span>(<span class="kw">selected</span>()<span class="op">$</span>narrative))</span>
+<span id="cb29-94"><a href="case-study-er-injuries.html#cb29-94"></a>  </span>
+<span id="cb29-95"><a href="case-study-er-injuries.html#cb29-95"></a>  <span class="co"># Reactive used to save the current position in the narrative list.</span></span>
+<span id="cb29-96"><a href="case-study-er-injuries.html#cb29-96"></a>  story &lt;-<span class="st"> </span><span class="kw">reactiveVal</span>(<span class="dv">1</span>)</span>
+<span id="cb29-97"><a href="case-study-er-injuries.html#cb29-97"></a>  </span>
+<span id="cb29-98"><a href="case-study-er-injuries.html#cb29-98"></a>  <span class="co"># Reset the story counter if the user changes the product code. </span></span>
+<span id="cb29-99"><a href="case-study-er-injuries.html#cb29-99"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>code, {</span>
+<span id="cb29-100"><a href="case-study-er-injuries.html#cb29-100"></a>    <span class="kw">story</span>(<span class="dv">1</span>)</span>
+<span id="cb29-101"><a href="case-study-er-injuries.html#cb29-101"></a>  })</span>
+<span id="cb29-102"><a href="case-study-er-injuries.html#cb29-102"></a>  </span>
+<span id="cb29-103"><a href="case-study-er-injuries.html#cb29-103"></a>  <span class="co"># When the user clicks &quot;Next story&quot;, increase the current position in the</span></span>
+<span id="cb29-104"><a href="case-study-er-injuries.html#cb29-104"></a>  <span class="co"># narrative but never go beyond the interval [1, length of the narrative].</span></span>
+<span id="cb29-105"><a href="case-study-er-injuries.html#cb29-105"></a>  <span class="co"># Note that the mod function (%%) is keeping `current`` within this interval.</span></span>
+<span id="cb29-106"><a href="case-study-er-injuries.html#cb29-106"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>next_story, {</span>
+<span id="cb29-107"><a href="case-study-er-injuries.html#cb29-107"></a>    <span class="kw">story</span>((<span class="kw">story</span>() <span class="op">%%</span><span class="st"> </span><span class="kw">max_no_stories</span>()) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb29-108"><a href="case-study-er-injuries.html#cb29-108"></a>  })</span>
+<span id="cb29-109"><a href="case-study-er-injuries.html#cb29-109"></a>  </span>
+<span id="cb29-110"><a href="case-study-er-injuries.html#cb29-110"></a>  <span class="co"># When the user clicks &quot;Previous story&quot; decrease the current position in the</span></span>
+<span id="cb29-111"><a href="case-study-er-injuries.html#cb29-111"></a>  <span class="co"># narrative. Note that we also take advantage of the mod function.</span></span>
+<span id="cb29-112"><a href="case-study-er-injuries.html#cb29-112"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>prev_story, {</span>
+<span id="cb29-113"><a href="case-study-er-injuries.html#cb29-113"></a>    <span class="kw">story</span>(((<span class="kw">story</span>() <span class="op">-</span><span class="st"> </span><span class="dv">2</span>) <span class="op">%%</span><span class="st"> </span><span class="kw">max_no_stories</span>()) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb29-114"><a href="case-study-er-injuries.html#cb29-114"></a>  })</span>
+<span id="cb29-115"><a href="case-study-er-injuries.html#cb29-115"></a>  </span>
+<span id="cb29-116"><a href="case-study-er-injuries.html#cb29-116"></a>  output<span class="op">$</span>narrative &lt;-<span class="st"> </span><span class="kw">renderText</span>({</span>
+<span id="cb29-117"><a href="case-study-er-injuries.html#cb29-117"></a>    <span class="kw">selected</span>()<span class="op">$</span>narrative[<span class="kw">story</span>()]</span>
+<span id="cb29-118"><a href="case-study-er-injuries.html#cb29-118"></a>  })</span>
+<span id="cb29-119"><a href="case-study-er-injuries.html#cb29-119"></a>}</span>
+<span id="cb29-120"><a href="case-study-er-injuries.html#cb29-120"></a></span>
+<span id="cb29-121"><a href="case-study-er-injuries.html#cb29-121"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basic-reactivity.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="workflow.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/marlycormar/mastering_shiny_book_solutions/edit/master/basic-case-study.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Graphics | Mastering Shiny Solutions</title>
+  <meta name="description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Graphics | Mastering Shiny Solutions" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  <meta name="github-repo" content="marlycormar/mastering_shiny_book_solutions" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Graphics | Mastering Shiny Solutions" />
+  
+  <meta name="twitter:description" content="A solutions manual to Hadley Wickham’s Mastering Shiny." />
+  
+
+<meta name="author" content="Maya Gans and Marly Gotti" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="workflow.html"/>
+<link rel="next" href="user-feedback.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Mastering Shiny Solutions</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#note-boxes"><i class="fa fa-check"></i>Note Boxes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html"><i class="fa fa-check"></i><b>2</b> Your First Shiny App</a>
+<ul>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.1"><i class="fa fa-check"></i>Exercise 2.8.1</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.2"><i class="fa fa-check"></i>Exercise 2.8.2</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.3"><i class="fa fa-check"></i>Exercise 2.8.3</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.4"><i class="fa fa-check"></i>Exercise 2.8.4</a></li>
+<li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.5"><i class="fa fa-check"></i>Exercise 2.8.5</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basic-ui.html"><a href="basic-ui.html"><i class="fa fa-check"></i><b>3</b> Basic UI</a>
+<ul>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.1"><i class="fa fa-check"></i>Exercise 3.2.8.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.2"><i class="fa fa-check"></i>Exercise 3.2.8.2</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.3"><i class="fa fa-check"></i>Exercise 3.2.8.3</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.4"><i class="fa fa-check"></i>Exercise 3.2.8.4</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.5"><i class="fa fa-check"></i>Exercise 3.2.8.5</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.1"><i class="fa fa-check"></i>Exercise 3.3.5.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.2"><i class="fa fa-check"></i>Exercise 3.3.5.2</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.3"><i class="fa fa-check"></i>Exercise 3.3.5.3</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.1"><i class="fa fa-check"></i>Exercise 3.4.6.1</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.2"><i class="fa fa-check"></i>Exercise 3.4.6.2</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-reactivity.html"><a href="basic-reactivity.html"><i class="fa fa-check"></i><b>4</b> Basic Reactivity</a>
+<ul>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.1"><i class="fa fa-check"></i>Exercise 4.3.6.1</a></li>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.2"><i class="fa fa-check"></i>Exercise 4.3.6.2</a></li>
+<li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.4.6.1"><i class="fa fa-check"></i>Exercise 4.4.6.1</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html"><i class="fa fa-check"></i><b>5</b> Case Study: ER Injuries</a>
+<ul>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.1"><i class="fa fa-check"></i>Exercise 5.8.1</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.2"><i class="fa fa-check"></i>Exercise 5.8.2</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.3"><i class="fa fa-check"></i>Exercise 5.8.3</a></li>
+<li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.4"><i class="fa fa-check"></i>Exercise 5.8.4</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="workflow.html"><a href="workflow.html"><i class="fa fa-check"></i><b>6</b> Workflow</a></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a>
+<ul>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.1"><i class="fa fa-check"></i>Exercise 7.5.1</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.2"><i class="fa fa-check"></i>Exercise 7.5.2</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.3"><i class="fa fa-check"></i>Exercise 7.5.3</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="user-feedback.html"><a href="user-feedback.html"><i class="fa fa-check"></i><b>8</b> User Feedback</a></li>
+<li class="chapter" data-level="9" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html"><i class="fa fa-check"></i><b>9</b> Uploads and Downloads</a>
+<ul>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.1"><i class="fa fa-check"></i>Exercise 9.4.1</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.2"><i class="fa fa-check"></i>Exercise 9.4.2</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.3"><i class="fa fa-check"></i>Exercise 9.4.3</a></li>
+<li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.4"><i class="fa fa-check"></i>Exercise 9.4.4</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dynamic-ui.html"><a href="dynamic-ui.html"><i class="fa fa-check"></i><b>10</b> Dynamic UI</a>
+<ul>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.1"><i class="fa fa-check"></i>Exercise 10.1.5.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.2"><i class="fa fa-check"></i>Exercise 10.1.5.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.3"><i class="fa fa-check"></i>Exercise 10.1.5.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.4"><i class="fa fa-check"></i>Exercise 10.1.5.4</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.5"><i class="fa fa-check"></i>Exercise 10.1.5.5</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.1"><i class="fa fa-check"></i>Exercise 10.2.3.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.2"><i class="fa fa-check"></i>Exercise 10.2.3.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.2.3.3"><i class="fa fa-check"></i>Exercise 10.2.3.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.1"><i class="fa fa-check"></i>Exercise 10.3.4.1</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.2"><i class="fa fa-check"></i>Exercise 10.3.4.2</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.3"><i class="fa fa-check"></i>Exercise 10.3.4.3</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.4"><i class="fa fa-check"></i>Exercise 10.3.4.4</a></li>
+<li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.5"><i class="fa fa-check"></i>Exercise 10.3.4.5</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="bookmarking.html"><a href="bookmarking.html"><i class="fa fa-check"></i><b>11</b> Bookmarking</a>
+<ul>
+<li class="chapter" data-level="" data-path="bookmarking.html"><a href="bookmarking.html#exercise-11.3.1"><i class="fa fa-check"></i>Exercise 11.3.1</a></li>
+<li class="chapter" data-level="" data-path="bookmarking.html"><a href="bookmarking.html#exercise-11.3.2"><i class="fa fa-check"></i>Exercise 11.3.2</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="tidy-evaluation.html"><a href="tidy-evaluation.html"><i class="fa fa-check"></i><b>12</b> Tidy Evaluation</a></li>
+<li class="chapter" data-level="13" data-path="general-guidelines.html"><a href="general-guidelines.html"><i class="fa fa-check"></i><b>13</b> General Guidelines</a></li>
+<li class="chapter" data-level="14" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>14</b> Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.1"><i class="fa fa-check"></i>Exercise 14.4.1</a></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.2"><i class="fa fa-check"></i>Exercise 14.4.2</a></li>
+<li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.3"><i class="fa fa-check"></i>Exercise 14.4.3</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>15</b> Modules</a>
+<ul>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.1"><i class="fa fa-check"></i>Exercise 15.6.1</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.2"><i class="fa fa-check"></i>Exercise 15.6.2</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.3"><i class="fa fa-check"></i>Exercise 15.6.3</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.4"><i class="fa fa-check"></i>Exercise 15.6.4</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.5"><i class="fa fa-check"></i>Exercise 15.6.5</a></li>
+<li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.6"><i class="fa fa-check"></i>Exercise 15.6.6</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>16</b> Packages</a></li>
+<li class="chapter" data-level="17" data-path="testing.html"><a href="testing.html"><i class="fa fa-check"></i><b>17</b> Testing</a></li>
+<li class="chapter" data-level="18" data-path="safety.html"><a href="safety.html"><i class="fa fa-check"></i><b>18</b> Safety</a></li>
+<li class="chapter" data-level="19" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>19</b> Performance</a></li>
+<li class="chapter" data-level="20" data-path="why-reactivity.html"><a href="why-reactivity.html"><i class="fa fa-check"></i><b>20</b> Why reactivity?</a></li>
+<li class="chapter" data-level="21" data-path="dependency-tracking.html"><a href="dependency-tracking.html"><i class="fa fa-check"></i><b>21</b> Dependency Tracking</a></li>
+<li class="chapter" data-level="22" data-path="scoping.html"><a href="scoping.html"><i class="fa fa-check"></i><b>22</b> Scoping</a></li>
+<li class="chapter" data-level="23" data-path="reactive-components.html"><a href="reactive-components.html"><i class="fa fa-check"></i><b>23</b> Reactive Components</a></li>
+<li class="chapter" data-level="24" data-path="advanced-ui.html"><a href="advanced-ui.html"><i class="fa fa-check"></i><b>24</b> Advanced UI</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Mastering Shiny Solutions</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="graphics" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Graphics</h1>
+<div class="TODO">
+This chapter is in development...
+</div>
+<div id="exercise-7.5.1" class="section level3 unnumbered" number="">
+<h3>Exercise 7.5.1</h3>
+<p>Make a plot with click handle that shows all the data returned in the input.</p>
+<div id="solution" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>We can use the <code>allRows</code> argument in <code>nearPoints</code> to see all the data, and adds a boolean column that returns <code>TRUE</code> for the point that was clicked on</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="graphics.html#cb30-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb30-2"><a href="graphics.html#cb30-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb30-3"><a href="graphics.html#cb30-3"></a></span>
+<span id="cb30-4"><a href="graphics.html#cb30-4"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb30-5"><a href="graphics.html#cb30-5"></a>    <span class="kw">plotOutput</span>(<span class="st">&quot;plot&quot;</span>, <span class="dt">click =</span> <span class="st">&quot;plot_click&quot;</span>),</span>
+<span id="cb30-6"><a href="graphics.html#cb30-6"></a>    <span class="kw">tableOutput</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb30-7"><a href="graphics.html#cb30-7"></a>)</span>
+<span id="cb30-8"><a href="graphics.html#cb30-8"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb30-9"><a href="graphics.html#cb30-9"></a>    output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
+<span id="cb30-10"><a href="graphics.html#cb30-10"></a>        <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
+<span id="cb30-11"><a href="graphics.html#cb30-11"></a>    }, <span class="dt">res =</span> <span class="dv">96</span>)</span>
+<span id="cb30-12"><a href="graphics.html#cb30-12"></a></span>
+<span id="cb30-13"><a href="graphics.html#cb30-13"></a>    output<span class="op">$</span>data &lt;-<span class="st"> </span><span class="kw">renderTable</span>({</span>
+<span id="cb30-14"><a href="graphics.html#cb30-14"></a>        <span class="kw">nearPoints</span>(mtcars, input<span class="op">$</span>plot_click, <span class="dt">allRows =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb30-15"><a href="graphics.html#cb30-15"></a>    })</span>
+<span id="cb30-16"><a href="graphics.html#cb30-16"></a>}</span>
+<span id="cb30-17"><a href="graphics.html#cb30-17"></a></span>
+<span id="cb30-18"><a href="graphics.html#cb30-18"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-7.5.2" class="section level3 unnumbered" number="">
+<h3>Exercise 7.5.2</h3>
+<p>Make a plot with click, dblclick, hover, and brush output handlers and nicely display the current selection in the sidebar. Plot the plot in the main panel.</p>
+<div id="solution-1" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>We can use the <code>nearPoints</code> function to extract the data from <code>plot_click</code>, <code>plot_dbl</code>, and <code>plot_hover</code>. We need to use the function <code>brushedPoints</code> to extract the points within the <code>plot_brush</code> area.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="graphics.html#cb31-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb31-2"><a href="graphics.html#cb31-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb31-3"><a href="graphics.html#cb31-3"></a></span>
+<span id="cb31-4"><a href="graphics.html#cb31-4"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb31-5"><a href="graphics.html#cb31-5"></a></span>
+<span id="cb31-6"><a href="graphics.html#cb31-6"></a>    <span class="kw">sidebarPanel</span>(<span class="dt">width =</span> <span class="dv">6</span>,</span>
+<span id="cb31-7"><a href="graphics.html#cb31-7"></a>        <span class="kw">h4</span>(<span class="st">&quot;Selected:&quot;</span>),</span>
+<span id="cb31-8"><a href="graphics.html#cb31-8"></a>        <span class="kw">tableOutput</span>(<span class="st">&quot;click&quot;</span>),</span>
+<span id="cb31-9"><a href="graphics.html#cb31-9"></a>        <span class="kw">h4</span>(<span class="st">&quot;Double Clicked:&quot;</span>),</span>
+<span id="cb31-10"><a href="graphics.html#cb31-10"></a>        <span class="kw">br</span>(),</span>
+<span id="cb31-11"><a href="graphics.html#cb31-11"></a>        <span class="kw">tableOutput</span>(<span class="st">&quot;dbl&quot;</span>),</span>
+<span id="cb31-12"><a href="graphics.html#cb31-12"></a>        <span class="kw">h4</span>(<span class="st">&quot;Hover:&quot;</span>),</span>
+<span id="cb31-13"><a href="graphics.html#cb31-13"></a>        <span class="kw">br</span>(),</span>
+<span id="cb31-14"><a href="graphics.html#cb31-14"></a>        <span class="kw">tableOutput</span>(<span class="st">&quot;hover&quot;</span>),</span>
+<span id="cb31-15"><a href="graphics.html#cb31-15"></a>        <span class="kw">br</span>(),</span>
+<span id="cb31-16"><a href="graphics.html#cb31-16"></a>        <span class="kw">h4</span>(<span class="st">&quot;Brushed:&quot;</span>),</span>
+<span id="cb31-17"><a href="graphics.html#cb31-17"></a>        <span class="kw">tableOutput</span>(<span class="st">&quot;brush&quot;</span>)</span>
+<span id="cb31-18"><a href="graphics.html#cb31-18"></a>    ),</span>
+<span id="cb31-19"><a href="graphics.html#cb31-19"></a></span>
+<span id="cb31-20"><a href="graphics.html#cb31-20"></a>    <span class="kw">mainPanel</span>(<span class="dt">width =</span> <span class="dv">6</span>,</span>
+<span id="cb31-21"><a href="graphics.html#cb31-21"></a>      <span class="kw">plotOutput</span>(<span class="st">&quot;plot&quot;</span>, </span>
+<span id="cb31-22"><a href="graphics.html#cb31-22"></a>                 <span class="dt">click =</span> <span class="st">&quot;plot_click&quot;</span>, </span>
+<span id="cb31-23"><a href="graphics.html#cb31-23"></a>                 <span class="dt">dblclick =</span> <span class="st">&quot;plot_dbl&quot;</span>,</span>
+<span id="cb31-24"><a href="graphics.html#cb31-24"></a>                 <span class="dt">hover =</span> <span class="st">&quot;plot_hover&quot;</span>, </span>
+<span id="cb31-25"><a href="graphics.html#cb31-25"></a>                 <span class="dt">brush =</span> <span class="st">&quot;plot_brush&quot;</span>)</span>
+<span id="cb31-26"><a href="graphics.html#cb31-26"></a>    )</span>
+<span id="cb31-27"><a href="graphics.html#cb31-27"></a></span>
+<span id="cb31-28"><a href="graphics.html#cb31-28"></a>)</span>
+<span id="cb31-29"><a href="graphics.html#cb31-29"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
+<span id="cb31-30"><a href="graphics.html#cb31-30"></a>    </span>
+<span id="cb31-31"><a href="graphics.html#cb31-31"></a>    output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
+<span id="cb31-32"><a href="graphics.html#cb31-32"></a>        <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
+<span id="cb31-33"><a href="graphics.html#cb31-33"></a>    }, <span class="dt">res =</span> <span class="dv">96</span>)</span>
+<span id="cb31-34"><a href="graphics.html#cb31-34"></a></span>
+<span id="cb31-35"><a href="graphics.html#cb31-35"></a>    output<span class="op">$</span>click &lt;-<span class="st"> </span><span class="kw">renderTable</span>(<span class="kw">nearPoints</span>(mtcars, input<span class="op">$</span>plot_click))</span>
+<span id="cb31-36"><a href="graphics.html#cb31-36"></a>    output<span class="op">$</span>hover &lt;-<span class="st"> </span><span class="kw">renderTable</span>(<span class="kw">nearPoints</span>(mtcars, input<span class="op">$</span>plot_hover))</span>
+<span id="cb31-37"><a href="graphics.html#cb31-37"></a>    output<span class="op">$</span>dbl &lt;-<span class="st"> </span><span class="kw">renderTable</span>(<span class="kw">nearPoints</span>(mtcars, input<span class="op">$</span>plot_dbl))</span>
+<span id="cb31-38"><a href="graphics.html#cb31-38"></a>    output<span class="op">$</span>brush &lt;-<span class="st"> </span><span class="kw">renderTable</span>(<span class="kw">brushedPoints</span>(mtcars, input<span class="op">$</span>plot_brush))</span>
+<span id="cb31-39"><a href="graphics.html#cb31-39"></a>}</span>
+<span id="cb31-40"><a href="graphics.html#cb31-40"></a></span>
+<span id="cb31-41"><a href="graphics.html#cb31-41"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+</div>
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+</div>
+<div id="exercise-7.5.3" class="section level3 unnumbered" number="">
+<h3>Exercise 7.5.3</h3>
+<p>Compute the limits of the distance scale using the size of the plot.</p>
+<div id="solution-2" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="graphics.html#cb32-1"></a>output_size &lt;-<span class="st"> </span><span class="cf">function</span>(id) {</span>
+<span id="cb32-2"><a href="graphics.html#cb32-2"></a>  <span class="kw">reactive</span>(<span class="kw">c</span>(</span>
+<span id="cb32-3"><a href="graphics.html#cb32-3"></a>    session<span class="op">$</span>clientData[[<span class="kw">paste0</span>(<span class="st">&quot;output_&quot;</span>, id, <span class="st">&quot;_width&quot;</span>)]],</span>
+<span id="cb32-4"><a href="graphics.html#cb32-4"></a>    session<span class="op">$</span>clientData[[<span class="kw">paste0</span>(<span class="st">&quot;output_&quot;</span>, id, <span class="st">&quot;_height&quot;</span>)]]</span>
+<span id="cb32-5"><a href="graphics.html#cb32-5"></a>  ))</span>
+<span id="cb32-6"><a href="graphics.html#cb32-6"></a>}</span></code></pre></div>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="workflow.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="user-feedback.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": {}
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/marlycormar/mastering_shiny_book_solutions/edit/master/action-graphics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
