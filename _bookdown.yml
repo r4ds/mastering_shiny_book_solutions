@@ -1,4 +1,5 @@
 book_filename: "mastering-shiny-solutions"
+output_dir: "docs"
 language:
   ui:
     chapter_name: "Chapter "
