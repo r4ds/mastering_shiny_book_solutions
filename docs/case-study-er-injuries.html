@@ -297,12 +297,15 @@ depends on the <code>selected()</code> reactive and a new input, <code>input$sto
 <h3>Exercise 5.8.2</h3>
 <p>What happens if you flip <code>fct_infreq()</code> and <code>fct_lump()</code> in the code that
 reduces the summary tables?</p>
-<p>:::solution
-#### Solution {-}</p>
-<p>Flipping the order of <code>fct_infreq()</code> and <code>fct_lump()</code> will output the same
-dataset, but it will change the order of the factors in the column that these
-functions are applied. <code>fct_infreq()</code> orders the factor levels by frequency, and <code>fct_lump()</code> preserves the top number of factors specified, grouping the rest.</p>
-<p>For example, let’s look at the number of times each level within <code>diag</code> occurs in the <code>injuries</code> dataset:</p>
+<div id="solution-1" class="section level4 unnumbered solution" number="">
+<h4>Solution</h4>
+<p>Flipping the order of <code>fct_infreq()</code> and <code>fct_lump()</code> will only change the
+factor levels order. In particular, the function <code>fct_infreq()</code> orders the
+factor levels by frequency, and the function <code>fct_lump()</code> also orders the
+factor levels by frequency but it will only keep the top <code>n</code> factors and label
+the rest as <code>Other</code>.</p>
+<p>For example, let’s look at the number of times each level within <code>diag</code> occurs
+in the <code>injuries</code> dataset:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="case-study-er-injuries.html#cb22-1"></a>injuries <span class="op">%&gt;%</span></span>
 <span id="cb22-2"><a href="case-study-er-injuries.html#cb22-2"></a><span class="st">  </span><span class="kw">group_by</span>(diag) <span class="op">%&gt;%</span></span>
 <span id="cb22-3"><a href="case-study-er-injuries.html#cb22-3"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
@@ -322,26 +325,29 @@ functions are applied. <code>fct_infreq()</code> orders the factor levels by fre
 ##  9 Dislocation            28811
 ## 10 Poisoning              22200
 ## # … with 20 more rows</code></pre>
-<p><code>fct_infreq</code> will reorder the factors in descending order as seen in the table above, and then <code>fct_lump</code> will lump together everything after the 5th most commonly seen level.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="case-study-er-injuries.html#cb24-1"></a>table1 &lt;-<span class="st"> </span>injuries <span class="op">%&gt;%</span></span>
+<p>If we apply <code>fct_infreq()</code> first, then it will reorder the factors in
+descending order as seen in the previous output. If afterwards we apply
+<code>fct_lump()</code>, then it will lump together everything after the nth most commonly
+seen level.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="case-study-er-injuries.html#cb24-1"></a>diag &lt;-<span class="st"> </span>injuries <span class="op">%&gt;%</span></span>
 <span id="cb24-2"><a href="case-study-er-injuries.html#cb24-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diag =</span> <span class="kw">fct_lump</span>(<span class="kw">fct_infreq</span>(diag), <span class="dt">n =</span> <span class="dv">5</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb24-3"><a href="case-study-er-injuries.html#cb24-3"></a><span class="st">  </span><span class="kw">group_by</span>(diag) <span class="op">%&gt;%</span></span>
-<span id="cb24-4"><a href="case-study-er-injuries.html#cb24-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">as.integer</span>(<span class="kw">sum</span>(weight))) <span class="op">%&gt;%</span></span>
-<span id="cb24-5"><a href="case-study-er-injuries.html#cb24-5"></a><span class="st">  </span><span class="kw">arrange</span>(n)</span>
-<span id="cb24-6"><a href="case-study-er-injuries.html#cb24-6"></a></span>
-<span id="cb24-7"><a href="case-study-er-injuries.html#cb24-7"></a><span class="kw">levels</span>(table1<span class="op">$</span>diag)</span></code></pre></div>
-<pre><code>[1] &quot;Other Or Not Stated&quot;   &quot;Fracture&quot;              &quot;Laceration&quot;           
-[4] &quot;Strain, Sprain&quot;        &quot;Contusion Or Abrasion&quot; &quot;Other&quot;                </code></pre>
-<p>Conversely, we can first <code>fct_lump</code> first, which will make the most frequently seen factor <code>Other</code>. Now when we apply <code>fct_infreq()</code> the first level will be <code>Other</code> and not <code>Other Or Not Stated</code> as above.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="case-study-er-injuries.html#cb26-1"></a>table2 &lt;-<span class="st"> </span>injuries <span class="op">%&gt;%</span></span>
+<span id="cb24-3"><a href="case-study-er-injuries.html#cb24-3"></a><span class="st">  </span><span class="kw">pull</span>(diag)</span>
+<span id="cb24-4"><a href="case-study-er-injuries.html#cb24-4"></a></span>
+<span id="cb24-5"><a href="case-study-er-injuries.html#cb24-5"></a><span class="kw">levels</span>(diag)</span></code></pre></div>
+<pre><code>## [1] &quot;Laceration&quot;            &quot;Fracture&quot;              &quot;Strain, Sprain&quot;       
+## [4] &quot;Contusion Or Abrasion&quot; &quot;Other Or Not Stated&quot;   &quot;Other&quot;</code></pre>
+<p>Conversely, if we apply <code>fct_lump()</code> first, then it will make the most
+frequently seen factor <code>Other</code>. If afterwards we apply <code>fct_infreq()</code>, then it
+will label the first level as <code>Other</code> and not as <code>Laceration</code>, which was the
+case for the previous code.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="case-study-er-injuries.html#cb26-1"></a>diag &lt;-<span class="st"> </span>injuries <span class="op">%&gt;%</span></span>
 <span id="cb26-2"><a href="case-study-er-injuries.html#cb26-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diag =</span> <span class="kw">fct_infreq</span>(<span class="kw">fct_lump</span>(diag, <span class="dt">n =</span> <span class="dv">5</span>))) <span class="op">%&gt;%</span></span>
-<span id="cb26-3"><a href="case-study-er-injuries.html#cb26-3"></a><span class="st">  </span><span class="kw">group_by</span>(diag) <span class="op">%&gt;%</span></span>
-<span id="cb26-4"><a href="case-study-er-injuries.html#cb26-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">as.integer</span>(<span class="kw">sum</span>(weight))) <span class="op">%&gt;%</span></span>
-<span id="cb26-5"><a href="case-study-er-injuries.html#cb26-5"></a><span class="st">  </span><span class="kw">arrange</span>(n)</span>
-<span id="cb26-6"><a href="case-study-er-injuries.html#cb26-6"></a></span>
-<span id="cb26-7"><a href="case-study-er-injuries.html#cb26-7"></a><span class="kw">levels</span>(table2<span class="op">$</span>diag)</span></code></pre></div>
-<pre><code>[1] &quot;Other&quot;                 &quot;Other Or Not Stated&quot;   &quot;Fracture&quot;             
-[4] &quot;Laceration&quot;            &quot;Strain, Sprain&quot;        &quot;Contusion Or Abrasion&quot;</code></pre>
+<span id="cb26-3"><a href="case-study-er-injuries.html#cb26-3"></a><span class="st">  </span><span class="kw">pull</span>(diag)</span>
+<span id="cb26-4"><a href="case-study-er-injuries.html#cb26-4"></a></span>
+<span id="cb26-5"><a href="case-study-er-injuries.html#cb26-5"></a><span class="kw">levels</span>(diag)</span></code></pre></div>
+<pre><code>## [1] &quot;Other&quot;                 &quot;Laceration&quot;            &quot;Fracture&quot;             
+## [4] &quot;Strain, Sprain&quot;        &quot;Contusion Or Abrasion&quot; &quot;Other Or Not Stated&quot;</code></pre>
+</div>
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
@@ -350,7 +356,7 @@ functions are applied. <code>fct_infreq()</code> orders the factor levels by fre
 <h3>Exercise 5.8.3</h3>
 <p>Add an input control that lets the user decide how many rows to show in the
 summary tables.</p>
-<div id="solution-1" class="section level4 unnumbered solution" number="">
+<div id="solution-2" class="section level4 unnumbered solution" number="">
 <h4>Solution</h4>
 <p>Our function <code>count_top</code> is responsible for grouping our variables into a set
 number of factors, lumping the rest of the values into “Other”. The function
@@ -466,7 +472,7 @@ from what the user selects in order to display the number of rows they input.</p
 backward buttons.</p>
 <p>Advanced: Make the list of narratives “circular” so that advancing forward from
 the last narrative takes you to the first.</p>
-<div id="solution-2" class="section level4 unnumbered solution" number="">
+<div id="solution-3" class="section level4 unnumbered solution" number="">
 <h4>Solution</h4>
 <p>We can add two buttons <code>prev_story</code> and <code>next_story</code> to iterate through the
 narrative. In addition, we can include a reactive value, <code>story</code>, that keeps

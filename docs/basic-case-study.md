@@ -51,13 +51,16 @@ reduces the summary tables?
 :::solution
 #### Solution {-}
 
-Flipping the order of `fct_infreq()` and `fct_lump()` will output the same
-dataset, but it will change the order of the factors in the column that these
-functions are applied. `fct_infreq()` orders the factor levels by frequency, and `fct_lump()` preserves the top number of factors specified, grouping the rest.
+Flipping the order of `fct_infreq()` and `fct_lump()` will only change the
+factor levels order. In particular, the function `fct_infreq()` orders the
+factor levels by frequency, and the function `fct_lump()` also orders the
+factor levels by frequency but it will only keep the top `n` factors and label
+the rest as `Other`.
 
 
 
-For example, let's look at the number of times each level within `diag` occurs in the `injuries` dataset: 
+For example, let's look at the number of times each level within `diag` occurs
+in the `injuries` dataset:
 
 
 ```r
@@ -85,41 +88,45 @@ injuries %>%
 ## # … with 20 more rows
 ```
 
-`fct_infreq` will reorder the factors in descending order as seen in the table above, and then `fct_lump` will lump together everything after the 5th most commonly seen level.
+If we apply `fct_infreq()` first, then it will reorder the factors in
+descending order as seen in the previous output. If afterwards we apply
+`fct_lump()`, then it will lump together everything after the nth most commonly
+seen level.
 
 
 ```r
-table1 <- injuries %>%
+diag <- injuries %>%
   mutate(diag = fct_lump(fct_infreq(diag), n = 5)) %>%
-  group_by(diag) %>%
-  summarise(n = as.integer(sum(weight))) %>%
-  arrange(n)
+  pull(diag)
 
-levels(table1$diag)
+levels(diag)
 ```
 
 ```
-[1] "Other Or Not Stated"   "Fracture"              "Laceration"           
-[4] "Strain, Sprain"        "Contusion Or Abrasion" "Other"                
+## [1] "Laceration"            "Fracture"              "Strain, Sprain"       
+## [4] "Contusion Or Abrasion" "Other Or Not Stated"   "Other"
 ```
 
-Conversely, we can first `fct_lump` first, which will make the most frequently seen factor `Other`. Now when we apply `fct_infreq()` the first level will be `Other` and not `Other Or Not Stated` as above.
+Conversely, if we apply `fct_lump()` first, then it will make the most
+frequently seen factor `Other`. If afterwards we apply `fct_infreq()`, then it
+will label the first level as `Other` and not as `Laceration`, which was the
+case for the previous code.
 
 
 ```r
-table2 <- injuries %>%
+diag <- injuries %>%
   mutate(diag = fct_infreq(fct_lump(diag, n = 5))) %>%
-  group_by(diag) %>%
-  summarise(n = as.integer(sum(weight))) %>%
-  arrange(n)
+  pull(diag)
 
-levels(table2$diag)
+levels(diag)
 ```
 
 ```
-[1] "Other"                 "Other Or Not Stated"   "Fracture"             
-[4] "Laceration"            "Strain, Sprain"        "Contusion Or Abrasion"
+## [1] "Other"                 "Laceration"            "Fracture"             
+## [4] "Strain, Sprain"        "Contusion Or Abrasion" "Other Or Not Stated"
 ```
+
+:::
 
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
