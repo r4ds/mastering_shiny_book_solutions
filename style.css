@@ -39,6 +39,14 @@ div.question {
     border-radius: 31px;
 }
 
+.solution {
+  margin-left: 40px;
+}
+
+.solution h4 {
+  font-style: italic;
+}
+
 div.TODO {
     padding: 1em;
     margin: 1em 0;

@@ -1,22 +1,33 @@
 # Modules
 
-## 15.6.1 {-}
+```{r, echo=FALSE}
+htmltools::includeHTML("./partials/todo.html")
+```
 
-:::question
+### Exercise 15.6.1 {-}
+
 Example passing input$foo to reactive and it not working.
-:::
-  
+
+:::solution
+#### Solution {-}
+
 I don't really know what this question is asking, but I think the point is to remember:
 
-> The main challenge with this sort of code is remembering when you use the reactive (e.g. x$value) vs. when you use its value (e.g. x$value()). Just remember that when passing an argument to a module, you want the module to react to the value changing which means that you have to pass the reactive, not it’s current value.
+> The main challenge with this sort of code is remembering when you use the reactive (e.g. x\$value) vs. when you use its value (e.g. x\$value()). Just remember that when passing an argument to a module, you want the module to react to the value changing which means that you have to pass the reactive, not it's current value.
 
-Where in this scenario, `input$foo` is analagous to `x$value`.
-
-## 15.6.2 {-}
-
-:::question
-Rewrite `selectVarServer()` so that both data and filter are reactive. Pair it with a app function that lets the user pick the dataset with the dataset module, a function with an `inputSelect()` that lets the user filter for numeric, character, or factor variables.
+Where in this scenario, `input$foo` is analogous to `x$value`.
 :::
+
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+
+### Exercise 15.6.2 {-}
+
+Rewrite `selectVarServer()` so that both data and filter are reactive. Pair it with a app function that lets the user pick the dataset with the dataset module, a function with an `inputSelect()` that lets the user filter for numeric, character, or factor variables.
+
+:::solution
+#### Solution {-}
 
 The modules `datasetInput`, `datasetServer`, and `selectVarInput` are the same, as well as the `find_vars` function. 
 
@@ -84,10 +95,14 @@ selectVarApp <- function() {
     shinyApp(ui, server)
 }
 ```
+:::
 
-## 15.6.3 {-}
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
 
-:::question
+### Exercise 15.6.3 {-}
+
 The following code defines output and server components of a module that takes a numeric input and produces a bulleted list of three summary statistics. Create an app function that allows you to experiment with it. The app function should take a data frame as input, and use `numericVarSelectInput()` to pick the variable to summarise.
 
 ```{r, eval=FALSE}
@@ -112,7 +127,9 @@ summaryServer <- function(id, var) {
   })
 }
 ```
-:::
+
+:::solution
+#### Solution {-}
 
 We only need to add the code above to the `selectVarApp()` example in the book, and adapt the app code to include the `summaryOutput` instead of the `verbatimTextOutput`, and on the server side pass `var` to the `summaryServer` function instead of to the text output. 
 
@@ -134,11 +151,15 @@ selectVarApp <- function(filter = is.numeric) {
 
 selectVarApp()
 ```
+:::
 
-## 15.6.4 {-}
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
 
-:::question
-The following module input provides a text control that lets you type a date in ISO8601 format (yyyy-mm-dd). Complete the module by providing a server function that uses output$error to display a message if the entered value is not a valid date. The module should return a Date object for valid dates. (Hint: use strptime(x, "%Y-%m-%d") to parse the string; it will return NA if the value isn’t a valid date.)
+### Exercise 15.6.4 {-}
+
+The following module input provides a text control that lets you type a date in ISO8601 format (yyyy-mm-dd). Complete the module by providing a server function that uses output$error to display a message if the entered value is not a valid date. The module should return a Date object for valid dates. (Hint: use strptime(x, "%Y-%m-%d") to parse the string; it will return NA if the value isn't a valid date.)
 
 ```{r, eval=FALSE}
 ymdDateUI <- function(id, label) {
@@ -150,7 +171,9 @@ ymdDateUI <- function(id, label) {
   )
 }
 ```
-:::
+
+:::solution
+#### Solution {-}
 
 We create a `ymdDateServer` function that renders the error if `strptime(input$date, "%Y-%m-%d")` is `NA`. 
 
@@ -185,13 +208,18 @@ ymdApp <- function(filter = is.numeric) {
 }
 ymdApp()
 ```
-
-
-## 15.6.5 {-}
-
-:::question
-In `radioExtraServer()`, return a list that contains both the value and whether or not it came from other
 :::
+
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+
+### Exercise 15.6.5 {-}
+
+In `radioExtraServer()`, return a list that contains both the value and whether or not it came from other.
+
+:::solution
+#### Solution {-}
 
 We can adapt the reactive we return from `radioExtraServer` to return both the reactive and whether it came from the primary button choices or not as a list. 
 
@@ -227,7 +255,7 @@ radioExtraServer <- function(id) {
 }
 ```
 
-In doing so, we need to adapt the `radioExtraApp` code to return `extra$selected()` rather than `extra`
+In doing so, we need to adapt the `radioExtraApp` code to return `extra$selected()` rather than `extra`.
 
 ```{r, eval=FALSE}
 radioExtraApp <- function(...) {
@@ -246,12 +274,19 @@ radioExtraApp <- function(...) {
 }
 radioExtraApp(c("a", "b", "c"))
 ```
-
-## 15.6.6 {-}
-
-:::question
-In `wizardServer()` verify that the namespacing has been set up correctly by using two or more wizards in a single add, and checking that you can navigate through each wizard independently.
 :::
+
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
+
+### Exercise 15.6.6 {-}
+
+In `wizardServer()` verify that the namespacing has been set up correctly by using two or more wizards in a single add, and checking that you can navigate through each wizard independently.
+
+:::solution
+#### Solution {-}
 
 ```{r, eval=FALSE}
 ```
+:::

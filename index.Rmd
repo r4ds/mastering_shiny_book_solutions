@@ -16,20 +16,16 @@ description: "A solutions manual to Hadley Wickham's Mastering Shiny."
 
 This book offers solutions to the exercises from Hadley Wickham's book [Mastering Shiny](https://mastering-shiny.org/). It is a work in progress and under active development. The code for this book can be found on [GitHub](https://github.com/marlycormar/mastering_shiny_book_solutions). Your PRs and suggestions are very welcome.
 
-## Note Boxes
+## Note Boxes {-}
 
-We use three different types of note boxes throughout the text:
+We use three different types of boxes throughout the book.
 
 :::note
-This "note" box denotes we were either unclear what the question was asking or have follow up questions pertaining to the question.
+This "note" box denotes we were either unclear what the exercise was asking or have follow up questions.
 :::
 
 :::TODO
-This "TODO" box denotes that these chapters are only a rough draft and have yet to be reviewed!!
-:::
-
-:::question
-These brackets indicate the question from the original text 
+This "TODO" box denotes that the exercises in the chapter have either partial solutions or have yet to be reviewed.
 :::
 
 ## License {-}

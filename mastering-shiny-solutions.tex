@@ -1,0 +1,3217 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Mastering Shiny Solutions},
+            pdfauthor={Maya Gans and Marly Gotti},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{Mastering Shiny Solutions}
+\author{Maya Gans and Marly Gotti}
+\date{(updated on 2020-07-27)}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{welcome}{%
+\chapter*{Welcome}\label{welcome}}
+\addcontentsline{toc}{chapter}{Welcome}
+
+This book offers solutions to the exercises from Hadley Wickham's book \href{https://mastering-shiny.org/}{Mastering Shiny}. It is a work in progress and under active development. The code for this book can be found on \href{https://github.com/marlycormar/mastering_shiny_book_solutions}{GitHub}. Your PRs and suggestions are very welcome.
+
+\hypertarget{note-boxes}{%
+\section*{Note Boxes}\label{note-boxes}}
+\addcontentsline{toc}{section}{Note Boxes}
+
+We use three different types of boxes throughout the book.
+
+\begin{note}
+
+This ``note'' box denotes we were either unclear what the exercise was asking or have follow up questions.
+
+\end{note}
+
+\begin{TODO}
+
+This ``TODO'' box denotes that the exercises in the chapter have either partial solutions or have yet to be reviewed.
+
+\end{TODO}
+
+\hypertarget{license}{%
+\section*{License}\label{license}}
+\addcontentsline{toc}{section}{License}
+
+This work by Maya Gans and Marly Gotti is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
+
+\hypertarget{acknowledgements}{%
+\section*{Acknowledgements}\label{acknowledgements}}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+\hypertarget{preface}{%
+\chapter{Preface}\label{preface}}
+
+There are no exercises in this chapter.
+
+\hypertarget{your-first-shiny-app}{%
+\chapter{Your First Shiny App}\label{your-first-shiny-app}}
+
+\hypertarget{exercise-2.8.1}{%
+\subsection*{Exercise 2.8.1}\label{exercise-2.8.1}}
+\addcontentsline{toc}{subsection}{Exercise 2.8.1}
+
+Create an app that greets the user by name. You don't know all the functions
+you need to do this yet, so I've included some lines of code below. Figure out
+which lines you'll use and then copy and paste them into the right place in a
+Shiny app.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{textInput}\NormalTok{(}\StringTok{"name"}\NormalTok{, }\StringTok{"What's your name?"}\NormalTok{)}
+\KeywordTok{renderText}\NormalTok{(\{}
+  \KeywordTok{paste0}\NormalTok{(}\StringTok{"Hello "}\NormalTok{, input}\OperatorTok{$}\NormalTok{name)}
+\NormalTok{\})}
+\KeywordTok{numericInput}\NormalTok{(}\StringTok{"age"}\NormalTok{, }\StringTok{"How old are you?"}\NormalTok{)}
+\KeywordTok{textOutput}\NormalTok{(}\StringTok{"greeting"}\NormalTok{)}
+\KeywordTok{tableOutput}\NormalTok{(}\StringTok{"mortgage"}\NormalTok{)}
+\KeywordTok{renderPlot}\NormalTok{(}\StringTok{"histogram"}\NormalTok{, \{}
+  \KeywordTok{hist}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000}\NormalTok{))}
+\NormalTok{\}, }\DataTypeTok{res =} \DecValTok{96}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution}{%
+\subsubsection*{Solution}\label{solution}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+In the UI, we will need a \texttt{textInput} for the user to input text, and
+a \texttt{textOutput} to output any custom text to the app. The corresponding server
+function to \texttt{textOutput} is \texttt{renderText}, which we can use to compose the
+output element we've named ``greeting''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{textInput}\NormalTok{(}\StringTok{"name"}\NormalTok{, }\StringTok{"What's your name?"}\NormalTok{),}
+  \KeywordTok{textOutput}\NormalTok{(}\StringTok{"greeting"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{greeting <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{}
+    \KeywordTok{paste0}\NormalTok{(}\StringTok{"Hello "}\NormalTok{, input}\OperatorTok{$}\NormalTok{name)}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-2.8.2}{%
+\section*{Exercise 2.8.2}\label{exercise-2.8.2}}
+\addcontentsline{toc}{section}{Exercise 2.8.2}
+
+Suppose your friend wants to design an app that allows the user to set a number
+(\texttt{x}) between 1 and 50, and displays the result of multiplying this number by
+5. This is their first attempt:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"x"}\NormalTok{, }\DataTypeTok{label =} \StringTok{"If x is"}\NormalTok{, }\DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{50}\NormalTok{, }\DataTypeTok{value =} \DecValTok{30}\NormalTok{),}
+  \StringTok{"then x times 5 is"}\NormalTok{,}
+  \KeywordTok{textOutput}\NormalTok{(}\StringTok{"product"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{product <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{ }
+\NormalTok{    x }\OperatorTok{*}\StringTok{ }\DecValTok{5}
+\NormalTok{  \})}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+But unfortunately it has an error:
+
+\includegraphics{images/ex-x-times-5.png}
+
+Can you help them find and correct the error?
+
+\begin{solution}
+
+\hypertarget{solution-1}{%
+\subsubsection*{Solution}\label{solution-1}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+The error here arises because on the server side we need to write \texttt{input\$x}
+rather than \texttt{x}. By writing \texttt{x}, we are looking for element \texttt{x} which doesn't
+exist in the Shiny environment; \texttt{x} only exists within the read-only object
+\texttt{input}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"x"}\NormalTok{, }\DataTypeTok{label =} \StringTok{"If x is"}\NormalTok{, }\DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{50}\NormalTok{, }\DataTypeTok{value =} \DecValTok{30}\NormalTok{),}
+  \StringTok{"then x times 5 is"}\NormalTok{,}
+  \KeywordTok{textOutput}\NormalTok{(}\StringTok{"product"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{product <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{ }
+\NormalTok{    input}\OperatorTok{$}\NormalTok{x }\OperatorTok{*}\StringTok{ }\DecValTok{5}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-2.8.3}{%
+\section*{Exercise 2.8.3}\label{exercise-2.8.3}}
+\addcontentsline{toc}{section}{Exercise 2.8.3}
+
+Extend the app from the previous exercise to allow the user to set the value of
+the multiplier, \texttt{y}, so that the app yields the value of \texttt{x\ *\ y}. The final
+result should look like this:
+
+\includegraphics[width=8.33in]{./images/2.8.3}
+
+\begin{solution}
+
+\hypertarget{solution-2}{%
+\subsubsection*{Solution}\label{solution-2}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+Let us add another \texttt{sliderInput} with ID \texttt{y}, and use both \texttt{input\$x}
+and \texttt{input\$y} to calculate \texttt{output\$product}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"x"}\NormalTok{, }\DataTypeTok{label =} \StringTok{"If x is"}\NormalTok{, }\DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{50}\NormalTok{, }\DataTypeTok{value =} \DecValTok{30}\NormalTok{),}
+  \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\DataTypeTok{label =} \StringTok{"and y is"}\NormalTok{, }\DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{50}\NormalTok{, }\DataTypeTok{value =} \DecValTok{30}\NormalTok{),}
+  \StringTok{"then x multiplied by y is"}\NormalTok{,}
+  \KeywordTok{textOutput}\NormalTok{(}\StringTok{"product"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{product <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{ }
+\NormalTok{    input}\OperatorTok{$}\NormalTok{x }\OperatorTok{*}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{y}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-2.8.4}{%
+\section*{Exercise 2.8.4}\label{exercise-2.8.4}}
+\addcontentsline{toc}{section}{Exercise 2.8.4}
+
+Replace the UI and server components of your app from the previous exercise
+with the UI and server components below, run the app, and describe the app's
+functionality. Then reduce the duplication in the app by using a reactive
+expression.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"x"}\NormalTok{, }\StringTok{"If x is"}\NormalTok{, }\DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{50}\NormalTok{, }\DataTypeTok{value =} \DecValTok{30}\NormalTok{),}
+  \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\StringTok{"and y is"}\NormalTok{, }\DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{50}\NormalTok{, }\DataTypeTok{value =} \DecValTok{5}\NormalTok{),}
+  \StringTok{"then, (x * y) is"}\NormalTok{, }\KeywordTok{textOutput}\NormalTok{(}\StringTok{"product"}\NormalTok{),}
+  \StringTok{"and, (x * y) + 5 is"}\NormalTok{, }\KeywordTok{textOutput}\NormalTok{(}\StringTok{"product_plus5"}\NormalTok{),}
+  \StringTok{"and (x * y) + 10 is"}\NormalTok{, }\KeywordTok{textOutput}\NormalTok{(}\StringTok{"product_plus10"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{product <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{ }
+\NormalTok{    product <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{x }\OperatorTok{*}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{y}
+\NormalTok{    product}
+\NormalTok{  \})}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{product_plus5 <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{ }
+\NormalTok{    product <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{x }\OperatorTok{*}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{y}
+\NormalTok{    product }\OperatorTok{+}\StringTok{ }\DecValTok{5}
+\NormalTok{  \})}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{product_plus10 <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{ }
+\NormalTok{    product <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{x }\OperatorTok{*}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{y}
+\NormalTok{    product }\OperatorTok{+}\StringTok{ }\DecValTok{10}
+\NormalTok{  \})}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution-3}{%
+\subsubsection*{Solution}\label{solution-3}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+The application above has two numeric inputs \texttt{input\$x} and \texttt{input\$y}. It
+computes three values: \texttt{x*y}, \texttt{x*y\ +\ 5}, and \texttt{x*y\ +\ 10}. We can reduce
+duplication by making the \texttt{product} variable a reactive value and using it
+within all three outputs.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"x"}\NormalTok{, }\StringTok{"If x is"}\NormalTok{, }\DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{50}\NormalTok{, }\DataTypeTok{value =} \DecValTok{30}\NormalTok{),}
+  \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\StringTok{"and y is"}\NormalTok{, }\DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{50}\NormalTok{, }\DataTypeTok{value =} \DecValTok{5}\NormalTok{),}
+  \StringTok{"then, (x * y) is"}\NormalTok{, }\KeywordTok{textOutput}\NormalTok{(}\StringTok{"product"}\NormalTok{),}
+  \StringTok{"and, (x * y) + 5 is"}\NormalTok{, }\KeywordTok{textOutput}\NormalTok{(}\StringTok{"product_plus5"}\NormalTok{),}
+  \StringTok{"and (x * y) + 10 is"}\NormalTok{, }\KeywordTok{textOutput}\NormalTok{(}\StringTok{"product_plus10"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+  
+\NormalTok{  product <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(input}\OperatorTok{$}\NormalTok{x }\OperatorTok{*}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{y)}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{product <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{( }\KeywordTok{product}\NormalTok{() )}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{product_plus5 <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{( }\KeywordTok{product}\NormalTok{() }\OperatorTok{+}\StringTok{ }\DecValTok{5}\NormalTok{ )}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{product_plus10 <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{( }\KeywordTok{product}\NormalTok{() }\OperatorTok{+}\StringTok{ }\DecValTok{10}\NormalTok{ )}
+\NormalTok{\}}
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-2.8.5}{%
+\section*{Exercise 2.8.5}\label{exercise-2.8.5}}
+\addcontentsline{toc}{section}{Exercise 2.8.5}
+
+The following app is very similar to one you've seen earlier in the chapter:
+you select a dataset from a package (this time we're using the ggplot2 package)
+and the app prints out a summary and plot of the data. It also follows good
+practice and makes use of reactive expressions to avoid redundancy of code.
+However there are three bugs in the code provided below. Can you find and fix
+them?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\NormalTok{datasets <-}\StringTok{ }\KeywordTok{data}\NormalTok{(}\DataTypeTok{package =} \StringTok{"ggplot2"}\NormalTok{)}\OperatorTok{$}\NormalTok{results[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{10}\NormalTok{), }\StringTok{"Item"}\NormalTok{]}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"dataset"}\NormalTok{, }\StringTok{"Dataset"}\NormalTok{, }\DataTypeTok{choices =}\NormalTok{ datasets),}
+  \KeywordTok{verbatimTextOutput}\NormalTok{(}\StringTok{"summary"}\NormalTok{),}
+  \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"plot"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  dataset <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+    \KeywordTok{get}\NormalTok{(input}\OperatorTok{$}\NormalTok{dataset, }\StringTok{"package:ggplot2"}\NormalTok{)}
+\NormalTok{  \})}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{summmry <-}\StringTok{ }\KeywordTok{renderPrint}\NormalTok{(\{}
+    \KeywordTok{summary}\NormalTok{(}\KeywordTok{dataset}\NormalTok{())}
+\NormalTok{  \})}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{plot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+    \KeywordTok{plot}\NormalTok{(dataset)}
+\NormalTok{  \}, }\DataTypeTok{res =} \DecValTok{96}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution-4}{%
+\subsubsection*{Solution}\label{solution-4}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+The app contains the following three bugs:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In the UI, the \texttt{tableOutput} object should really be a \texttt{plotOutput}.
+\item
+  In the server, the word ``summry'' in \texttt{output\$summry} is misspelled.
+\item
+  In the server, the \texttt{plot} function in the \texttt{output\$plot} should call
+  \texttt{dataset()} rather than the reactive object.
+\end{enumerate}
+
+The fixed app looks as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\NormalTok{datasets <-}\StringTok{ }\KeywordTok{data}\NormalTok{(}\DataTypeTok{package =} \StringTok{"ggplot2"}\NormalTok{)}\OperatorTok{$}\NormalTok{results[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{10}\NormalTok{), }\StringTok{"Item"}\NormalTok{]}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"dataset"}\NormalTok{, }\StringTok{"Dataset"}\NormalTok{, }\DataTypeTok{choices =}\NormalTok{ datasets),}
+  \KeywordTok{verbatimTextOutput}\NormalTok{(}\StringTok{"summary"}\NormalTok{),}
+  \CommentTok{# 1. Change tableOutput to plotOutput.}
+  \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  dataset <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+    \KeywordTok{get}\NormalTok{(input}\OperatorTok{$}\NormalTok{dataset, }\StringTok{"package:ggplot2"}\NormalTok{)}
+\NormalTok{  \})}
+  \CommentTok{# 2. Change summry to summary.}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{summary <-}\StringTok{ }\KeywordTok{renderPrint}\NormalTok{(\{}
+    \KeywordTok{summary}\NormalTok{(}\KeywordTok{dataset}\NormalTok{())}
+\NormalTok{  \})}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{plot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+    \CommentTok{# 3. Change dataset to dataset().}
+    \KeywordTok{plot}\NormalTok{(}\KeywordTok{dataset}\NormalTok{())}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{basic-ui}{%
+\chapter{Basic UI}\label{basic-ui}}
+
+\hypertarget{exercise-3.2.8.1}{%
+\subsection*{Exercise 3.2.8.1}\label{exercise-3.2.8.1}}
+\addcontentsline{toc}{subsection}{Exercise 3.2.8.1}
+
+When space is at a premium, it's useful to label text boxes using a placeholder that appears \emph{inside} the text entry area. How do you call \texttt{textInput()} to
+generate the UI below?
+
+\includegraphics{images/placeholder.png}
+
+\begin{solution}
+
+\hypertarget{solution}{%
+\subsubsection*{Solution}\label{solution}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+Looking at the output of \texttt{?textInput}, we see the argument \texttt{placeholder} which
+takes:
+
+\begin{quote}
+A character string giving the user a hint as to what can be entered into
+the control.
+\end{quote}
+
+Therefore, we can use the \texttt{textInput} with arguments as shown below to generate
+the desired UI.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{textInput}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\StringTok{""}\NormalTok{, }\DataTypeTok{placeholder =} \StringTok{"Your name"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-3.2.8.2}{%
+\subsection*{Exercise 3.2.8.2}\label{exercise-3.2.8.2}}
+\addcontentsline{toc}{subsection}{Exercise 3.2.8.2}
+
+Carefully read the documentation for \texttt{sliderInput()} to figure out how to
+create a date slider, as shown below.
+
+\includegraphics{images/date-slider.png}
+
+\begin{solution}
+
+\hypertarget{solution-1}{%
+\subsubsection*{Solution}\label{solution-1}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+To create such slider, we need the following code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sliderInput}\NormalTok{(}
+  \StringTok{"dates"}\NormalTok{,}
+  \StringTok{"When should we deliver?"}\NormalTok{,}
+  \DataTypeTok{min =} \KeywordTok{as.Date}\NormalTok{(}\StringTok{"2019-08-09"}\NormalTok{),}
+  \DataTypeTok{max =} \KeywordTok{as.Date}\NormalTok{(}\StringTok{"2019-08-16"}\NormalTok{),}
+  \DataTypeTok{value =} \KeywordTok{as.Date}\NormalTok{(}\StringTok{"2019-08-10"}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-3.2.8.3}{%
+\subsection*{Exercise 3.2.8.3}\label{exercise-3.2.8.3}}
+\addcontentsline{toc}{subsection}{Exercise 3.2.8.3}
+
+If you have a moderately long list, it's useful to create sub-headings that
+break the list up into pieces. Read the documentation for \texttt{selectInput()} to
+figure out how. (Hint: the underlying HTML is called \texttt{\textless{}optgroup\textgreater{}}.)
+
+\begin{solution}
+
+\hypertarget{solution-2}{%
+\subsubsection*{Solution}\label{solution-2}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We can make the \texttt{choices} argument a list of key-value pairs where the keys
+represent the sub-headings and the values are lists containing the categorized
+elements by keys. As an illustration, the following example separates animal breeds into two keys (categories): ``dogs'' and ``cats''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{selectInput}\NormalTok{(}
+  \StringTok{"breed"}\NormalTok{,}
+  \StringTok{"Select your favorite animal breed:"}\NormalTok{,}
+  \DataTypeTok{choices =}
+    \KeywordTok{list}\NormalTok{(}\StringTok{`}\DataTypeTok{dogs}\StringTok{`}\NormalTok{ =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'German Shepherd'}\NormalTok{, }\StringTok{'Bulldog'}\NormalTok{, }\StringTok{'Labrador Retriever'}\NormalTok{),}
+         \StringTok{`}\DataTypeTok{cats}\StringTok{`}\NormalTok{ =}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{'Persian cat'}\NormalTok{, }\StringTok{'Bengal cat'}\NormalTok{, }\StringTok{'Siamese Cat'}\NormalTok{))}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+If you run the snippet above in the console, you will see the HTML code needed
+to generate the input. You can also see the \texttt{\textless{}optgroup\textgreater{}} as hinted in the
+exercise.
+
+\end{solution}
+
+\hypertarget{exercise-3.2.8.4}{%
+\subsection*{Exercise 3.2.8.4}\label{exercise-3.2.8.4}}
+\addcontentsline{toc}{subsection}{Exercise 3.2.8.4}
+
+Create a slider input to select values between 0 and 100 where the interval
+between each selectable value on the slider is 5. Then, add animation to the
+input widget so when the user presses play the input widget scrolls through
+automatically.
+
+\begin{solution}
+
+\hypertarget{solution-3}{%
+\subsubsection*{Solution}\label{solution-3}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We can set the interval between each selectable value using the \texttt{step}
+argument. In addition, by setting \texttt{animate\ =\ TRUE}, the slider will
+automatically animate once the user presses play.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"number"}\NormalTok{, }\StringTok{"Select a number:"}\NormalTok{,}
+              \DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{100}\NormalTok{, }\DataTypeTok{value =} \DecValTok{0}\NormalTok{, }
+              \DataTypeTok{step =} \DecValTok{5}\NormalTok{, }\DataTypeTok{animate =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-3.2.8.5}{%
+\subsection*{Exercise 3.2.8.5}\label{exercise-3.2.8.5}}
+\addcontentsline{toc}{subsection}{Exercise 3.2.8.5}
+
+Using the following numeric input box the user can enter any value between 0
+and 1000. What is the purpose of the step argument in this widget?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{numericInput}\NormalTok{(}\StringTok{"number"}\NormalTok{, }\StringTok{"Select a value"}\NormalTok{, }\DataTypeTok{value =} \DecValTok{150}\NormalTok{, }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{step =} \DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution-4}{%
+\subsubsection*{Solution}\label{solution-4}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+The step argument is the amount by which the \texttt{numericInput} value is
+incremented (resp. decreased) when the user clicks the up (resp. down) arrow.
+In the previous example, when the user clicks the up (resp. down) arrow the
+numeric value will increase (resp. decrease) by 50. Note: by using a
+\texttt{numericInput} the user still has the ability to type \emph{any} number.
+
+\end{solution}
+
+\hypertarget{exercise-3.3.5.1}{%
+\subsection*{Exercise 3.3.5.1}\label{exercise-3.3.5.1}}
+\addcontentsline{toc}{subsection}{Exercise 3.3.5.1}
+
+Re-create the Shiny app from the plots section, this time setting height to
+300px and width to 700px.
+
+\begin{solution}
+
+\hypertarget{solution-5}{%
+\subsubsection*{Solution}\label{solution-5}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+The function \texttt{plotOutput} can take on static \texttt{width} and \texttt{height} arguments.
+Using the app from the plots section, we only need to add the height argument
+and modify the width.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot"}\NormalTok{, }\DataTypeTok{width =} \StringTok{"700px"}\NormalTok{, }\DataTypeTok{height =} \StringTok{"300px"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{plot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(}\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{), }\DataTypeTok{res =} \DecValTok{96}\NormalTok{)}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-3.3.5.2}{%
+\subsection*{Exercise 3.3.5.2}\label{exercise-3.3.5.2}}
+\addcontentsline{toc}{subsection}{Exercise 3.3.5.2}
+
+Add an additional plot to the right of the existing plot, and size it so that
+each plot takes up half the width of the app.
+
+\begin{solution}
+
+\hypertarget{solution-6}{%
+\subsubsection*{Solution}\label{solution-6}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+When creating the layout of a shiny app, you can use the \texttt{fluidRow} function to
+control the width of the objects it contains. This function can have columns
+and such columns can be set to have widths ranging from 1-12. Note that columns
+width within a \texttt{fluidRow} container should add up to 12.
+
+For our exercise, we need two columns of 50\% width each, i.e., we should set
+the width of each column to 6.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{fluidRow}\NormalTok{(}
+    \KeywordTok{column}\NormalTok{(}\DataTypeTok{width =} \DecValTok{6}\NormalTok{, }\KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot1"}\NormalTok{)),}
+    \KeywordTok{column}\NormalTok{(}\DataTypeTok{width =} \DecValTok{6}\NormalTok{, }\KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot2"}\NormalTok{))}
+\NormalTok{  )}
+\NormalTok{)}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{plot1 <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(}\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{))}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{plot2 <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(}\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{))}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-3.3.5.3}{%
+\subsection*{Exercise 3.3.5.3}\label{exercise-3.3.5.3}}
+\addcontentsline{toc}{subsection}{Exercise 3.3.5.3}
+
+Update the options for \texttt{renderDataTable()} below so that the table is
+displayed, but nothing else, i.e.~remove the search, ordering, and filtering
+commands. You'll need to read \texttt{?renderDataTable} and review the options at
+\url{https://datatables.net/reference/option/}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{dataTableOutput}\NormalTok{(}\StringTok{"table"}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{table <-}\StringTok{ }\KeywordTok{renderDataTable}\NormalTok{(mtcars, }\DataTypeTok{options =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{pageLength =} \DecValTok{5}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution-7}{%
+\subsubsection*{Solution}\label{solution-7}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We can achieve this by setting \texttt{ordering} and \texttt{searching} to \texttt{FALSE} within the
+\texttt{options} list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{dataTableOutput}\NormalTok{(}\StringTok{"table"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{table <-}\StringTok{ }\KeywordTok{renderDataTable}\NormalTok{(}
+\NormalTok{    mtcars, }\DataTypeTok{options =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{ordering =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{searching =} \OtherTok{FALSE}\NormalTok{))}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-3.4.6.1}{%
+\subsection*{Exercise 3.4.6.1}\label{exercise-3.4.6.1}}
+\addcontentsline{toc}{subsection}{Exercise 3.4.6.1}
+
+Modify the Central Limit Theorem app so that the sidebar is on the right
+instead of the left.
+
+\begin{solution}
+
+\hypertarget{solution-8}{%
+\subsubsection*{Solution}\label{solution-8}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+Looking at \texttt{?sidebarLayout} we can simply set the \texttt{position} argument to
+\texttt{right}. We only need to modify the UI of the app.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{headerPanel}\NormalTok{(}\StringTok{"Central limit theorem"}\NormalTok{),}
+  \KeywordTok{sidebarLayout}\NormalTok{(}
+    \DataTypeTok{position =} \StringTok{"right"}\NormalTok{,}
+    \KeywordTok{sidebarPanel}\NormalTok{(}
+      \KeywordTok{numericInput}\NormalTok{(}\StringTok{"m"}\NormalTok{, }\StringTok{"Number of samples:"}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{100}\NormalTok{)}
+\NormalTok{    ),}
+    \KeywordTok{mainPanel}\NormalTok{(}
+      \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"hist"}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-3.4.6.2}{%
+\subsection*{Exercise 3.4.6.2}\label{exercise-3.4.6.2}}
+\addcontentsline{toc}{subsection}{Exercise 3.4.6.2}
+
+Browse the themes available in the shinythemes package, pick an attractive
+theme, and apply it to the Central Limit Theorem app.
+
+\begin{solution}
+
+\hypertarget{solution-9}{%
+\subsubsection*{Solution}\label{solution-9}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We can browse the themes \href{https://rstudio.github.io/shinythemes/}{here} and
+apply it by setting the \texttt{theme} argument within \texttt{fluidPage} to
+\texttt{shinythemes::shinytheme("theme\_name")}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shinythemes)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \DataTypeTok{theme =}\NormalTok{ shinythemes}\OperatorTok{::}\KeywordTok{shinytheme}\NormalTok{(}\StringTok{"darkly"}\NormalTok{),}
+  \KeywordTok{headerPanel}\NormalTok{(}\StringTok{"Central limit theorem"}\NormalTok{),}
+  \KeywordTok{sidebarLayout}\NormalTok{(}
+    \DataTypeTok{position =} \StringTok{"right"}\NormalTok{,}
+    \KeywordTok{sidebarPanel}\NormalTok{(}
+      \KeywordTok{numericInput}\NormalTok{(}\StringTok{"m"}\NormalTok{, }\StringTok{"Number of samples:"}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{100}\NormalTok{)}
+\NormalTok{    ),}
+    \KeywordTok{mainPanel}\NormalTok{(}
+      \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"hist"}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{hist <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+\NormalTok{    means <-}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\FloatTok{1e4}\NormalTok{, }\KeywordTok{mean}\NormalTok{(}\KeywordTok{runif}\NormalTok{(input}\OperatorTok{$}\NormalTok{m)))}
+    \KeywordTok{hist}\NormalTok{(means, }\DataTypeTok{breaks =} \DecValTok{20}\NormalTok{)}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{basic-reactivity}{%
+\chapter{Basic Reactivity}\label{basic-reactivity}}
+
+\hypertarget{exercise-4.3.6.1}{%
+\subsection*{Exercise 4.3.6.1}\label{exercise-4.3.6.1}}
+\addcontentsline{toc}{subsection}{Exercise 4.3.6.1}
+
+Draw the reactive graph for the following server functions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{server1 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  c <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(input}\OperatorTok{$}\NormalTok{a }\OperatorTok{+}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{b)}
+\NormalTok{  e <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(}\KeywordTok{c}\NormalTok{() }\OperatorTok{+}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{d)}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{f <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(}\KeywordTok{e}\NormalTok{())}
+\NormalTok{\}}
+
+\NormalTok{server2 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(input}\OperatorTok{$}\NormalTok{x1 }\OperatorTok{+}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{x2 }\OperatorTok{+}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{x3)}
+\NormalTok{  y <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(input}\OperatorTok{$}\NormalTok{y1 }\OperatorTok{+}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{y2)}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{z <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(}\KeywordTok{x}\NormalTok{() }\OperatorTok{/}\StringTok{ }\KeywordTok{y}\NormalTok{())}
+\NormalTok{\}}
+
+\NormalTok{server3 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  d <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(}\KeywordTok{c}\NormalTok{() }\OperatorTok{^}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{d)}
+\NormalTok{  a <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(input}\OperatorTok{$}\NormalTok{a }\OperatorTok{*}\StringTok{ }\DecValTok{10}\NormalTok{)}
+\NormalTok{  c <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(}\KeywordTok{b}\NormalTok{() }\OperatorTok{/}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{c)}
+\NormalTok{  b <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(}\KeywordTok{a}\NormalTok{() }\OperatorTok{+}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{b)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution}{%
+\subsubsection*{Solution}\label{solution}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+To create the reactive graph we need to consider the inputs, reactive
+expressions, and outputs of the app.
+
+For \texttt{server1} we have the following objects:
+
+\begin{itemize}
+\tightlist
+\item
+  inputs: \texttt{input\$a}, \texttt{input\$b}, and \texttt{input\$d}
+\item
+  reactives: \texttt{c()} and \texttt{e()}
+\item
+  outputs: \texttt{output\$f}
+\end{itemize}
+
+Inputs \texttt{input\$a} and \texttt{input\$b} are used to create \texttt{c()}, which is combined with
+\texttt{input\$d} to create \texttt{e()}. The output depends only on \texttt{e()}.
+
+\includegraphics[width=5.20833in,height=\textheight]{images/4.3.6.1-s1.png}
+
+For \texttt{server2} we have the following objects:
+
+\begin{itemize}
+\tightlist
+\item
+  inputs: \texttt{input\$y1}, \texttt{input\$y2}, \texttt{input\$x1}, \texttt{input\$x2}, \texttt{input\$x3}
+\item
+  reactives: \texttt{y()} and \texttt{x()}
+\item
+  outputs: \texttt{output\$z}
+\end{itemize}
+
+Inputs \texttt{input\$y1} and \texttt{input\$y2} are needed to create the reactive \texttt{y()}. In
+addition, inputs \texttt{input\$x1}, \texttt{input\$x2}, and \texttt{input\$x3} are required to create
+the reactive \texttt{x()}. The output depends on both \texttt{x()} and \texttt{y()}.
+
+\includegraphics[width=4.16667in,height=\textheight]{images/4.3.6.1-s2.png}
+
+For \texttt{server3} we have the following objects:
+
+\begin{itemize}
+\tightlist
+\item
+  inputs: \texttt{input\$a}, \texttt{input\$b}, \texttt{input\$c}, \texttt{input\$d}
+\item
+  reactives: \texttt{a()}, \texttt{b()}, \texttt{c()}, \texttt{d()}
+\end{itemize}
+
+As we can see below, \texttt{a()} relies on \texttt{input\$a}, \texttt{b()} relies on both \texttt{a()} and
+\texttt{input\$b}, and \texttt{c()} relies on both \texttt{b()} and \texttt{input\$c}. The final output
+depends on both \texttt{c()} and \texttt{input\$d}.
+
+\includegraphics[width=6.25in,height=\textheight]{images/4.3.6.1-s3.png}
+
+\end{solution}
+
+\hypertarget{exercise-4.3.6.2}{%
+\subsection*{Exercise 4.3.6.2}\label{exercise-4.3.6.2}}
+\addcontentsline{toc}{subsection}{Exercise 4.3.6.2}
+
+Can the reactive graph contain a cycle? Why/why not?
+
+\begin{solution}
+
+\hypertarget{solution-1}{%
+\subsubsection*{Solution}\label{solution-1}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+No! This will create circular references and a recursion loop!
+
+\end{solution}
+
+\hypertarget{exercise-4.4.6.1}{%
+\subsection*{Exercise 4.4.6.1}\label{exercise-4.4.6.1}}
+\addcontentsline{toc}{subsection}{Exercise 4.4.6.1}
+
+Use reactive expressions to reduce the duplicated code in the following simple
+apps.
+
+\begin{solution}
+
+\hypertarget{solution-2}{%
+\subsubsection*{Solution}\label{solution-2}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+\begin{note}
+
+Unclear about the apps mentioned in the exercise.
+
+\end{note}
+
+\end{solution}
+
+\hypertarget{case-study-er-injuries}{%
+\chapter{Case Study: ER Injuries}\label{case-study-er-injuries}}
+
+\hypertarget{exercise-5.8.1}{%
+\subsection*{Exercise 5.8.1}\label{exercise-5.8.1}}
+\addcontentsline{toc}{subsection}{Exercise 5.8.1}
+
+Draw the reactive graph for each app.
+
+\begin{solution}
+
+\hypertarget{solution}{%
+\subsubsection*{Solution}\label{solution}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+\hypertarget{prototype}{%
+\paragraph{Prototype}\label{prototype}}
+\addcontentsline{toc}{paragraph}{Prototype}
+
+The prototype application has a single input, \texttt{input\$code}, which is used to
+generate the \texttt{selected()} reactive. This reactive is used directly in 3
+outputs, \texttt{output\$diag}, \texttt{output\$body\_part}, and \texttt{output\$location}, and it is
+also used indirectly in the \texttt{output\$age\_sex} plot via the \texttt{summary()} reactive.
+
+\includegraphics[width=5.20833in,height=\textheight]{images/5.8.1-prototype.png}
+
+\hypertarget{rate-vs.count}{%
+\paragraph{Rate vs.~Count}\label{rate-vs.count}}
+\addcontentsline{toc}{paragraph}{Rate vs.~Count}
+
+Building on the prototype, we create a second input \texttt{input\$y} which is used
+along with the \texttt{summary()} reactive to create the \texttt{output\$age\_sex} plot.
+
+\includegraphics[width=5.20833in,height=\textheight]{images/5.8.1-ratecount.png}
+
+\hypertarget{narrative}{%
+\paragraph{Narrative}\label{narrative}}
+\addcontentsline{toc}{paragraph}{Narrative}
+
+Building on the application once more, we create an \texttt{output\$narrative} that
+depends on the \texttt{selected()} reactive and a new input, \texttt{input\$story}.
+
+\includegraphics[width=5.20833in,height=\textheight]{images/5.8.1-narrative.png}
+
+\end{solution}
+
+\hypertarget{exercise-5.8.2}{%
+\subsection*{Exercise 5.8.2}\label{exercise-5.8.2}}
+\addcontentsline{toc}{subsection}{Exercise 5.8.2}
+
+What happens if you flip \texttt{fct\_infreq()} and \texttt{fct\_lump()} in the code that
+reduces the summary tables?
+
+\begin{solution}
+
+\hypertarget{solution-1}{%
+\subsubsection*{Solution}\label{solution-1}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+Flipping the order of \texttt{fct\_infreq()} and \texttt{fct\_lump()} will output the same
+dataset but it will change the order of the factors in the column that these
+functions are applied. For example, take a look at the following two tables,
+which only differ in the order the functions \texttt{fct\_infreq()} and \texttt{fct\_lump()}
+appear.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1 <-}\StringTok{ }\NormalTok{injuries }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{diag =} \KeywordTok{fct_lump}\NormalTok{(}\KeywordTok{fct_infreq}\NormalTok{(diag), }\DataTypeTok{n =} \DecValTok{5}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(diag) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{as.integer}\NormalTok{(}\KeywordTok{sum}\NormalTok{(weight))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(n)}
+
+\NormalTok{table1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 2
+##   diag                         n
+##   <fct>                    <int>
+## 1 Fracture              10287706
+## 2 Other Or Not Stated   10430181
+## 3 Strain, Sprain        10909539
+## 4 Contusion Or Abrasion 10926931
+## 5 Laceration            12571549
+## 6 Other                 15948626
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2 <-}\StringTok{ }\NormalTok{injuries }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{diag =} \KeywordTok{fct_infreq}\NormalTok{(}\KeywordTok{fct_lump}\NormalTok{(diag, }\DataTypeTok{n =} \DecValTok{5}\NormalTok{))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(diag) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{as.integer}\NormalTok{(}\KeywordTok{sum}\NormalTok{(weight))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(n)}
+
+\NormalTok{table2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 2
+##   diag                         n
+##   <fct>                    <int>
+## 1 Fracture              10287706
+## 2 Other Or Not Stated   10430181
+## 3 Strain, Sprain        10909539
+## 4 Contusion Or Abrasion 10926931
+## 5 Laceration            12571549
+## 6 Other                 15948626
+\end{verbatim}
+
+The tables are identical. However, the order of the factors in \texttt{diag} is
+different.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1}\OperatorTok{$}\NormalTok{diag}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] Fracture              Other Or Not Stated   Strain, Sprain       
+## [4] Contusion Or Abrasion Laceration            Other                
+## 6 Levels: Laceration Fracture Strain, Sprain ... Other
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2}\OperatorTok{$}\NormalTok{diag}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] Fracture              Other Or Not Stated   Strain, Sprain       
+## [4] Contusion Or Abrasion Laceration            Other                
+## 6 Levels: Other Laceration Fracture Strain, Sprain ... Other Or Not Stated
+\end{verbatim}
+
+\end{solution}
+
+\hypertarget{exercise-5.8.3}{%
+\subsection*{Exercise 5.8.3}\label{exercise-5.8.3}}
+\addcontentsline{toc}{subsection}{Exercise 5.8.3}
+
+Add an input control that lets the user decide how many rows to show in the
+summary tables.
+
+\begin{solution}
+
+\hypertarget{solution-2}{%
+\subsubsection*{Solution}\label{solution-2}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+Our function \texttt{count\_top} is responsible for grouping our variables into a set
+number of factors, lumping the rest of the values into ``Other''. The function
+has an argument \texttt{n} which is set to \texttt{5}. By creating a \texttt{numericInput} called
+\texttt{rows} we can let the user set the number of \texttt{fct\_infreq} dynamically. However,
+because \texttt{fct\_infreq} is the number of factors + \texttt{Other}, we need to subtract 1
+from what the user selects in order to display the number of rows they input.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(forcats)}
+\KeywordTok{library}\NormalTok{(neiss)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{# Note: these exercises use the datasets `injuries`, `products`, and}
+\CommentTok{# `population` as created here:}
+\CommentTok{# https://github.com/hadley/mastering-shiny/blob/master/neiss/data.R}
+
+\NormalTok{count_top <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(df, var, }\DataTypeTok{n =} \DecValTok{5}\NormalTok{) \{}
+\NormalTok{  df }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(\{\{ var \}\} }\OperatorTok{:}\ErrorTok{=}\StringTok{ }\KeywordTok{fct_lump}\NormalTok{(}\KeywordTok{fct_infreq}\NormalTok{(\{\{ var \}\}), }\DataTypeTok{n =}\NormalTok{ n)) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{group_by}\NormalTok{(\{\{ var \}\}) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{as.integer}\NormalTok{(}\KeywordTok{sum}\NormalTok{(weight)))}
+\NormalTok{\}}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{fluidRow}\NormalTok{(}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{8}\NormalTok{, }\KeywordTok{selectInput}\NormalTok{(}\StringTok{"code"}\NormalTok{, }\StringTok{"Product"}\NormalTok{,}
+                          \DataTypeTok{choices =} \KeywordTok{setNames}\NormalTok{(products}\OperatorTok{$}\NormalTok{prod_code, products}\OperatorTok{$}\NormalTok{title),}
+                          \DataTypeTok{width =} \StringTok{"100%"}\NormalTok{)}
+\NormalTok{    ),}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{2}\NormalTok{, }\KeywordTok{numericInput}\NormalTok{(}\StringTok{"rows"}\NormalTok{, }\StringTok{"Number of Rows"}\NormalTok{,}
+                           \DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{10}\NormalTok{, }\DataTypeTok{value =} \DecValTok{5}\NormalTok{)),}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{2}\NormalTok{, }\KeywordTok{selectInput}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\StringTok{"Y Axis"}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\StringTok{"rate"}\NormalTok{, }\StringTok{"count"}\NormalTok{)))}
+\NormalTok{  ),}
+  \KeywordTok{fluidRow}\NormalTok{(}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{4}\NormalTok{, }\KeywordTok{tableOutput}\NormalTok{(}\StringTok{"diag"}\NormalTok{)),}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{4}\NormalTok{, }\KeywordTok{tableOutput}\NormalTok{(}\StringTok{"body_part"}\NormalTok{)),}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{4}\NormalTok{, }\KeywordTok{tableOutput}\NormalTok{(}\StringTok{"location"}\NormalTok{))}
+\NormalTok{  ),}
+  \KeywordTok{fluidRow}\NormalTok{(}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{12}\NormalTok{, }\KeywordTok{plotOutput}\NormalTok{(}\StringTok{"age_sex"}\NormalTok{))}
+\NormalTok{  ),}
+  \KeywordTok{fluidRow}\NormalTok{(}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{2}\NormalTok{, }\KeywordTok{actionButton}\NormalTok{(}\StringTok{"story"}\NormalTok{, }\StringTok{"Tell me a story"}\NormalTok{)),}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{10}\NormalTok{, }\KeywordTok{textOutput}\NormalTok{(}\StringTok{"narrative"}\NormalTok{))}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  selected <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(injuries }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(prod_code }\OperatorTok{==}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{code))}
+  
+  \CommentTok{# Find the maximum possible of rows.}
+\NormalTok{  max_no_rows <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(}
+    \KeywordTok{max}\NormalTok{(}\KeywordTok{length}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{selected}\NormalTok{()}\OperatorTok{$}\NormalTok{diag)),}
+        \KeywordTok{length}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{selected}\NormalTok{()}\OperatorTok{$}\NormalTok{body_part)),}
+        \KeywordTok{length}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{selected}\NormalTok{()}\OperatorTok{$}\NormalTok{location)))}
+\NormalTok{  )}
+  
+  \CommentTok{# Update the maximum value for the numericInput based on max_no_rows().}
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{code, \{}
+    \KeywordTok{updateNumericInput}\NormalTok{(session, }\StringTok{"rows"}\NormalTok{, }\DataTypeTok{max =} \KeywordTok{max_no_rows}\NormalTok{())}
+\NormalTok{  \})}
+  
+\NormalTok{  table_rows <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(input}\OperatorTok{$}\NormalTok{rows }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{diag <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}
+    \KeywordTok{count_top}\NormalTok{(}\KeywordTok{selected}\NormalTok{(), diag, }\DataTypeTok{n =} \KeywordTok{table_rows}\NormalTok{()), }\DataTypeTok{width =} \StringTok{"100%"}\NormalTok{)}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{body_part <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}
+    \KeywordTok{count_top}\NormalTok{(}\KeywordTok{selected}\NormalTok{(), body_part, }\DataTypeTok{n =} \KeywordTok{table_rows}\NormalTok{()), }\DataTypeTok{width =} \StringTok{"100%"}\NormalTok{)}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{location <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}
+    \KeywordTok{count_top}\NormalTok{(}\KeywordTok{selected}\NormalTok{(), location, }\DataTypeTok{n =} \KeywordTok{table_rows}\NormalTok{()), }\DataTypeTok{width =} \StringTok{"100%"}\NormalTok{)}
+  
+\NormalTok{  summary <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+    \KeywordTok{selected}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{      }\KeywordTok{count}\NormalTok{(age, sex, }\DataTypeTok{wt =}\NormalTok{ weight) }\OperatorTok{%>%}
+\StringTok{      }\KeywordTok{left_join}\NormalTok{(population, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"age"}\NormalTok{, }\StringTok{"sex"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{      }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{rate =}\NormalTok{ n }\OperatorTok{/}\StringTok{ }\NormalTok{population }\OperatorTok{*}\StringTok{ }\FloatTok{1e4}\NormalTok{)}
+\NormalTok{  \})}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{age_sex <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+    \ControlFlowTok{if}\NormalTok{ (input}\OperatorTok{$}\NormalTok{y }\OperatorTok{==}\StringTok{ "count"}\NormalTok{) \{}
+      \KeywordTok{summary}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{        }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(age, n, }\DataTypeTok{colour =}\NormalTok{ sex)) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{        }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{y =} \StringTok{"Estimated number of injuries"}\NormalTok{) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{theme_grey}\NormalTok{(}\DecValTok{15}\NormalTok{)}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+      \KeywordTok{summary}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{        }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(age, rate, }\DataTypeTok{colour =}\NormalTok{ sex)) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{y =} \StringTok{"Injuries per 10,000 people"}\NormalTok{) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{theme_grey}\NormalTok{(}\DecValTok{15}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{  \})}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{narrative <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{}
+\NormalTok{    input}\OperatorTok{$}\NormalTok{story}
+    \KeywordTok{selected}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{pull}\NormalTok{(narrative) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-5.8.4}{%
+\subsection*{Exercise 5.8.4}\label{exercise-5.8.4}}
+\addcontentsline{toc}{subsection}{Exercise 5.8.4}
+
+Provide a way to step through every narrative systematically with forward and
+backward buttons.
+
+Advanced: Make the list of narratives ``circular'' so that advancing forward from
+the last narrative takes you to the first.
+
+\begin{solution}
+
+\hypertarget{solution-3}{%
+\subsubsection*{Solution}\label{solution-3}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We can add two buttons \texttt{prev\_story} and \texttt{next\_story} to iterate through the
+narrative. In addition, we can include a reactive value, \texttt{story}, that keeps
+track of the current position in the narrative. When the button \texttt{prev\_story} is
+pressed, \texttt{story} decreases by one. Similarly, when the button \texttt{next\_story} is
+pressed, \texttt{story} increases by one.
+To do the advanced part, we use the mod function. This allows us to keep
+\texttt{story} between 1 and the current narrative's length, and simulate the ``circular'' motion.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(forcats)}
+\KeywordTok{library}\NormalTok{(neiss)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{# Note: these exercises use the datasets `injuries`, `products`, and}
+\CommentTok{# `population` as created here:}
+\CommentTok{# https://github.com/hadley/mastering-shiny/blob/master/neiss/data.R}
+
+\NormalTok{count_top <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(df, var, }\DataTypeTok{n =} \DecValTok{5}\NormalTok{) \{}
+\NormalTok{  df }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(\{\{ var \}\} }\OperatorTok{:}\ErrorTok{=}\StringTok{ }\KeywordTok{fct_lump}\NormalTok{(}\KeywordTok{fct_infreq}\NormalTok{(\{\{ var \}\}), }\DataTypeTok{n =}\NormalTok{ n)) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{group_by}\NormalTok{(\{\{ var \}\}) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{as.integer}\NormalTok{(}\KeywordTok{sum}\NormalTok{(weight)))}
+\NormalTok{\}}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{fluidRow}\NormalTok{(}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{8}\NormalTok{, }\KeywordTok{selectInput}\NormalTok{(}\StringTok{"code"}\NormalTok{, }\StringTok{"Product"}\NormalTok{,}
+                          \DataTypeTok{choices =} \KeywordTok{setNames}\NormalTok{(products}\OperatorTok{$}\NormalTok{prod_code, products}\OperatorTok{$}\NormalTok{title),}
+                          \DataTypeTok{width =} \StringTok{"100%"}\NormalTok{)}
+\NormalTok{    ),}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{2}\NormalTok{, }\KeywordTok{numericInput}\NormalTok{(}\StringTok{"rows"}\NormalTok{, }\StringTok{"Number of Rows"}\NormalTok{,}
+                           \DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{10}\NormalTok{, }\DataTypeTok{value =} \DecValTok{5}\NormalTok{)),}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{2}\NormalTok{, }\KeywordTok{selectInput}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\StringTok{"Y Axis"}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\StringTok{"rate"}\NormalTok{, }\StringTok{"count"}\NormalTok{)))}
+\NormalTok{  ),}
+  \KeywordTok{fluidRow}\NormalTok{(}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{4}\NormalTok{, }\KeywordTok{tableOutput}\NormalTok{(}\StringTok{"diag"}\NormalTok{)),}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{4}\NormalTok{, }\KeywordTok{tableOutput}\NormalTok{(}\StringTok{"body_part"}\NormalTok{)),}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{4}\NormalTok{, }\KeywordTok{tableOutput}\NormalTok{(}\StringTok{"location"}\NormalTok{))}
+\NormalTok{  ),}
+  \KeywordTok{fluidRow}\NormalTok{(}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{12}\NormalTok{, }\KeywordTok{plotOutput}\NormalTok{(}\StringTok{"age_sex"}\NormalTok{))}
+\NormalTok{  ),}
+  \KeywordTok{fluidRow}\NormalTok{(}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{2}\NormalTok{, }\KeywordTok{actionButton}\NormalTok{(}\StringTok{"prev_story"}\NormalTok{, }\StringTok{"Previous story"}\NormalTok{)),}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{2}\NormalTok{, }\KeywordTok{actionButton}\NormalTok{(}\StringTok{"next_story"}\NormalTok{, }\StringTok{"Next story"}\NormalTok{)),}
+    \KeywordTok{column}\NormalTok{(}\DecValTok{8}\NormalTok{, }\KeywordTok{textOutput}\NormalTok{(}\StringTok{"narrative"}\NormalTok{))}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  selected <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(injuries }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(prod_code }\OperatorTok{==}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{code))}
+  
+  \CommentTok{# Find the maximum possible of rows.}
+\NormalTok{  max_no_rows <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(}
+    \KeywordTok{max}\NormalTok{(}\KeywordTok{length}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{selected}\NormalTok{()}\OperatorTok{$}\NormalTok{diag)),}
+        \KeywordTok{length}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{selected}\NormalTok{()}\OperatorTok{$}\NormalTok{body_part)),}
+        \KeywordTok{length}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{selected}\NormalTok{()}\OperatorTok{$}\NormalTok{location)))}
+\NormalTok{  )}
+  
+  \CommentTok{# Update the maximum value for the numericInput based on max_no_rows().}
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{code, \{}
+    \KeywordTok{updateNumericInput}\NormalTok{(session, }\StringTok{"rows"}\NormalTok{, }\DataTypeTok{max =} \KeywordTok{max_no_rows}\NormalTok{())}
+\NormalTok{  \})}
+  
+\NormalTok{  table_rows <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(input}\OperatorTok{$}\NormalTok{rows }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{diag <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}
+    \KeywordTok{count_top}\NormalTok{(}\KeywordTok{selected}\NormalTok{(), diag, }\DataTypeTok{n =} \KeywordTok{table_rows}\NormalTok{()), }\DataTypeTok{width =} \StringTok{"100%"}\NormalTok{)}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{body_part <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}
+    \KeywordTok{count_top}\NormalTok{(}\KeywordTok{selected}\NormalTok{(), body_part, }\DataTypeTok{n =} \KeywordTok{table_rows}\NormalTok{()), }\DataTypeTok{width =} \StringTok{"100%"}\NormalTok{)}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{location <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}
+    \KeywordTok{count_top}\NormalTok{(}\KeywordTok{selected}\NormalTok{(), location, }\DataTypeTok{n =} \KeywordTok{table_rows}\NormalTok{()), }\DataTypeTok{width =} \StringTok{"100%"}\NormalTok{)}
+  
+\NormalTok{  summary <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+    \KeywordTok{selected}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{      }\KeywordTok{count}\NormalTok{(age, sex, }\DataTypeTok{wt =}\NormalTok{ weight) }\OperatorTok{%>%}
+\StringTok{      }\KeywordTok{left_join}\NormalTok{(population, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"age"}\NormalTok{, }\StringTok{"sex"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{      }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{rate =}\NormalTok{ n }\OperatorTok{/}\StringTok{ }\NormalTok{population }\OperatorTok{*}\StringTok{ }\FloatTok{1e4}\NormalTok{)}
+\NormalTok{  \})}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{age_sex <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+    \ControlFlowTok{if}\NormalTok{ (input}\OperatorTok{$}\NormalTok{y }\OperatorTok{==}\StringTok{ "count"}\NormalTok{) \{}
+      \KeywordTok{summary}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{        }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(age, n, }\DataTypeTok{colour =}\NormalTok{ sex)) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{        }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{y =} \StringTok{"Estimated number of injuries"}\NormalTok{) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{theme_grey}\NormalTok{(}\DecValTok{15}\NormalTok{)}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+      \KeywordTok{summary}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{        }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(age, rate, }\DataTypeTok{colour =}\NormalTok{ sex)) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{y =} \StringTok{"Injuries per 10,000 people"}\NormalTok{) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{theme_grey}\NormalTok{(}\DecValTok{15}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{  \})}
+  
+  \CommentTok{# Store the maximum posible number of stories.}
+\NormalTok{  max_no_stories <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(}\KeywordTok{length}\NormalTok{(}\KeywordTok{selected}\NormalTok{()}\OperatorTok{$}\NormalTok{narrative))}
+  
+  \CommentTok{# Reactive used to save the current position in the narrative list.}
+\NormalTok{  story <-}\StringTok{ }\KeywordTok{reactiveVal}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+  
+  \CommentTok{# Reset the story counter if the user changes the product code. }
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{code, \{}
+    \KeywordTok{story}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{  \})}
+  
+  \CommentTok{# When the user clicks "Next story", increase the current position in the}
+  \CommentTok{# narrative but never go beyond the interval [1, length of the narrative].}
+  \CommentTok{# Note that the mod function (%%) is keeping `current`` within this interval.}
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{next_story, \{}
+    \KeywordTok{story}\NormalTok{((}\KeywordTok{story}\NormalTok{() }\OperatorTok{%%}\StringTok{ }\KeywordTok{max_no_stories}\NormalTok{()) }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\NormalTok{  \})}
+  
+  \CommentTok{# When the user clicks "Previous story" decrease the current position in the}
+  \CommentTok{# narrative. Note that we also take advantage of the mod function.}
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{prev_story, \{}
+    \KeywordTok{story}\NormalTok{(((}\KeywordTok{story}\NormalTok{() }\OperatorTok{-}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{%%}\StringTok{ }\KeywordTok{max_no_stories}\NormalTok{()) }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\NormalTok{  \})}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{narrative <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{}
+    \KeywordTok{selected}\NormalTok{()}\OperatorTok{$}\NormalTok{narrative[}\KeywordTok{story}\NormalTok{()]}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{workflow}{%
+\chapter{Workflow}\label{workflow}}
+
+There are no exercises in this chapter.
+
+\hypertarget{graphics}{%
+\chapter{Graphics}\label{graphics}}
+
+\begin{TODO}
+
+This chapter is in development\ldots{}
+
+\end{TODO}
+
+\hypertarget{exercise-7.5.1}{%
+\subsection*{Exercise 7.5.1}\label{exercise-7.5.1}}
+\addcontentsline{toc}{subsection}{Exercise 7.5.1}
+
+Make a plot with click handle that shows all the data returned in the input.
+
+\begin{solution}
+
+\hypertarget{solution}{%
+\subsubsection*{Solution}\label{solution}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We can use the \texttt{allRows} argument in \texttt{nearPoints} to see all the data, and adds a boolean column that returns \texttt{TRUE} for the point that was clicked on
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+    \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot"}\NormalTok{, }\DataTypeTok{click =} \StringTok{"plot_click"}\NormalTok{),}
+    \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"data"}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{    output}\OperatorTok{$}\NormalTok{plot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+        \KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(wt, mpg)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{    \}, }\DataTypeTok{res =} \DecValTok{96}\NormalTok{)}
+
+\NormalTok{    output}\OperatorTok{$}\NormalTok{data <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(\{}
+        \KeywordTok{nearPoints}\NormalTok{(mtcars, input}\OperatorTok{$}\NormalTok{plot_click, }\DataTypeTok{allRows =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{    \})}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-7.5.2}{%
+\subsection*{Exercise 7.5.2}\label{exercise-7.5.2}}
+\addcontentsline{toc}{subsection}{Exercise 7.5.2}
+
+Make a plot with click, dblclick, hover, and brush output handlers and nicely display the current selection in the sidebar. Plot the plot in the main panel.
+
+\begin{solution}
+
+\hypertarget{solution-1}{%
+\subsubsection*{Solution}\label{solution-1}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We can use the \texttt{nearPoints} function to extract the data from \texttt{plot\_click}, \texttt{plot\_dbl}, and \texttt{plot\_hover}. We need to use the function \texttt{brushedPoints} to extract the points within the \texttt{plot\_brush} area.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+
+    \KeywordTok{sidebarPanel}\NormalTok{(}\DataTypeTok{width =} \DecValTok{6}\NormalTok{,}
+        \KeywordTok{h4}\NormalTok{(}\StringTok{"Selected:"}\NormalTok{),}
+        \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"click"}\NormalTok{),}
+        \KeywordTok{h4}\NormalTok{(}\StringTok{"Double Clicked:"}\NormalTok{),}
+        \KeywordTok{br}\NormalTok{(),}
+        \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"dbl"}\NormalTok{),}
+        \KeywordTok{h4}\NormalTok{(}\StringTok{"Hover:"}\NormalTok{),}
+        \KeywordTok{br}\NormalTok{(),}
+        \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"hover"}\NormalTok{),}
+        \KeywordTok{br}\NormalTok{(),}
+        \KeywordTok{h4}\NormalTok{(}\StringTok{"Brushed:"}\NormalTok{),}
+        \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"brush"}\NormalTok{)}
+\NormalTok{    ),}
+
+    \KeywordTok{mainPanel}\NormalTok{(}\DataTypeTok{width =} \DecValTok{6}\NormalTok{,}
+      \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot"}\NormalTok{, }
+                 \DataTypeTok{click =} \StringTok{"plot_click"}\NormalTok{, }
+                 \DataTypeTok{dblclick =} \StringTok{"plot_dbl"}\NormalTok{,}
+                 \DataTypeTok{hover =} \StringTok{"plot_hover"}\NormalTok{, }
+                 \DataTypeTok{brush =} \StringTok{"plot_brush"}\NormalTok{)}
+\NormalTok{    )}
+
+\NormalTok{)}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+    
+\NormalTok{    output}\OperatorTok{$}\NormalTok{plot <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+        \KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(wt, mpg)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{    \}, }\DataTypeTok{res =} \DecValTok{96}\NormalTok{)}
+
+\NormalTok{    output}\OperatorTok{$}\NormalTok{click <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}\KeywordTok{nearPoints}\NormalTok{(mtcars, input}\OperatorTok{$}\NormalTok{plot_click))}
+\NormalTok{    output}\OperatorTok{$}\NormalTok{hover <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}\KeywordTok{nearPoints}\NormalTok{(mtcars, input}\OperatorTok{$}\NormalTok{plot_hover))}
+\NormalTok{    output}\OperatorTok{$}\NormalTok{dbl <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}\KeywordTok{nearPoints}\NormalTok{(mtcars, input}\OperatorTok{$}\NormalTok{plot_dbl))}
+\NormalTok{    output}\OperatorTok{$}\NormalTok{brush <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}\KeywordTok{brushedPoints}\NormalTok{(mtcars, input}\OperatorTok{$}\NormalTok{plot_brush))}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-7.5.3}{%
+\subsection*{Exercise 7.5.3}\label{exercise-7.5.3}}
+\addcontentsline{toc}{subsection}{Exercise 7.5.3}
+
+Compute the limits of the distance scale using the size of the plot.
+
+\begin{solution}
+
+\hypertarget{solution-2}{%
+\subsubsection*{Solution}\label{solution-2}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{output_size <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(id) \{}
+  \KeywordTok{reactive}\NormalTok{(}\KeywordTok{c}\NormalTok{(}
+\NormalTok{    session}\OperatorTok{$}\NormalTok{clientData[[}\KeywordTok{paste0}\NormalTok{(}\StringTok{"output_"}\NormalTok{, id, }\StringTok{"_width"}\NormalTok{)]],}
+\NormalTok{    session}\OperatorTok{$}\NormalTok{clientData[[}\KeywordTok{paste0}\NormalTok{(}\StringTok{"output_"}\NormalTok{, id, }\StringTok{"_height"}\NormalTok{)]]}
+\NormalTok{  ))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{user-feedback}{%
+\chapter{User Feedback}\label{user-feedback}}
+
+There are no exercises in this chapter.
+
+\hypertarget{uploads-and-downloads}{%
+\chapter{Uploads and Downloads}\label{uploads-and-downloads}}
+
+\begin{TODO}
+
+This chapter is in development\ldots{}
+
+\end{TODO}
+
+\hypertarget{exercise-9.4.1}{%
+\subsection*{Exercise 9.4.1}\label{exercise-9.4.1}}
+\addcontentsline{toc}{subsection}{Exercise 9.4.1}
+
+Use the ambient package by Thomas Lin Pedersen to generate \href{https://ambient.data-imaginist.com/reference/noise_worley.html}{worley noise} and download a PNG of it.
+
+\begin{solution}
+
+\hypertarget{solution}{%
+\subsubsection*{Solution}\label{solution}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+A general method for saving a \texttt{PNG} is to select the \texttt{png} driver using the function \texttt{png()}. The only argument the driver needs is the name of the plot (this will be stored relative to your current working directory!). You will not see the plot when running the \texttt{plot} function because it is being saved to the file instead. When we're done plotting, we used the \texttt{dev.off()} command to close to the connection to the driver.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ambient)}
+\NormalTok{noise <-}\StringTok{ }\NormalTok{ambient}\OperatorTok{::}\KeywordTok{noise_worley}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{100}\NormalTok{))}
+
+\KeywordTok{png}\NormalTok{(}\StringTok{"noise_plot.png"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{as.raster}\NormalTok{(}\KeywordTok{normalise}\NormalTok{(noise)))}
+\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-9.4.2}{%
+\subsection*{Exercise 9.4.2}\label{exercise-9.4.2}}
+\addcontentsline{toc}{subsection}{Exercise 9.4.2}
+
+Create an app that lets you upload a csv file, select a variable, and then perform a \texttt{t.test()} on that variable. After the user has uploaded the csv file, you'll need to use \texttt{updateSelectInput()} to fill in the available variables. See Section 10.1 for details.
+
+\begin{solution}
+
+\hypertarget{solution-1}{%
+\subsubsection*{Solution}\label{solution-1}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We can use the \texttt{fileInput} widget and the \texttt{accept} argument to ensure our app only takes on \texttt{.csv}s. In the \texttt{server} function we'll select the \texttt{datapath} from within our file input and use this to update our \texttt{selectInput}. We need to put the \texttt{updateSelectInput} within a reactive because we need the options to change if the user selects another file. Lastly, we use \texttt{input\$variable} to create our t-test output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+    \KeywordTok{sidebarLayout}\NormalTok{(}
+        \KeywordTok{sidebarPanel}\NormalTok{(}
+            \KeywordTok{fileInput}\NormalTok{(}\StringTok{"file"}\NormalTok{, }\StringTok{"Select CSV"}\NormalTok{, }\DataTypeTok{accept =} \StringTok{".csv"}\NormalTok{), }\CommentTok{# file widget}
+            \KeywordTok{selectInput}\NormalTok{(}\StringTok{"variable"}\NormalTok{, }\StringTok{"Select Variable"}\NormalTok{, }\DataTypeTok{choices =} \OtherTok{NULL}\NormalTok{) }\CommentTok{# select widget}
+\NormalTok{        ),}
+        \KeywordTok{mainPanel}\NormalTok{(}
+           \KeywordTok{verbatimTextOutput}\NormalTok{(}\StringTok{"results"}\NormalTok{) }\CommentTok{# t-test results}
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output,session) \{}
+
+    \CommentTok{# get data from file}
+\NormalTok{    data <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+        \KeywordTok{req}\NormalTok{(input}\OperatorTok{$}\NormalTok{file)}
+        \KeywordTok{read.csv}\NormalTok{(input}\OperatorTok{$}\NormalTok{file}\OperatorTok{$}\NormalTok{datapath)}
+\NormalTok{    \})}
+
+    \CommentTok{# create the select input based on the numeric columns in the dataframe}
+    \KeywordTok{observeEvent}\NormalTok{( input}\OperatorTok{$}\NormalTok{file, \{}
+\NormalTok{        num_cols <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select_if}\NormalTok{(}\KeywordTok{data}\NormalTok{(), is.numeric)}
+        \KeywordTok{updateSelectInput}\NormalTok{(session, }\StringTok{"variable"}\NormalTok{, }\DataTypeTok{choices =} \KeywordTok{colnames}\NormalTok{(num_cols))}
+\NormalTok{    \})}
+
+    \CommentTok{# print t-test results}
+\NormalTok{    output}\OperatorTok{$}\NormalTok{results <-}\StringTok{ }\KeywordTok{renderPrint}\NormalTok{(\{}
+        \KeywordTok{req}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.null}\NormalTok{(input}\OperatorTok{$}\NormalTok{variable))}
+        \KeywordTok{t.test}\NormalTok{(}\KeywordTok{data}\NormalTok{()[input}\OperatorTok{$}\NormalTok{variable])}
+\NormalTok{        \})}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-9.4.3}{%
+\subsection*{Exercise 9.4.3}\label{exercise-9.4.3}}
+\addcontentsline{toc}{subsection}{Exercise 9.4.3}
+
+Create an app that lets the user upload a csv file, select one variable, draw a histogram, and then download the histogram. For an additional challenge, allow the user to select from .png, .pdf, and .svg output formats.
+
+\begin{solution}
+
+\hypertarget{solution-2}{%
+\subsubsection*{Solution}\label{solution-2}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+Adapting the code from the example above, rather than print a t-test output, we create a plot reactive to use in the UI's \texttt{output\$results} and to use within our \texttt{downloadHander}. We can use the \texttt{ggsave} function to switch between \texttt{input\$extension} types.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+    \KeywordTok{tagList}\NormalTok{(}
+        \KeywordTok{br}\NormalTok{(), }\KeywordTok{br}\NormalTok{(),}
+        \KeywordTok{column}\NormalTok{(}\DecValTok{4}\NormalTok{,}
+               \KeywordTok{wellPanel}\NormalTok{(}
+                   \KeywordTok{fileInput}\NormalTok{(}\StringTok{"file"}\NormalTok{, }\StringTok{"Select CSV"}\NormalTok{, }\DataTypeTok{accept =} \StringTok{".csv"}\NormalTok{), }\CommentTok{# file widget}
+                   \KeywordTok{selectInput}\NormalTok{(}\StringTok{"variable"}\NormalTok{, }\StringTok{"Select Variable"}\NormalTok{, }\DataTypeTok{choices =} \OtherTok{NULL}\NormalTok{), }\CommentTok{# select widget}
+\NormalTok{               ),}
+               \KeywordTok{wellPanel}\NormalTok{(}
+                   \KeywordTok{radioButtons}\NormalTok{(}\StringTok{"extension"}\NormalTok{, }\StringTok{"Save As:"}\NormalTok{, }\DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{"png"}\NormalTok{, }\StringTok{"pdf"}\NormalTok{, }\StringTok{"svg"}\NormalTok{), }\DataTypeTok{inline =} \OtherTok{TRUE}\NormalTok{),}
+                   \KeywordTok{downloadButton}\NormalTok{(}\StringTok{"download"}\NormalTok{, }\StringTok{"Save Plot"}\NormalTok{)}
+\NormalTok{               )}
+\NormalTok{             ),}
+        \KeywordTok{column}\NormalTok{(}\DecValTok{8}\NormalTok{, }\KeywordTok{plotOutput}\NormalTok{(}\StringTok{"results"}\NormalTok{))}
+\NormalTok{    )}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output,session) \{}
+
+    \CommentTok{# get data from file}
+\NormalTok{    data <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+        \KeywordTok{req}\NormalTok{(input}\OperatorTok{$}\NormalTok{file)}
+        \KeywordTok{read.csv}\NormalTok{(input}\OperatorTok{$}\NormalTok{file}\OperatorTok{$}\NormalTok{datapath)}
+\NormalTok{    \})}
+
+    \CommentTok{# create the select input based on the numeric columns in the dataframe}
+    \KeywordTok{observeEvent}\NormalTok{( input}\OperatorTok{$}\NormalTok{file, \{}
+\NormalTok{        num_cols <-}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select_if}\NormalTok{(}\KeywordTok{data}\NormalTok{(), is.numeric)}
+        \KeywordTok{updateSelectInput}\NormalTok{(session, }\StringTok{"variable"}\NormalTok{, }\DataTypeTok{choices =} \KeywordTok{colnames}\NormalTok{(num_cols))}
+\NormalTok{    \})}
+
+    \CommentTok{# plot histogram}
+\NormalTok{    plot_output <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+        \KeywordTok{req}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.null}\NormalTok{(input}\OperatorTok{$}\NormalTok{variable))}
+
+        \KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data}\NormalTok{()) }\OperatorTok{+}
+\StringTok{            }\KeywordTok{aes_string}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ input}\OperatorTok{$}\NormalTok{variable) }\OperatorTok{+}
+\StringTok{            }\KeywordTok{geom_histogram}\NormalTok{()}
+\NormalTok{        \})}
+
+\NormalTok{    output}\OperatorTok{$}\NormalTok{results <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(}\KeywordTok{plot_output}\NormalTok{())}
+
+    \CommentTok{# save histogram using downloadHandler and plot output type}
+\NormalTok{    output}\OperatorTok{$}\NormalTok{download <-}\StringTok{ }\KeywordTok{downloadHandler}\NormalTok{(}
+        \DataTypeTok{filename =} \KeywordTok{paste0}\NormalTok{(}\StringTok{"histogram."}\NormalTok{, input}\OperatorTok{$}\NormalTok{extension),}
+        \DataTypeTok{content =} \ControlFlowTok{function}\NormalTok{(file)\{}
+            \KeywordTok{ggsave}\NormalTok{(file, }\KeywordTok{plot_output}\NormalTok{(), }\DataTypeTok{device =}\NormalTok{ input}\OperatorTok{$}\NormalTok{extension)}
+\NormalTok{        \}}
+\NormalTok{    )}
+
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-9.4.4}{%
+\subsection*{Exercise 9.4.4}\label{exercise-9.4.4}}
+\addcontentsline{toc}{subsection}{Exercise 9.4.4}
+
+Write an app that allows the user to create a Lego mosaic from any .png file using Ryan Timpe's brickr package. Once you've completed the basics, add controls to allow the user to select the size of the mosaic (in bricks), and choose whether to use ``universal'' or ``generic'' colour palettes.
+
+\begin{solution}
+
+\hypertarget{solution-3}{%
+\subsubsection*{Solution}\label{solution-3}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+Instead of limiting our file selection to a \texttt{csv} as above, here we are going to limit our input to a \texttt{png}. We'll use the \texttt{png::readPNG} function to read in our file, and specify the size and color of our mosaic in \texttt{brickr}'s \texttt{image\_to\_mosaic} function. Read more about the package and examples \href{https://github.com/ryantimpe/brickr}{here}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(brickr)}
+\KeywordTok{library}\NormalTok{(png)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+    \KeywordTok{sidebarLayout}\NormalTok{(}
+        \KeywordTok{sidebarPanel}\NormalTok{(}
+            \KeywordTok{fluidRow}\NormalTok{(}
+                \KeywordTok{fileInput}\NormalTok{(}\StringTok{"myFile"}\NormalTok{, }\StringTok{"Choose a file"}\NormalTok{, }\DataTypeTok{accept =} \KeywordTok{c}\NormalTok{(}\StringTok{'image/png'}\NormalTok{)),}
+                \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"size"}\NormalTok{, }\StringTok{"Select Size:"}\NormalTok{, }\DataTypeTok{min =} \DecValTok{1}\NormalTok{, }\DataTypeTok{max =} \DecValTok{100}\NormalTok{, }\DataTypeTok{value =} \DecValTok{35}\NormalTok{),}
+                \KeywordTok{radioButtons}\NormalTok{(}\StringTok{"color"}\NormalTok{, }\StringTok{"Select Color Palette:"}\NormalTok{, }\DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{"universal"}\NormalTok{, }\StringTok{"generic"}\NormalTok{))}
+\NormalTok{            )}
+\NormalTok{        ),}
+        \KeywordTok{mainPanel}\NormalTok{(}\KeywordTok{plotOutput}\NormalTok{(}\StringTok{"result"}\NormalTok{))}
+\NormalTok{    )}
+\NormalTok{)}
+
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+    \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{myFile, \{}
+\NormalTok{        inFile <-}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{myFile}
+        \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.null}\NormalTok{(inFile))}
+            \KeywordTok{return}\NormalTok{()}
+
+\NormalTok{        output}\OperatorTok{$}\NormalTok{result <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+\NormalTok{            png}\OperatorTok{::}\KeywordTok{readPNG}\NormalTok{(inFile}\OperatorTok{$}\NormalTok{datapath) }\OperatorTok{%>%}
+\StringTok{                }\KeywordTok{image_to_mosaic}\NormalTok{(}\DataTypeTok{img_size =}\NormalTok{ input}\OperatorTok{$}\NormalTok{size, }\DataTypeTok{color_palette =}\NormalTok{ input}\OperatorTok{$}\NormalTok{color) }\OperatorTok{%>%}
+\StringTok{                }\KeywordTok{build_mosaic}\NormalTok{()}
+\NormalTok{        \})}
+\NormalTok{    \})}
+
+\NormalTok{\}}
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{dynamic-ui}{%
+\chapter{Dynamic UI}\label{dynamic-ui}}
+
+\begin{TODO}
+
+This chapter is in development\ldots{}
+
+\end{TODO}
+
+\hypertarget{exercise-10.1.5.1}{%
+\subsection*{Exercise 10.1.5.1}\label{exercise-10.1.5.1}}
+\addcontentsline{toc}{subsection}{Exercise 10.1.5.1}
+
+Complete the user interface below with a server function that updates \texttt{input\$date} so that you can only select dates in \texttt{input\$year}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{numericInput}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"year"}\NormalTok{, }\DataTypeTok{value =} \DecValTok{2020}\NormalTok{),}
+  \KeywordTok{dateInput}\NormalTok{(}\StringTok{"date"}\NormalTok{, }\StringTok{"date"}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution}{%
+\subsubsection*{Solution}\label{solution}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+This solution was a little wonky because it required shinyjs for the dateInput to properly update. I \href{https://github.com/rstudio/shiny/issues/2798}{opened up an issue here} since I think this is not the most intuitive answer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(shinyjs)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{useShinyjs}\NormalTok{() ,}
+  \KeywordTok{numericInput}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"year"}\NormalTok{, }\DataTypeTok{value =} \DecValTok{2020}\NormalTok{),}
+  \KeywordTok{dateInput}\NormalTok{(}\StringTok{"date"}\NormalTok{, }\StringTok{"date"}\NormalTok{, }\DataTypeTok{value =} \KeywordTok{Sys.Date}\NormalTok{())}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+  
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{year, \{}
+    
+    \KeywordTok{req}\NormalTok{(input}\OperatorTok{$}\NormalTok{year) }\CommentTok{# stop if year is blank}
+\NormalTok{    daterange <-}\StringTok{ }\KeywordTok{range}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(input}\OperatorTok{$}\NormalTok{year, }\StringTok{"-01-01"}\NormalTok{)),}\KeywordTok{as.Date}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(input}\OperatorTok{$}\NormalTok{year, }\StringTok{"-12-31"}\NormalTok{)))}
+    \KeywordTok{updateDateInput}\NormalTok{(session, }\StringTok{"date"}\NormalTok{, }\DataTypeTok{min =}\NormalTok{ daterange[}\DecValTok{1}\NormalTok{], }\DataTypeTok{max =}\NormalTok{ daterange[}\DecValTok{2}\NormalTok{] )}
+    \KeywordTok{delay}\NormalTok{(}\DecValTok{250}\NormalTok{,  }\CommentTok{# delay 250ms}
+          \KeywordTok{updateDateInput}\NormalTok{(session,}\StringTok{"date"}\NormalTok{,}
+                          \DataTypeTok{value =}\NormalTok{ daterange[}\DecValTok{1}\NormalTok{]}
+\NormalTok{          ))}
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-10.1.5.2}{%
+\subsection*{Exercise 10.1.5.2}\label{exercise-10.1.5.2}}
+\addcontentsline{toc}{subsection}{Exercise 10.1.5.2}
+
+Complete the user interface below with a server function that updates \texttt{input\$county} choices based on \texttt{input\$state}. For an added challenge, also change the label from ``County'' to ``Parrish'' for Louisana and ``Borrough'' for ``Alaska''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(openintro)}
+\NormalTok{states <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(county}\OperatorTok{$}\NormalTok{state)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"state"}\NormalTok{, }\StringTok{"State"}\NormalTok{, }\DataTypeTok{choices =}\NormalTok{ states),}
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"county"}\NormalTok{, }\StringTok{"County"}\NormalTok{, }\DataTypeTok{choices =} \OtherTok{NULL}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution-1}{%
+\subsubsection*{Solution}\label{solution-1}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We can use \texttt{updateSelectInput} to filter the county choices based on the user selected state. By making the label of \texttt{input\$county} a reactive, we can use \texttt{switch} to change the label when either Alaska or Louisiana is selected.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(openintro)}
+
+\NormalTok{states <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(county}\OperatorTok{$}\NormalTok{state)}
+\NormalTok{counties <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(county}\OperatorTok{$}\NormalTok{state)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"state"}\NormalTok{, }\StringTok{"State"}\NormalTok{, }\DataTypeTok{choices =}\NormalTok{ states),}
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"county"}\NormalTok{, }\StringTok{"County"}\NormalTok{, }\DataTypeTok{choices =} \OtherTok{NULL}\NormalTok{)}
+\NormalTok{)}
+
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+  
+\NormalTok{  label <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+    \ControlFlowTok{switch}\NormalTok{(input}\OperatorTok{$}\NormalTok{state,}
+           \StringTok{"Alaska"}\NormalTok{ =}\StringTok{ "Burrough"}\NormalTok{,}
+           \StringTok{"Louisiana"}\NormalTok{ =}\StringTok{ "Parish"}\NormalTok{,}
+           \StringTok{"County"}\NormalTok{)}
+\NormalTok{  \})}
+   
+  \KeywordTok{observeEvent}\NormalTok{( input}\OperatorTok{$}\NormalTok{state, \{}
+    \KeywordTok{updateSelectInput}\NormalTok{(session, }\StringTok{"county"}\NormalTok{, }\DataTypeTok{label =} \KeywordTok{label}\NormalTok{(),}
+                      \DataTypeTok{choices =}\NormalTok{ county }\OperatorTok{%>%}\StringTok{ }
+\StringTok{                        }\KeywordTok{filter}\NormalTok{(state }\OperatorTok{==}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{state) }\OperatorTok{%>%}
+\StringTok{                        }\KeywordTok{select}\NormalTok{(name) }\OperatorTok{%>%}
+\StringTok{                        }\KeywordTok{distinct}\NormalTok{())}
+\NormalTok{  \})}
+
+\NormalTok{\}}
+
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-10.1.5.3}{%
+\subsection*{Exercise 10.1.5.3}\label{exercise-10.1.5.3}}
+\addcontentsline{toc}{subsection}{Exercise 10.1.5.3}
+
+Complete the user interface below with a server function that updates \texttt{input\$country} choices based on the \texttt{input\$continent}. Use \texttt{output\$data} to display all matching rows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(gapminder)}
+\NormalTok{continents <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(gapminder}\OperatorTok{$}\NormalTok{continent)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"continent"}\NormalTok{, }\StringTok{"Continent"}\NormalTok{, }\DataTypeTok{choices =}\NormalTok{ continents), }
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"country"}\NormalTok{, }\StringTok{"Country"}\NormalTok{, }\DataTypeTok{choices =} \OtherTok{NULL}\NormalTok{),}
+  \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"data"}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution-2}{%
+\subsubsection*{Solution}\label{solution-2}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+As the question above, we are filtering the country input based on the continent by using \texttt{updateSelectInput} in the server. By storing the selected data in a reactive, \texttt{selected\_data()} we can use the same filtered dataset for our \texttt{selectInput} and the table, reducing code redundancy.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\KeywordTok{library}\NormalTok{(gapminder)}
+\NormalTok{continents <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(gapminder}\OperatorTok{$}\NormalTok{continent)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"continent"}\NormalTok{, }\StringTok{"Continent"}\NormalTok{, }\DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{""}\NormalTok{, }\KeywordTok{as.character}\NormalTok{(continents))), }
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"country"}\NormalTok{, }\StringTok{"Country"}\NormalTok{, }\DataTypeTok{choices =} \OtherTok{NULL}\NormalTok{),}
+  \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"data"}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+  
+\NormalTok{  selected_data <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+    \ControlFlowTok{if}\NormalTok{(input}\OperatorTok{$}\NormalTok{continent }\OperatorTok{%in%}\StringTok{ }\NormalTok{continents) \{}
+\NormalTok{      gapminder }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{filter}\NormalTok{(continent }\OperatorTok{==}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{continent)}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{      gapminder}
+\NormalTok{    \}}
+\NormalTok{  \})}
+  
+  \KeywordTok{observeEvent}\NormalTok{( input}\OperatorTok{$}\NormalTok{continent, \{}
+    \KeywordTok{updateSelectInput}\NormalTok{(session, }\StringTok{"country"}\NormalTok{, }\StringTok{"Country"}\NormalTok{,}
+                      \DataTypeTok{choices =} \KeywordTok{selected_data}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{                        }\KeywordTok{select}\NormalTok{(country) }\OperatorTok{%>%}
+\StringTok{                        }\KeywordTok{distinct}\NormalTok{())}
+\NormalTok{  \})}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{data <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(\{ }
+    \KeywordTok{selected_data}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{filter}\NormalTok{(country }\OperatorTok{==}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{country) }
+\NormalTok{  \})}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-10.1.5.4}{%
+\subsection*{Exercise 10.1.5.4}\label{exercise-10.1.5.4}}
+\addcontentsline{toc}{subsection}{Exercise 10.1.5.4}
+
+Extend the previous app so that you can also choose to select no continent, and hence see all countries. You'll need to add "" to the list of choices, and then handle that specially when filtering.
+
+\begin{solution}
+
+\hypertarget{solution-3}{%
+\subsubsection*{Solution}\label{solution-3}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+\begin{note}
+
+Initially setting the choices to \texttt{c("",\ as.character(continents))} allows the user to see all the Country options prior to a continent being selected. That said, once a continent is selected this \texttt{""} option is no longer available.
+
+\end{note}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\KeywordTok{library}\NormalTok{(gapminder)}
+\NormalTok{continents <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(gapminder}\OperatorTok{$}\NormalTok{continent)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"continent"}\NormalTok{, }\StringTok{"Continent"}\NormalTok{, }\DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{""}\NormalTok{, }\KeywordTok{as.character}\NormalTok{(continents))), }
+   \CommentTok{# @tanho63:}
+  \CommentTok{# selectInput("continent", "Continent", choices = c("All", as.character(continents))), }
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"country"}\NormalTok{, }\StringTok{"Country"}\NormalTok{, }\DataTypeTok{choices =} \OtherTok{NULL}\NormalTok{),}
+  \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"data"}\NormalTok{)}
+\NormalTok{)}
+
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+  
+\NormalTok{  selected_data <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+    \ControlFlowTok{if}\NormalTok{(input}\OperatorTok{$}\NormalTok{continent }\OperatorTok{%in%}\StringTok{ }\NormalTok{continents) \{}
+\NormalTok{      gapminder }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{filter}\NormalTok{(continent }\OperatorTok{==}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{continent)}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{      gapminder}
+\NormalTok{    \}}
+\NormalTok{  \})}
+  
+  \KeywordTok{observeEvent}\NormalTok{( input}\OperatorTok{$}\NormalTok{continent, \{}
+    
+    \CommentTok{# @tanho63:}
+    \KeywordTok{updateSelectInput}\NormalTok{(session, }\StringTok{"country"}\NormalTok{,}
+                      \DataTypeTok{choices =} \KeywordTok{unique}\NormalTok{(}\KeywordTok{selected_data}\NormalTok{()}\OperatorTok{$}\NormalTok{country))}
+\NormalTok{  \})}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{data <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(\{ }
+    \KeywordTok{selected_data}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{filter}\NormalTok{(country }\OperatorTok{==}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{country) }
+\NormalTok{  \})}
+
+\NormalTok{\}}
+
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-10.1.5.5}{%
+\subsection*{Exercise 10.1.5.5}\label{exercise-10.1.5.5}}
+\addcontentsline{toc}{subsection}{Exercise 10.1.5.5}
+
+What is at the heart of the problem described at \url{https://community.rstudio.com/t/29307}?
+
+\begin{solution}
+
+\hypertarget{solution-4}{%
+\subsubsection*{Solution}\label{solution-4}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+Updating all three sliders creates a circular reference!
+
+\end{solution}
+
+\hypertarget{exercise-10.2.3.1}{%
+\subsection*{Exercise 10.2.3.1}\label{exercise-10.2.3.1}}
+\addcontentsline{toc}{subsection}{Exercise 10.2.3.1}
+
+Use a hidden tabset to show additional controls only if the user checks an ``advanced'' check box.
+
+\hypertarget{exercise-10.2.3.2}{%
+\subsection*{Exercise 10.2.3.2}\label{exercise-10.2.3.2}}
+\addcontentsline{toc}{subsection}{Exercise 10.2.3.2}
+
+Create that allows the user to select from geom\_smooth(), geom\_histogram(), or geom\_point(). Use a hidden tabset to allow the user to select different options depending on the geom. geom\_smooth() should have a text both for the model, and checkbox for whether or not to add standard errors. geom\_histogram() should have a numeric input for the bin width, and geom\_point() doesn't need any additional options.
+
+\hypertarget{exercise-10.2.3.3}{%
+\subsection*{Exercise 10.2.3.3}\label{exercise-10.2.3.3}}
+\addcontentsline{toc}{subsection}{Exercise 10.2.3.3}
+
+Create a wizard interface that steers the user along the path \ldots{}
+
+\hypertarget{exercise-10.3.4.1}{%
+\subsection*{Exercise 10.3.4.1}\label{exercise-10.3.4.1}}
+\addcontentsline{toc}{subsection}{Exercise 10.3.4.1}
+
+Take this very simple app based on the initial example in the chapter:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{selectInput}\NormalTok{(}\StringTok{"type"}\NormalTok{, }\StringTok{"type"}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\StringTok{"slider"}\NormalTok{, }\StringTok{"numeric"}\NormalTok{)),}
+  \KeywordTok{uiOutput}\NormalTok{(}\StringTok{"numeric"}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{numeric <-}\StringTok{ }\KeywordTok{renderUI}\NormalTok{(\{}
+    \ControlFlowTok{if}\NormalTok{ (input}\OperatorTok{$}\NormalTok{type }\OperatorTok{==}\StringTok{ "slider"}\NormalTok{) \{}
+      \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"n"}\NormalTok{, }\StringTok{"n"}\NormalTok{, }\DataTypeTok{value =} \DecValTok{0}\NormalTok{, }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{100}\NormalTok{)}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+      \KeywordTok{numericInput}\NormalTok{(}\StringTok{"n"}\NormalTok{, }\StringTok{"n"}\NormalTok{, }\DataTypeTok{value =} \DecValTok{0}\NormalTok{, }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{100}\NormalTok{)  }
+\NormalTok{    \}}
+\NormalTok{  \})}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+How could you instead implement it using dynamic visibility? If you implement dynamic visibility, how could you keep the values in sync when you change the controls?
+
+\begin{solution}
+
+\hypertarget{solution-5}{%
+\subsubsection*{Solution}\label{solution-5}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\NormalTok{parameter_tabs <-}\StringTok{ }\KeywordTok{tagList}\NormalTok{(}
+\NormalTok{  tags}\OperatorTok{$}\KeywordTok{style}\NormalTok{(}\StringTok{"#params \{ display:none; \}"}\NormalTok{),}
+  \KeywordTok{tabsetPanel}\NormalTok{(}\DataTypeTok{id =} \StringTok{"params"}\NormalTok{,}
+              \KeywordTok{tabPanel}\NormalTok{(}\StringTok{"slider"}\NormalTok{,}
+                       \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"my_slider"}\NormalTok{, }\StringTok{"n"}\NormalTok{, }\DataTypeTok{value =} \DecValTok{0}\NormalTok{, }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{100}\NormalTok{)}
+\NormalTok{              ),}
+              \KeywordTok{tabPanel}\NormalTok{(}\StringTok{"numeric"}\NormalTok{, }
+                       \KeywordTok{numericInput}\NormalTok{(}\StringTok{"my_numeric"}\NormalTok{, }\StringTok{"n"}\NormalTok{, }\DataTypeTok{value =} \DecValTok{0}\NormalTok{, }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{100}\NormalTok{)  }
+\NormalTok{              )}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{sidebarLayout}\NormalTok{(}
+    \KeywordTok{sidebarPanel}\NormalTok{(}
+      \KeywordTok{selectInput}\NormalTok{(}\StringTok{"my_selector"}\NormalTok{, }\StringTok{"Input Type"}\NormalTok{, }
+                  \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{"slider"}\NormalTok{, }\StringTok{"numeric"}\NormalTok{)}
+\NormalTok{      ),}
+\NormalTok{      parameter_tabs,}
+\NormalTok{    ),}
+    \KeywordTok{mainPanel}\NormalTok{()}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+  
+  \CommentTok{# if slider changes, update numeric}
+  \KeywordTok{observeEvent}\NormalTok{( input}\OperatorTok{$}\NormalTok{my_slider, \{}
+    \KeywordTok{updateNumericInput}\NormalTok{(session, }\StringTok{"my_numeric"}\NormalTok{, }\DataTypeTok{value =} \KeywordTok{isolate}\NormalTok{(input}\OperatorTok{$}\NormalTok{my_slider))}
+\NormalTok{  \})}
+  
+  \CommentTok{# if numeric changes update slider}
+  \KeywordTok{observeEvent}\NormalTok{( input}\OperatorTok{$}\NormalTok{my_numeric, \{}
+    \KeywordTok{updateSliderInput}\NormalTok{(session, }\StringTok{"my_slider"}\NormalTok{, }\DataTypeTok{value =} \KeywordTok{isolate}\NormalTok{(input}\OperatorTok{$}\NormalTok{my_numeric))}
+\NormalTok{  \})}
+  
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{my_selector, \{}
+    \KeywordTok{updateTabsetPanel}\NormalTok{(session, }\StringTok{"params"}\NormalTok{, }\DataTypeTok{selected =}\NormalTok{ input}\OperatorTok{$}\NormalTok{my_selector)}
+\NormalTok{  \}) }
+  
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-10.3.4.2}{%
+\subsection*{Exercise 10.3.4.2}\label{exercise-10.3.4.2}}
+\addcontentsline{toc}{subsection}{Exercise 10.3.4.2}
+
+Explain how this app works. Why does the password disappear when you click the enter password button for the second time?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{actionButton}\NormalTok{(}\StringTok{"go"}\NormalTok{, }\StringTok{"Enter password"}\NormalTok{),}
+  \KeywordTok{textOutput}\NormalTok{(}\StringTok{"text"}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{go, \{}
+    \KeywordTok{showModal}\NormalTok{(}\KeywordTok{modalDialog}\NormalTok{(}
+      \KeywordTok{passwordInput}\NormalTok{(}\StringTok{"password"}\NormalTok{, }\OtherTok{NULL}\NormalTok{),}
+      \DataTypeTok{title =} \StringTok{"Please enter your password"}
+\NormalTok{    ))}
+\NormalTok{  \})}
+
+\NormalTok{  output}\OperatorTok{$}\NormalTok{text <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{}
+    \ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{isTruthy}\NormalTok{(input}\OperatorTok{$}\NormalTok{password)) \{}
+      \StringTok{"No password"}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+      \StringTok{"Password entered"}
+\NormalTok{    \}}
+\NormalTok{  \})}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-10.3.4.3}{%
+\subsection*{Exercise 10.3.4.3}\label{exercise-10.3.4.3}}
+\addcontentsline{toc}{subsection}{Exercise 10.3.4.3}
+
+Add support for date and date-time columns \texttt{make\_ui()} and \texttt{filter\_var()}.
+
+\begin{solution}
+
+\hypertarget{solution-6}{%
+\subsubsection*{Solution}\label{solution-6}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+In order to complete this, I had to
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  make a new dummy dataframe I called \texttt{x} in order to test for dates
+\item
+  include checking for \texttt{is.Date} in the \texttt{make\_ui} and \texttt{filter\_var} functions
+\item
+  Change \texttt{tableOutput} and \texttt{renderTable} to \texttt{DT::renderTableOutput} and \texttt{DT::renderTableOutput} because \texttt{renderTable} was rendering the dates as numbers and I think this could be because it uses \texttt{xtable()} for HTML table rendering?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 8.4.3.2}
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(purrr)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+
+\NormalTok{make_ui <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, var) \{}
+  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.numeric}\NormalTok{(x)) \{}
+\NormalTok{    rng <-}\StringTok{ }\KeywordTok{range}\NormalTok{(x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+    \KeywordTok{sliderInput}\NormalTok{(var, var, }\DataTypeTok{min =}\NormalTok{ rng[}\DecValTok{1}\NormalTok{], }\DataTypeTok{max =}\NormalTok{ rng[}\DecValTok{2}\NormalTok{], }\DataTypeTok{value =}\NormalTok{ rng)}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.factor}\NormalTok{(x)) \{}
+\NormalTok{    levs <-}\StringTok{ }\KeywordTok{levels}\NormalTok{(x)}
+    \KeywordTok{selectInput}\NormalTok{(var, var, }\DataTypeTok{choices =}\NormalTok{ levs, }\DataTypeTok{selected =}\NormalTok{ levs, }\DataTypeTok{multiple =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (lubridate}\OperatorTok{::}\KeywordTok{is.Date}\NormalTok{(x)) \{}
+\NormalTok{    rng <-}\StringTok{ }\KeywordTok{range}\NormalTok{(x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+    \KeywordTok{dateInput}\NormalTok{(var, var, }\DataTypeTok{min =}\NormalTok{ rng[}\DecValTok{1}\NormalTok{], }\DataTypeTok{max =}\NormalTok{ rng[}\DecValTok{2}\NormalTok{], }\DataTypeTok{value =}\NormalTok{ rng[}\DecValTok{1}\NormalTok{])}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \CommentTok{# No control, so don't filter}
+    \OtherTok{NULL}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+
+\NormalTok{filter_var <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, val) \{}
+  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.numeric}\NormalTok{(x)) \{}
+    \OperatorTok{!}\KeywordTok{is.na}\NormalTok{(x) }\OperatorTok{&}\StringTok{ }\NormalTok{x }\OperatorTok{>=}\StringTok{ }\NormalTok{val[}\DecValTok{1}\NormalTok{] }\OperatorTok{&}\StringTok{ }\NormalTok{x }\OperatorTok{<=}\StringTok{ }\NormalTok{val[}\DecValTok{2}\NormalTok{]}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.factor}\NormalTok{(x)) \{}
+\NormalTok{    x }\OperatorTok{%in%}\StringTok{ }\NormalTok{val}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (lubridate}\OperatorTok{::}\KeywordTok{is.Date}\NormalTok{(x)) \{}
+\NormalTok{    x }\OperatorTok{%in%}\StringTok{ }\NormalTok{val}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \OtherTok{TRUE}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\NormalTok{dfs <-}\StringTok{ }\KeywordTok{keep}\NormalTok{(}\KeywordTok{ls}\NormalTok{(}\StringTok{"package:datasets"}\NormalTok{), }\OperatorTok{~}\StringTok{ }\KeywordTok{is.data.frame}\NormalTok{(}\KeywordTok{get}\NormalTok{(.x, }\StringTok{"package:datasets"}\NormalTok{)))}
+
+\CommentTok{# add a dataframe with dates in it since I cant find one in the datasets above}
+\CommentTok{# rep 5 dates five times, each include 1 factor a-e}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{date =} \KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(}\StringTok{"2020/1/1"}\NormalTok{), }\DecValTok{5}\NormalTok{),}
+                         \KeywordTok{rep}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(}\StringTok{"2020/2/2"}\NormalTok{), }\DecValTok{5}\NormalTok{),}
+                         \KeywordTok{rep}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(}\StringTok{"2020/3/3"}\NormalTok{), }\DecValTok{5}\NormalTok{),}
+                         \KeywordTok{rep}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(}\StringTok{"2020/4/4"}\NormalTok{), }\DecValTok{5}\NormalTok{),}
+                         \KeywordTok{rep}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(}\StringTok{"2020/5/5"}\NormalTok{), }\DecValTok{5}\NormalTok{)),}
+                \DataTypeTok{fac =} \KeywordTok{as.factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{, }\StringTok{"d"}\NormalTok{, }\StringTok{"e"}\NormalTok{)))}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{sidebarLayout}\NormalTok{(}
+    \KeywordTok{sidebarPanel}\NormalTok{(}
+      \CommentTok{#selectInput("dataset", label = "Dataset", choices = c(dfs, "x")),}
+      \KeywordTok{uiOutput}\NormalTok{(}\StringTok{"filter"}\NormalTok{)}
+\NormalTok{    ),}
+    \KeywordTok{mainPanel}\NormalTok{(}
+\NormalTok{      DT}\OperatorTok{::}\KeywordTok{dataTableOutput}\NormalTok{(}\StringTok{"data"}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+  
+  \CommentTok{# data is either my dummy dataset or from datasets}
+\NormalTok{  data <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(x)}
+  
+\NormalTok{  vars <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(}\KeywordTok{names}\NormalTok{(}\KeywordTok{data}\NormalTok{()))}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{filter <-}\StringTok{ }\KeywordTok{renderUI}\NormalTok{(}
+    \CommentTok{# take eahc column name and make ui}
+    \CommentTok{# data()[[.x]] is each column}
+    \CommentTok{# and .x is each column name (vars())}
+    \KeywordTok{map}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\OperatorTok{~}\StringTok{ }\KeywordTok{make_ui}\NormalTok{(}\KeywordTok{data}\NormalTok{()[[.x]], .x))}
+\NormalTok{  )}
+  
+\NormalTok{  selected <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+    \CommentTok{# take each column name and filer var}
+    \CommentTok{# with the first argument the column in the data}
+    \CommentTok{# and the second argument the input$vars()}
+    \CommentTok{# so for date check that input[[date]] in data[[1]]}
+\NormalTok{    each_var <-}\StringTok{ }\KeywordTok{map}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\OperatorTok{~}\StringTok{ }\KeywordTok{filter_var}\NormalTok{(}\KeywordTok{data}\NormalTok{()[[.x]], input[[.x]]))}
+    
+    \CommentTok{# notes from @mapaulacaldas}
+    \CommentTok{# collapse list of TRUE and FALSE using `&`}
+    \CommentTok{# conditions <- list(TRUE, TRUE, TRUE, FALSE)}
+    \CommentTok{# purrr::reduce(conditions, `&`) ==}
+    \CommentTok{# ((conditions[[1]] & conditions[[2]]) & conditions[[3]]) & conditions[[4]]}
+    \KeywordTok{reduce}\NormalTok{(each_var, }\StringTok{`}\DataTypeTok{&}\StringTok{`}\NormalTok{)}
+\NormalTok{  \})}
+  
+  \CommentTok{# subset the data by the vars that are true}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{data <-}\StringTok{ }\NormalTok{DT}\OperatorTok{::}\KeywordTok{renderDataTable}\NormalTok{(}\KeywordTok{data}\NormalTok{()[}\KeywordTok{selected}\NormalTok{(), ])}
+\NormalTok{\}}
+\CommentTok{# Run the application }
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-10.3.4.4}{%
+\subsection*{Exercise 10.3.4.4}\label{exercise-10.3.4.4}}
+\addcontentsline{toc}{subsection}{Exercise 10.3.4.4}
+
+(Advanced) If you know the S3 OOP system, consider how you could replace the if blocks in \texttt{make\_ui()} and \texttt{filter\_var()} with generic functions.
+
+\begin{solution}
+
+\hypertarget{solution-7}{%
+\subsubsection*{Solution}\label{solution-7}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(purrr)}
+
+\NormalTok{make_ui <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(obj, var) \{ }\KeywordTok{UseMethod}\NormalTok{(}\StringTok{"make_ui"}\NormalTok{) \}}
+
+\NormalTok{make_ui.numeric <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, var) \{}
+\NormalTok{  rng <-}\StringTok{ }\KeywordTok{range}\NormalTok{(x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+  \KeywordTok{sliderInput}\NormalTok{(var, var, }\DataTypeTok{min =}\NormalTok{ rng[}\DecValTok{1}\NormalTok{], }\DataTypeTok{max =}\NormalTok{ rng[}\DecValTok{2}\NormalTok{], }\DataTypeTok{value =}\NormalTok{ rng)}
+\NormalTok{\}}
+
+\NormalTok{make_ui.factor <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, var) \{ }
+\NormalTok{  levs <-}\StringTok{ }\KeywordTok{levels}\NormalTok{(x) }
+  \KeywordTok{selectInput}\NormalTok{(var, var, }\DataTypeTok{choices =}\NormalTok{ levs, }\DataTypeTok{selected =}\NormalTok{ levs, }\DataTypeTok{multiple =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{\}}
+
+\NormalTok{make_ui.default <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, var) \{ }\OtherTok{NULL}\NormalTok{ \}}
+
+\NormalTok{filter_var <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, val) \{ }\KeywordTok{UseMethod}\NormalTok{(}\StringTok{"filter_var"}\NormalTok{) \}}
+\NormalTok{filter_var.numeric <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, val) \{ }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(x) }\OperatorTok{&}\StringTok{ }\NormalTok{x }\OperatorTok{>=}\StringTok{ }\NormalTok{val[}\DecValTok{1}\NormalTok{] }\OperatorTok{&}\StringTok{ }\NormalTok{x }\OperatorTok{<=}\StringTok{ }\NormalTok{val[}\DecValTok{2}\NormalTok{] \}}
+\NormalTok{filter_var.factor <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, val) \{ x }\OperatorTok{%in%}\StringTok{ }\NormalTok{val \}}
+\NormalTok{filter_var.default <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, val) \{ }\OtherTok{TRUE}\NormalTok{ \}}
+
+\NormalTok{dfs <-}\StringTok{ }\KeywordTok{keep}\NormalTok{(}\KeywordTok{ls}\NormalTok{(}\StringTok{"package:datasets"}\NormalTok{), }\OperatorTok{~}\StringTok{ }\KeywordTok{is.data.frame}\NormalTok{(}\KeywordTok{get}\NormalTok{(.x, }\StringTok{"package:datasets"}\NormalTok{)))}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{sidebarLayout}\NormalTok{(}
+    \KeywordTok{sidebarPanel}\NormalTok{(}
+      \KeywordTok{selectInput}\NormalTok{(}\StringTok{"dataset"}\NormalTok{, }\DataTypeTok{label =} \StringTok{"Dataset"}\NormalTok{, }\DataTypeTok{choices =}\NormalTok{ dfs),}
+      \KeywordTok{uiOutput}\NormalTok{(}\StringTok{"filter"}\NormalTok{)}
+\NormalTok{    ),}
+    \KeywordTok{mainPanel}\NormalTok{(}
+      \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"data"}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{)}
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{  data <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+    \KeywordTok{get}\NormalTok{(input}\OperatorTok{$}\NormalTok{dataset, }\StringTok{"package:datasets"}\NormalTok{)}
+\NormalTok{  \})}
+  
+\NormalTok{  vars <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(}\KeywordTok{names}\NormalTok{(}\KeywordTok{data}\NormalTok{()))}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{filter <-}\StringTok{ }\KeywordTok{renderUI}\NormalTok{(}
+    \KeywordTok{map}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\OperatorTok{~}\StringTok{ }\KeywordTok{make_ui}\NormalTok{(}\KeywordTok{data}\NormalTok{()[[.x]], .x))}
+\NormalTok{  )}
+  
+\NormalTok{  selected <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+\NormalTok{    each_var <-}\StringTok{ }\KeywordTok{map}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\OperatorTok{~}\StringTok{ }\KeywordTok{filter_var}\NormalTok{(}\KeywordTok{data}\NormalTok{()[[.x]], input[[.x]]))}
+    \KeywordTok{reduce}\NormalTok{(each_var, }\StringTok{`}\DataTypeTok{&}\StringTok{`}\NormalTok{)}
+\NormalTok{  \})}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{data <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}\KeywordTok{head}\NormalTok{(}\KeywordTok{data}\NormalTok{()[}\KeywordTok{selected}\NormalTok{(), ], }\DecValTok{12}\NormalTok{))}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-10.3.4.5}{%
+\subsection*{Exercise 10.3.4.5}\label{exercise-10.3.4.5}}
+\addcontentsline{toc}{subsection}{Exercise 10.3.4.5}
+
+(Hard) Make a wizard that allows the user to upload their own dataset. The first page should handle the upload. The second should handle reading it, providing one drop down for each variable that lets the user select the column type. The third page should provide some way to get a summary of the dataset.
+
+\begin{solution}
+
+\hypertarget{solution-8}{%
+\subsubsection*{Solution}\label{solution-8}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+\begin{note}
+
+I wasn't really sure what was meant by ``some way to get a summary of the dataset'' So I'm just using the summary function.
+
+\end{note}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(readr)}
+
+\NormalTok{make_dropdown <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(name_of_vector) \{}
+  \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =}\NormalTok{ name_of_vector, }\DataTypeTok{label =}\NormalTok{  name_of_vector, }\DataTypeTok{choices =} 
+                \KeywordTok{c}\NormalTok{(}\StringTok{"numeric"}\NormalTok{, }\StringTok{"character"}\NormalTok{, }\StringTok{"logical"}\NormalTok{))}
+\NormalTok{\}  }
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+\NormalTok{  tags}\OperatorTok{$}\KeywordTok{style}\NormalTok{(}\StringTok{"#wizard \{ display:none; \}"}\NormalTok{),}
+  \KeywordTok{tabsetPanel}\NormalTok{(}\DataTypeTok{id =} \StringTok{"wizard"}\NormalTok{,}
+              \KeywordTok{tabPanel}\NormalTok{(}\StringTok{"page1"}\NormalTok{, }
+                       \KeywordTok{fileInput}\NormalTok{(}\StringTok{"data_input"}\NormalTok{, }\StringTok{"input"}\NormalTok{),}
+                       \KeywordTok{actionButton}\NormalTok{(}\StringTok{"page12"}\NormalTok{, }\StringTok{"next"}\NormalTok{)}
+\NormalTok{              ),}
+              \KeywordTok{tabPanel}\NormalTok{(}\StringTok{"page2"}\NormalTok{,}
+                         \KeywordTok{sidebarLayout}\NormalTok{(}
+                           \KeywordTok{sidebarPanel}\NormalTok{(}
+                             \KeywordTok{uiOutput}\NormalTok{(}\StringTok{"type_of"}\NormalTok{)}
+\NormalTok{                           ),}
+                           \KeywordTok{mainPanel}\NormalTok{(}
+                             \KeywordTok{tableOutput}\NormalTok{(}\StringTok{'type_table'}\NormalTok{)}
+\NormalTok{                           )),}
+                       \KeywordTok{actionButton}\NormalTok{(}\StringTok{"page21"}\NormalTok{, }\StringTok{"prev"}\NormalTok{),}
+                       \KeywordTok{actionButton}\NormalTok{(}\StringTok{"page23"}\NormalTok{, }\StringTok{"next"}\NormalTok{)}
+\NormalTok{              ),}
+              \KeywordTok{tabPanel}\NormalTok{(}\StringTok{"page3"}\NormalTok{, }
+                       \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"summary_table"}\NormalTok{),}
+                       \KeywordTok{actionButton}\NormalTok{(}\StringTok{"page32"}\NormalTok{, }\StringTok{"prev"}\NormalTok{)}
+\NormalTok{              )}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+  
+  \CommentTok{################ WIZARD  ###############################}
+  
+\NormalTok{  switch_tab <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(page) \{}
+    \KeywordTok{updateTabsetPanel}\NormalTok{(session, }\StringTok{"wizard"}\NormalTok{, }\DataTypeTok{selected =}\NormalTok{ page)}
+\NormalTok{  \}}
+  
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{page12, }\KeywordTok{switch_tab}\NormalTok{(}\StringTok{"page2"}\NormalTok{))}
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{page21, }\KeywordTok{switch_tab}\NormalTok{(}\StringTok{"page1"}\NormalTok{))}
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{page23, }\KeywordTok{switch_tab}\NormalTok{(}\StringTok{"page3"}\NormalTok{))}
+  \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{page32, }\KeywordTok{switch_tab}\NormalTok{(}\StringTok{"page2"}\NormalTok{))}
+  
+  \CommentTok{##################### FILE INPUT #######################}
+  
+\NormalTok{  dat <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+    \KeywordTok{req}\NormalTok{(input}\OperatorTok{$}\NormalTok{data_input)}
+    \KeywordTok{read.csv}\NormalTok{(input}\OperatorTok{$}\NormalTok{data_input}\OperatorTok{$}\NormalTok{datapath)}
+\NormalTok{  \})}
+  
+  \CommentTok{##################### TABLE TYPE #######################}
+  
+  \CommentTok{# make a dropdown using the names of each column}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{type_of <-}\StringTok{ }\KeywordTok{renderUI}\NormalTok{(\{ }\KeywordTok{map}\NormalTok{(}\KeywordTok{names}\NormalTok{(}\KeywordTok{dat}\NormalTok{()), }\OperatorTok{~}\StringTok{ }\KeywordTok{make_dropdown}\NormalTok{(.x)) \})}
+  
+  
+  \CommentTok{# switch the type of column based on the input}
+  \CommentTok{# name of vector == "Sepal.Length"}
+  \CommentTok{# vector == Sepal.Length}
+\NormalTok{  change_type <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(vector, name_of_vector) \{}
+    \ControlFlowTok{switch}\NormalTok{(input[[name_of_vector]],}
+           \StringTok{"numeric"}\NormalTok{ =}\StringTok{ }\NormalTok{vector <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(vector),}
+           \StringTok{"character"}\NormalTok{ =}\StringTok{ }\NormalTok{vector <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(vector),}
+           \StringTok{"logical"}\NormalTok{ =}\StringTok{ }\NormalTok{vector <-}\StringTok{ }\KeywordTok{as.complex}\NormalTok{(vector)}
+\NormalTok{    )}
+\NormalTok{  \}}
+  
+  \CommentTok{# convert the supplied data to a list}
+  \CommentTok{# use imap because it is a condensed version o map}
+  \CommentTok{# with two arguments == x & name_of_x}
+  \CommentTok{# so we don't need to supply it arguments beyond the list!}
+\NormalTok{  df<-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+    \KeywordTok{dat}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{as.list}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{imap}\NormalTok{(change_type) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{as_tibble}\NormalTok{()}
+\NormalTok{  \})}
+  
+  \CommentTok{# create an output of the data's names}
+  \CommentTok{# and their types}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{type_table <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(}
+    \DataTypeTok{names =} \KeywordTok{names}\NormalTok{(}\KeywordTok{df}\NormalTok{()),}
+    \DataTypeTok{type =} \KeywordTok{map_chr}\NormalTok{(}\KeywordTok{df}\NormalTok{(), }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{typeof}\NormalTok{(x)))}
+\NormalTok{  )}
+  
+  \CommentTok{##################### TABLE OUTPUT #####################}
+  
+\NormalTok{  output}\OperatorTok{$}\NormalTok{summary_table <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{( }\KeywordTok{summary}\NormalTok{(}\KeywordTok{df}\NormalTok{()) )}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{bookmarking}{%
+\chapter{Bookmarking}\label{bookmarking}}
+
+\begin{TODO}
+
+This chapter is in development\ldots{}
+
+\end{TODO}
+
+\hypertarget{exercise-11.3.1}{%
+\subsection*{Exercise 11.3.1}\label{exercise-11.3.1}}
+\addcontentsline{toc}{subsection}{Exercise 11.3.1}
+
+Generate app for visualising the results of \href{https://ambient.data-imaginist.com/reference/noise_simplex.html}{noise::ambient\_simplex()}. Your app should allow the user to control the frequency, fractal, lacunarity, and gain, and be bookmarkable. How can you ensure the image looks exactly the same when reloaded from the bookmark? (Think about what the seed argument implies).
+
+\begin{solution}
+
+\hypertarget{solution}{%
+\subsubsection*{Solution}\label{solution}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+For this example, we'll use the bookmarking by setting \texttt{enableBookmarking\ =\ "url"} within the \texttt{shinyApp} function. In order to ensure the simulation is the same each time we re-render the bookmark we'll create a grid to use for points then set the seed to \texttt{42} to ensure the same image is rendered when the bookmark is loaded.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+\KeywordTok{library}\NormalTok{(ambient)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+    \KeywordTok{sidebarLayout}\NormalTok{(}
+        \KeywordTok{sidebarPanel}\NormalTok{(}
+            \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"frequency"}\NormalTok{, }\StringTok{"Frequency"}\NormalTok{, }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{1}\NormalTok{, }\DataTypeTok{value =} \FloatTok{0.01}\NormalTok{),}
+            \KeywordTok{selectInput}\NormalTok{(}\StringTok{"fractal"}\NormalTok{, }\StringTok{"Fractal"}\NormalTok{, }\DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{"none"}\NormalTok{, }\StringTok{"fbm"}\NormalTok{, }\StringTok{"billow"}\NormalTok{, }\StringTok{"rigid-multi"}\NormalTok{)),}
+            \KeywordTok{sliderInput}\NormalTok{(}\StringTok{"gain"}\NormalTok{, }\StringTok{"Gain"}\NormalTok{, }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{max =} \DecValTok{1}\NormalTok{, }\DataTypeTok{value =} \FloatTok{0.5}\NormalTok{),}
+\NormalTok{        ),}
+        \KeywordTok{mainPanel}\NormalTok{(}
+           \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"result"}\NormalTok{)}
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{)}
+
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+
+\NormalTok{    grid <-}\StringTok{ }\KeywordTok{long_grid}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{), }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{))}
+
+\NormalTok{    noise <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+\NormalTok{        ambient}\OperatorTok{::}\KeywordTok{gen_simplex}\NormalTok{(}
+            \DataTypeTok{x =}\NormalTok{ grid}\OperatorTok{$}\NormalTok{x,}
+            \DataTypeTok{y =}\NormalTok{ grid}\OperatorTok{$}\NormalTok{y,}
+            \DataTypeTok{seed =} \DecValTok{42}\NormalTok{,}
+            \DataTypeTok{frequency =}\NormalTok{ input}\OperatorTok{$}\NormalTok{frequency,}
+            \DataTypeTok{fractal =}\NormalTok{ input}\OperatorTok{$}\NormalTok{fractal,}
+            \DataTypeTok{gain =}\NormalTok{ input}\OperatorTok{$}\NormalTok{gain}
+\NormalTok{        )}
+\NormalTok{    \})}
+
+\NormalTok{    output}\OperatorTok{$}\NormalTok{result <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+        \KeywordTok{plot}\NormalTok{(grid, }\KeywordTok{noise}\NormalTok{())}
+\NormalTok{    \})}
+
+    \KeywordTok{observe}\NormalTok{(\{}
+        \KeywordTok{reactiveValuesToList}\NormalTok{(input)}
+\NormalTok{        session}\OperatorTok{$}\KeywordTok{doBookmark}\NormalTok{()}
+\NormalTok{    \})}
+    \KeywordTok{onBookmarked}\NormalTok{(updateQueryString)}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server, }\DataTypeTok{enableBookmarking =} \StringTok{"url"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-11.3.2}{%
+\subsection*{Exercise 11.3.2}\label{exercise-11.3.2}}
+\addcontentsline{toc}{subsection}{Exercise 11.3.2}
+
+Make a simple app that lets you upload a csv file and then bookmark it. Upload a few files and then look in shiny\_bookmarks. How do the files correspond to the bookmarks? (Hint: you can use readRDS() to look inside the cache files that Shiny is generating).
+
+\begin{solution}
+
+\hypertarget{solution-1}{%
+\subsubsection*{Solution}\label{solution-1}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+By setting the \texttt{state\$values\$data} equal to the \texttt{data} reactive, we can store the contents of the uploaded \texttt{csv}. Looking in the \texttt{shiny\_bookmarks} folder we see an \texttt{input.rds} which has the same 4 arguments as \texttt{input\$file}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{name}
+\item
+  \texttt{size}
+\item
+  \texttt{type}
+\item
+  \texttt{datapath}
+\end{enumerate}
+
+All of these except the \texttt{datapath} are the same as when we upload the file; rather than the temporary location the file is saved to within the shiny session, the datapath becomes \texttt{0.csv}, a csv file created within the same folder are our \texttt{input.RDS}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(shiny)}
+
+\NormalTok{ui <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(request)\{}
+    \KeywordTok{fluidPage}\NormalTok{(}
+        \KeywordTok{sidebarLayout}\NormalTok{(}
+            \KeywordTok{sidebarPanel}\NormalTok{(}
+                \KeywordTok{bookmarkButton}\NormalTok{(),}
+                \KeywordTok{fileInput}\NormalTok{(}\StringTok{"file"}\NormalTok{, }\StringTok{"Choose CSV File"}\NormalTok{, }\DataTypeTok{multiple =} \OtherTok{TRUE}\NormalTok{,}\DataTypeTok{accept =} \StringTok{".csv"}\NormalTok{)}
+\NormalTok{                ),}
+            \KeywordTok{mainPanel}\NormalTok{(}
+                \KeywordTok{tableOutput}\NormalTok{(}\StringTok{"contents"}\NormalTok{)}
+\NormalTok{            )}
+\NormalTok{        )}
+\NormalTok{    )}
+\NormalTok{\}}
+
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output) \{}
+
+    \CommentTok{# create reactive of input file}
+\NormalTok{    data <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+        \KeywordTok{req}\NormalTok{(input}\OperatorTok{$}\NormalTok{file)}
+        \KeywordTok{read.csv}\NormalTok{(input}\OperatorTok{$}\NormalTok{file}\OperatorTok{$}\NormalTok{datapath)}
+\NormalTok{    \})}
+
+    \CommentTok{# display head}
+\NormalTok{    output}\OperatorTok{$}\NormalTok{contents <-}\StringTok{ }\KeywordTok{renderTable}\NormalTok{( }\KeywordTok{head}\NormalTok{(}\KeywordTok{data}\NormalTok{()) )}
+
+    \CommentTok{# set the state to the df reactive}
+    \KeywordTok{onBookmark}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(state)\{}
+\NormalTok{        state}\OperatorTok{$}\NormalTok{values}\OperatorTok{$}\NormalTok{data <-}\StringTok{ }\KeywordTok{data}\NormalTok{()}
+\NormalTok{    \})}
+
+    \CommentTok{# on restore set df to the state}
+    \KeywordTok{onRestore}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(state)\{}
+\NormalTok{        data <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(state}\OperatorTok{$}\NormalTok{values}\OperatorTok{$}\NormalTok{data)}
+\NormalTok{    \})}
+    \KeywordTok{enableBookmarking}\NormalTok{(}\DataTypeTok{store=}\StringTok{"server"}\NormalTok{)}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{tidy-evaluation}{%
+\chapter{Tidy Evaluation}\label{tidy-evaluation}}
+
+There are no exercises in this chapter.
+
+\hypertarget{general-guidelines}{%
+\chapter{General Guidelines}\label{general-guidelines}}
+
+There are no exercises in this chapter.
+
+\hypertarget{functions}{%
+\chapter{Functions}\label{functions}}
+
+\begin{TODO}
+
+This chapter is in development\ldots{}
+
+\end{TODO}
+
+\hypertarget{exercise-14.4.1}{%
+\subsection*{Exercise 14.4.1}\label{exercise-14.4.1}}
+\addcontentsline{toc}{subsection}{Exercise 14.4.1}
+
+The following app plots user selected variables from the msleep dataset for three different types of mammals (carnivores, omnivores, and herbivores), with one tab for each type of mammal. Remove the redundancy in the \texttt{selectInput()} definitions with the use of functions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+  \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"x"}\NormalTok{,}
+              \DataTypeTok{label =} \StringTok{"X-axis:"}\NormalTok{,}
+              \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{"sleep_total"}\NormalTok{, }\StringTok{"sleep_rem"}\NormalTok{, }\StringTok{"sleep_cycle"}\NormalTok{, }
+                          \StringTok{"awake"}\NormalTok{, }\StringTok{"brainwt"}\NormalTok{, }\StringTok{"bodywt"}\NormalTok{),}
+              \DataTypeTok{selected =} \StringTok{"sleep_rem"}\NormalTok{),}
+  \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"y"}\NormalTok{,}
+              \DataTypeTok{label =} \StringTok{"Y-axis:"}\NormalTok{,}
+              \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{"sleep_total"}\NormalTok{, }\StringTok{"sleep_rem"}\NormalTok{, }\StringTok{"sleep_cycle"}\NormalTok{, }
+                          \StringTok{"awake"}\NormalTok{, }\StringTok{"brainwt"}\NormalTok{, }\StringTok{"bodywt"}\NormalTok{),}
+              \DataTypeTok{selected =} \StringTok{"sleep_total"}\NormalTok{),}
+  \KeywordTok{tabsetPanel}\NormalTok{(}\DataTypeTok{id =} \StringTok{"vore"}\NormalTok{,}
+              \KeywordTok{tabPanel}\NormalTok{(}\StringTok{"Carnivore"}\NormalTok{,}
+                       \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot_carni"}\NormalTok{)),}
+              \KeywordTok{tabPanel}\NormalTok{(}\StringTok{"Omnivore"}\NormalTok{,}
+                       \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot_omni"}\NormalTok{)),}
+              \KeywordTok{tabPanel}\NormalTok{(}\StringTok{"Herbivore"}\NormalTok{,}
+                       \KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot_herbi"}\NormalTok{)))}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+
+  \CommentTok{# make subsets}
+\NormalTok{  carni <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{( }\KeywordTok{filter}\NormalTok{(msleep, vore }\OperatorTok{==}\StringTok{ "carni"}\NormalTok{) )}
+\NormalTok{  omni  <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{( }\KeywordTok{filter}\NormalTok{(msleep, vore }\OperatorTok{==}\StringTok{ "omni"}\NormalTok{)  )}
+\NormalTok{  herbi <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{( }\KeywordTok{filter}\NormalTok{(msleep, vore }\OperatorTok{==}\StringTok{ "herbi"}\NormalTok{) )}
+
+  \CommentTok{# make plots}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{plot_carni <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+    \KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{carni}\NormalTok{(), }\KeywordTok{aes_string}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ input}\OperatorTok{$}\NormalTok{x, }\DataTypeTok{y =}\NormalTok{ input}\OperatorTok{$}\NormalTok{y)) }\OperatorTok{+}
+\StringTok{      }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{  \}, }\DataTypeTok{res =} \DecValTok{96}\NormalTok{)}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{plot_omni <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+    \KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{omni}\NormalTok{(), }\KeywordTok{aes_string}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ input}\OperatorTok{$}\NormalTok{x, }\DataTypeTok{y =}\NormalTok{ input}\OperatorTok{$}\NormalTok{y)) }\OperatorTok{+}
+\StringTok{      }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{  \}, }\DataTypeTok{res =} \DecValTok{96}\NormalTok{)}
+\NormalTok{  output}\OperatorTok{$}\NormalTok{plot_herbi <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+    \KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{herbi}\NormalTok{(), }\KeywordTok{aes_string}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ input}\OperatorTok{$}\NormalTok{x, }\DataTypeTok{y =}\NormalTok{ input}\OperatorTok{$}\NormalTok{y)) }\OperatorTok{+}
+\StringTok{      }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{  \}, }\DataTypeTok{res =} \DecValTok{96}\NormalTok{)}
+
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution}{%
+\subsubsection*{Solution}\label{solution}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We can see a pattern here where we are creating the same type of plot for each tabset panel, with the only variable changing being the \texttt{vore} argument. We can reduce everything we see in triplicate to functions! We can use \texttt{map} to create a single \texttt{create\_panels} function which will create a tab for each of our \texttt{species}. On the server side, the data is filtered three times, and the plots are created three times. We can create a single rendering function that given the correct string it will filter the data, create the correct plot, and assign it to the correct output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+
+\CommentTok{# use a vector for function inputs}
+\NormalTok{species <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Carnivore"}\NormalTok{, }\StringTok{"Omnivore"}\NormalTok{, }\StringTok{"Herbivore"}\NormalTok{)}
+
+\CommentTok{# educe to a single UI function}
+\CommentTok{# Marly: this didn't work!}
+\NormalTok{create_panels <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(id) \{}
+    \KeywordTok{tabPanel}\NormalTok{(id, }\KeywordTok{plotOutput}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"plot_"}\NormalTok{, id)))}
+\NormalTok{\}}
+
+\NormalTok{ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+    \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"x"}\NormalTok{,}
+                \DataTypeTok{label =} \StringTok{"X-axis:"}\NormalTok{,}
+                \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{"sleep_total"}\NormalTok{, }\StringTok{"sleep_rem"}\NormalTok{, }\StringTok{"sleep_cycle"}\NormalTok{,}
+                            \StringTok{"awake"}\NormalTok{, }\StringTok{"brainwt"}\NormalTok{, }\StringTok{"bodywt"}\NormalTok{),}
+                \DataTypeTok{selected =} \StringTok{"sleep_rem"}\NormalTok{),}
+    \KeywordTok{selectInput}\NormalTok{(}\DataTypeTok{inputId =} \StringTok{"y"}\NormalTok{,}
+                \DataTypeTok{label =} \StringTok{"Y-axis:"}\NormalTok{,}
+                \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{"sleep_total"}\NormalTok{, }\StringTok{"sleep_rem"}\NormalTok{, }\StringTok{"sleep_cycle"}\NormalTok{,}
+                            \StringTok{"awake"}\NormalTok{, }\StringTok{"brainwt"}\NormalTok{, }\StringTok{"bodywt"}\NormalTok{),}
+                \DataTypeTok{selected =} \StringTok{"sleep_total"}\NormalTok{),}
+    \KeywordTok{tabsetPanel}\NormalTok{(}
+        \KeywordTok{tabPanel}\NormalTok{(}\StringTok{"Carnivore"}\NormalTok{, }\KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot_Carnivore"}\NormalTok{)),}
+        \KeywordTok{tabPanel}\NormalTok{(}\StringTok{"Omnivore"}\NormalTok{, }\KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot_Omnivore"}\NormalTok{)),}
+        \KeywordTok{tabPanel}\NormalTok{(}\StringTok{"Herbivore"}\NormalTok{, }\KeywordTok{plotOutput}\NormalTok{(}\StringTok{"plot_Herbivore"}\NormalTok{))}
+\NormalTok{    )}
+    \CommentTok{# this works without the tabsetPanel function - why?!}
+    \CommentTok{# purrr::map(species, create_panels)}
+\NormalTok{)}
+
+\NormalTok{server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+
+    \CommentTok{# rendering plot function for each panel}
+\NormalTok{    render_outputs <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(id) \{}
+\NormalTok{        output[[}\KeywordTok{paste0}\NormalTok{(}\StringTok{"plot_"}\NormalTok{, id)]] <-}\StringTok{ }\KeywordTok{renderPlot}\NormalTok{(\{}
+\NormalTok{            msleep }\OperatorTok{%>%}
+\StringTok{                }\KeywordTok{filter}\NormalTok{(vore }\OperatorTok{==}\StringTok{ }\KeywordTok{tolower}\NormalTok{(stringr}\OperatorTok{::}\KeywordTok{str_remove}\NormalTok{(id, }\StringTok{"vore"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{                }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{                }\KeywordTok{aes_string}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ input}\OperatorTok{$}\NormalTok{x, }\DataTypeTok{y =}\NormalTok{ input}\OperatorTok{$}\NormalTok{y) }\OperatorTok{+}
+\StringTok{                }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{            )}
+\NormalTok{        \})}
+\NormalTok{    \}}
+
+    \CommentTok{# apply to the species vector using map}
+\NormalTok{    purrr}\OperatorTok{::}\KeywordTok{map}\NormalTok{(species, render_outputs)}
+\NormalTok{\}}
+
+\KeywordTok{shinyApp}\NormalTok{(}\DataTypeTok{ui =}\NormalTok{ ui, }\DataTypeTok{server =}\NormalTok{ server)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-14.4.2}{%
+\subsection*{Exercise 14.4.2}\label{exercise-14.4.2}}
+\addcontentsline{toc}{subsection}{Exercise 14.4.2}
+
+Continue working with the same app from the previous exercise, and further remove redundancy in the code by modularizing how subsets and plots are created.
+
+\begin{solution}
+
+\hypertarget{solution-1}{%
+\subsubsection*{Solution}\label{solution-1}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+TODO: I'm unsure what to do with this one since we haven't yet introduced modules?
+
+\end{solution}
+
+\hypertarget{exercise-14.4.3}{%
+\subsection*{Exercise 14.4.3}\label{exercise-14.4.3}}
+\addcontentsline{toc}{subsection}{Exercise 14.4.3}
+
+Suppose you have an app that is slow to launch when a user visits it. Can
+modularizing your app code help solve this problem? Explain your reasoning.
+
+\begin{solution}
+
+\hypertarget{solution-2}{%
+\subsubsection*{Solution}\label{solution-2}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+No, we're just packaging our code into neater functions - this doesn't change or optimize what is loaded when the app is launched. In fact, modularizing might even make your application slower in some cases.
+
+\end{solution}
+
+\hypertarget{modules}{%
+\chapter{Modules}\label{modules}}
+
+\begin{TODO}
+
+This chapter is in development\ldots{}
+
+\end{TODO}
+
+\hypertarget{exercise-15.6.1}{%
+\subsection*{Exercise 15.6.1}\label{exercise-15.6.1}}
+\addcontentsline{toc}{subsection}{Exercise 15.6.1}
+
+Example passing input\$foo to reactive and it not working.
+
+\begin{solution}
+
+\hypertarget{solution}{%
+\subsubsection*{Solution}\label{solution}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+I don't really know what this question is asking, but I think the point is to remember:
+
+\begin{quote}
+The main challenge with this sort of code is remembering when you use the reactive (e.g.~x\$value) vs.~when you use its value (e.g.~x\$value()). Just remember that when passing an argument to a module, you want the module to react to the value changing which means that you have to pass the reactive, not it's current value.
+\end{quote}
+
+Where in this scenario, \texttt{input\$foo} is analogous to \texttt{x\$value}.
+
+\end{solution}
+
+\hypertarget{exercise-15.6.2}{%
+\subsection*{Exercise 15.6.2}\label{exercise-15.6.2}}
+\addcontentsline{toc}{subsection}{Exercise 15.6.2}
+
+Rewrite \texttt{selectVarServer()} so that both data and filter are reactive. Pair it with a app function that lets the user pick the dataset with the dataset module, a function with an \texttt{inputSelect()} that lets the user filter for numeric, character, or factor variables.
+
+\begin{solution}
+
+\hypertarget{solution-1}{%
+\subsubsection*{Solution}\label{solution-1}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+The modules \texttt{datasetInput}, \texttt{datasetServer}, and \texttt{selectVarInput} are the same, as well as the \texttt{find\_vars} function.
+
+We can start by creating \texttt{selectFilterInput} which has the filtering options as choices, and \texttt{selectFilterServer} which returns the filtering function given the selected choice string.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# create a filter selection input}
+\NormalTok{selectFilterInput <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(id) \{}
+    \KeywordTok{selectInput}\NormalTok{(}\KeywordTok{NS}\NormalTok{(id, }\StringTok{"filter"}\NormalTok{), }\StringTok{"Filter"}\NormalTok{,}
+                \DataTypeTok{choices =} \KeywordTok{c}\NormalTok{(}\StringTok{"Numeric"}\NormalTok{, }\StringTok{"Character"}\NormalTok{, }\StringTok{"Factor"}\NormalTok{),}
+                \DataTypeTok{selected =} \StringTok{"Numeric"}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{# switch the function to be applied within the server}
+\NormalTok{selectFilterServer <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(id) \{}
+    \KeywordTok{moduleServer}\NormalTok{(id, }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+        \KeywordTok{eventReactive}\NormalTok{(input}\OperatorTok{$}\NormalTok{filter, \{}
+            \ControlFlowTok{switch}\NormalTok{(input}\OperatorTok{$}\NormalTok{filter,}
+               \StringTok{"Numeric"}\NormalTok{ =}\StringTok{ }\NormalTok{is.numeric,}
+               \StringTok{"Character"}\NormalTok{ =}\StringTok{ }\NormalTok{is.character,}
+               \StringTok{"Factor"}\NormalTok{ =}\StringTok{ }\NormalTok{is.factor}
+\NormalTok{               )}
+\NormalTok{        \})}
+\NormalTok{    \})}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can update the \texttt{selectVarServer} to take on an additional \texttt{filter} argument, and change the update function to not only observe when the \texttt{data} reactive changes but also our new \texttt{filter} widget changes. Lastly we pass in the filter reactive to the \texttt{find\_vars} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selectVarServer <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(id, data, filter) \{ }\CommentTok{# filter argument}
+    \KeywordTok{moduleServer}\NormalTok{(id, }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+        \KeywordTok{observeEvent}\NormalTok{(\{}
+            \KeywordTok{data}\NormalTok{()}
+            \KeywordTok{filter}\NormalTok{() }\CommentTok{#observe changes in filter reactive}
+\NormalTok{            \}, \{}
+            \KeywordTok{updateSelectInput}\NormalTok{(session, }\StringTok{"var"}\NormalTok{, }\DataTypeTok{choices =} \KeywordTok{find_vars}\NormalTok{(}\KeywordTok{data}\NormalTok{(), }\KeywordTok{filter}\NormalTok{())) }\CommentTok{# filter as reactive}
+\NormalTok{        \})}
+        \KeywordTok{reactive}\NormalTok{(}\KeywordTok{data}\NormalTok{()[[input}\OperatorTok{$}\NormalTok{var]])}
+\NormalTok{    \})}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Putting it together, we add our new module to the UI and server, and by saving the result of the \texttt{selectFilterServer} to \texttt{filt} we can pass that to the \texttt{selectVarServer}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selectVarApp <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
+\NormalTok{    ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+        \KeywordTok{datasetInput}\NormalTok{(}\StringTok{"data"}\NormalTok{, is.data.frame),}
+        \CommentTok{# call the new filter UI}
+        \KeywordTok{selectFilterInput}\NormalTok{(}\StringTok{"filter"}\NormalTok{),}
+        \KeywordTok{selectVarInput}\NormalTok{(}\StringTok{"var"}\NormalTok{),}
+        \KeywordTok{verbatimTextOutput}\NormalTok{(}\StringTok{"out"}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{    server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{        data <-}\StringTok{ }\KeywordTok{datasetServer}\NormalTok{(}\StringTok{"data"}\NormalTok{)}
+        \CommentTok{# store the filtering function as a reactive}
+\NormalTok{        filt <-}\StringTok{ }\KeywordTok{selectFilterServer}\NormalTok{(}\StringTok{"filter"}\NormalTok{)}
+        \CommentTok{# pass the reactive to the select module}
+\NormalTok{        var <-}\StringTok{ }\KeywordTok{selectVarServer}\NormalTok{(}\StringTok{"var"}\NormalTok{, data, }\DataTypeTok{filter =}\NormalTok{ filt)}
+\NormalTok{        output}\OperatorTok{$}\NormalTok{out <-}\StringTok{ }\KeywordTok{renderPrint}\NormalTok{(}\KeywordTok{var}\NormalTok{())}
+\NormalTok{    \}}
+
+    \KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-15.6.3}{%
+\subsection*{Exercise 15.6.3}\label{exercise-15.6.3}}
+\addcontentsline{toc}{subsection}{Exercise 15.6.3}
+
+The following code defines output and server components of a module that takes a numeric input and produces a bulleted list of three summary statistics. Create an app function that allows you to experiment with it. The app function should take a data frame as input, and use \texttt{numericVarSelectInput()} to pick the variable to summarise.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{summaryOuput <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(id) \{}
+\NormalTok{  tags}\OperatorTok{$}\KeywordTok{ul}\NormalTok{(}
+\NormalTok{    tags}\OperatorTok{$}\KeywordTok{li}\NormalTok{(}\StringTok{"Min: "}\NormalTok{, }\KeywordTok{textOutput}\NormalTok{(}\KeywordTok{NS}\NormalTok{(id, }\StringTok{"min"}\NormalTok{), }\DataTypeTok{inline =} \OtherTok{TRUE}\NormalTok{)),}
+\NormalTok{    tags}\OperatorTok{$}\KeywordTok{li}\NormalTok{(}\StringTok{"Max: "}\NormalTok{, }\KeywordTok{textOutput}\NormalTok{(}\KeywordTok{NS}\NormalTok{(id, }\StringTok{"max"}\NormalTok{), }\DataTypeTok{inline =} \OtherTok{TRUE}\NormalTok{)),}
+\NormalTok{    tags}\OperatorTok{$}\KeywordTok{li}\NormalTok{(}\StringTok{"Missing: "}\NormalTok{, }\KeywordTok{textOutput}\NormalTok{(}\KeywordTok{NS}\NormalTok{(id, }\StringTok{"n_na"}\NormalTok{), }\DataTypeTok{inline =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{  )}
+\NormalTok{\}}
+
+\NormalTok{summaryServer <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(id, var) \{}
+  \KeywordTok{moduleServer}\NormalTok{(id, }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{    rng <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+      \KeywordTok{req}\NormalTok{(}\KeywordTok{var}\NormalTok{())}
+      \KeywordTok{range}\NormalTok{(}\KeywordTok{var}\NormalTok{(), }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{    \})}
+
+\NormalTok{    output}\OperatorTok{$}\NormalTok{min <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(}\KeywordTok{rng}\NormalTok{()[[}\DecValTok{1}\NormalTok{]])}
+\NormalTok{    output}\OperatorTok{$}\NormalTok{max <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(}\KeywordTok{rng}\NormalTok{()[[}\DecValTok{2}\NormalTok{]])}
+\NormalTok{    output}\OperatorTok{$}\NormalTok{n_na <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(}\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(}\KeywordTok{var}\NormalTok{())))}
+\NormalTok{  \})}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution-2}{%
+\subsubsection*{Solution}\label{solution-2}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We only need to add the code above to the \texttt{selectVarApp()} example in the book, and adapt the app code to include the \texttt{summaryOutput} instead of the \texttt{verbatimTextOutput}, and on the server side pass \texttt{var} to the \texttt{summaryServer} function instead of to the text output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selectVarApp <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{filter =}\NormalTok{ is.numeric) \{}
+\NormalTok{    ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+        \KeywordTok{datasetInput}\NormalTok{(}\StringTok{"data"}\NormalTok{, is.data.frame),}
+        \KeywordTok{selectVarInput}\NormalTok{(}\StringTok{"var"}\NormalTok{),}
+        \KeywordTok{summaryOutput}\NormalTok{(}\StringTok{"summary"}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{    server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{        data <-}\StringTok{ }\KeywordTok{datasetServer}\NormalTok{(}\StringTok{"data"}\NormalTok{)}
+\NormalTok{        var <-}\StringTok{ }\KeywordTok{selectVarServer}\NormalTok{(}\StringTok{"var"}\NormalTok{, data, }\DataTypeTok{filter =}\NormalTok{ filter)}
+        \KeywordTok{summaryServer}\NormalTok{(}\StringTok{"summary"}\NormalTok{, var)}
+\NormalTok{    \}}
+
+    \KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\NormalTok{\}}
+
+\KeywordTok{selectVarApp}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-15.6.4}{%
+\subsection*{Exercise 15.6.4}\label{exercise-15.6.4}}
+\addcontentsline{toc}{subsection}{Exercise 15.6.4}
+
+The following module input provides a text control that lets you type a date in ISO8601 format (yyyy-mm-dd). Complete the module by providing a server function that uses output\$error to display a message if the entered value is not a valid date. The module should return a Date object for valid dates. (Hint: use strptime(x, ``\%Y-\%m-\%d'') to parse the string; it will return NA if the value isn't a valid date.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ymdDateUI <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(id, label) \{}
+\NormalTok{  label <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(label, }\StringTok{" (yyyy-mm-dd)"}\NormalTok{)}
+
+  \KeywordTok{fluidRow}\NormalTok{(}
+    \KeywordTok{textInput}\NormalTok{(}\KeywordTok{NS}\NormalTok{(id, }\StringTok{"date"}\NormalTok{), label),}
+    \KeywordTok{textOutput}\NormalTok{(}\KeywordTok{NS}\NormalTok{(id, }\StringTok{"error"}\NormalTok{))}
+\NormalTok{  )}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{solution}
+
+\hypertarget{solution-3}{%
+\subsubsection*{Solution}\label{solution-3}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We create a \texttt{ymdDateServer} function that renders the error if \texttt{strptime(input\$date,\ "\%Y-\%m-\%d")} is \texttt{NA}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ymdDateServer <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(id, label) \{}
+    \KeywordTok{moduleServer}\NormalTok{(id, }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+\NormalTok{        output}\OperatorTok{$}\NormalTok{error <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{}
+            \KeywordTok{print}\NormalTok{(input}\OperatorTok{$}\NormalTok{date)}
+            \KeywordTok{print}\NormalTok{(}\KeywordTok{strptime}\NormalTok{(input}\OperatorTok{$}\NormalTok{date, }\StringTok{"%Y-%m-%d"}\NormalTok{))}
+            \ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(}\KeywordTok{strptime}\NormalTok{(input}\OperatorTok{$}\NormalTok{date, }\StringTok{"%Y-%m-%d"}\NormalTok{)) }\OperatorTok{|}\StringTok{ }\NormalTok{input}\OperatorTok{$}\NormalTok{date }\OperatorTok{==}\StringTok{ ""}\NormalTok{) \{}
+                \OtherTok{NULL}
+\NormalTok{            \} }\ControlFlowTok{else}\NormalTok{ \{}
+               \StringTok{"Entered value is not a proper date"}
+\NormalTok{            \}}
+
+\NormalTok{        \})}
+\NormalTok{    \})}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+We put the \texttt{UI} and \texttt{Server} code together in the \texttt{ymdApp} function below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ymdApp <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{filter =}\NormalTok{ is.numeric) \{}
+\NormalTok{    ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+        \KeywordTok{ymdDateUI}\NormalTok{(}\StringTok{"ymd"}\NormalTok{, }\StringTok{"Time"}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{    server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+        \KeywordTok{ymdDateServer}\NormalTok{(}\StringTok{"ymd"}\NormalTok{)}
+\NormalTok{    \}}
+    \KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\NormalTok{\}}
+\KeywordTok{ymdApp}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-15.6.5}{%
+\subsection*{Exercise 15.6.5}\label{exercise-15.6.5}}
+\addcontentsline{toc}{subsection}{Exercise 15.6.5}
+
+In \texttt{radioExtraServer()}, return a list that contains both the value and whether or not it came from other.
+
+\begin{solution}
+
+\hypertarget{solution-4}{%
+\subsubsection*{Solution}\label{solution-4}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+We can adapt the reactive we return from \texttt{radioExtraServer} to return both the reactive and whether it came from the primary button choices or not as a list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{radioExtraServer <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(id) \{}
+    \KeywordTok{moduleServer}\NormalTok{(id, }\ControlFlowTok{function}\NormalTok{(input, output, session) \{}
+        \KeywordTok{observeEvent}\NormalTok{(input}\OperatorTok{$}\NormalTok{other, }\DataTypeTok{ignoreInit =} \OtherTok{TRUE}\NormalTok{, \{}
+            \KeywordTok{updateRadioButtons}\NormalTok{(session, }\StringTok{"primary"}\NormalTok{, }\DataTypeTok{selected =} \StringTok{"other"}\NormalTok{)}
+\NormalTok{        \})}
+        
+\NormalTok{        selected <-}\StringTok{ }\KeywordTok{reactive}\NormalTok{(\{}
+            \ControlFlowTok{if}\NormalTok{ (input}\OperatorTok{$}\NormalTok{primary }\OperatorTok{==}\StringTok{ "other"}\NormalTok{) \{}
+\NormalTok{                input}\OperatorTok{$}\NormalTok{other}
+\NormalTok{            \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{                input}\OperatorTok{$}\NormalTok{primary}
+\NormalTok{            \}}
+\NormalTok{        \})}
+
+        \CommentTok{# return the selected reactive inside a list}
+        \CommentTok{# adding whether it came from primary or not }
+        \KeywordTok{list}\NormalTok{(}\DataTypeTok{selected =}
+                 \KeywordTok{reactive}\NormalTok{(\{}
+                     \ControlFlowTok{if}\NormalTok{ (input}\OperatorTok{$}\NormalTok{primary }\OperatorTok{==}\StringTok{ "other"}\NormalTok{) \{}
+\NormalTok{                         input}\OperatorTok{$}\NormalTok{other}
+\NormalTok{                     \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{                        input}\OperatorTok{$}\NormalTok{primary}
+\NormalTok{                     \}}
+\NormalTok{                 \}),}
+             \DataTypeTok{primary =}
+                 \KeywordTok{reactive}\NormalTok{(input}\OperatorTok{$}\NormalTok{primary }\OperatorTok{!=}\StringTok{ "other"}\NormalTok{)}
+\NormalTok{             )}
+\NormalTok{    \})}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+In doing so, we need to adapt the \texttt{radioExtraApp} code to return \texttt{extra\$selected()} rather than \texttt{extra}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{radioExtraApp <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(...) \{}
+\NormalTok{    ui <-}\StringTok{ }\KeywordTok{fluidPage}\NormalTok{(}
+        \KeywordTok{radioExtraUI}\NormalTok{(}\StringTok{"extra"}\NormalTok{, }\OtherTok{NULL}\NormalTok{, ...),}
+        \KeywordTok{textOutput}\NormalTok{(}\StringTok{"value"}\NormalTok{)}
+\NormalTok{    )}
+\NormalTok{    server <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(input, output, server) \{}
+\NormalTok{        extra <-}\StringTok{ }\KeywordTok{radioExtraServer}\NormalTok{(}\StringTok{"extra"}\NormalTok{)}
+\NormalTok{        output}\OperatorTok{$}\NormalTok{value <-}\StringTok{ }\KeywordTok{renderText}\NormalTok{(\{}
+            \KeywordTok{paste0}\NormalTok{(}\StringTok{"Selected: "}\NormalTok{, extra}\OperatorTok{$}\KeywordTok{selected}\NormalTok{())}
+\NormalTok{        \})}
+\NormalTok{    \}}
+
+    \KeywordTok{shinyApp}\NormalTok{(ui, server)}
+\NormalTok{\}}
+\KeywordTok{radioExtraApp}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\hypertarget{exercise-15.6.6}{%
+\subsection*{Exercise 15.6.6}\label{exercise-15.6.6}}
+\addcontentsline{toc}{subsection}{Exercise 15.6.6}
+
+In \texttt{wizardServer()} verify that the namespacing has been set up correctly by using two or more wizards in a single add, and checking that you can navigate through each wizard independently.
+
+\begin{solution}
+
+\hypertarget{solution-5}{%
+\subsubsection*{Solution}\label{solution-5}}
+\addcontentsline{toc}{subsubsection}{Solution}
+
+\end{solution}
+
+\hypertarget{packages}{%
+\chapter{Packages}\label{packages}}
+
+There are no exercises in this chapter.
+
+\hypertarget{testing}{%
+\chapter{Testing}\label{testing}}
+
+There are no exercises in this chapter.
+
+\hypertarget{safety}{%
+\chapter{Safety}\label{safety}}
+
+There are no exercises in this chapter.
+
+\hypertarget{performance}{%
+\chapter{Performance}\label{performance}}
+
+There are no exercises in this chapter.
+
+\hypertarget{why-reactivity}{%
+\chapter{Why reactivity?}\label{why-reactivity}}
+
+There are no exercises in this chapter.
+
+\hypertarget{dependency-tracking}{%
+\chapter{Dependency Tracking}\label{dependency-tracking}}
+
+There are no exercises in this chapter.
+
+\hypertarget{scoping}{%
+\chapter{Scoping}\label{scoping}}
+
+There are no exercises in this chapter.
+
+\hypertarget{reactive-components}{%
+\chapter{Reactive Components}\label{reactive-components}}
+
+There are no exercises in this chapter.
+
+\hypertarget{advanced-ui}{%
+\chapter{Advanced UI}\label{advanced-ui}}
+
+There are no exercises in this chapter.
+
+\bibliography{book.bib,packages.bib}
+
+\end{document}
