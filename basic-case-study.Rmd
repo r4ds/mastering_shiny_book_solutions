@@ -51,6 +51,10 @@ reduces the summary tables?
 :::solution
 #### Solution {-}
 
+As in the book, we will use the datasets `injuries`, `products`, and
+`population` appearing here:
+https://github.com/hadley/mastering-shiny/blob/master/neiss/data.R.
+
 Flipping the order of `fct_infreq()` and `fct_lump()` will only change the
 factor levels order. In particular, the function `fct_infreq()` orders the
 factor levels by frequency, and the function `fct_lump()` also orders the
@@ -59,21 +63,36 @@ the rest as `Other`.
 
 ```{r, include=FALSE}
 library(forcats)
+library(tidyverse)
 library(neiss)
-library(dplyr)
+
+# Note: these datasets are copied over from https://github.com/hadley/mastering-shiny/blob/master/neiss/data.R.
+
+top_prod <- injuries %>%
+  filter(trmt_date >= as.Date("2017-01-01"), trmt_date < as.Date("2018-01-01")) %>%
+  count(prod1, sort = TRUE) %>%
+  filter(n > 5 * 365)
+
+injuries <- injuries %>%
+  filter(trmt_date >= as.Date("2017-01-01"), trmt_date < as.Date("2018-01-01")) %>%
+  semi_join(top_prod, by = "prod1") %>%
+  mutate(age = floor(age), sex = tolower(sex), race = tolower(race)) %>%
+  filter(sex != "unknown") %>%
+  select(trmt_date, age, sex, race, body_part, diag, location, prod_code = prod1, weight, narrative)
 ```
 
-For example, let's look at the number of times each level within `diag` occurs
+Let us look at the top five levels in terms of count within the `diag` column
 in the `injuries` dataset:
 
 ```{r}
 injuries %>%
   group_by(diag) %>%
   count() %>%
-  arrange(-n)
+  arrange(-n) %>%
+  head(5)
 ```
 
-If we apply `fct_infreq()` first, then it will reorder the factors in
+If we apply `fct_infreq()` first, then it will reorder the factor levels in
 descending order as seen in the previous output. If afterwards we apply
 `fct_lump()`, then it will lump together everything after the nth most commonly
 seen level.
@@ -86,10 +105,10 @@ diag <- injuries %>%
 levels(diag)
 ```
 
-Conversely, if we apply `fct_lump()` first, then it will make the most
-frequently seen factor `Other`. If afterwards we apply `fct_infreq()`, then it
-will label the first level as `Other` and not as `Laceration`, which was the
-case for the previous code.
+Conversely, if we apply `fct_lump()` first, then it will label the most
+frequently seen factor level as "Other". If afterwards we apply `fct_infreq()`,
+then it will label the first level as "Other" and not as "Other Or Not Stated",
+which was the case for the previous code.
 
 ```{r, warning=FALSE, message=FALSE}
 diag <- injuries %>%
@@ -98,7 +117,6 @@ diag <- injuries %>%
 
 levels(diag)
 ```
-
 :::
 
 <!---------------------------------------------------------------------------->
@@ -123,7 +141,6 @@ from what the user selects in order to display the number of rows they input.
 ```{r, eval=FALSE}
 library(shiny)
 library(forcats)
-library(neiss)
 library(dplyr)
 library(ggplot2)
 
@@ -246,7 +263,6 @@ To do the advanced part, we use the mod function. This allows us to keep
 ```{r, eval=FALSE}
 library(shiny)
 library(forcats)
-library(neiss)
 library(dplyr)
 library(ggplot2)
 
