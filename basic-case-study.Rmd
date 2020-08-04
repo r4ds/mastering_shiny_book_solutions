@@ -81,14 +81,15 @@ injuries <- injuries %>%
   select(trmt_date, age, sex, race, body_part, diag, location, prod_code = prod1, weight, narrative)
 ```
 
-For example, let's look at the number of times each level within `diag` occurs
+Let us look at the top five levels in terms of count within the `diag` column
 in the `injuries` dataset:
 
 ```{r}
 injuries %>%
   group_by(diag) %>%
   count() %>%
-  arrange(-n)
+  arrange(-n) %>%
+  head(5)
 ```
 
 If we apply `fct_infreq()` first, then it will reorder the factors in
