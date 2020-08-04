@@ -141,7 +141,6 @@ from what the user selects in order to display the number of rows they input.
 ```{r, eval=FALSE}
 library(shiny)
 library(forcats)
-library(neiss)
 library(dplyr)
 library(ggplot2)
 
@@ -264,7 +263,6 @@ To do the advanced part, we use the mod function. This allows us to keep
 ```{r, eval=FALSE}
 library(shiny)
 library(forcats)
-library(neiss)
 library(dplyr)
 library(ggplot2)
 
