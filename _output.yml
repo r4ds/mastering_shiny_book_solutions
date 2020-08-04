@@ -12,6 +12,8 @@ bookdown::gitbook:
       twitter: no
       github: yes
       all: []
+  includes:
+    in_header: google_analytics.html
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
