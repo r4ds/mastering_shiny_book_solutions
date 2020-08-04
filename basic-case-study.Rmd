@@ -92,7 +92,7 @@ injuries %>%
   head(5)
 ```
 
-If we apply `fct_infreq()` first, then it will reorder the factors in
+If we apply `fct_infreq()` first, then it will reorder the factor levels in
 descending order as seen in the previous output. If afterwards we apply
 `fct_lump()`, then it will lump together everything after the nth most commonly
 seen level.
@@ -105,10 +105,10 @@ diag <- injuries %>%
 levels(diag)
 ```
 
-Conversely, if we apply `fct_lump()` first, then it will make the most
-frequently seen factor `Other`. If afterwards we apply `fct_infreq()`, then it
-will label the first level as `Other` and not as `Laceration`, which was the
-case for the previous code.
+Conversely, if we apply `fct_lump()` first, then it will label the most
+frequently seen factor level as "Other". If afterwards we apply `fct_infreq()`,
+then it will label the first level as "Other" and not as "Other Or Not Stated",
+which was the case for the previous code.
 
 ```{r, warning=FALSE, message=FALSE}
 diag <- injuries %>%
@@ -117,7 +117,6 @@ diag <- injuries %>%
 
 levels(diag)
 ```
-
 :::
 
 <!---------------------------------------------------------------------------->
