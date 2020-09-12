@@ -1,6 +1,6 @@
 # Graphics
 
-### Exercise 7.5.1 {-}
+### Exercise 7.6.1 {-}
 
 Make a plot with click handle that shows all the data returned in the input.
 
@@ -38,7 +38,7 @@ shinyApp(ui, server)
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 
-### Exercise 7.5.2 {-}
+### Exercise 7.6.2 {-}
 
 Make a plot with click, dblclick, hover, and brush output handlers and nicely
 display the current selection in the sidebar. Plot the plot in the main panel.
@@ -128,7 +128,7 @@ shinyApp(ui, server)
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 
-### Exercise 7.5.3 {-}
+### Exercise 7.6.3 {-}
 
 Compute the limits of the distance scale using the size of the plot.
 
