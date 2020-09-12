@@ -7,7 +7,9 @@ Make a plot with click handle that shows all the data returned in the input.
 :::solution
 #### Solution {-}
 
-We can use the `allRows` argument in `nearPoints` to see all the data, and adds a boolean column that returns `TRUE` for the point that was clicked on
+We can use the `allRows` argument in `nearPoints` to see the entire data and
+add a boolean column that will be true `TRUE` for the given point (i.e., row)
+that was clicked.
 
 
 ```r
@@ -18,6 +20,7 @@ ui <- fluidPage(
     plotOutput("plot", click = "plot_click"),
     tableOutput("data")
 )
+
 server <- function(input, output, session) {
     output$plot <- renderPlot({
         ggplot(mtcars, aes(wt, mpg)) + geom_point()
@@ -28,7 +31,7 @@ server <- function(input, output, session) {
     })
 }
 
-shinyApp(ui = ui, server = server)
+shinyApp(ui, server)
 ```
 :::
 
@@ -38,12 +41,15 @@ shinyApp(ui = ui, server = server)
 
 ### Exercise 7.5.2 {-}
 
-Make a plot with click, dblclick, hover, and brush output handlers and nicely display the current selection in the sidebar. Plot the plot in the main panel.
+Make a plot with click, dblclick, hover, and brush output handlers and nicely
+display the current selection in the sidebar. Plot the plot in the main panel.
 
 :::solution
 #### Solution {-}
 
-We can use the `nearPoints` function to extract the data from `plot_click`, `plot_dbl`, and `plot_hover`. We need to use the function `brushedPoints` to extract the points within the `plot_brush` area.
+We can use the `nearPoints` function to extract the data from `plot_click`,
+`plot_dbl`, and `plot_hover`. We need to use the function `brushedPoints` to
+extract the points within the `plot_brush` area.
 
 To 'nicely' display the current selection, we will use `dataTableOutput`.
 
@@ -52,14 +58,15 @@ To 'nicely' display the current selection, we will use `dataTableOutput`.
 library(shiny)
 library(ggplot2)
 
+# Set options for rendering DataTables.
 options <- list(
   autoWidth = FALSE,
   searching = FALSE,
   ordering = FALSE,
   lengthChange = FALSE,
   lengthMenu = FALSE,
-  pageLength = 5,
-  paging = TRUE,
+  pageLength = 5, # Only show 5 rows per page.
+  paging = TRUE, # Enable pagination. Must be set for pageLength to work.
   info = FALSE
 )
 
