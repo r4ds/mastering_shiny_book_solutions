@@ -134,9 +134,6 @@ shinyApp(ui, server)
 
 Compute the limits of the distance scale using the size of the plot.
 
-:::solution
-#### Solution {-}
-
 
 ```r
 output_size <- function(id) {
@@ -145,5 +142,53 @@ output_size <- function(id) {
     session$clientData[[paste0("output_", id, "_height")]]
   ))
 }
+```
+
+:::solution
+#### Solution {-}
+
+
+```r
+library(shiny)
+library(ggplot2)
+
+df <- data.frame(x = rnorm(100), y = rnorm(100))
+
+ui <- fluidPage(
+  plotOutput("plot", click = "plot_click"),
+  textOutput("width"),
+  textOutput("height"),
+  textOutput("scale")
+)
+
+server <- function(input, output, session) {
+
+  dist <- reactiveVal(rep(1, nrow(df)))
+
+  observeEvent(input$plot_click, {
+    req(input$plot_click)
+    dist(nearPoints(df, input$plot_click, allRows = TRUE, addDist = TRUE)$dist_)
+  })
+
+  width <- reactive(session$clientData[["output_plot_width"]])
+  height <- reactive(session$clientData[["output_plot_height"]])
+
+  output$width <- renderText(paste0("Plot's width: ", width()))
+
+  output$height <- renderText(paste0("Plot's height: ", height()))
+
+  output$scale <- renderText({
+    paste0("Recommended limits: (0, ", max(height(), width()), ")")
+  })
+
+  output$plot <- renderPlot({
+    df$dist <- dist()
+    ggplot(df, aes(x, y, size = dist)) +
+      geom_point() #+
+      #scale_size_area(limits = c(0, max(height(), width())))
+  })
+}
+
+shinyApp(ui, server)
 ```
 :::
