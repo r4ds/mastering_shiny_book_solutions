@@ -16,18 +16,18 @@ library(shiny)
 library(ggplot2)
 
 ui <- fluidPage(
-    plotOutput("plot", click = "plot_click"),
-    tableOutput("data")
+  plotOutput("plot", click = "plot_click"),
+  tableOutput("data")
 )
 
 server <- function(input, output, session) {
-    output$plot <- renderPlot({
-        ggplot(mtcars, aes(wt, mpg)) + geom_point()
-    }, res = 96)
-
-    output$data <- renderTable({
-        nearPoints(mtcars, input$plot_click, allRows = TRUE)
-    })
+  output$plot <- renderPlot({
+    ggplot(mtcars, aes(wt, mpg)) + geom_point()
+  }, res = 96)
+  
+  output$data <- renderTable({
+    nearPoints(mtcars, input$plot_click, allRows = TRUE)
+  })
 }
 
 shinyApp(ui, server)
@@ -69,24 +69,24 @@ options <- list(
 )
 
 ui <- fluidPage(
-
+  
   sidebarLayout(
     sidebarPanel(
       width = 6,
-
+      
       h4("Selected Points"),
       dataTableOutput("click"), br(),
 
       h4("Double Clicked Points"),
       dataTableOutput("dbl"), br(),
-
+      
       h4("Hovered Points"),
       dataTableOutput("hover"), br(),
-
+      
       h4("Brushed Points"),
       dataTableOutput("brush")
     ),
-
+    
     mainPanel(width = 6,
               plotOutput("plot",
                          click = "plot_click",
@@ -98,11 +98,11 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
+  
   output$plot <- renderPlot({
     ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point()
   }, res = 96)
-
+  
   output$click <- renderDataTable(
     nearPoints(iris, input$plot_click),
     options = options)
@@ -131,9 +131,6 @@ shinyApp(ui, server)
 ### Exercise 7.5.3 {-}
 
 Compute the limits of the distance scale using the size of the plot.
-
-:::solution
-#### Solution {-}
 
 ```{r, eval=FALSE}
 output_size <- function(id) {
