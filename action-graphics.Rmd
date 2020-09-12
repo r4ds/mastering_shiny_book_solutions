@@ -48,6 +48,8 @@ Make a plot with click, dblclick, hover, and brush output handlers and nicely di
 
 We can use the `nearPoints` function to extract the data from `plot_click`, `plot_dbl`, and `plot_hover`. We need to use the function `brushedPoints` to extract the points within the `plot_brush` area.
 
+To 'nicely' display the current selection, we will use `dataTableOutput`.
+
 ```{r, eval=FALSE}
 library(shiny)
 library(ggplot2)
