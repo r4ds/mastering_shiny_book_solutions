@@ -83,14 +83,15 @@ ui <- fluidPage(
     ),
 
     mainPanel(width = 6,
-      plotOutput("plot", 
-                 click = "plot_click", 
-                 dblclick = "plot_dbl",
-                 hover = "plot_hover", 
-                 brush = "plot_brush")
+              plotOutput("plot",
+                         click = "plot_click",
+                         dblclick = "plot_dbl",
+                         hover = "plot_hover",
+                         brush = "plot_brush")
     )
-
+  )
 )
+
 server <- function(input, output, session) {
 
   output$plot <- renderPlot({
@@ -114,7 +115,7 @@ server <- function(input, output, session) {
     options = options)
 }
 
-shinyApp(ui = ui, server = server)
+shinyApp(ui, server)
 ```
 :::
 
