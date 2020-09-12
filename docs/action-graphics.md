@@ -176,8 +176,10 @@ server <- function(input, output, session) {
     paste0("Recommended limits: (0, ", max(height(), width()), ")")
   })
   
+  # Store the distance computed by the click event.
   dist <- reactiveVal(rep(1, nrow(df)))
   
+  # Update the dist reactive as needed.
   observeEvent(input$plot_click, {
     req(input$plot_click)
     dist(nearPoints(df, input$plot_click, allRows = TRUE, addDist = TRUE)$dist_)
