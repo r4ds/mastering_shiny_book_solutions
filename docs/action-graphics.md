@@ -1,6 +1,6 @@
 # Graphics
 
-### Exercise 7.5.1 {-}
+### Exercise 7.6.1 {-}
 
 Make a plot with click handle that shows all the data returned in the input.
 
@@ -39,7 +39,7 @@ shinyApp(ui, server)
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 
-### Exercise 7.5.2 {-}
+### Exercise 7.6.2 {-}
 
 Make a plot with click, dblclick, hover, and brush output handlers and nicely
 display the current selection in the sidebar. Plot the plot in the main panel.
@@ -130,7 +130,7 @@ shinyApp(ui, server)
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 
-### Exercise 7.5.3 {-}
+### Exercise 7.6.3 {-}
 
 Compute the limits of the distance scale using the size of the plot.
 
@@ -147,7 +147,14 @@ output_size <- function(id) {
 :::solution
 #### Solution {-}
 
-Let us use the plot's width and height to estimate the scale limits for our plot. To verify that the recommended limits are correct, click around the plot and watch how the distance scale changes on the legend. These values should oscillate between the recommended limits.
+Let us use the plot's width and height to estimate the scale limits for our
+plot.
+
+To verify that the recommended limits are correct, click around the plot
+and watch how the distance scale changes on the legend. These values should
+oscillate between the recommended limits.
+
+Resize the browser's window to change the width and height reactives.
 
 
 ```r

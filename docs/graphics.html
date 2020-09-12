@@ -187,9 +187,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="workflow.html"><a href="workflow.html"><i class="fa fa-check"></i><b>6</b> Workflow</a></li>
 <li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a>
 <ul>
-<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.1"><i class="fa fa-check"></i>Exercise 7.5.1</a></li>
-<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.2"><i class="fa fa-check"></i>Exercise 7.5.2</a></li>
-<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.3"><i class="fa fa-check"></i>Exercise 7.5.3</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.6.1"><i class="fa fa-check"></i>Exercise 7.6.1</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.6.2"><i class="fa fa-check"></i>Exercise 7.6.2</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.6.3"><i class="fa fa-check"></i>Exercise 7.6.3</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="user-feedback.html"><a href="user-feedback.html"><i class="fa fa-check"></i><b>8</b> User Feedback</a></li>
 <li class="chapter" data-level="9" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html"><i class="fa fa-check"></i><b>9</b> Uploads and Downloads</a>
@@ -265,8 +265,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="graphics" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Graphics</h1>
-<div id="exercise-7.5.1" class="section level3 unnumbered" number="">
-<h3>Exercise 7.5.1</h3>
+<div id="exercise-7.6.1" class="section level3 unnumbered" number="">
+<h3>Exercise 7.6.1</h3>
 <p>Make a plot with click handle that shows all the data returned in the input.</p>
 <div id="solution" class="section level4 unnumbered solution" number="">
 <h4>Solution</h4>
@@ -297,8 +297,8 @@ that was clicked.</p>
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 </div>
-<div id="exercise-7.5.2" class="section level3 unnumbered" number="">
-<h3>Exercise 7.5.2</h3>
+<div id="exercise-7.6.2" class="section level3 unnumbered" number="">
+<h3>Exercise 7.6.2</h3>
 <p>Make a plot with click, dblclick, hover, and brush output handlers and nicely
 display the current selection in the sidebar. Plot the plot in the main panel.</p>
 <div id="solution-1" class="section level4 unnumbered solution" number="">
@@ -380,8 +380,8 @@ extract the points within the <code>plot_brush</code> area.</p>
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 </div>
-<div id="exercise-7.5.3" class="section level3 unnumbered" number="">
-<h3>Exercise 7.5.3</h3>
+<div id="exercise-7.6.3" class="section level3 unnumbered" number="">
+<h3>Exercise 7.6.3</h3>
 <p>Compute the limits of the distance scale using the size of the plot.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="graphics.html#cb3-1"></a>output_size &lt;-<span class="st"> </span><span class="cf">function</span>(id) {</span>
 <span id="cb3-2"><a href="graphics.html#cb3-2"></a>  <span class="kw">reactive</span>(<span class="kw">c</span>(</span>
@@ -391,7 +391,12 @@ extract the points within the <code>plot_brush</code> area.</p>
 <span id="cb3-6"><a href="graphics.html#cb3-6"></a>}</span></code></pre></div>
 <div id="solution-2" class="section level4 unnumbered solution" number="">
 <h4>Solution</h4>
-<p>Let us use the plot’s width and height to estimate the scale limits for our plot. To verify that the recommended limits are correct, click around the plot and watch how the distance scale changes on the legend. These values should oscillate between the recommended limits.</p>
+<p>Let us use the plot’s width and height to estimate the scale limits for our
+plot.</p>
+<p>To verify that the recommended limits are correct, click around the plot
+and watch how the distance scale changes on the legend. These values should
+oscillate between the recommended limits.</p>
+<p>Resize the browser’s window to change the width and height reactives.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="graphics.html#cb4-1"></a><span class="kw">library</span>(shiny)</span>
 <span id="cb4-2"><a href="graphics.html#cb4-2"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb4-3"><a href="graphics.html#cb4-3"></a></span>
