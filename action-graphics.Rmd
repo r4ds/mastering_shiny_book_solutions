@@ -56,14 +56,15 @@ To 'nicely' display the current selection, we will use `dataTableOutput`.
 library(shiny)
 library(ggplot2)
 
+# Set options for rendering DataTables.
 options <- list(
   autoWidth = FALSE,
   searching = FALSE,
   ordering = FALSE,
   lengthChange = FALSE,
   lengthMenu = FALSE,
-  pageLength = 5,
-  paging = TRUE,
+  pageLength = 5, # Only show 5 rows per page.
+  paging = TRUE, # Enable pagination. Must be set for pageLength to work.
   info = FALSE
 )
 
