@@ -54,44 +54,70 @@ We can use the `nearPoints` function to extract the data from `plot_click`, `plo
 library(shiny)
 library(ggplot2)
 
+options <- list(
+  autoWidth = FALSE,
+  searching = FALSE,
+  ordering = FALSE,
+  lengthChange = FALSE,
+  lengthMenu = FALSE,
+  pageLength = 5,
+  paging = TRUE,
+  info = FALSE
+)
+
 ui <- fluidPage(
 
-    sidebarPanel(width = 6,
-        h4("Selected:"),
-        tableOutput("click"),
-        h4("Double Clicked:"),
-        br(),
-        tableOutput("dbl"),
-        h4("Hover:"),
-        br(),
-        tableOutput("hover"),
-        br(),
-        h4("Brushed:"),
-        tableOutput("brush")
+  sidebarLayout(
+    sidebarPanel(
+      width = 6,
+
+      h4("Selected Points"),
+      dataTableOutput("click"), br(),
+
+      h4("Double Clicked Points"),
+      dataTableOutput("dbl"), br(),
+
+      h4("Hovered Points"),
+      dataTableOutput("hover"), br(),
+
+      h4("Brushed Points"),
+      dataTableOutput("brush")
     ),
 
     mainPanel(width = 6,
-      plotOutput("plot", 
-                 click = "plot_click", 
-                 dblclick = "plot_dbl",
-                 hover = "plot_hover", 
-                 brush = "plot_brush")
+              plotOutput("plot",
+                         click = "plot_click",
+                         dblclick = "plot_dbl",
+                         hover = "plot_hover",
+                         brush = "plot_brush")
     )
-
+  )
 )
-server <- function(input, output, session) {
-    
-    output$plot <- renderPlot({
-        ggplot(mtcars, aes(wt, mpg)) + geom_point()
-    }, res = 96)
 
-    output$click <- renderTable(nearPoints(mtcars, input$plot_click))
-    output$hover <- renderTable(nearPoints(mtcars, input$plot_hover))
-    output$dbl <- renderTable(nearPoints(mtcars, input$plot_dbl))
-    output$brush <- renderTable(brushedPoints(mtcars, input$plot_brush))
+server <- function(input, output, session) {
+
+  output$plot <- renderPlot({
+    ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point()
+  }, res = 96)
+
+  output$click <- renderDataTable(
+    nearPoints(iris, input$plot_click),
+    options = options)
+  
+  output$hover <- renderDataTable(
+    nearPoints(iris, input$plot_hover),
+    options = options)
+  
+  output$dbl <- renderDataTable(
+    nearPoints(iris, input$plot_dbl),
+    options = options)
+  
+  output$brush <- renderDataTable(
+    brushedPoints(iris, input$plot_brush),
+    options = options)
 }
 
-shinyApp(ui = ui, server = server)
+shinyApp(ui, server)
 ```
 :::
 
