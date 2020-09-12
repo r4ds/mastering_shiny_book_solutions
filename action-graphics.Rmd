@@ -140,4 +140,53 @@ output_size <- function(id) {
   ))
 }
 ```
+
+:::solution
+#### Solution {-}
+
+Let us use the plot's width and height to estimate the scale limits for our plot. To verify that the recommended limits are correct, click around the plot and watch how the distance scale changes on the legend. These values should oscillate between the recommended limits.
+
+```{r, eval=FALSE}
+library(shiny)
+library(ggplot2)
+
+df <- data.frame(x = rnorm(100), y = rnorm(100))
+
+ui <- fluidPage(
+  plotOutput("plot", click = "plot_click"),
+  textOutput("width"),
+  textOutput("height"),
+  textOutput("scale")
+)
+
+server <- function(input, output, session) {
+  
+  # Save the plot's widht and height.
+  width <- reactive(session$clientData[["output_plot_width"]])
+  height <- reactive(session$clientData[["output_plot_height"]])
+  
+  # Print the plot's width, the plot's height, and the suggested scale limits.
+  output$width <- renderText(paste0("Plot's width: ", width()))
+  output$height <- renderText(paste0("Plot's height: ", height()))
+  output$scale <- renderText({
+    paste0("Recommended limits: (0, ", max(height(), width()), ")")
+  })
+  
+  dist <- reactiveVal(rep(1, nrow(df)))
+  
+  observeEvent(input$plot_click, {
+    req(input$plot_click)
+    dist(nearPoints(df, input$plot_click, allRows = TRUE, addDist = TRUE)$dist_)
+  })
+  
+  output$plot <- renderPlot({
+    df$dist <- dist()
+    ggplot(df, aes(x, y, size = dist)) +
+      geom_point()
+  })
+}
+
+shinyApp(ui, server)
+
+```
 :::
