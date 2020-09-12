@@ -265,9 +265,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="graphics" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Graphics</h1>
-<div class="TODO">
-This chapter is in development...
-</div>
 <div id="exercise-7.5.1" class="section level3 unnumbered" number="">
 <h3>Exercise 7.5.1</h3>
 <p>Make a plot with click handle that shows all the data returned in the input.</p>
@@ -303,6 +300,7 @@ This chapter is in development...
 <div id="solution-1" class="section level4 unnumbered solution" number="">
 <h4>Solution</h4>
 <p>We can use the <code>nearPoints</code> function to extract the data from <code>plot_click</code>, <code>plot_dbl</code>, and <code>plot_hover</code>. We need to use the function <code>brushedPoints</code> to extract the points within the <code>plot_brush</code> area.</p>
+<p>To ‘nicely’ display the current selection, we will use <code>dataTableOutput</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="graphics.html#cb2-1"></a><span class="kw">library</span>(shiny)</span>
 <span id="cb2-2"><a href="graphics.html#cb2-2"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb2-3"><a href="graphics.html#cb2-3"></a></span>

@@ -1,9 +1,5 @@
 # Graphics
 
-<!--html_preserve--><div class="TODO">
-This chapter is in development...
-</div><!--/html_preserve-->
-
 ### Exercise 7.5.1 {-}
 
 Make a plot with click handle that shows all the data returned in the input.
@@ -48,6 +44,8 @@ Make a plot with click, dblclick, hover, and brush output handlers and nicely di
 #### Solution {-}
 
 We can use the `nearPoints` function to extract the data from `plot_click`, `plot_dbl`, and `plot_hover`. We need to use the function `brushedPoints` to extract the points within the `plot_brush` area.
+
+To 'nicely' display the current selection, we will use `dataTableOutput`.
 
 
 ```r
