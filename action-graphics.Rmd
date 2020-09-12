@@ -1,9 +1,5 @@
 # Graphics
 
-```{r, echo=FALSE}
-htmltools::includeHTML("./partials/todo.html")
-```
-
 ### Exercise 7.5.1 {-}
 
 Make a plot with click handle that shows all the data returned in the input.
