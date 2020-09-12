@@ -277,18 +277,18 @@ that was clicked.</p>
 <span id="cb1-2"><a href="graphics.html#cb1-2"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb1-3"><a href="graphics.html#cb1-3"></a></span>
 <span id="cb1-4"><a href="graphics.html#cb1-4"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
-<span id="cb1-5"><a href="graphics.html#cb1-5"></a>    <span class="kw">plotOutput</span>(<span class="st">&quot;plot&quot;</span>, <span class="dt">click =</span> <span class="st">&quot;plot_click&quot;</span>),</span>
-<span id="cb1-6"><a href="graphics.html#cb1-6"></a>    <span class="kw">tableOutput</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb1-5"><a href="graphics.html#cb1-5"></a>  <span class="kw">plotOutput</span>(<span class="st">&quot;plot&quot;</span>, <span class="dt">click =</span> <span class="st">&quot;plot_click&quot;</span>),</span>
+<span id="cb1-6"><a href="graphics.html#cb1-6"></a>  <span class="kw">tableOutput</span>(<span class="st">&quot;data&quot;</span>)</span>
 <span id="cb1-7"><a href="graphics.html#cb1-7"></a>)</span>
 <span id="cb1-8"><a href="graphics.html#cb1-8"></a></span>
 <span id="cb1-9"><a href="graphics.html#cb1-9"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
-<span id="cb1-10"><a href="graphics.html#cb1-10"></a>    output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
-<span id="cb1-11"><a href="graphics.html#cb1-11"></a>        <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
-<span id="cb1-12"><a href="graphics.html#cb1-12"></a>    }, <span class="dt">res =</span> <span class="dv">96</span>)</span>
-<span id="cb1-13"><a href="graphics.html#cb1-13"></a></span>
-<span id="cb1-14"><a href="graphics.html#cb1-14"></a>    output<span class="op">$</span>data &lt;-<span class="st"> </span><span class="kw">renderTable</span>({</span>
-<span id="cb1-15"><a href="graphics.html#cb1-15"></a>        <span class="kw">nearPoints</span>(mtcars, input<span class="op">$</span>plot_click, <span class="dt">allRows =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb1-16"><a href="graphics.html#cb1-16"></a>    })</span>
+<span id="cb1-10"><a href="graphics.html#cb1-10"></a>  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
+<span id="cb1-11"><a href="graphics.html#cb1-11"></a>    <span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(wt, mpg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
+<span id="cb1-12"><a href="graphics.html#cb1-12"></a>  }, <span class="dt">res =</span> <span class="dv">96</span>)</span>
+<span id="cb1-13"><a href="graphics.html#cb1-13"></a>  </span>
+<span id="cb1-14"><a href="graphics.html#cb1-14"></a>  output<span class="op">$</span>data &lt;-<span class="st"> </span><span class="kw">renderTable</span>({</span>
+<span id="cb1-15"><a href="graphics.html#cb1-15"></a>    <span class="kw">nearPoints</span>(mtcars, input<span class="op">$</span>plot_click, <span class="dt">allRows =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb1-16"><a href="graphics.html#cb1-16"></a>  })</span>
 <span id="cb1-17"><a href="graphics.html#cb1-17"></a>}</span>
 <span id="cb1-18"><a href="graphics.html#cb1-18"></a></span>
 <span id="cb1-19"><a href="graphics.html#cb1-19"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
@@ -323,24 +323,24 @@ extract the points within the <code>plot_brush</code> area.</p>
 <span id="cb2-14"><a href="graphics.html#cb2-14"></a>)</span>
 <span id="cb2-15"><a href="graphics.html#cb2-15"></a></span>
 <span id="cb2-16"><a href="graphics.html#cb2-16"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
-<span id="cb2-17"><a href="graphics.html#cb2-17"></a></span>
+<span id="cb2-17"><a href="graphics.html#cb2-17"></a>  </span>
 <span id="cb2-18"><a href="graphics.html#cb2-18"></a>  <span class="kw">sidebarLayout</span>(</span>
 <span id="cb2-19"><a href="graphics.html#cb2-19"></a>    <span class="kw">sidebarPanel</span>(</span>
 <span id="cb2-20"><a href="graphics.html#cb2-20"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
-<span id="cb2-21"><a href="graphics.html#cb2-21"></a></span>
+<span id="cb2-21"><a href="graphics.html#cb2-21"></a>      </span>
 <span id="cb2-22"><a href="graphics.html#cb2-22"></a>      <span class="kw">h4</span>(<span class="st">&quot;Selected Points&quot;</span>),</span>
 <span id="cb2-23"><a href="graphics.html#cb2-23"></a>      <span class="kw">dataTableOutput</span>(<span class="st">&quot;click&quot;</span>), <span class="kw">br</span>(),</span>
 <span id="cb2-24"><a href="graphics.html#cb2-24"></a></span>
 <span id="cb2-25"><a href="graphics.html#cb2-25"></a>      <span class="kw">h4</span>(<span class="st">&quot;Double Clicked Points&quot;</span>),</span>
 <span id="cb2-26"><a href="graphics.html#cb2-26"></a>      <span class="kw">dataTableOutput</span>(<span class="st">&quot;dbl&quot;</span>), <span class="kw">br</span>(),</span>
-<span id="cb2-27"><a href="graphics.html#cb2-27"></a></span>
+<span id="cb2-27"><a href="graphics.html#cb2-27"></a>      </span>
 <span id="cb2-28"><a href="graphics.html#cb2-28"></a>      <span class="kw">h4</span>(<span class="st">&quot;Hovered Points&quot;</span>),</span>
 <span id="cb2-29"><a href="graphics.html#cb2-29"></a>      <span class="kw">dataTableOutput</span>(<span class="st">&quot;hover&quot;</span>), <span class="kw">br</span>(),</span>
-<span id="cb2-30"><a href="graphics.html#cb2-30"></a></span>
+<span id="cb2-30"><a href="graphics.html#cb2-30"></a>      </span>
 <span id="cb2-31"><a href="graphics.html#cb2-31"></a>      <span class="kw">h4</span>(<span class="st">&quot;Brushed Points&quot;</span>),</span>
 <span id="cb2-32"><a href="graphics.html#cb2-32"></a>      <span class="kw">dataTableOutput</span>(<span class="st">&quot;brush&quot;</span>)</span>
 <span id="cb2-33"><a href="graphics.html#cb2-33"></a>    ),</span>
-<span id="cb2-34"><a href="graphics.html#cb2-34"></a></span>
+<span id="cb2-34"><a href="graphics.html#cb2-34"></a>    </span>
 <span id="cb2-35"><a href="graphics.html#cb2-35"></a>    <span class="kw">mainPanel</span>(<span class="dt">width =</span> <span class="dv">6</span>,</span>
 <span id="cb2-36"><a href="graphics.html#cb2-36"></a>              <span class="kw">plotOutput</span>(<span class="st">&quot;plot&quot;</span>,</span>
 <span id="cb2-37"><a href="graphics.html#cb2-37"></a>                         <span class="dt">click =</span> <span class="st">&quot;plot_click&quot;</span>,</span>
@@ -352,11 +352,11 @@ extract the points within the <code>plot_brush</code> area.</p>
 <span id="cb2-43"><a href="graphics.html#cb2-43"></a>)</span>
 <span id="cb2-44"><a href="graphics.html#cb2-44"></a></span>
 <span id="cb2-45"><a href="graphics.html#cb2-45"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
-<span id="cb2-46"><a href="graphics.html#cb2-46"></a></span>
+<span id="cb2-46"><a href="graphics.html#cb2-46"></a>  </span>
 <span id="cb2-47"><a href="graphics.html#cb2-47"></a>  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
 <span id="cb2-48"><a href="graphics.html#cb2-48"></a>    <span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Sepal.Width)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
 <span id="cb2-49"><a href="graphics.html#cb2-49"></a>  }, <span class="dt">res =</span> <span class="dv">96</span>)</span>
-<span id="cb2-50"><a href="graphics.html#cb2-50"></a></span>
+<span id="cb2-50"><a href="graphics.html#cb2-50"></a>  </span>
 <span id="cb2-51"><a href="graphics.html#cb2-51"></a>  output<span class="op">$</span>click &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>(</span>
 <span id="cb2-52"><a href="graphics.html#cb2-52"></a>    <span class="kw">nearPoints</span>(iris, input<span class="op">$</span>plot_click),</span>
 <span id="cb2-53"><a href="graphics.html#cb2-53"></a>    <span class="dt">options =</span> options)</span>
@@ -391,6 +391,7 @@ extract the points within the <code>plot_brush</code> area.</p>
 <span id="cb3-6"><a href="graphics.html#cb3-6"></a>}</span></code></pre></div>
 <div id="solution-2" class="section level4 unnumbered solution" number="">
 <h4>Solution</h4>
+<p>Let us use the plot’s width and height to estimate the scale limits for our plot. To verify that the recommended limits are correct, click around the plot and watch how the distance scale changes on the legend. These values should oscillate between the recommended limits.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="graphics.html#cb4-1"></a><span class="kw">library</span>(shiny)</span>
 <span id="cb4-2"><a href="graphics.html#cb4-2"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb4-3"><a href="graphics.html#cb4-3"></a></span>
@@ -404,34 +405,33 @@ extract the points within the <code>plot_brush</code> area.</p>
 <span id="cb4-11"><a href="graphics.html#cb4-11"></a>)</span>
 <span id="cb4-12"><a href="graphics.html#cb4-12"></a></span>
 <span id="cb4-13"><a href="graphics.html#cb4-13"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</span>
-<span id="cb4-14"><a href="graphics.html#cb4-14"></a></span>
-<span id="cb4-15"><a href="graphics.html#cb4-15"></a>  dist &lt;-<span class="st"> </span><span class="kw">reactiveVal</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(df)))</span>
-<span id="cb4-16"><a href="graphics.html#cb4-16"></a></span>
-<span id="cb4-17"><a href="graphics.html#cb4-17"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>plot_click, {</span>
-<span id="cb4-18"><a href="graphics.html#cb4-18"></a>    <span class="kw">req</span>(input<span class="op">$</span>plot_click)</span>
-<span id="cb4-19"><a href="graphics.html#cb4-19"></a>    <span class="kw">dist</span>(<span class="kw">nearPoints</span>(df, input<span class="op">$</span>plot_click, <span class="dt">allRows =</span> <span class="ot">TRUE</span>, <span class="dt">addDist =</span> <span class="ot">TRUE</span>)<span class="op">$</span>dist_)</span>
-<span id="cb4-20"><a href="graphics.html#cb4-20"></a>  })</span>
-<span id="cb4-21"><a href="graphics.html#cb4-21"></a></span>
-<span id="cb4-22"><a href="graphics.html#cb4-22"></a>  width &lt;-<span class="st"> </span><span class="kw">reactive</span>(session<span class="op">$</span>clientData[[<span class="st">&quot;output_plot_width&quot;</span>]])</span>
-<span id="cb4-23"><a href="graphics.html#cb4-23"></a>  height &lt;-<span class="st"> </span><span class="kw">reactive</span>(session<span class="op">$</span>clientData[[<span class="st">&quot;output_plot_height&quot;</span>]])</span>
-<span id="cb4-24"><a href="graphics.html#cb4-24"></a></span>
-<span id="cb4-25"><a href="graphics.html#cb4-25"></a>  output<span class="op">$</span>width &lt;-<span class="st"> </span><span class="kw">renderText</span>(<span class="kw">paste0</span>(<span class="st">&quot;Plot&#39;s width: &quot;</span>, <span class="kw">width</span>()))</span>
-<span id="cb4-26"><a href="graphics.html#cb4-26"></a></span>
-<span id="cb4-27"><a href="graphics.html#cb4-27"></a>  output<span class="op">$</span>height &lt;-<span class="st"> </span><span class="kw">renderText</span>(<span class="kw">paste0</span>(<span class="st">&quot;Plot&#39;s height: &quot;</span>, <span class="kw">height</span>()))</span>
-<span id="cb4-28"><a href="graphics.html#cb4-28"></a></span>
-<span id="cb4-29"><a href="graphics.html#cb4-29"></a>  output<span class="op">$</span>scale &lt;-<span class="st"> </span><span class="kw">renderText</span>({</span>
-<span id="cb4-30"><a href="graphics.html#cb4-30"></a>    <span class="kw">paste0</span>(<span class="st">&quot;Recommended limits: (0, &quot;</span>, <span class="kw">max</span>(<span class="kw">height</span>(), <span class="kw">width</span>()), <span class="st">&quot;)&quot;</span>)</span>
+<span id="cb4-14"><a href="graphics.html#cb4-14"></a>  </span>
+<span id="cb4-15"><a href="graphics.html#cb4-15"></a>  <span class="co"># Save the plot&#39;s widht and height.</span></span>
+<span id="cb4-16"><a href="graphics.html#cb4-16"></a>  width &lt;-<span class="st"> </span><span class="kw">reactive</span>(session<span class="op">$</span>clientData[[<span class="st">&quot;output_plot_width&quot;</span>]])</span>
+<span id="cb4-17"><a href="graphics.html#cb4-17"></a>  height &lt;-<span class="st"> </span><span class="kw">reactive</span>(session<span class="op">$</span>clientData[[<span class="st">&quot;output_plot_height&quot;</span>]])</span>
+<span id="cb4-18"><a href="graphics.html#cb4-18"></a>  </span>
+<span id="cb4-19"><a href="graphics.html#cb4-19"></a>  <span class="co"># Print the plot&#39;s width, the plot&#39;s height, and the suggested scale limits.</span></span>
+<span id="cb4-20"><a href="graphics.html#cb4-20"></a>  output<span class="op">$</span>width &lt;-<span class="st"> </span><span class="kw">renderText</span>(<span class="kw">paste0</span>(<span class="st">&quot;Plot&#39;s width: &quot;</span>, <span class="kw">width</span>()))</span>
+<span id="cb4-21"><a href="graphics.html#cb4-21"></a>  output<span class="op">$</span>height &lt;-<span class="st"> </span><span class="kw">renderText</span>(<span class="kw">paste0</span>(<span class="st">&quot;Plot&#39;s height: &quot;</span>, <span class="kw">height</span>()))</span>
+<span id="cb4-22"><a href="graphics.html#cb4-22"></a>  output<span class="op">$</span>scale &lt;-<span class="st"> </span><span class="kw">renderText</span>({</span>
+<span id="cb4-23"><a href="graphics.html#cb4-23"></a>    <span class="kw">paste0</span>(<span class="st">&quot;Recommended limits: (0, &quot;</span>, <span class="kw">max</span>(<span class="kw">height</span>(), <span class="kw">width</span>()), <span class="st">&quot;)&quot;</span>)</span>
+<span id="cb4-24"><a href="graphics.html#cb4-24"></a>  })</span>
+<span id="cb4-25"><a href="graphics.html#cb4-25"></a>  </span>
+<span id="cb4-26"><a href="graphics.html#cb4-26"></a>  dist &lt;-<span class="st"> </span><span class="kw">reactiveVal</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">nrow</span>(df)))</span>
+<span id="cb4-27"><a href="graphics.html#cb4-27"></a>  </span>
+<span id="cb4-28"><a href="graphics.html#cb4-28"></a>  <span class="kw">observeEvent</span>(input<span class="op">$</span>plot_click, {</span>
+<span id="cb4-29"><a href="graphics.html#cb4-29"></a>    <span class="kw">req</span>(input<span class="op">$</span>plot_click)</span>
+<span id="cb4-30"><a href="graphics.html#cb4-30"></a>    <span class="kw">dist</span>(<span class="kw">nearPoints</span>(df, input<span class="op">$</span>plot_click, <span class="dt">allRows =</span> <span class="ot">TRUE</span>, <span class="dt">addDist =</span> <span class="ot">TRUE</span>)<span class="op">$</span>dist_)</span>
 <span id="cb4-31"><a href="graphics.html#cb4-31"></a>  })</span>
-<span id="cb4-32"><a href="graphics.html#cb4-32"></a></span>
+<span id="cb4-32"><a href="graphics.html#cb4-32"></a>  </span>
 <span id="cb4-33"><a href="graphics.html#cb4-33"></a>  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
 <span id="cb4-34"><a href="graphics.html#cb4-34"></a>    df<span class="op">$</span>dist &lt;-<span class="st"> </span><span class="kw">dist</span>()</span>
 <span id="cb4-35"><a href="graphics.html#cb4-35"></a>    <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y, <span class="dt">size =</span> dist)) <span class="op">+</span></span>
-<span id="cb4-36"><a href="graphics.html#cb4-36"></a><span class="st">      </span><span class="kw">geom_point</span>() <span class="co">#+</span></span>
-<span id="cb4-37"><a href="graphics.html#cb4-37"></a>      <span class="co">#scale_size_area(limits = c(0, max(height(), width())))</span></span>
-<span id="cb4-38"><a href="graphics.html#cb4-38"></a>  })</span>
-<span id="cb4-39"><a href="graphics.html#cb4-39"></a>}</span>
-<span id="cb4-40"><a href="graphics.html#cb4-40"></a></span>
-<span id="cb4-41"><a href="graphics.html#cb4-41"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
+<span id="cb4-36"><a href="graphics.html#cb4-36"></a><span class="st">      </span><span class="kw">geom_point</span>()</span>
+<span id="cb4-37"><a href="graphics.html#cb4-37"></a>  })</span>
+<span id="cb4-38"><a href="graphics.html#cb4-38"></a>}</span>
+<span id="cb4-39"><a href="graphics.html#cb4-39"></a></span>
+<span id="cb4-40"><a href="graphics.html#cb4-40"></a><span class="kw">shinyApp</span>(ui, server)</span></code></pre></div>
 </div>
 
 </div>

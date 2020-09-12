@@ -17,18 +17,18 @@ library(shiny)
 library(ggplot2)
 
 ui <- fluidPage(
-    plotOutput("plot", click = "plot_click"),
-    tableOutput("data")
+  plotOutput("plot", click = "plot_click"),
+  tableOutput("data")
 )
 
 server <- function(input, output, session) {
-    output$plot <- renderPlot({
-        ggplot(mtcars, aes(wt, mpg)) + geom_point()
-    }, res = 96)
-
-    output$data <- renderTable({
-        nearPoints(mtcars, input$plot_click, allRows = TRUE)
-    })
+  output$plot <- renderPlot({
+    ggplot(mtcars, aes(wt, mpg)) + geom_point()
+  }, res = 96)
+  
+  output$data <- renderTable({
+    nearPoints(mtcars, input$plot_click, allRows = TRUE)
+  })
 }
 
 shinyApp(ui, server)
@@ -71,24 +71,24 @@ options <- list(
 )
 
 ui <- fluidPage(
-
+  
   sidebarLayout(
     sidebarPanel(
       width = 6,
-
+      
       h4("Selected Points"),
       dataTableOutput("click"), br(),
 
       h4("Double Clicked Points"),
       dataTableOutput("dbl"), br(),
-
+      
       h4("Hovered Points"),
       dataTableOutput("hover"), br(),
-
+      
       h4("Brushed Points"),
       dataTableOutput("brush")
     ),
-
+    
     mainPanel(width = 6,
               plotOutput("plot",
                          click = "plot_click",
@@ -100,11 +100,11 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
+  
   output$plot <- renderPlot({
     ggplot(iris, aes(Sepal.Length, Sepal.Width)) + geom_point()
   }, res = 96)
-
+  
   output$click <- renderDataTable(
     nearPoints(iris, input$plot_click),
     options = options)
@@ -147,6 +147,8 @@ output_size <- function(id) {
 :::solution
 #### Solution {-}
 
+Let us use the plot's width and height to estimate the scale limits for our plot. To verify that the recommended limits are correct, click around the plot and watch how the distance scale changes on the legend. These values should oscillate between the recommended limits.
+
 
 ```r
 library(shiny)
@@ -162,30 +164,29 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
+  
+  # Save the plot's widht and height.
+  width <- reactive(session$clientData[["output_plot_width"]])
+  height <- reactive(session$clientData[["output_plot_height"]])
+  
+  # Print the plot's width, the plot's height, and the suggested scale limits.
+  output$width <- renderText(paste0("Plot's width: ", width()))
+  output$height <- renderText(paste0("Plot's height: ", height()))
+  output$scale <- renderText({
+    paste0("Recommended limits: (0, ", max(height(), width()), ")")
+  })
+  
   dist <- reactiveVal(rep(1, nrow(df)))
-
+  
   observeEvent(input$plot_click, {
     req(input$plot_click)
     dist(nearPoints(df, input$plot_click, allRows = TRUE, addDist = TRUE)$dist_)
   })
-
-  width <- reactive(session$clientData[["output_plot_width"]])
-  height <- reactive(session$clientData[["output_plot_height"]])
-
-  output$width <- renderText(paste0("Plot's width: ", width()))
-
-  output$height <- renderText(paste0("Plot's height: ", height()))
-
-  output$scale <- renderText({
-    paste0("Recommended limits: (0, ", max(height(), width()), ")")
-  })
-
+  
   output$plot <- renderPlot({
     df$dist <- dist()
     ggplot(df, aes(x, y, size = dist)) +
-      geom_point() #+
-      #scale_size_area(limits = c(0, max(height(), width())))
+      geom_point()
   })
 }
 
