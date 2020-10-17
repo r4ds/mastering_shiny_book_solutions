@@ -13,7 +13,7 @@ and download a PNG of it.
 :::solution
 #### Solution {-}
 
-A general method for saving a `PNG` is to select the `png` driver using the function `png()`. The only argument the driver needs is the name of the plot (this will be stored relative to your current working directory!). You will not see the plot when running the `plot` function because it is being saved to the file instead. When we're done plotting, we used the `dev.off()` command to close to the connection to the driver.
+A general method for saving a `PNG` is to select the `png` driver using the function `png()`. The only argument the driver needs is the name of the plot (this will be stored relative to your current working directory!). You will not see the plot when running the `plot` function because it is being saved to the file instead. When we're done plotting, we used the `dev.off()` command to close the connection to the driver.
 
 ```{r, eval=FALSE}
 library(ambient)
