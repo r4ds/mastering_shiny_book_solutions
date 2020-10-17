@@ -6,7 +6,7 @@ htmltools::includeHTML("./partials/todo.html")
 
 ### Exercise 9.4.1 {-}
 
-Use the ambient package by Thomas Lin Pedersen to generate [worley noise](https://ambient.data-imaginist.com/reference/noise_worley.html) and download a PNG of it.
+Use the [ambient](https://ambient.data-imaginist.com) package by Thomas Lin Pedersen to generate [worley noise](https://ambient.data-imaginist.com/reference/noise_worley.html) and download a PNG of it.
 
 :::solution
 #### Solution {-}
