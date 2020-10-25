@@ -107,56 +107,58 @@ library(shiny)
 library(ggplot2)
 
 ui <- fluidPage(
-    tagList(
-        br(), br(),
-        column(4,
-               wellPanel(
-                   fileInput("file", "Select CSV", accept = ".csv"), # file widget
-                   selectInput("variable", "Select Variable", choices = NULL), # select widget
-               ),
-               wellPanel(
-                   radioButtons("extension", "Save As:", choices = c("png", "pdf", "svg"), inline = TRUE),
-                   downloadButton("download", "Save Plot")
-               )
-        ),
-        column(8, plotOutput("results"))
-    )
+  tagList(
+    br(), br(),
+    column(4,
+           wellPanel(
+             fileInput("file", "Select CSV", accept = ".csv"), # file widget
+             selectInput("variable", "Select Variable", choices = NULL), # select widget
+           ),
+           wellPanel(
+             radioButtons("extension", "Save As:", choices = c("png", "pdf", "svg"), inline = TRUE),
+             downloadButton("download", "Save Plot")
+           )
+    ),
+    column(8, plotOutput("results"))
+  )
 )
 
 server <- function(input, output,session) {
-    
-    # get data from file
-    data <- reactive({
-        req(input$file)
-        read.csv(input$file$datapath)
-    })
-    
-    # create the select input based on the numeric columns in the dataframe
-    observeEvent( input$file, {
-        num_cols <- dplyr::select_if(data(), is.numeric)
-        updateSelectInput(session, "variable", choices = colnames(num_cols))
-    })
-    
-    # plot histogram
-    plot_output <- reactive({
-        req(!is.null(input$variable))
-        
-        ggplot(data()) +
-            aes_string(x = input$variable) +
-            geom_histogram()
-    })
-    
-    output$results <- renderPlot(plot_output())
-    
-    
-    # save histogram using downloadHandler and plot output type
-    output$download <- downloadHandler(
-        filename = paste0("histogram.", input$extension),
-        content = function(file){
-            ggsave(file, plot_output(), device = input$extension)
-        }
-    )
-    
+
+  # get data from file
+  data <- reactive({
+    req(input$file)
+    read.csv(input$file$datapath)
+  })
+
+  # create the select input based on the numeric columns in the dataframe
+  observeEvent( input$file, {
+    num_cols <- dplyr::select_if(data(), is.numeric)
+    updateSelectInput(session, "variable", choices = colnames(num_cols))
+  })
+
+  # plot histogram
+  plot_output <- reactive({
+    req(!is.null(input$variable))
+
+    ggplot(data()) +
+      aes_string(x = input$variable) +
+      geom_histogram()
+  })
+
+  output$results <- renderPlot(plot_output())
+
+
+  # save histogram using downloadHandler and plot output type
+  output$download <- downloadHandler(
+    filename = function() {
+      paste("histogram", input$extension, sep = ".")
+    },
+    content = function(file){
+      ggsave(file, plot_output(), device = input$extension)
+    }
+  )
+
 }
 
 shinyApp(ui = ui, server = server)
