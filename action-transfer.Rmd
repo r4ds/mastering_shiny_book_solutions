@@ -36,7 +36,12 @@ dev.off()
 
 ### Exercise 9.4.2 {-}
 
-Create an app that lets you upload a csv file, select a variable, and then perform a `t.test()` on that variable. After the user has uploaded the csv file, you'll need to use `updateSelectInput()` to fill in the available variables. See Section [10.1](https://mastering-shiny.org/action-dynamic.html#updating-inputs) for details.
+Create an app that lets you upload a csv file, select a variable, and then
+perform a `t.test()` on that variable. After the user has uploaded the csv
+file, you'll need to use `updateSelectInput()` to fill in the available
+variables. See Section
+[10.1](https://mastering-shiny.org/action-dynamic.html#updating-inputs)
+for details.
 
 :::solution
 #### Solution {-}
