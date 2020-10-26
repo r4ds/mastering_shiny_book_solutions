@@ -199,18 +199,18 @@ notify <- function(msg, id = NULL) {
 }
 
 ui <- fluidPage(
-    sidebarLayout(
-        sidebarPanel(
-            fluidRow(
-                fileInput("myFile", "Choose a file", accept = c('image/png')),
-                sliderInput("size", "Select Size:", min = 1, max = 100, value = 35),
-                radioButtons("color", "Select Color Palette:", choices = c("universal", "generic"))
-            )
-        ),
-        mainPanel(plotOutput("result"))
-    )
+  sidebarLayout(
+    sidebarPanel(
+      fluidRow(
+        fileInput("myFile", "Upload a PNG file", accept = c('image/png')),
+        sliderInput("size", "Select size:", min = 1, max = 100, value = 35),
+        radioButtons("color", "Select color palette:", choices = c("universal", "generic"))
+      )
+    ),
+    mainPanel(
+      plotOutput("result"))
+  )
 )
-
 
 server <- function(input, output) {
 
@@ -230,6 +230,7 @@ server <- function(input, output) {
       build_mosaic()
   })
 }
-shinyApp(ui = ui, server = server)
+
+shinyApp(ui, server)
 ```
 :::
