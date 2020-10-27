@@ -46,7 +46,12 @@ for details.
 :::solution
 #### Solution {-}
 
-We can use the `fileInput` widget and the `accept` argument to ensure our app only takes on `.csv`s. In the `server` function we'll select the `datapath` from within our file input and use this to update our `selectInput`. We need to put the `updateSelectInput` within a reactive because we need the options to change if the user selects another file. Lastly, we use `input$variable` to create our t-test output.
+We can use the `fileInput` widget with the `accept` argument set to `.csv` to
+allow only the upload of csv files. In the `server` function we save the
+uploaded data to the the `data` reactive and use it to update `input$variable`,
+which displays variable (i.e. data column) choices. Note that we put the
+`updateSelectInput` within an observe event because we need the
+`input$variable` to change if the user selects another file.
 
 ```{r, eval=FALSE}
 library(shiny)
