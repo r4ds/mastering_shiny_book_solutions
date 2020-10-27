@@ -287,8 +287,8 @@ for details.</p>
 <p>We can use the <code>fileInput</code> widget with the <code>accept</code> argument set to <code>.csv</code> to
 allow only the upload of csv files. In the <code>server</code> function we save the
 uploaded data to the the <code>data</code> reactive and use it to update <code>input$variable</code>,
-which displays variable (i.e. data column) choices. Note that we put the
-<code>updateSelectInput</code> within an observe event because we need the
+which displays variable (i.e. numeric data column) choices. Note that we put
+the <code>updateSelectInput</code> within an observe event because we need the
 <code>input$variable</code> to change if the user selects another file.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"></a>
