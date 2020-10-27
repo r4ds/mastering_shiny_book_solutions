@@ -1,9 +1,5 @@
 # Uploads and Downloads
 
-```{r, echo=FALSE}
-htmltools::includeHTML("./partials/todo.html")
-```
-
 ### Exercise 9.4.1 {-}
 
 Use the [ambient](https://ambient.data-imaginist.com) package by Thomas Lin
