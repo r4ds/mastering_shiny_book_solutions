@@ -45,8 +45,8 @@ for details.
 We can use the `fileInput` widget with the `accept` argument set to `.csv` to
 allow only the upload of csv files. In the `server` function we save the
 uploaded data to the the `data` reactive and use it to update `input$variable`,
-which displays variable (i.e. data column) choices. Note that we put the
-`updateSelectInput` within an observe event because we need the
+which displays variable (i.e. numeric data column) choices. Note that we put
+the `updateSelectInput` within an observe event because we need the
 `input$variable` to change if the user selects another file.
 
 ```{r, eval=FALSE}
