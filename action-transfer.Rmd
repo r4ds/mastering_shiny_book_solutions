@@ -110,12 +110,16 @@ shinyApp(ui, server)
 
 ### Exercise 9.4.3 {-}
 
-Create an app that lets the user upload a csv file, select one variable, draw a histogram, and then download the histogram. For an additional challenge, allow the user to select from .png, .pdf, and .svg output formats.
+Create an app that lets the user upload a csv file, select one variable,
+draw a histogram, and then download the histogram. For an additional challenge,
+allow the user to select from .png, .pdf, and .svg output formats.
 
 :::solution
 #### Solution {-}
 
-Adapting the code from the example above, rather than print a t-test output, we create a plot reactive to use in the UI's `output$results` and to use within our `downloadHander`. We can use the `ggsave` function to switch between `input$extension` types.
+Adapting the code from the example above, rather than print a t-test output, we
+save the plot in a reactive and use it to display the plot/download. We can use
+the `ggsave` function to switch between `input$extension` types.
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -196,12 +200,20 @@ shinyApp(ui, server)
 
 ### Exercise 9.4.4 {-}
 
-Write an app that allows the user to create a Lego mosaic from any .png file using Ryan Timpe's [brickr](https://github.com/ryantimpe/brickr) package. Once you've completed the basics, add controls to allow the user to select the size of the mosaic (in bricks), and choose whether to use "universal" or "generic" colour palettes.
+Write an app that allows the user to create a Lego mosaic from any .png file
+using Ryan Timpe's [brickr](https://github.com/ryantimpe/brickr) package. Once
+you've completed the basics, add controls to allow the user to select the size
+of the mosaic (in bricks), and choose whether to use "universal" or "generic"
+colour palettes.
 
 :::solution
 #### Solution {-}
 
-Instead of limiting our file selection to a `csv` as above, here we are going to limit our input to a `png`. We'll use the `png::readPNG` function to read in our file, and specify the size and color of our mosaic in `brickr`'s `image_to_mosaic` function. Read more about the package and examples [here](https://github.com/ryantimpe/brickr)
+Instead of limiting our file selection to a csv as above, here we are going to
+limit our input to a png. We'll use the `png::readPNG` function to read in our
+file, and specify the size/color of our mosaic in `brickr`'s `image_to_mosaic`
+function. Read more about the package and examples
+[here](https://github.com/ryantimpe/brickr).
 
 ```{r, eval=FALSE}
 library(shiny)
