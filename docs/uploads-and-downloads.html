@@ -32,7 +32,6 @@
   
 <link rel="prev" href="user-feedback.html"/>
 <link rel="next" href="dynamic-ui.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +49,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-102068953-3"></script>
 <script>
@@ -62,28 +60,26 @@
 </script>
 
 
-
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -92,9 +88,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -143,23 +139,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Mastering Shiny Solutions</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
-<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#note-boxes"><i class="fa fa-check"></i>Note Boxes</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
-<li class="chapter" data-level="2" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html"><i class="fa fa-check"></i><b>2</b> Your First Shiny App</a>
-<ul>
+<li class="chapter" data-level="2" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html"><i class="fa fa-check"></i><b>2</b> Your First Shiny App</a><ul>
 <li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.1"><i class="fa fa-check"></i>Exercise 2.8.1</a></li>
 <li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.2"><i class="fa fa-check"></i>Exercise 2.8.2</a></li>
 <li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.3"><i class="fa fa-check"></i>Exercise 2.8.3</a></li>
 <li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.4"><i class="fa fa-check"></i>Exercise 2.8.4</a></li>
 <li class="chapter" data-level="" data-path="your-first-shiny-app.html"><a href="your-first-shiny-app.html#exercise-2.8.5"><i class="fa fa-check"></i>Exercise 2.8.5</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="basic-ui.html"><a href="basic-ui.html"><i class="fa fa-check"></i><b>3</b> Basic UI</a>
-<ul>
+<li class="chapter" data-level="3" data-path="basic-ui.html"><a href="basic-ui.html"><i class="fa fa-check"></i><b>3</b> Basic UI</a><ul>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.1"><i class="fa fa-check"></i>Exercise 3.2.8.1</a></li>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.2"><i class="fa fa-check"></i>Exercise 3.2.8.2</a></li>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.3"><i class="fa fa-check"></i>Exercise 3.2.8.3</a></li>
@@ -171,36 +164,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.1"><i class="fa fa-check"></i>Exercise 3.4.6.1</a></li>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.2"><i class="fa fa-check"></i>Exercise 3.4.6.2</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="basic-reactivity.html"><a href="basic-reactivity.html"><i class="fa fa-check"></i><b>4</b> Basic Reactivity</a>
-<ul>
+<li class="chapter" data-level="4" data-path="basic-reactivity.html"><a href="basic-reactivity.html"><i class="fa fa-check"></i><b>4</b> Basic Reactivity</a><ul>
 <li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.1"><i class="fa fa-check"></i>Exercise 4.3.6.1</a></li>
 <li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.2"><i class="fa fa-check"></i>Exercise 4.3.6.2</a></li>
 <li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.4.6.1"><i class="fa fa-check"></i>Exercise 4.4.6.1</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html"><i class="fa fa-check"></i><b>5</b> Case Study: ER Injuries</a>
-<ul>
+<li class="chapter" data-level="5" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html"><i class="fa fa-check"></i><b>5</b> Case Study: ER Injuries</a><ul>
 <li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.1"><i class="fa fa-check"></i>Exercise 5.8.1</a></li>
 <li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.2"><i class="fa fa-check"></i>Exercise 5.8.2</a></li>
 <li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.3"><i class="fa fa-check"></i>Exercise 5.8.3</a></li>
 <li class="chapter" data-level="" data-path="case-study-er-injuries.html"><a href="case-study-er-injuries.html#exercise-5.8.4"><i class="fa fa-check"></i>Exercise 5.8.4</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="workflow.html"><a href="workflow.html"><i class="fa fa-check"></i><b>6</b> Workflow</a></li>
-<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a>
-<ul>
-<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.1"><i class="fa fa-check"></i>Exercise 7.5.1</a></li>
-<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.2"><i class="fa fa-check"></i>Exercise 7.5.2</a></li>
-<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.5.3"><i class="fa fa-check"></i>Exercise 7.5.3</a></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a><ul>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.6.1"><i class="fa fa-check"></i>Exercise 7.6.1</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.6.2"><i class="fa fa-check"></i>Exercise 7.6.2</a></li>
+<li class="chapter" data-level="" data-path="graphics.html"><a href="graphics.html#exercise-7.6.3"><i class="fa fa-check"></i>Exercise 7.6.3</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="user-feedback.html"><a href="user-feedback.html"><i class="fa fa-check"></i><b>8</b> User Feedback</a></li>
-<li class="chapter" data-level="9" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html"><i class="fa fa-check"></i><b>9</b> Uploads and Downloads</a>
-<ul>
+<li class="chapter" data-level="9" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html"><i class="fa fa-check"></i><b>9</b> Uploads and Downloads</a><ul>
 <li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.1"><i class="fa fa-check"></i>Exercise 9.4.1</a></li>
 <li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.2"><i class="fa fa-check"></i>Exercise 9.4.2</a></li>
 <li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.3"><i class="fa fa-check"></i>Exercise 9.4.3</a></li>
 <li class="chapter" data-level="" data-path="uploads-and-downloads.html"><a href="uploads-and-downloads.html#exercise-9.4.4"><i class="fa fa-check"></i>Exercise 9.4.4</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="dynamic-ui.html"><a href="dynamic-ui.html"><i class="fa fa-check"></i><b>10</b> Dynamic UI</a>
-<ul>
+<li class="chapter" data-level="10" data-path="dynamic-ui.html"><a href="dynamic-ui.html"><i class="fa fa-check"></i><b>10</b> Dynamic UI</a><ul>
 <li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.1"><i class="fa fa-check"></i>Exercise 10.1.5.1</a></li>
 <li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.2"><i class="fa fa-check"></i>Exercise 10.1.5.2</a></li>
 <li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.1.5.3"><i class="fa fa-check"></i>Exercise 10.1.5.3</a></li>
@@ -215,21 +203,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.4"><i class="fa fa-check"></i>Exercise 10.3.4.4</a></li>
 <li class="chapter" data-level="" data-path="dynamic-ui.html"><a href="dynamic-ui.html#exercise-10.3.4.5"><i class="fa fa-check"></i>Exercise 10.3.4.5</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="bookmarking.html"><a href="bookmarking.html"><i class="fa fa-check"></i><b>11</b> Bookmarking</a>
-<ul>
+<li class="chapter" data-level="11" data-path="bookmarking.html"><a href="bookmarking.html"><i class="fa fa-check"></i><b>11</b> Bookmarking</a><ul>
 <li class="chapter" data-level="" data-path="bookmarking.html"><a href="bookmarking.html#exercise-11.3.1"><i class="fa fa-check"></i>Exercise 11.3.1</a></li>
 <li class="chapter" data-level="" data-path="bookmarking.html"><a href="bookmarking.html#exercise-11.3.2"><i class="fa fa-check"></i>Exercise 11.3.2</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="tidy-evaluation.html"><a href="tidy-evaluation.html"><i class="fa fa-check"></i><b>12</b> Tidy Evaluation</a></li>
 <li class="chapter" data-level="13" data-path="general-guidelines.html"><a href="general-guidelines.html"><i class="fa fa-check"></i><b>13</b> General Guidelines</a></li>
-<li class="chapter" data-level="14" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>14</b> Functions</a>
-<ul>
+<li class="chapter" data-level="14" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>14</b> Functions</a><ul>
 <li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.1"><i class="fa fa-check"></i>Exercise 14.4.1</a></li>
 <li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.2"><i class="fa fa-check"></i>Exercise 14.4.2</a></li>
 <li class="chapter" data-level="" data-path="functions.html"><a href="functions.html#exercise-14.4.3"><i class="fa fa-check"></i>Exercise 14.4.3</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>15</b> Modules</a>
-<ul>
+<li class="chapter" data-level="15" data-path="modules.html"><a href="modules.html"><i class="fa fa-check"></i><b>15</b> Modules</a><ul>
 <li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.1"><i class="fa fa-check"></i>Exercise 15.6.1</a></li>
 <li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.2"><i class="fa fa-check"></i>Exercise 15.6.2</a></li>
 <li class="chapter" data-level="" data-path="modules.html"><a href="modules.html#exercise-15.6.3"><i class="fa fa-check"></i>Exercise 15.6.3</a></li>
@@ -263,182 +248,241 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="uploads-and-downloads" class="section level1" number="9">
+<div id="uploads-and-downloads" class="section level1">
 <h1><span class="header-section-number">Chapter 9</span> Uploads and Downloads</h1>
-<div class="TODO">
-This chapter is in development...
-</div>
-<div id="exercise-9.4.1" class="section level3 unnumbered" number="">
+<div id="exercise-9.4.1" class="section level3 unnumbered">
 <h3>Exercise 9.4.1</h3>
-<p>Use the ambient package by Thomas Lin Pedersen to generate <a href="https://ambient.data-imaginist.com/reference/noise_worley.html">worley noise</a> and download a PNG of it.</p>
-<div id="solution" class="section level4 unnumbered solution" number="">
-<h4>Solution</h4>
-<p>A general method for saving a <code>PNG</code> is to select the <code>png</code> driver using the function <code>png()</code>. The only argument the driver needs is the name of the plot (this will be stored relative to your current working directory!). You will not see the plot when running the <code>plot</code> function because it is being saved to the file instead. When we’re done plotting, we used the <code>dev.off()</code> command to close to the connection to the driver.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="uploads-and-downloads.html#cb33-1"></a><span class="kw">library</span>(ambient)</span>
-<span id="cb33-2"><a href="uploads-and-downloads.html#cb33-2"></a>noise &lt;-<span class="st"> </span>ambient<span class="op">::</span><span class="kw">noise_worley</span>(<span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">100</span>))</span>
-<span id="cb33-3"><a href="uploads-and-downloads.html#cb33-3"></a></span>
-<span id="cb33-4"><a href="uploads-and-downloads.html#cb33-4"></a><span class="kw">png</span>(<span class="st">&quot;noise_plot.png&quot;</span>)</span>
-<span id="cb33-5"><a href="uploads-and-downloads.html#cb33-5"></a><span class="kw">plot</span>(<span class="kw">as.raster</span>(<span class="kw">normalise</span>(noise)))</span>
-<span id="cb33-6"><a href="uploads-and-downloads.html#cb33-6"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<p>Use the <a href="https://ambient.data-imaginist.com">ambient</a> package by Thomas Lin
+Pedersen to generate <a href="https://ambient.data-imaginist.com/reference/noise_worley.html">worley noise</a>
+and download a PNG of it.</p>
+<div class="solution">
+<h4 id="solution" class="unnumbered">Solution</h4>
+<p>A general method for saving a png file is to select the png driver using the
+function <code>png()</code>. The only argument the driver needs is a filename (this will
+be stored relative to your current working directory!). You will not see the
+plot when running the <code>plot</code> function because it is being saved to that file
+instead. When we’re done plotting, we used the <code>dev.off()</code> command to close the
+connection to the driver.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(ambient)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">noise &lt;-<span class="st"> </span>ambient<span class="op">::</span><span class="kw">noise_worley</span>(<span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">png</span>(<span class="st">&quot;noise_plot.png&quot;</span>)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">plot</span>(<span class="kw">as.raster</span>(<span class="kw">normalise</span>(noise)))</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">dev.off</span>()</a></code></pre></div>
 </div>
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 </div>
-<div id="exercise-9.4.2" class="section level3 unnumbered" number="">
+<div id="exercise-9.4.2" class="section level3 unnumbered">
 <h3>Exercise 9.4.2</h3>
-<p>Create an app that lets you upload a csv file, select a variable, and then perform a <code>t.test()</code> on that variable. After the user has uploaded the csv file, you’ll need to use <code>updateSelectInput()</code> to fill in the available variables. See Section 10.1 for details.</p>
-<div id="solution-1" class="section level4 unnumbered solution" number="">
-<h4>Solution</h4>
-<p>We can use the <code>fileInput</code> widget and the <code>accept</code> argument to ensure our app only takes on <code>.csv</code>s. In the <code>server</code> function we’ll select the <code>datapath</code> from within our file input and use this to update our <code>selectInput</code>. We need to put the <code>updateSelectInput</code> within a reactive because we need the options to change if the user selects another file. Lastly, we use <code>input$variable</code> to create our t-test output.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="uploads-and-downloads.html#cb34-1"></a><span class="kw">library</span>(shiny)</span>
-<span id="cb34-2"><a href="uploads-and-downloads.html#cb34-2"></a></span>
-<span id="cb34-3"><a href="uploads-and-downloads.html#cb34-3"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
-<span id="cb34-4"><a href="uploads-and-downloads.html#cb34-4"></a>    <span class="kw">sidebarLayout</span>(</span>
-<span id="cb34-5"><a href="uploads-and-downloads.html#cb34-5"></a>        <span class="kw">sidebarPanel</span>(</span>
-<span id="cb34-6"><a href="uploads-and-downloads.html#cb34-6"></a>            <span class="kw">fileInput</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;Select CSV&quot;</span>, <span class="dt">accept =</span> <span class="st">&quot;.csv&quot;</span>), <span class="co"># file widget</span></span>
-<span id="cb34-7"><a href="uploads-and-downloads.html#cb34-7"></a>            <span class="kw">selectInput</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;Select Variable&quot;</span>, <span class="dt">choices =</span> <span class="ot">NULL</span>) <span class="co"># select widget</span></span>
-<span id="cb34-8"><a href="uploads-and-downloads.html#cb34-8"></a>        ),</span>
-<span id="cb34-9"><a href="uploads-and-downloads.html#cb34-9"></a>        <span class="kw">mainPanel</span>(</span>
-<span id="cb34-10"><a href="uploads-and-downloads.html#cb34-10"></a>           <span class="kw">verbatimTextOutput</span>(<span class="st">&quot;results&quot;</span>) <span class="co"># t-test results</span></span>
-<span id="cb34-11"><a href="uploads-and-downloads.html#cb34-11"></a>        )</span>
-<span id="cb34-12"><a href="uploads-and-downloads.html#cb34-12"></a>    )</span>
-<span id="cb34-13"><a href="uploads-and-downloads.html#cb34-13"></a>)</span>
-<span id="cb34-14"><a href="uploads-and-downloads.html#cb34-14"></a></span>
-<span id="cb34-15"><a href="uploads-and-downloads.html#cb34-15"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output,session) {</span>
-<span id="cb34-16"><a href="uploads-and-downloads.html#cb34-16"></a></span>
-<span id="cb34-17"><a href="uploads-and-downloads.html#cb34-17"></a>    <span class="co"># get data from file</span></span>
-<span id="cb34-18"><a href="uploads-and-downloads.html#cb34-18"></a>    data &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
-<span id="cb34-19"><a href="uploads-and-downloads.html#cb34-19"></a>        <span class="kw">req</span>(input<span class="op">$</span>file)</span>
-<span id="cb34-20"><a href="uploads-and-downloads.html#cb34-20"></a>        <span class="kw">read.csv</span>(input<span class="op">$</span>file<span class="op">$</span>datapath)</span>
-<span id="cb34-21"><a href="uploads-and-downloads.html#cb34-21"></a>    })</span>
-<span id="cb34-22"><a href="uploads-and-downloads.html#cb34-22"></a></span>
-<span id="cb34-23"><a href="uploads-and-downloads.html#cb34-23"></a>    <span class="co"># create the select input based on the numeric columns in the dataframe</span></span>
-<span id="cb34-24"><a href="uploads-and-downloads.html#cb34-24"></a>    <span class="kw">observeEvent</span>( input<span class="op">$</span>file, {</span>
-<span id="cb34-25"><a href="uploads-and-downloads.html#cb34-25"></a>        num_cols &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select_if</span>(<span class="kw">data</span>(), is.numeric)</span>
-<span id="cb34-26"><a href="uploads-and-downloads.html#cb34-26"></a>        <span class="kw">updateSelectInput</span>(session, <span class="st">&quot;variable&quot;</span>, <span class="dt">choices =</span> <span class="kw">colnames</span>(num_cols))</span>
-<span id="cb34-27"><a href="uploads-and-downloads.html#cb34-27"></a>    })</span>
-<span id="cb34-28"><a href="uploads-and-downloads.html#cb34-28"></a></span>
-<span id="cb34-29"><a href="uploads-and-downloads.html#cb34-29"></a>    <span class="co"># print t-test results</span></span>
-<span id="cb34-30"><a href="uploads-and-downloads.html#cb34-30"></a>    output<span class="op">$</span>results &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({</span>
-<span id="cb34-31"><a href="uploads-and-downloads.html#cb34-31"></a>        <span class="kw">req</span>(<span class="op">!</span><span class="kw">is.null</span>(input<span class="op">$</span>variable))</span>
-<span id="cb34-32"><a href="uploads-and-downloads.html#cb34-32"></a>        <span class="kw">t.test</span>(<span class="kw">data</span>()[input<span class="op">$</span>variable])</span>
-<span id="cb34-33"><a href="uploads-and-downloads.html#cb34-33"></a>        })</span>
-<span id="cb34-34"><a href="uploads-and-downloads.html#cb34-34"></a>}</span>
-<span id="cb34-35"><a href="uploads-and-downloads.html#cb34-35"></a></span>
-<span id="cb34-36"><a href="uploads-and-downloads.html#cb34-36"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+<p>Create an app that lets you upload a csv file, select a variable, and then
+perform a <code>t.test()</code> on that variable. After the user has uploaded the csv
+file, you’ll need to use <code>updateSelectInput()</code> to fill in the available
+variables. See Section
+<a href="https://mastering-shiny.org/action-dynamic.html#updating-inputs">10.1</a>
+for details.</p>
+<div class="solution">
+<h4 id="solution-1" class="unnumbered">Solution</h4>
+<p>We can use the <code>fileInput</code> widget with the <code>accept</code> argument set to <code>.csv</code> to
+allow only the upload of csv files. In the <code>server</code> function we save the
+uploaded data to the the <code>data</code> reactive and use it to update <code>input$variable</code>,
+which displays variable (i.e. numeric data column) choices. Note that we put
+the <code>updateSelectInput</code> within an observe event because we need the
+<code>input$variable</code> to change if the user selects another file.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="kw">sidebarLayout</span>(</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="kw">sidebarPanel</span>(</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">      <span class="kw">fileInput</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;Upload CSV&quot;</span>, <span class="dt">accept =</span> <span class="st">&quot;.csv&quot;</span>), <span class="co"># file widget</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">      <span class="kw">selectInput</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;Select Variable&quot;</span>, <span class="dt">choices =</span> <span class="ot">NULL</span>) <span class="co"># select widget</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">    ),</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="kw">mainPanel</span>(</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">      <span class="kw">verbatimTextOutput</span>(<span class="st">&quot;results&quot;</span>) <span class="co"># t-test results</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">    )</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">  )</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">)</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output,session) {</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">  </a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">  <span class="co"># get data from file</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">  data &lt;-<span class="st"> </span><span class="kw">reactive</span>({</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19">    <span class="kw">req</span>(input<span class="op">$</span>file)</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">    </a>
+<a class="sourceLine" id="cb2-21" data-line-number="21">    <span class="co"># as shown in the book, lets make sure the uploaded file is a csv</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">    ext &lt;-<span class="st"> </span>tools<span class="op">::</span><span class="kw">file_ext</span>(input<span class="op">$</span>file<span class="op">$</span>name)</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">    <span class="kw">validate</span>(<span class="kw">need</span>(ext <span class="op">==</span><span class="st"> &quot;csv&quot;</span>, <span class="st">&quot;Invalid file. Please upload a .csv file&quot;</span>))</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">    </a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">    dataset &lt;-<span class="st"> </span>vroom<span class="op">::</span><span class="kw">vroom</span>(input<span class="op">$</span>file<span class="op">$</span>datapath, <span class="dt">delim =</span> <span class="st">&quot;,&quot;</span>)</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26">    </a>
+<a class="sourceLine" id="cb2-27" data-line-number="27">    <span class="co"># let the user know if the data contains no numeric column</span></a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">    <span class="kw">validate</span>(<span class="kw">need</span>(<span class="kw">ncol</span>(dplyr<span class="op">::</span><span class="kw">select_if</span>(dataset, is.numeric)) <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb2-29" data-line-number="29">                  <span class="st">&quot;This dataset has no numeric columns.&quot;</span>))</a>
+<a class="sourceLine" id="cb2-30" data-line-number="30">    dataset</a>
+<a class="sourceLine" id="cb2-31" data-line-number="31">  })</a>
+<a class="sourceLine" id="cb2-32" data-line-number="32">  </a>
+<a class="sourceLine" id="cb2-33" data-line-number="33">  <span class="co"># create the select input based on the numeric columns in the dataframe</span></a>
+<a class="sourceLine" id="cb2-34" data-line-number="34">  <span class="kw">observeEvent</span>(input<span class="op">$</span>file, {</a>
+<a class="sourceLine" id="cb2-35" data-line-number="35">    <span class="kw">req</span>(<span class="kw">data</span>())</a>
+<a class="sourceLine" id="cb2-36" data-line-number="36">    num_cols &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select_if</span>(<span class="kw">data</span>(), is.numeric)</a>
+<a class="sourceLine" id="cb2-37" data-line-number="37">    <span class="kw">updateSelectInput</span>(session, <span class="st">&quot;variable&quot;</span>, <span class="dt">choices =</span> <span class="kw">colnames</span>(num_cols))</a>
+<a class="sourceLine" id="cb2-38" data-line-number="38">  })</a>
+<a class="sourceLine" id="cb2-39" data-line-number="39">  </a>
+<a class="sourceLine" id="cb2-40" data-line-number="40">  <span class="co"># print t-test results</span></a>
+<a class="sourceLine" id="cb2-41" data-line-number="41">  output<span class="op">$</span>results &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({</a>
+<a class="sourceLine" id="cb2-42" data-line-number="42">    <span class="cf">if</span>(<span class="op">!</span><span class="kw">is.null</span>(input<span class="op">$</span>variable))</a>
+<a class="sourceLine" id="cb2-43" data-line-number="43">      <span class="kw">t.test</span>(<span class="kw">data</span>()[input<span class="op">$</span>variable])</a>
+<a class="sourceLine" id="cb2-44" data-line-number="44">  })</a>
+<a class="sourceLine" id="cb2-45" data-line-number="45">}</a>
+<a class="sourceLine" id="cb2-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb2-47" data-line-number="47"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
 </div>
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 </div>
-<div id="exercise-9.4.3" class="section level3 unnumbered" number="">
+<div id="exercise-9.4.3" class="section level3 unnumbered">
 <h3>Exercise 9.4.3</h3>
-<p>Create an app that lets the user upload a csv file, select one variable, draw a histogram, and then download the histogram. For an additional challenge, allow the user to select from .png, .pdf, and .svg output formats.</p>
-<div id="solution-2" class="section level4 unnumbered solution" number="">
-<h4>Solution</h4>
-<p>Adapting the code from the example above, rather than print a t-test output, we create a plot reactive to use in the UI’s <code>output$results</code> and to use within our <code>downloadHander</code>. We can use the <code>ggsave</code> function to switch between <code>input$extension</code> types.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="uploads-and-downloads.html#cb35-1"></a><span class="kw">library</span>(shiny)</span>
-<span id="cb35-2"><a href="uploads-and-downloads.html#cb35-2"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb35-3"><a href="uploads-and-downloads.html#cb35-3"></a></span>
-<span id="cb35-4"><a href="uploads-and-downloads.html#cb35-4"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
-<span id="cb35-5"><a href="uploads-and-downloads.html#cb35-5"></a>    <span class="kw">tagList</span>(</span>
-<span id="cb35-6"><a href="uploads-and-downloads.html#cb35-6"></a>        <span class="kw">br</span>(), <span class="kw">br</span>(),</span>
-<span id="cb35-7"><a href="uploads-and-downloads.html#cb35-7"></a>        <span class="kw">column</span>(<span class="dv">4</span>,</span>
-<span id="cb35-8"><a href="uploads-and-downloads.html#cb35-8"></a>               <span class="kw">wellPanel</span>(</span>
-<span id="cb35-9"><a href="uploads-and-downloads.html#cb35-9"></a>                   <span class="kw">fileInput</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;Select CSV&quot;</span>, <span class="dt">accept =</span> <span class="st">&quot;.csv&quot;</span>), <span class="co"># file widget</span></span>
-<span id="cb35-10"><a href="uploads-and-downloads.html#cb35-10"></a>                   <span class="kw">selectInput</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;Select Variable&quot;</span>, <span class="dt">choices =</span> <span class="ot">NULL</span>), <span class="co"># select widget</span></span>
-<span id="cb35-11"><a href="uploads-and-downloads.html#cb35-11"></a>               ),</span>
-<span id="cb35-12"><a href="uploads-and-downloads.html#cb35-12"></a>               <span class="kw">wellPanel</span>(</span>
-<span id="cb35-13"><a href="uploads-and-downloads.html#cb35-13"></a>                   <span class="kw">radioButtons</span>(<span class="st">&quot;extension&quot;</span>, <span class="st">&quot;Save As:&quot;</span>, <span class="dt">choices =</span> <span class="kw">c</span>(<span class="st">&quot;png&quot;</span>, <span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;svg&quot;</span>), <span class="dt">inline =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb35-14"><a href="uploads-and-downloads.html#cb35-14"></a>                   <span class="kw">downloadButton</span>(<span class="st">&quot;download&quot;</span>, <span class="st">&quot;Save Plot&quot;</span>)</span>
-<span id="cb35-15"><a href="uploads-and-downloads.html#cb35-15"></a>               )</span>
-<span id="cb35-16"><a href="uploads-and-downloads.html#cb35-16"></a>             ),</span>
-<span id="cb35-17"><a href="uploads-and-downloads.html#cb35-17"></a>        <span class="kw">column</span>(<span class="dv">8</span>, <span class="kw">plotOutput</span>(<span class="st">&quot;results&quot;</span>))</span>
-<span id="cb35-18"><a href="uploads-and-downloads.html#cb35-18"></a>    )</span>
-<span id="cb35-19"><a href="uploads-and-downloads.html#cb35-19"></a>)</span>
-<span id="cb35-20"><a href="uploads-and-downloads.html#cb35-20"></a></span>
-<span id="cb35-21"><a href="uploads-and-downloads.html#cb35-21"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output,session) {</span>
-<span id="cb35-22"><a href="uploads-and-downloads.html#cb35-22"></a></span>
-<span id="cb35-23"><a href="uploads-and-downloads.html#cb35-23"></a>    <span class="co"># get data from file</span></span>
-<span id="cb35-24"><a href="uploads-and-downloads.html#cb35-24"></a>    data &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
-<span id="cb35-25"><a href="uploads-and-downloads.html#cb35-25"></a>        <span class="kw">req</span>(input<span class="op">$</span>file)</span>
-<span id="cb35-26"><a href="uploads-and-downloads.html#cb35-26"></a>        <span class="kw">read.csv</span>(input<span class="op">$</span>file<span class="op">$</span>datapath)</span>
-<span id="cb35-27"><a href="uploads-and-downloads.html#cb35-27"></a>    })</span>
-<span id="cb35-28"><a href="uploads-and-downloads.html#cb35-28"></a></span>
-<span id="cb35-29"><a href="uploads-and-downloads.html#cb35-29"></a>    <span class="co"># create the select input based on the numeric columns in the dataframe</span></span>
-<span id="cb35-30"><a href="uploads-and-downloads.html#cb35-30"></a>    <span class="kw">observeEvent</span>( input<span class="op">$</span>file, {</span>
-<span id="cb35-31"><a href="uploads-and-downloads.html#cb35-31"></a>        num_cols &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select_if</span>(<span class="kw">data</span>(), is.numeric)</span>
-<span id="cb35-32"><a href="uploads-and-downloads.html#cb35-32"></a>        <span class="kw">updateSelectInput</span>(session, <span class="st">&quot;variable&quot;</span>, <span class="dt">choices =</span> <span class="kw">colnames</span>(num_cols))</span>
-<span id="cb35-33"><a href="uploads-and-downloads.html#cb35-33"></a>    })</span>
-<span id="cb35-34"><a href="uploads-and-downloads.html#cb35-34"></a></span>
-<span id="cb35-35"><a href="uploads-and-downloads.html#cb35-35"></a>    <span class="co"># plot histogram</span></span>
-<span id="cb35-36"><a href="uploads-and-downloads.html#cb35-36"></a>    plot_output &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
-<span id="cb35-37"><a href="uploads-and-downloads.html#cb35-37"></a>        <span class="kw">req</span>(<span class="op">!</span><span class="kw">is.null</span>(input<span class="op">$</span>variable))</span>
-<span id="cb35-38"><a href="uploads-and-downloads.html#cb35-38"></a></span>
-<span id="cb35-39"><a href="uploads-and-downloads.html#cb35-39"></a>        <span class="kw">ggplot</span>(<span class="kw">data</span>()) <span class="op">+</span></span>
-<span id="cb35-40"><a href="uploads-and-downloads.html#cb35-40"></a><span class="st">            </span><span class="kw">aes_string</span>(<span class="dt">x =</span> input<span class="op">$</span>variable) <span class="op">+</span></span>
-<span id="cb35-41"><a href="uploads-and-downloads.html#cb35-41"></a><span class="st">            </span><span class="kw">geom_histogram</span>()</span>
-<span id="cb35-42"><a href="uploads-and-downloads.html#cb35-42"></a>        })</span>
-<span id="cb35-43"><a href="uploads-and-downloads.html#cb35-43"></a></span>
-<span id="cb35-44"><a href="uploads-and-downloads.html#cb35-44"></a>    output<span class="op">$</span>results &lt;-<span class="st"> </span><span class="kw">renderPlot</span>(<span class="kw">plot_output</span>())</span>
-<span id="cb35-45"><a href="uploads-and-downloads.html#cb35-45"></a></span>
-<span id="cb35-46"><a href="uploads-and-downloads.html#cb35-46"></a>    <span class="co"># save histogram using downloadHandler and plot output type</span></span>
-<span id="cb35-47"><a href="uploads-and-downloads.html#cb35-47"></a>    output<span class="op">$</span>download &lt;-<span class="st"> </span><span class="kw">downloadHandler</span>(</span>
-<span id="cb35-48"><a href="uploads-and-downloads.html#cb35-48"></a>        <span class="dt">filename =</span> <span class="kw">paste0</span>(<span class="st">&quot;histogram.&quot;</span>, input<span class="op">$</span>extension),</span>
-<span id="cb35-49"><a href="uploads-and-downloads.html#cb35-49"></a>        <span class="dt">content =</span> <span class="cf">function</span>(file){</span>
-<span id="cb35-50"><a href="uploads-and-downloads.html#cb35-50"></a>            <span class="kw">ggsave</span>(file, <span class="kw">plot_output</span>(), <span class="dt">device =</span> input<span class="op">$</span>extension)</span>
-<span id="cb35-51"><a href="uploads-and-downloads.html#cb35-51"></a>        }</span>
-<span id="cb35-52"><a href="uploads-and-downloads.html#cb35-52"></a>    )</span>
-<span id="cb35-53"><a href="uploads-and-downloads.html#cb35-53"></a></span>
-<span id="cb35-54"><a href="uploads-and-downloads.html#cb35-54"></a>}</span>
-<span id="cb35-55"><a href="uploads-and-downloads.html#cb35-55"></a></span>
-<span id="cb35-56"><a href="uploads-and-downloads.html#cb35-56"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+<p>Create an app that lets the user upload a csv file, select one variable,
+draw a histogram, and then download the histogram. For an additional challenge,
+allow the user to select from .png, .pdf, and .svg output formats.</p>
+<div class="solution">
+<h4 id="solution-2" class="unnumbered">Solution</h4>
+<p>Adapting the code from the example above, rather than print a t-test output, we
+save the plot in a reactive and use it to display the plot/download. We can use
+the <code>ggsave</code> function to switch between <code>input$extension</code> types.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="kw">tagList</span>(</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="kw">br</span>(), <span class="kw">br</span>(),</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">    <span class="kw">column</span>(<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">           <span class="kw">wellPanel</span>(</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">             <span class="kw">fileInput</span>(<span class="st">&quot;file&quot;</span>, <span class="st">&quot;Upload CSV&quot;</span>, <span class="dt">accept =</span> <span class="st">&quot;.csv&quot;</span>),</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">             <span class="kw">selectInput</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;Select Variable&quot;</span>, <span class="dt">choices =</span> <span class="ot">NULL</span>),</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">           ),</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">           <span class="kw">wellPanel</span>(</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">             <span class="kw">radioButtons</span>(<span class="st">&quot;extension&quot;</span>, <span class="st">&quot;Save As:&quot;</span>,</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">                          <span class="dt">choices =</span> <span class="kw">c</span>(<span class="st">&quot;png&quot;</span>, <span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;svg&quot;</span>), <span class="dt">inline =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">             <span class="kw">downloadButton</span>(<span class="st">&quot;download&quot;</span>, <span class="st">&quot;Save Plot&quot;</span>)</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">           )</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">    ),</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">    <span class="kw">column</span>(<span class="dv">8</span>, <span class="kw">plotOutput</span>(<span class="st">&quot;results&quot;</span>))</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">  )</a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">)</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output,session) {</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">  </a>
+<a class="sourceLine" id="cb3-24" data-line-number="24">  <span class="co"># get data from file</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">  data &lt;-<span class="st"> </span><span class="kw">reactive</span>({</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26">    <span class="kw">req</span>(input<span class="op">$</span>file)</a>
+<a class="sourceLine" id="cb3-27" data-line-number="27">    </a>
+<a class="sourceLine" id="cb3-28" data-line-number="28">    <span class="co"># as shown in the book, lets make sure the uploaded file is a csv</span></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">    ext &lt;-<span class="st"> </span>tools<span class="op">::</span><span class="kw">file_ext</span>(input<span class="op">$</span>file<span class="op">$</span>name)</a>
+<a class="sourceLine" id="cb3-30" data-line-number="30">    <span class="kw">validate</span>(<span class="kw">need</span>(ext <span class="op">==</span><span class="st"> &quot;csv&quot;</span>, <span class="st">&quot;Invalid file. Please upload a .csv file&quot;</span>))</a>
+<a class="sourceLine" id="cb3-31" data-line-number="31">    </a>
+<a class="sourceLine" id="cb3-32" data-line-number="32">    dataset &lt;-<span class="st"> </span>vroom<span class="op">::</span><span class="kw">vroom</span>(input<span class="op">$</span>file<span class="op">$</span>datapath, <span class="dt">delim =</span> <span class="st">&quot;,&quot;</span>)</a>
+<a class="sourceLine" id="cb3-33" data-line-number="33">    </a>
+<a class="sourceLine" id="cb3-34" data-line-number="34">    <span class="co"># let the user know if the data contains no numeric column</span></a>
+<a class="sourceLine" id="cb3-35" data-line-number="35">    <span class="kw">validate</span>(<span class="kw">need</span>(<span class="kw">ncol</span>(dplyr<span class="op">::</span><span class="kw">select_if</span>(dataset, is.numeric)) <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb3-36" data-line-number="36">                  <span class="st">&quot;This dataset has no numeric columns.&quot;</span>))</a>
+<a class="sourceLine" id="cb3-37" data-line-number="37">    dataset</a>
+<a class="sourceLine" id="cb3-38" data-line-number="38">  })</a>
+<a class="sourceLine" id="cb3-39" data-line-number="39">  </a>
+<a class="sourceLine" id="cb3-40" data-line-number="40">  <span class="co"># create the select input based on the numeric columns in the dataframe</span></a>
+<a class="sourceLine" id="cb3-41" data-line-number="41">  <span class="kw">observeEvent</span>( input<span class="op">$</span>file, {</a>
+<a class="sourceLine" id="cb3-42" data-line-number="42">    <span class="kw">req</span>(<span class="kw">data</span>())</a>
+<a class="sourceLine" id="cb3-43" data-line-number="43">    num_cols &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select_if</span>(<span class="kw">data</span>(), is.numeric)</a>
+<a class="sourceLine" id="cb3-44" data-line-number="44">    <span class="kw">updateSelectInput</span>(session, <span class="st">&quot;variable&quot;</span>, <span class="dt">choices =</span> <span class="kw">colnames</span>(num_cols))</a>
+<a class="sourceLine" id="cb3-45" data-line-number="45">  })</a>
+<a class="sourceLine" id="cb3-46" data-line-number="46">  </a>
+<a class="sourceLine" id="cb3-47" data-line-number="47">  <span class="co"># plot histogram</span></a>
+<a class="sourceLine" id="cb3-48" data-line-number="48">  plot_output &lt;-<span class="st"> </span><span class="kw">reactive</span>({</a>
+<a class="sourceLine" id="cb3-49" data-line-number="49">    <span class="kw">req</span>(<span class="op">!</span><span class="kw">is.null</span>(input<span class="op">$</span>variable))</a>
+<a class="sourceLine" id="cb3-50" data-line-number="50">    </a>
+<a class="sourceLine" id="cb3-51" data-line-number="51">    <span class="kw">ggplot</span>(<span class="kw">data</span>()) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-52" data-line-number="52"><span class="st">      </span><span class="kw">aes_string</span>(<span class="dt">x =</span> input<span class="op">$</span>variable) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-53" data-line-number="53"><span class="st">      </span><span class="kw">geom_histogram</span>()</a>
+<a class="sourceLine" id="cb3-54" data-line-number="54">  })</a>
+<a class="sourceLine" id="cb3-55" data-line-number="55">  </a>
+<a class="sourceLine" id="cb3-56" data-line-number="56">  output<span class="op">$</span>results &lt;-<span class="st"> </span><span class="kw">renderPlot</span>(<span class="kw">plot_output</span>())</a>
+<a class="sourceLine" id="cb3-57" data-line-number="57">  </a>
+<a class="sourceLine" id="cb3-58" data-line-number="58">  <span class="co"># save histogram using downloadHandler and plot output type</span></a>
+<a class="sourceLine" id="cb3-59" data-line-number="59">  output<span class="op">$</span>download &lt;-<span class="st"> </span><span class="kw">downloadHandler</span>(</a>
+<a class="sourceLine" id="cb3-60" data-line-number="60">    <span class="dt">filename =</span> <span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb3-61" data-line-number="61">      <span class="kw">paste</span>(<span class="st">&quot;histogram&quot;</span>, input<span class="op">$</span>extension, <span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>)</a>
+<a class="sourceLine" id="cb3-62" data-line-number="62">    },</a>
+<a class="sourceLine" id="cb3-63" data-line-number="63">    <span class="dt">content =</span> <span class="cf">function</span>(file){</a>
+<a class="sourceLine" id="cb3-64" data-line-number="64">      <span class="kw">ggsave</span>(file, <span class="kw">plot_output</span>(), <span class="dt">device =</span> input<span class="op">$</span>extension)</a>
+<a class="sourceLine" id="cb3-65" data-line-number="65">    }</a>
+<a class="sourceLine" id="cb3-66" data-line-number="66">  )</a>
+<a class="sourceLine" id="cb3-67" data-line-number="67">}</a>
+<a class="sourceLine" id="cb3-68" data-line-number="68"></a>
+<a class="sourceLine" id="cb3-69" data-line-number="69"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
 </div>
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 </div>
-<div id="exercise-9.4.4" class="section level3 unnumbered" number="">
+<div id="exercise-9.4.4" class="section level3 unnumbered">
 <h3>Exercise 9.4.4</h3>
-<p>Write an app that allows the user to create a Lego mosaic from any .png file using Ryan Timpe’s brickr package. Once you’ve completed the basics, add controls to allow the user to select the size of the mosaic (in bricks), and choose whether to use “universal” or “generic” colour palettes.</p>
-<div id="solution-3" class="section level4 unnumbered solution" number="">
-<h4>Solution</h4>
-<p>Instead of limiting our file selection to a <code>csv</code> as above, here we are going to limit our input to a <code>png</code>. We’ll use the <code>png::readPNG</code> function to read in our file, and specify the size and color of our mosaic in <code>brickr</code>’s <code>image_to_mosaic</code> function. Read more about the package and examples <a href="https://github.com/ryantimpe/brickr">here</a></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="uploads-and-downloads.html#cb36-1"></a><span class="kw">library</span>(shiny)</span>
-<span id="cb36-2"><a href="uploads-and-downloads.html#cb36-2"></a><span class="kw">library</span>(brickr)</span>
-<span id="cb36-3"><a href="uploads-and-downloads.html#cb36-3"></a><span class="kw">library</span>(png)</span>
-<span id="cb36-4"><a href="uploads-and-downloads.html#cb36-4"></a></span>
-<span id="cb36-5"><a href="uploads-and-downloads.html#cb36-5"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
-<span id="cb36-6"><a href="uploads-and-downloads.html#cb36-6"></a>    <span class="kw">sidebarLayout</span>(</span>
-<span id="cb36-7"><a href="uploads-and-downloads.html#cb36-7"></a>        <span class="kw">sidebarPanel</span>(</span>
-<span id="cb36-8"><a href="uploads-and-downloads.html#cb36-8"></a>            <span class="kw">fluidRow</span>(</span>
-<span id="cb36-9"><a href="uploads-and-downloads.html#cb36-9"></a>                <span class="kw">fileInput</span>(<span class="st">&quot;myFile&quot;</span>, <span class="st">&quot;Choose a file&quot;</span>, <span class="dt">accept =</span> <span class="kw">c</span>(<span class="st">&#39;image/png&#39;</span>)),</span>
-<span id="cb36-10"><a href="uploads-and-downloads.html#cb36-10"></a>                <span class="kw">sliderInput</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;Select Size:&quot;</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">100</span>, <span class="dt">value =</span> <span class="dv">35</span>),</span>
-<span id="cb36-11"><a href="uploads-and-downloads.html#cb36-11"></a>                <span class="kw">radioButtons</span>(<span class="st">&quot;color&quot;</span>, <span class="st">&quot;Select Color Palette:&quot;</span>, <span class="dt">choices =</span> <span class="kw">c</span>(<span class="st">&quot;universal&quot;</span>, <span class="st">&quot;generic&quot;</span>))</span>
-<span id="cb36-12"><a href="uploads-and-downloads.html#cb36-12"></a>            )</span>
-<span id="cb36-13"><a href="uploads-and-downloads.html#cb36-13"></a>        ),</span>
-<span id="cb36-14"><a href="uploads-and-downloads.html#cb36-14"></a>        <span class="kw">mainPanel</span>(<span class="kw">plotOutput</span>(<span class="st">&quot;result&quot;</span>))</span>
-<span id="cb36-15"><a href="uploads-and-downloads.html#cb36-15"></a>    )</span>
-<span id="cb36-16"><a href="uploads-and-downloads.html#cb36-16"></a>)</span>
-<span id="cb36-17"><a href="uploads-and-downloads.html#cb36-17"></a></span>
-<span id="cb36-18"><a href="uploads-and-downloads.html#cb36-18"></a></span>
-<span id="cb36-19"><a href="uploads-and-downloads.html#cb36-19"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</span>
-<span id="cb36-20"><a href="uploads-and-downloads.html#cb36-20"></a></span>
-<span id="cb36-21"><a href="uploads-and-downloads.html#cb36-21"></a>    <span class="kw">observeEvent</span>(input<span class="op">$</span>myFile, {</span>
-<span id="cb36-22"><a href="uploads-and-downloads.html#cb36-22"></a>        inFile &lt;-<span class="st"> </span>input<span class="op">$</span>myFile</span>
-<span id="cb36-23"><a href="uploads-and-downloads.html#cb36-23"></a>        <span class="cf">if</span> (<span class="kw">is.null</span>(inFile))</span>
-<span id="cb36-24"><a href="uploads-and-downloads.html#cb36-24"></a>            <span class="kw">return</span>()</span>
-<span id="cb36-25"><a href="uploads-and-downloads.html#cb36-25"></a></span>
-<span id="cb36-26"><a href="uploads-and-downloads.html#cb36-26"></a>        output<span class="op">$</span>result &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
-<span id="cb36-27"><a href="uploads-and-downloads.html#cb36-27"></a>            png<span class="op">::</span><span class="kw">readPNG</span>(inFile<span class="op">$</span>datapath) <span class="op">%&gt;%</span></span>
-<span id="cb36-28"><a href="uploads-and-downloads.html#cb36-28"></a><span class="st">                </span><span class="kw">image_to_mosaic</span>(<span class="dt">img_size =</span> input<span class="op">$</span>size, <span class="dt">color_palette =</span> input<span class="op">$</span>color) <span class="op">%&gt;%</span></span>
-<span id="cb36-29"><a href="uploads-and-downloads.html#cb36-29"></a><span class="st">                </span><span class="kw">build_mosaic</span>()</span>
-<span id="cb36-30"><a href="uploads-and-downloads.html#cb36-30"></a>        })</span>
-<span id="cb36-31"><a href="uploads-and-downloads.html#cb36-31"></a>    })</span>
-<span id="cb36-32"><a href="uploads-and-downloads.html#cb36-32"></a></span>
-<span id="cb36-33"><a href="uploads-and-downloads.html#cb36-33"></a>}</span>
-<span id="cb36-34"><a href="uploads-and-downloads.html#cb36-34"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</span></code></pre></div>
+<p>Write an app that allows the user to create a Lego mosaic from any .png file
+using Ryan Timpe’s <a href="https://github.com/ryantimpe/brickr">brickr</a> package. Once
+you’ve completed the basics, add controls to allow the user to select the size
+of the mosaic (in bricks), and choose whether to use “universal” or “generic”
+colour palettes.</p>
+<div class="solution">
+<h4 id="solution-3" class="unnumbered">Solution</h4>
+<p>Instead of limiting our file selection to a csv as above, here we are going to
+limit our input to a png. We’ll use the <code>png::readPNG</code> function to read in our
+file, and specify the size/color of our mosaic in <code>brickr</code>’s <code>image_to_mosaic</code>
+function. Read more about the package and examples
+<a href="https://github.com/ryantimpe/brickr">here</a>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">library</span>(brickr)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">library</span>(png)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co"># Function to provide user feedback (checkout Chapter 8 for more info).</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">notify &lt;-<span class="st"> </span><span class="cf">function</span>(msg, <span class="dt">id =</span> <span class="ot">NULL</span>) {</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="kw">showNotification</span>(msg, <span class="dt">id =</span> id, <span class="dt">duration =</span> <span class="ot">NULL</span>, <span class="dt">closeButton =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="kw">sidebarLayout</span>(</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">    <span class="kw">sidebarPanel</span>(</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">      <span class="kw">fluidRow</span>(</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">        <span class="kw">fileInput</span>(<span class="st">&quot;myFile&quot;</span>, <span class="st">&quot;Upload a PNG file&quot;</span>, <span class="dt">accept =</span> <span class="kw">c</span>(<span class="st">&#39;image/png&#39;</span>)),</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">        <span class="kw">sliderInput</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;Select size:&quot;</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">100</span>, <span class="dt">value =</span> <span class="dv">35</span>),</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">        <span class="kw">radioButtons</span>(<span class="st">&quot;color&quot;</span>, <span class="st">&quot;Select color palette:&quot;</span>, <span class="dt">choices =</span> <span class="kw">c</span>(<span class="st">&quot;universal&quot;</span>, <span class="st">&quot;generic&quot;</span>))</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">      )</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">    ),</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">    <span class="kw">mainPanel</span>(</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">      <span class="kw">plotOutput</span>(<span class="st">&quot;result&quot;</span>))</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">  )</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">)</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">  imageFile &lt;-<span class="st"> </span><span class="kw">reactive</span>({</a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">    <span class="cf">if</span>(<span class="op">!</span><span class="kw">is.null</span>(input<span class="op">$</span>myFile))</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">      png<span class="op">::</span><span class="kw">readPNG</span>(input<span class="op">$</span>myFile<span class="op">$</span>datapath)</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">  })</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb4-31" data-line-number="31">  output<span class="op">$</span>result &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">    <span class="kw">req</span>(<span class="kw">imageFile</span>())</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">    id &lt;-<span class="st"> </span><span class="kw">notify</span>(<span class="st">&quot;Transforming image...&quot;</span>)</a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">    <span class="kw">on.exit</span>(<span class="kw">removeNotification</span>(id), <span class="dt">add =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb4-37" data-line-number="37">    <span class="kw">imageFile</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-38" data-line-number="38"><span class="st">      </span><span class="kw">image_to_mosaic</span>(<span class="dt">img_size =</span> input<span class="op">$</span>size, <span class="dt">color_palette =</span> input<span class="op">$</span>color) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-39" data-line-number="39"><span class="st">      </span><span class="kw">build_mosaic</span>()</a>
+<a class="sourceLine" id="cb4-40" data-line-number="40">  })</a>
+<a class="sourceLine" id="cb4-41" data-line-number="41">}</a>
+<a class="sourceLine" id="cb4-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb4-43" data-line-number="43"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
 </div>
 
 </div>
