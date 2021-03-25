@@ -18,7 +18,8 @@ For this example, we'll use the bookmarking by setting `enableBookmarking = "url
 library(shiny)
 library(ambient)
 
-ui <- fluidPage(
+ui <- function(request) {
+    fluidPage(
     sidebarLayout(
         sidebarPanel(
             sliderInput("frequency", "Frequency", min = 0, max = 1, value = 0.01),
@@ -26,10 +27,11 @@ ui <- fluidPage(
             sliderInput("gain", "Gain", min = 0, max = 1, value = 0.5),
         ),
         mainPanel(
-           plotOutput("result")
+            plotOutput("result")
         )
     )
-)
+  )
+}
 
 
 server <- function(input, output, session) {
