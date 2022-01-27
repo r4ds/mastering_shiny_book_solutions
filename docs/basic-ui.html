@@ -162,9 +162,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.5"><i class="fa fa-check"></i>Exercise 3.2.8.5</a></li>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.1"><i class="fa fa-check"></i>Exercise 3.3.5.1</a></li>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.2"><i class="fa fa-check"></i>Exercise 3.3.5.2</a></li>
-<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.3"><i class="fa fa-check"></i>Exercise 3.3.5.3</a></li>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.1"><i class="fa fa-check"></i>Exercise 3.4.6.1</a></li>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.2"><i class="fa fa-check"></i>Exercise 3.4.6.2</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.3"><i class="fa fa-check"></i>Exercise 3.4.6.3</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="basic-reactivity.html"><a href="basic-reactivity.html"><i class="fa fa-check"></i><b>4</b> Basic Reactivity</a><ul>
 <li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.1"><i class="fa fa-check"></i>Exercise 4.3.6.1</a></li>
@@ -387,70 +387,61 @@ and modify the width.</p>
 </div>
 <div id="exercise-3.3.5.2" class="section level3 unnumbered">
 <h3>Exercise 3.3.5.2</h3>
-<p>Add an additional plot to the right of the existing plot, and size it so that
-each plot takes up half the width of the app.</p>
+<p>Update the options for renderDataTable() below so that the table is displayed, but nothing else (i.e. remove the search, ordering, and filtering commands). You’ll need to read ?renderDataTable and review the options at <a href="https://datatables.net/reference/option/" class="uri">https://datatables.net/reference/option/</a>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">  <span class="kw">dataTableOutput</span>(<span class="st">&quot;table&quot;</span>)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">)</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">  output<span class="op">$</span>table &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>(mtcars, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">pageLength =</span> <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">}</a></code></pre></div>
 <div class="solution">
 <h4 id="solution-11" class="unnumbered"><span id="unlabeled-div-12" class="solution"><em>Solution</em>. </span>Solution</h4>
+<p>We can achieve this by setting <code>ordering</code> and <code>searching</code> to <code>FALSE</code> within the
+<code>options</code> list.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">  <span class="kw">dataTableOutput</span>(<span class="st">&quot;table&quot;</span>)</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
+<a class="sourceLine" id="cb17-8" data-line-number="8">  output<span class="op">$</span>table &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>(</a>
+<a class="sourceLine" id="cb17-9" data-line-number="9">    mtcars, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">ordering =</span> <span class="ot">FALSE</span>, <span class="dt">searching =</span> <span class="ot">FALSE</span>))</a>
+<a class="sourceLine" id="cb17-10" data-line-number="10">}</a>
+<a class="sourceLine" id="cb17-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+</div>
+</div>
+<div id="exercise-3.4.6.1" class="section level3 unnumbered">
+<h3>Exercise 3.4.6.1</h3>
+<p>Create an app that contains two plots, each of which takes up half the app (regardless of what size the whole app is)</p>
+<div class="solution">
+<h4 id="solution-12" class="unnumbered"><span id="unlabeled-div-13" class="solution"><em>Solution</em>. </span>Solution</h4>
+
 <p>When creating the layout of a shiny app, you can use the <code>fluidRow</code> function to
 control the width of the objects it contains. This function can have columns
 and such columns can be set to have widths ranging from 1-12. Note that columns
 width within a <code>fluidRow</code> container should add up to 12.</p>
 <p>For our exercise, we need two columns of 50% width each, i.e., we should set
 the width of each column to 6.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">  <span class="kw">fluidRow</span>(</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">    <span class="kw">column</span>(<span class="dt">width =</span> <span class="dv">6</span>, <span class="kw">plotOutput</span>(<span class="st">&quot;plot1&quot;</span>)),</a>
-<a class="sourceLine" id="cb16-6" data-line-number="6">    <span class="kw">column</span>(<span class="dt">width =</span> <span class="dv">6</span>, <span class="kw">plotOutput</span>(<span class="st">&quot;plot2&quot;</span>))</a>
-<a class="sourceLine" id="cb16-7" data-line-number="7">  )</a>
-<a class="sourceLine" id="cb16-8" data-line-number="8">)</a>
-<a class="sourceLine" id="cb16-9" data-line-number="9">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
-<a class="sourceLine" id="cb16-10" data-line-number="10">  output<span class="op">$</span>plot1 &lt;-<span class="st"> </span><span class="kw">renderPlot</span>(<span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb16-11" data-line-number="11">  output<span class="op">$</span>plot2 &lt;-<span class="st"> </span><span class="kw">renderPlot</span>(<span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb16-12" data-line-number="12">}</a>
-<a class="sourceLine" id="cb16-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb16-14" data-line-number="14"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
-</div>
-<!---------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------->
-</div>
-<div id="exercise-3.3.5.3" class="section level3 unnumbered">
-<h3>Exercise 3.3.5.3</h3>
-<p>Update the options for <code>renderDataTable()</code> below so that the table is
-displayed, but nothing else, i.e. remove the search, ordering, and filtering
-commands. You’ll need to read <code>?renderDataTable</code> and review the options at
-<a href="https://datatables.net/reference/option/" class="uri">https://datatables.net/reference/option/</a>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">  <span class="kw">dataTableOutput</span>(<span class="st">&quot;table&quot;</span>)</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">)</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
-<a class="sourceLine" id="cb17-5" data-line-number="5">  output<span class="op">$</span>table &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>(mtcars, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">pageLength =</span> <span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb17-6" data-line-number="6">}</a></code></pre></div>
-<div class="solution">
-<h4 id="solution-12" class="unnumbered"><span id="unlabeled-div-13" class="solution"><em>Solution</em>. </span>Solution</h4>
-<p>We can achieve this by setting <code>ordering</code> and <code>searching</code> to <code>FALSE</code> within the
-<code>options</code> list.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
 <a class="sourceLine" id="cb18-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb18-3" data-line-number="3">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
-<a class="sourceLine" id="cb18-4" data-line-number="4">  <span class="kw">dataTableOutput</span>(<span class="st">&quot;table&quot;</span>)</a>
-<a class="sourceLine" id="cb18-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb18-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb18-7" data-line-number="7">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
-<a class="sourceLine" id="cb18-8" data-line-number="8">  output<span class="op">$</span>table &lt;-<span class="st"> </span><span class="kw">renderDataTable</span>(</a>
-<a class="sourceLine" id="cb18-9" data-line-number="9">    mtcars, <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">ordering =</span> <span class="ot">FALSE</span>, <span class="dt">searching =</span> <span class="ot">FALSE</span>))</a>
-<a class="sourceLine" id="cb18-10" data-line-number="10">}</a>
-<a class="sourceLine" id="cb18-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb18-12" data-line-number="12"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
+<a class="sourceLine" id="cb18-4" data-line-number="4">  <span class="kw">fluidRow</span>(</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">    <span class="kw">column</span>(<span class="dt">width =</span> <span class="dv">6</span>, <span class="kw">plotOutput</span>(<span class="st">&quot;plot1&quot;</span>)),</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6">    <span class="kw">column</span>(<span class="dt">width =</span> <span class="dv">6</span>, <span class="kw">plotOutput</span>(<span class="st">&quot;plot2&quot;</span>))</a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">  )</a>
+<a class="sourceLine" id="cb18-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb18-9" data-line-number="9">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
+<a class="sourceLine" id="cb18-10" data-line-number="10">  output<span class="op">$</span>plot1 &lt;-<span class="st"> </span><span class="kw">renderPlot</span>(<span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb18-11" data-line-number="11">  output<span class="op">$</span>plot2 &lt;-<span class="st"> </span><span class="kw">renderPlot</span>(<span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb18-12" data-line-number="12">}</a>
+<a class="sourceLine" id="cb18-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb18-14" data-line-number="14"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
 </div>
-<!---------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------->
 </div>
-<div id="exercise-3.4.6.1" class="section level3 unnumbered">
-<h3>Exercise 3.4.6.1</h3>
+<div id="exercise-3.4.6.2" class="section level3 unnumbered">
+<h3>Exercise 3.4.6.2</h3>
 <p>Modify the Central Limit Theorem app so that the sidebar is on the right
 instead of the left.</p>
 <div class="solution">
@@ -470,12 +461,9 @@ instead of the left.</p>
 <a class="sourceLine" id="cb19-11" data-line-number="11">  )</a>
 <a class="sourceLine" id="cb19-12" data-line-number="12">)</a></code></pre></div>
 </div>
-<!---------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------->
 </div>
-<div id="exercise-3.4.6.2" class="section level3 unnumbered">
-<h3>Exercise 3.4.6.2</h3>
+<div id="exercise-3.4.6.3" class="section level3 unnumbered">
+<h3>Exercise 3.4.6.3</h3>
 <p>Browse the themes available in the shinythemes package, pick an attractive
 theme, and apply it to the Central Limit Theorem app.</p>
 <div class="solution">

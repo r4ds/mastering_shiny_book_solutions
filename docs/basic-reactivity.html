@@ -162,9 +162,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.2.8.5"><i class="fa fa-check"></i>Exercise 3.2.8.5</a></li>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.1"><i class="fa fa-check"></i>Exercise 3.3.5.1</a></li>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.2"><i class="fa fa-check"></i>Exercise 3.3.5.2</a></li>
-<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.3.5.3"><i class="fa fa-check"></i>Exercise 3.3.5.3</a></li>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.1"><i class="fa fa-check"></i>Exercise 3.4.6.1</a></li>
 <li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.2"><i class="fa fa-check"></i>Exercise 3.4.6.2</a></li>
+<li class="chapter" data-level="" data-path="basic-ui.html"><a href="basic-ui.html#exercise-3.4.6.3"><i class="fa fa-check"></i>Exercise 3.4.6.3</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="basic-reactivity.html"><a href="basic-reactivity.html"><i class="fa fa-check"></i><b>4</b> Basic Reactivity</a><ul>
 <li class="chapter" data-level="" data-path="basic-reactivity.html"><a href="basic-reactivity.html#exercise-4.3.6.1"><i class="fa fa-check"></i>Exercise 4.3.6.1</a></li>
@@ -321,10 +321,30 @@ depends on both <code>c()</code> and <code>input$d</code>.</p>
 </div>
 <div id="exercise-4.3.6.2" class="section level3 unnumbered">
 <h3>Exercise 4.3.6.2</h3>
-<p>Can the reactive graph contain a cycle? Why/why not?</p>
+<p>Why will this code fail?</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">var &lt;-<span class="st"> </span><span class="kw">reactive</span>(df[input<span class="op">$</span>var])</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">range &lt;-<span class="st"> </span><span class="kw">reactive</span>(<span class="kw">range</span>(<span class="kw">var</span>(), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<p>Why is <code>var()</code> a bad name for a reactive?</p>
 <div class="solution">
 <h4 id="solution-16" class="unnumbered"><span id="unlabeled-div-17" class="solution"><em>Solution</em>. </span>Solution</h4>
-<p>No! This will create circular references and a recursion loop!</p>
+<p>This code doesn’t work because we called our reactive <code>range</code>, so when we call the <code>range</code> function we’re actually calling our new reactive. If we change the name of the reactive from <code>range</code> to <code>col_range</code> then the code will work. Similarly, <code>var()</code> is not a good name for a reactive because it’s already a function to compute the variance of <code>x</code>! <code>?cor::var</code></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">df &lt;-<span class="st"> </span>mtcars</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6">    <span class="kw">selectInput</span>(<span class="st">&quot;var&quot;</span>, <span class="ot">NULL</span>, <span class="dt">choices =</span> <span class="kw">colnames</span>(df)),</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">    <span class="kw">verbatimTextOutput</span>(<span class="st">&quot;debug&quot;</span>)</a>
+<a class="sourceLine" id="cb23-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb23-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb23-10" data-line-number="10">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
+<a class="sourceLine" id="cb23-11" data-line-number="11">    col_var &lt;-<span class="st"> </span><span class="kw">reactive</span>( df[input<span class="op">$</span>var] )</a>
+<a class="sourceLine" id="cb23-12" data-line-number="12">    col_range &lt;-<span class="st"> </span><span class="kw">reactive</span>({ <span class="kw">range</span>(<span class="kw">col_var</span>(), <span class="dt">na.rm =</span> <span class="ot">TRUE</span> ) })</a>
+<a class="sourceLine" id="cb23-13" data-line-number="13">    output<span class="op">$</span>debug &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({ <span class="kw">col_range</span>() })</a>
+<a class="sourceLine" id="cb23-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb23-15" data-line-number="15">}</a>
+<a class="sourceLine" id="cb23-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb23-17" data-line-number="17"><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</a></code></pre></div>
 </div>
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
