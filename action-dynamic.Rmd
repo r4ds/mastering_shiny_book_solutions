@@ -383,7 +383,7 @@ shinyApp(ui, server)
 
 ### Exercise 10.2.3.3 {-}
 
-Create a wizard interface that steers the user along the path …
+Modify the app you created in the previous exercise to allow the user to choose whether each geom is shown or not (i.e. instead of always using one geom, they can picked 0, 1, 2, or 3). Make sure that you can control the binwidth of the histogram and frequency polygon independently.
 
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
