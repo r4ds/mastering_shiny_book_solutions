@@ -1,8 +1,11 @@
 # Bookmarking
 
-<!--html_preserve--><div class="TODO">
+
+```{=html}
+<div class="TODO">
 This chapter is in development...
-</div><!--/html_preserve-->
+</div>
+```
 
 ### Exercise 11.3.1 {-}
 

@@ -5,7 +5,7 @@ bookdown::gitbook:
       collapse: section
       before: |
         <li><a href="./">Mastering Shiny Solutions</a></li>
-    edit: https://github.com/marlycormar/mastering_shiny_book_solutions/edit/master/%s
+    edit: https://github.com/r4ds/mastering_shiny_book_solutions/edit/master/%s
     download: []
     sharing:
       facebook: no

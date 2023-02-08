@@ -53,7 +53,7 @@ reduces the summary tables?
 
 As in the book, we will use the datasets `injuries`, `products`, and
 `population` appearing here:
-https://github.com/hadley/mastering-shiny/blob/master/neiss/data.R.
+https://github.com/hadley/mastering-shiny/blob/main/neiss/data.R.
 
 Flipping the order of `fct_infreq()` and `fct_lump()` will only change the
 factor levels order. In particular, the function `fct_infreq()` orders the
@@ -76,7 +76,7 @@ injuries %>%
 ```
 
 ```
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ## # Groups:   diag [5]
 ##   diag                      n
 ##   <chr>                 <int>
@@ -154,7 +154,7 @@ library(ggplot2)
 
 # Note: these exercises use the datasets `injuries`, `products`, and
 # `population` as created here:
-# https://github.com/hadley/mastering-shiny/blob/master/neiss/data.R
+# https://github.com/hadley/mastering-shiny/blob/main/neiss/data.R
 
 count_top <- function(df, var, n = 5) {
   df %>%
@@ -273,7 +273,7 @@ library(ggplot2)
 
 # Note: these exercises use the datasets `injuries`, `products`, and
 # `population` as created here:
-# https://github.com/hadley/mastering-shiny/blob/master/neiss/data.R
+# https://github.com/hadley/mastering-shiny/blob/main/neiss/data.R
 
 count_top <- function(df, var, n = 5) {
   df %>%
