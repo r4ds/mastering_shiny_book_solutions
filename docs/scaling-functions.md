@@ -1,8 +1,11 @@
 # Functions
 
-<!--html_preserve--><div class="TODO">
+
+```{=html}
+<div class="TODO">
 This chapter is in development...
-</div><!--/html_preserve-->
+</div>
+```
 
 ### Exercise 14.4.1 {-}
 

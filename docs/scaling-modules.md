@@ -1,8 +1,11 @@
 # Modules
 
-<!--html_preserve--><div class="TODO">
+
+```{=html}
+<div class="TODO">
 This chapter is in development...
-</div><!--/html_preserve-->
+</div>
+```
 
 ### Exercise 15.6.1 {-}
 

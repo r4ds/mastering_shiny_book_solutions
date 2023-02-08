@@ -232,8 +232,10 @@ them?
 
 
 ```r
+library(shiny)
 library(ggplot2)
-datasets <- data(package = "ggplot2")$results[c(2, 4, 10), "Item"]
+
+datasets <- c("economics", "faithfuld", "seals")
 
 ui <- fluidPage(
   selectInput("dataset", "Dataset", choices = datasets),
@@ -259,8 +261,9 @@ server <- function(input, output, session) {
 
 The app contains the following three bugs:
 
-1. In the UI, the `tableOutput` object should really be a `plotOutput`.
+1. In the UI, the `tableOutput` object should really be a `plotOutput`.  
 2. In the server, the word "summry" in `output$summry` is misspelled.
+* __NB: In the printed 1st edition (Exercise 1.5), the deliberate typo `summry` in the `server` was corrected and there are only 2 two bugs.__ 
 3. In the server, the `plot` function in the `output$plot` should call
 `dataset()` rather than the reactive object.
 
@@ -268,8 +271,10 @@ The fixed app looks as follows:
 
 
 ```r
+library(shiny)
 library(ggplot2)
-datasets <- data(package = "ggplot2")$results[c(2, 4, 10), "Item"]
+
+datasets <- c("economics", "faithfuld", "seals")
 
 ui <- fluidPage(
   selectInput("dataset", "Dataset", choices = datasets),
