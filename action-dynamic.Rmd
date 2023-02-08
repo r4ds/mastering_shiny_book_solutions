@@ -256,6 +256,54 @@ Updating all three sliders creates a circular reference!
 
 Use a hidden tabset to show additional controls only if the user checks an "advanced" check box.
 
+:::solution
+#### Solution {-}
+
+```{r, eval=FALSE}
+library(shiny)
+
+ui <- fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      checkboxInput("moreControls", 
+        label = "Show advanced controls?",
+        value = FALSE
+      )
+    ),
+    mainPanel(
+      tabsetPanel(
+        id = "basic",
+        type = "hidden",
+        tabPanelBody("panel1",
+          numericInput("basicControl", label = "Basic:", 0),
+        )
+      ),
+      tabsetPanel(
+        id = "advanced",
+        type = "hidden",
+        tabPanelBody("emptyPanel", style = "display: none"),
+        tabPanelBody("panel2",
+          numericInput("advancedCotrol", label = "Advanced:", 1)
+        )
+      )
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  observeEvent(input$moreControls, {
+    if (input$moreControls) {
+      updateTabsetPanel(session, "advanced", selected = "panel2")
+    } else {
+      updateTabsetPanel(session, "advanced", selected = "emptyPanel")
+    }
+  })
+}
+
+shinyApp(ui, server)
+```
+:::
+
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
 <!---------------------------------------------------------------------------->
