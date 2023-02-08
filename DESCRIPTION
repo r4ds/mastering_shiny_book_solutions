@@ -1,6 +1,21 @@
-Package: placeholder
+Package: mshinySolutions
 Type: Book
-Title: Does not matter.
+Title: Mastering Shiny Solutions
 Version: 0.0.1
-Imports: bookdown
-Remotes: rstudio/bookdown
+Imports: 
+    ambient,
+    bookdown,
+    brickr,
+    forcats,
+    gapminder,
+    ggplot2,
+    neiss,
+    openintro,
+    png,
+    purrr,
+    readr,
+    shiny,
+    shinyjs
+Remotes:
+    hadley/neiss,
+    ryantimpe/brickr
